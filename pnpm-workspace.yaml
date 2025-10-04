@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - '@clerk/shared'
+  - '@firebase/util'
+  - '@tailwindcss/oxide'
+  - ngrok
+  - protobufjs
+  - sharp
+  - unrs-resolver

@@ -1,37 +1,106 @@
-import { UserButton } from "@clerk/nextjs";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "../ui/navigation-menu";
+'use client';
+
+import { useEffect, useMemo, useState } from "react";
+
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+
+import { SidebarTrigger } from "../ui/sidebar";
+import { Button } from "../ui/button";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
+import { isAdminEmail } from "@/lib/admin/config";
 
-
+const baseNavLinks = [
+    { href: "/", label: "Home" },
+    { href: "/library", label: "Library" },
+    { href: "/social", label: "Community" },
+    { href: "/search", label: "Search" },
+    { href: "/people", label: "People" },
+    { href: "/profile", label: "Profile" },
+];
 
 export function NavBar() {
+    const [isMounted, setIsMounted] = useState(false);
+    const { user } = useUser();
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const links = useMemo(() => {
+        const items = [...baseNavLinks];
+        const emails = user?.emailAddresses ?? [];
+        if (emails.some((address) => isAdminEmail(address.emailAddress))) {
+            items.push({ href: "/admin", label: "Admin" });
+        }
+        return items;
+    }, [user?.emailAddresses]);
+
     return (
-        <div className="w-screen h-16 shadow-lg fixed bg-white content-center align-center text-center pt-1 pb-1 position-fixed">
-            
-                <div className="grid grid-cols-3 gap-4 content-center">
-                    <div className="flex gap-2">
-                    <div className="font-bold text-left text-lg pl-16">Life-AI</div>
-                    <div className="text-xs content-end text-red-700 font-bold">By CCPROS</div>
-                    </div>
-                    <div className="text-black">
-                        <NavigationMenu viewport={false}>
-                            <NavigationMenuList>
-                            <NavigationMenuItem>
-                                    <NavigationMenuLink className="hover:text-blue-500 hover:opacity-50 hover:text-lg hover:font-bold" asChild>
-                                        <Link href="/"><div>Home</div></Link>
-                                    </NavigationMenuLink>
-                                
-                                
-                            </NavigationMenuItem>
-                            </NavigationMenuList>
-                        </NavigationMenu>
-                    </div>
-                    <div>
-                        <UserButton />
-                    </div>
+        <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+            <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-10">
+                <div className="flex items-center gap-3">
+                    <SidebarTrigger className="md:hidden" />
+                    <Link href="/" className="flex items-center gap-3 text-slate-900">
+                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-semibold text-white">
+                            LA
+                        </span>
+                        <span className="flex flex-col leading-tight">
+                            <span className="text-sm font-semibold tracking-wide uppercase">Life-AI</span>
+                            <span className="text-xs font-medium text-slate-500">by CCPROS</span>
+                        </span>
+                    </Link>
                 </div>
-        
-            
-        </div>
-    )
+
+                <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
+                    {links.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="transition-colors hover:text-slate-900"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                </nav>
+
+                <div className="flex items-center gap-3">
+                    <nav className="flex items-center gap-4 text-sm font-medium text-slate-600 md:hidden">
+                        {links
+                            .filter((link) => link.href !== "/")
+                            .map((link) => (
+                                <Link key={link.href} href={link.href} className="transition-colors hover:text-slate-900">
+                                    {link.label}
+                                </Link>
+                            ))}
+                    </nav>
+                    {isMounted ? (
+                        <>
+                            <SignedIn>
+                                <UserButton
+                                    appearance={{
+                                        elements: {
+                                            avatarBox: "h-9 w-9 border border-slate-200 shadow-sm",
+                                        },
+                                    }}
+                                />
+                            </SignedIn>
+                            <SignedOut>
+                                <div className="flex items-center gap-2">
+                                    <Button asChild variant="outline" size="sm" className="h-10">
+                                        <SignInButton />
+                                    </Button>
+                                    <Button asChild size="sm" className="h-10">
+                                        <SignUpButton />
+                                    </Button>
+                                </div>
+                            </SignedOut>
+                        </>
+                    ) : (
+                        <Skeleton className="h-9 w-9 rounded-full" aria-hidden />
+                    )}
+                </div>
+            </div>
+        </header>
+    );
 }

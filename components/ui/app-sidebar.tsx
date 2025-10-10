@@ -1,34 +1,1175 @@
+'use client';
+import type { ChangeEvent, ComponentType, SVGProps } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import {
+    DocumentIcon,
+    FolderIcon,
+    FolderOpenIcon,
+} from "@heroicons/react/24/solid";
+import {
+    ClipboardDocumentListIcon,
+    DocumentPlusIcon,
+    DocumentTextIcon,
+    PhotoIcon,
+    PresentationChartBarIcon,
+    TableCellsIcon,
+} from "@heroicons/react/24/outline";
+import { FolderPlus, Loader2, Minus, Pencil, Plus, Trash } from "lucide-react";
+import { upload } from "@vercel/blob/client";
+import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "./sidebar";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarHeader,
+} from "./sidebar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
+import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
+import { getUserProfile } from "@/lib/firebase/profile";
+import { pathToId } from "@/lib/blob/utils";
 
+type FileNode = {
+    id: string;
+    name: string;
+    type: "folder" | "file";
+    pathname: string;
+    relativePath: string;
+    parentPath: string;
+    children?: FileNode[];
+    url?: string;
+    downloadUrl?: string;
+    size?: number;
+    source?: string;
+    isDefault?: boolean;
+    docType?: string;
+    docId?: string;
+    title?: string;
+};
+
+type CreateOption = {
+    id: "doc" | "sheet" | "slide" | "form" | "drawing" | "upload";
+    name: string;
+    description: string;
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
+    accent: string;
+};
+
+const coreOptions: CreateOption[] = [
+    {
+        id: "doc",
+        name: "Blank Doc",
+        description: "Word-style document",
+        icon: DocumentTextIcon,
+        accent: "bg-sky-100 text-sky-600",
+    },
+    {
+        id: "drawing",
+        name: "Blank Drawing",
+        description: "Canvas",
+        icon: PhotoIcon,
+        accent: "bg-rose-100 text-rose-600",
+    },
+    {
+        id: "upload",
+        name: "Upload",
+        description: "Import a file",
+        icon: DocumentPlusIcon,
+        accent: "bg-slate-100 text-slate-600",
+    },
+];
+
+const comingSoonOptions: Array<Omit<CreateOption, "accent"> & { accent: string; badge: string }> = [
+    {
+        id: "sheet",
+        name: "Sheets",
+        description: "Spreadsheet",
+        icon: TableCellsIcon,
+        accent: "bg-emerald-100 text-emerald-600",
+        badge: "Coming soon",
+    },
+    {
+        id: "slide",
+        name: "Slides",
+        description: "Presentation deck",
+        icon: PresentationChartBarIcon,
+        accent: "bg-amber-100 text-amber-600",
+        badge: "Coming soon",
+    },
+    {
+        id: "form",
+        name: "Forms",
+        description: "Survey / intake",
+        icon: ClipboardDocumentListIcon,
+        accent: "bg-violet-100 text-violet-600",
+        badge: "Coming soon",
+    },
+];
+
+const MULTIPART_THRESHOLD_BYTES = 32 * 1024 * 1024; // 32MB
+
+function sanitizeFileName(fileName: string) {
+    return fileName
+        .toLowerCase()
+        .replace(/[^a-z0-9._-]/gi, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+}
+
+type ApiFileItem = {
+    type: "file" | "folder";
+    name: string;
+    pathname: string;
+    relativePath: string;
+    parentPath?: string;
+    url?: string;
+    downloadUrl?: string;
+    size?: number;
+    source?: string;
+    isDefault?: boolean;
+    docType?: string;
+    title?: string;
+};
+
+function depthOf(path: string) {
+    if (!path) {
+        return 0;
+    }
+    return path.split("/").filter(Boolean).length;
+}
+
+function buildTree(items: ApiFileItem[]): FileNode[] {
+    const roots: FileNode[] = [];
+    const nodeMap = new Map<string, FileNode>();
+    const sorted = [...items].sort((a, b) => depthOf(a.relativePath) - depthOf(b.relativePath));
+
+    const prefixSource = sorted.find((item) => item.pathname);
+    const basePrefix = prefixSource
+        ? prefixSource.pathname.slice(0, prefixSource.pathname.length - prefixSource.relativePath.length)
+        : "";
+
+    const getOrCreateFolder = (
+        relativePath: string,
+        source = "derived",
+        isDefault: boolean | undefined = false,
+    ): FileNode | null => {
+        if (!relativePath) {
+            return null;
+        }
+
+        const existing = nodeMap.get(relativePath);
+        if (existing) {
+            return existing;
+        }
+
+        const clean = relativePath.replace(/\/+$/, "");
+        const name = clean.split("/").pop() ?? clean;
+        const parentPath = relativePath.replace(/[^/]+\/?$/, "");
+        const pathname = basePrefix ? `${basePrefix}${relativePath}` : relativePath;
+
+        const node: FileNode = {
+            id: pathname,
+            name,
+            type: "folder",
+            pathname,
+            relativePath,
+            parentPath,
+            children: [],
+            source,
+            isDefault,
+        };
+
+        nodeMap.set(relativePath, node);
+
+        const parent = getOrCreateFolder(parentPath, source);
+        if (parent) {
+            parent.children = parent.children ?? [];
+            parent.children.push(node);
+        } else {
+            roots.push(node);
+        }
+
+        return node;
+    };
+
+    for (const item of sorted) {
+        if (item.type === "folder") {
+            const folderNode = getOrCreateFolder(item.relativePath, item.source ?? "firestore", item.isDefault);
+            if (folderNode) {
+                folderNode.name = item.name;
+                folderNode.pathname = item.pathname;
+                folderNode.source = item.source ?? folderNode.source;
+                folderNode.isDefault = item.isDefault ?? folderNode.isDefault;
+            }
+            continue;
+        }
+
+        const parentPath = item.parentPath ?? "";
+        const docType = item.docType;
+        const docId = docType ? pathToId(item.pathname) : undefined;
+        const parent = parentPath ? getOrCreateFolder(parentPath) : null;
+        const node: FileNode = {
+            id: item.pathname,
+            name: item.name,
+            type: "file",
+            pathname: item.pathname,
+            relativePath: item.relativePath,
+            parentPath,
+            url: item.url,
+            downloadUrl: item.downloadUrl,
+            size: item.size,
+            source: item.source ?? "blob",
+            isDefault: item.isDefault,
+            docType,
+            docId,
+            title: item.title,
+        };
+
+        if (parent) {
+            parent.children = parent.children ?? [];
+            parent.children.push(node);
+        } else {
+            roots.push(node);
+        }
+    }
+
+    const sortNodes = (nodes: FileNode[]) => {
+        nodes.sort((a, b) => {
+            if (a.type !== b.type) {
+                return a.type === "folder" ? -1 : 1;
+            }
+            return a.name.localeCompare(b.name);
+        });
+
+        nodes.forEach((node) => {
+            if (node.children?.length) {
+                sortNodes(node.children);
+            }
+        });
+    };
+
+    sortNodes(roots);
+    return roots;
+}
+
+const FileTree = ({
+    nodes,
+    expanded,
+    onToggle,
+    onAddFolder,
+    onRename,
+    onDelete,
+    onOpen,
+    disabled = false,
+}: {
+    nodes: FileNode[];
+    expanded: Record<string, boolean>;
+    onToggle: (path: string) => void;
+    onAddFolder: (node: FileNode) => void;
+    onRename: (node: FileNode) => void;
+    onDelete: (node: FileNode) => void;
+    onOpen: (node: FileNode) => void;
+    disabled?: boolean;
+}) => {
+    return (
+        <ul className="space-y-1 text-sm">
+            {nodes.map((node) => {
+                const isFolder = node.type === "folder";
+                const key = node.relativePath || node.id;
+                const isExpanded = !!expanded[node.relativePath];
+
+                if (isFolder) {
+                    return (
+                        <li key={key}>
+                            <div className="flex w-full items-center gap-2 rounded px-1.5 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-100">
+                                <button
+                                    type="button"
+                                    onClick={() => onToggle(node.relativePath)}
+                                    className="flex flex-1 items-center gap-2"
+                                >
+                                    {isExpanded ? (
+                                        <FolderOpenIcon className="h-4 w-4 text-slate-600" />
+                                    ) : (
+                                        <FolderIcon className="h-4 w-4 text-slate-600" />
+                                    )}
+                                    <span>{node.name}</span>
+                                </button>
+                                <div className="flex items-center gap-1">
+                                    <button
+                                        type="button"
+                                        disabled={disabled}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            onAddFolder(node);
+                                        }}
+                                        className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 disabled:opacity-60"
+                                    >
+                                        <FolderPlus className="h-3.5 w-3.5" />
+                                        <span className="sr-only">Add subfolder</span>
+                                    </button>
+                                    {!node.isDefault ? (
+                                        <>
+                                            <button
+                                                type="button"
+                                                disabled={disabled}
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    onRename(node);
+                                                }}
+                                                className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 disabled:opacity-60"
+                                            >
+                                                <Pencil className="h-3.5 w-3.5" />
+                                                <span className="sr-only">Rename folder</span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                disabled={disabled}
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    onDelete(node);
+                                                }}
+                                                className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 disabled:opacity-60"
+                                            >
+                                                <Trash className="h-3.5 w-3.5" />
+                                                <span className="sr-only">Delete folder</span>
+                                            </button>
+                                        </>
+                                    ) : null}
+                                </div>
+                            </div>
+                            {isExpanded && node.children?.length ? (
+                                <div className="pl-5 pt-1">
+                                    <FileTree
+                                        nodes={node.children}
+                                        expanded={expanded}
+                                        onToggle={onToggle}
+                                        onAddFolder={onAddFolder}
+                                        onRename={onRename}
+                                        onDelete={onDelete}
+                                        onOpen={onOpen}
+                                        disabled={disabled}
+                                    />
+                                </div>
+                            ) : null}
+                        </li>
+                    );
+                }
+
+                return (
+                    <li key={key}>
+                        <div className="flex w-full items-center gap-1 rounded px-1.5 py-1 text-xs text-slate-600">
+                            <button
+                                type="button"
+                                onClick={() => onOpen(node)}
+                                disabled={disabled}
+                                className="flex flex-1 items-center gap-2 rounded px-1 py-0.5 text-left transition hover:bg-slate-200 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                                <DocumentIcon className="h-4 w-4 text-slate-500" />
+                                <span className="flex-1 truncate">{node.title ?? node.name}</span>
+                            </button>
+                            <button
+                                type="button"
+                                disabled={disabled}
+                                onClick={() => onRename(node)}
+                                className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 disabled:opacity-60"
+                            >
+                                <Pencil className="h-3.5 w-3.5" />
+                                <span className="sr-only">Rename file</span>
+                            </button>
+                            <button
+                                type="button"
+                                disabled={disabled}
+                                onClick={() => onDelete(node)}
+                                className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                                <Trash className="h-3.5 w-3.5" />
+                                <span className="sr-only">Delete file</span>
+                            </button>
+                        </div>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};
 
 export function AppSidebar() {
-    return(
-        
-        <Sidebar className="mt-16 shadow-xl bg-white opacity-80">
-            <SidebarHeader className="mt-5">Hello Name</SidebarHeader>
-            <SidebarContent className="flex items-center">
-                <div className="flex items-center">
-                <Avatar className="flex h-30 w-30 content-center mt-2 border border-2 shadow-xs">
-                    <AvatarImage className="content-center" src="#"/>
-                    <AvatarFallback className="h-30 w-30 flex">RC</AvatarFallback>
-                </Avatar>
+    const router = useRouter();
+    const pathname = usePathname();
+    const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
+    const [isFilesOpen, setIsFilesOpen] = useState(false);
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const { isLoaded, isSignedIn, user } = useUser();
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [fileNodes, setFileNodes] = useState<FileNode[]>([]);
+    const [isFilesLoading, setIsFilesLoading] = useState(false);
+    const [filesError, setFilesError] = useState<string | null>(null);
+    const [isMutatingFiles, setIsMutatingFiles] = useState(false);
+    const [defaultFolder, setDefaultFolder] = useState<{ relativePath: string; pathname: string } | null>(null);
+    const [creatingDocId, setCreatingDocId] = useState<string | null>(null);
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const [uploadingFile, setUploadingFile] = useState<string | null>(null);
+    const [uploadProgress, setUploadProgress] = useState(0);
+
+    const handleToggle = (path: string) => {
+        setExpandedNodes((prev) => ({
+            ...prev,
+            [path]: !prev[path],
+        }));
+    };
+
+    useEffect(() => {
+        if (!isLoaded || !isSignedIn || !user?.id) {
+            setAvatarUrl(null);
+            return;
+        }
+
+        let ignore = false;
+
+        (async () => {
+            try {
+                await ensureFirebaseSignedIn();
+                const profile = await getUserProfile(user.id);
+                if (!ignore) {
+                    setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
+                }
+            } catch (error) {
+                console.error("Failed to load sidebar profile", error);
+                if (!ignore) {
+                    setAvatarUrl(user.imageUrl || null);
+                }
+            }
+        })();
+
+        return () => {
+            ignore = true;
+        };
+    }, [isLoaded, isSignedIn, user?.id, user?.imageUrl]);
+
+    const greeting = isLoaded && isSignedIn && user?.firstName
+        ? `Hello ${user.firstName}`
+        : "Hello Guest";
+
+    const resetFileInput = useCallback(() => {
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    }, []);
+
+    const refreshFiles = useCallback(
+        async (options: { silent?: boolean } = {}) => {
+            if (!isSignedIn || !user?.id) {
+                setFileNodes([]);
+                return;
+            }
+
+            if (!options.silent) {
+                setIsFilesLoading(true);
+            }
+            setFilesError(null);
+
+            try {
+                const response = await fetch("/api/files", {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const payload = (await response.json().catch(() => null)) as
+                    | {
+                          items?: ApiFileItem[];
+                          error?: string;
+                          defaultFolder?: { relativePath?: string; pathname?: string };
+                      }
+                    | null;
+
+                if (!response.ok || !payload) {
+                    throw new Error(payload?.error ?? "Unable to load files");
+                }
+
+                const items = Array.isArray(payload.items) ? payload.items : [];
+                setFileNodes(buildTree(items));
+
+                if (payload.defaultFolder) {
+                    const relativePath = payload.defaultFolder.relativePath ?? "";
+                    const pathname = payload.defaultFolder.pathname ?? "";
+                    if (relativePath || pathname) {
+                        setDefaultFolder({ relativePath, pathname });
+                        if (relativePath) {
+                            setExpandedNodes((prev) =>
+                                prev[relativePath]
+                                    ? prev
+                                    : {
+                                          ...prev,
+                                          [relativePath]: true,
+                                      }
+                            );
+                        }
+                    }
+                }
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to load files";
+                setFilesError(message);
+            } finally {
+                if (!options.silent) {
+                    setIsFilesLoading(false);
+                }
+            }
+        },
+        [isSignedIn, user?.id]
+    );
+
+    useEffect(() => {
+        if (!isLoaded) {
+            return;
+        }
+
+        if (!isSignedIn || !user?.id) {
+            setFileNodes([]);
+            setDefaultFolder(null);
+            return;
+        }
+
+        void refreshFiles();
+    }, [isLoaded, isSignedIn, refreshFiles, user?.id]);
+
+    const handleUploadClick = useCallback(() => {
+        if (!isSignedIn || !user?.id) {
+            toast.error("Sign in to upload files");
+            return;
+        }
+
+        if (uploadingFile) {
+            toast.info("Upload in progress", {
+                description: `Uploading ${uploadingFile} (${uploadProgress}%)`,
+            });
+            return;
+        }
+
+        fileInputRef.current?.click();
+    }, [isSignedIn, uploadProgress, uploadingFile, user?.id]);
+
+    const handleFileChange = useCallback(async (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (!isSignedIn || !user?.id) {
+            toast.error("Sign in to upload files");
+            resetFileInput();
+            return;
+        }
+
+        if (!defaultFolder) {
+            toast.error("Preparing your workspace. Please try again in a moment.");
+            resetFileInput();
+            return;
+        }
+
+        const safeName = sanitizeFileName(file.name);
+        const timestamp = Date.now();
+        const normalizedFolder = defaultFolder.relativePath.replace(/^\/+|\/+$/g, "");
+        const folderPrefix = normalizedFolder ? `${normalizedFolder}/` : "";
+        const filename = `${timestamp}-${safeName}`;
+        const pathname = `uploads/${user.id}/${folderPrefix}${filename}`;
+        const shouldUseMultipart = file.size > MULTIPART_THRESHOLD_BYTES;
+
+        setUploadingFile(file.name);
+        setUploadProgress(0);
+
+        try {
+            const result = await upload(pathname, file, {
+                access: "public",
+                handleUploadUrl: "/api/blob/upload",
+                clientPayload: JSON.stringify({ originalName: file.name, parentPath: folderPrefix }),
+                multipart: shouldUseMultipart,
+                onUploadProgress: ({ percentage }) => {
+                    if (typeof percentage === "number") {
+                        setUploadProgress(Math.min(100, Math.round(percentage)));
+                    }
+                },
+            });
+
+            toast.success("Upload complete", {
+                description: (
+                    <a
+                        href={result.downloadUrl || result.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline"
+                    >
+                        View file
+                    </a>
+                ),
+            });
+
+            if (user?.id) {
+                const relativeParent = folderPrefix;
+
+                await refreshFiles({ silent: true });
+
+                if (relativeParent) {
+                    setExpandedNodes((prev) => ({
+                        ...prev,
+                        [relativeParent]: true,
+                    }));
+                }
+            }
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Upload failed";
+            toast.error("Upload failed", { description: message });
+        } finally {
+            setUploadingFile(null);
+            setUploadProgress(0);
+            resetFileInput();
+        }
+    }, [defaultFolder, isSignedIn, refreshFiles, resetFileInput, user?.id]);
+
+    const handleOpenNode = useCallback(
+        (node: FileNode) => {
+            if (node.type === "folder") {
+                return;
+            }
+
+            if (node.docId && node.docType && ["doc", "sheet", "slide", "form", "drawing"].includes(node.docType)) {
+                router.push(`/documents/${node.docId}`);
+                return;
+            }
+
+            const fallbackUrl = node.downloadUrl ?? node.url;
+            if (fallbackUrl) {
+                window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+                return;
+            }
+
+            toast.info("Unable to open file", {
+                description: "No viewer available for this item yet.",
+            });
+        },
+        [router]
+    );
+
+    const handleCreateDocument = useCallback(
+        async (type: CreateOption["id"]) => {
+            if (!isSignedIn || !user?.id) {
+                toast.error("Sign in to create documents");
+                return;
+            }
+
+            if (type === "upload") {
+                handleUploadClick();
+                return;
+            }
+
+            if (!defaultFolder) {
+                toast.error("Preparing your workspace. Please try again in a moment.");
+                return;
+            }
+
+            let requestedName: string | null = null;
+
+            if (type !== "upload") {
+                const promptMap: Record<CreateOption["id"], { message: string; fallback: string }> = {
+                    doc: { message: "Document name", fallback: "Untitled Document" },
+                    sheet: { message: "Spreadsheet name", fallback: "Untitled Sheet" },
+                    slide: { message: "Presentation name", fallback: "Untitled Deck" },
+                    form: { message: "Form name", fallback: "Untitled Form" },
+                    drawing: { message: "Canvas name", fallback: "Untitled Canvas" },
+                    upload: { message: "", fallback: "" },
+                };
+
+                const promptConfig = promptMap[type];
+                if (promptConfig?.message) {
+                    requestedName = window.prompt(promptConfig.message, promptConfig.fallback);
+                    if (requestedName === null) {
+                        return;
+                    }
+                    requestedName = requestedName.trim();
+                }
+            }
+
+            setCreatingDocId(type);
+
+            try {
+                const response = await fetch("/api/documents", {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        type,
+                        folderRelativePath: defaultFolder.relativePath,
+                        name: requestedName && requestedName.length ? requestedName : undefined,
+                    }),
+                });
+
+                const payload = (await response.json().catch(() => null)) as
+                    | {
+                          docId?: string;
+                          title?: string;
+                          error?: string;
+                          relativePath?: string;
+                          parentPath?: string;
+                      }
+                    | null;
+
+                if (!response.ok || !payload?.docId) {
+                    throw new Error(payload?.error ?? "Unable to create document");
+                }
+
+                await refreshFiles({ silent: true });
+
+                if (payload.parentPath ?? defaultFolder.relativePath) {
+                    const parentPath = payload.parentPath ?? defaultFolder.relativePath;
+                    setExpandedNodes((prev) => ({
+                        ...prev,
+                        [parentPath]: true,
+                    }));
+                }
+
+                const documentTitle = payload.title ?? "New document";
+                setIsCreateOpen(false);
+                router.push(`/documents/${payload.docId}`);
+                toast.success("Document created", {
+                    description: documentTitle,
+                    action: payload.docId
+                        ? {
+                              label: "Open",
+                              onClick: () => router.push(`/documents/${payload.docId}`),
+                          }
+                        : undefined,
+                });
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to create document";
+                toast.error("Document creation failed", { description: message });
+            } finally {
+                setCreatingDocId(null);
+            }
+        },
+        [defaultFolder, handleUploadClick, isSignedIn, refreshFiles, router, user?.id]
+    );
+
+    const handleCreateFolder = useCallback(
+        async (parentRelativePath: string) => {
+            if (!isSignedIn || !user?.id) {
+                toast.error("Sign in to manage folders");
+                return;
+            }
+
+            const proposedName = window.prompt("Folder name", "New Folder");
+            if (!proposedName) {
+                return;
+            }
+
+            setIsMutatingFiles(true);
+
+            try {
+                const response = await fetch("/api/files/folder", {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name: proposedName, parentPath: parentRelativePath }),
+                });
+                const payload = (await response.json().catch(() => null)) as
+                    | { relativePath?: string; error?: string }
+                    | null;
+
+                if (!response.ok || !payload) {
+                    throw new Error(payload?.error ?? "Unable to create folder");
+                }
+
+                const newRelativePath = payload.relativePath ?? "";
+
+                await refreshFiles({ silent: true });
+
+                setExpandedNodes((prev) => {
+                    const updated = { ...prev };
+                    if (parentRelativePath) {
+                        updated[parentRelativePath] = true;
+                    }
+                    if (newRelativePath) {
+                        updated[newRelativePath] = true;
+                    }
+                    return updated;
+                });
+
+                toast.success("Folder created", {
+                    description: proposedName,
+                });
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to create folder";
+                toast.error("Folder creation failed", { description: message });
+            } finally {
+                setIsMutatingFiles(false);
+            }
+        },
+        [isSignedIn, refreshFiles, user?.id]
+    );
+
+    const handleRenameNode = useCallback(
+        async (node: FileNode) => {
+            if (!isSignedIn || !user?.id) {
+                toast.error("Sign in to manage files");
+                return;
+            }
+
+            if (!node.pathname || !node.pathname.includes("/")) {
+                toast.error("This item cannot be renamed right now.");
+                return;
+            }
+
+            if (node.type === "folder" && node.isDefault) {
+                toast.error("The default folder cannot be renamed");
+                return;
+            }
+
+            const promptLabel = node.type === "folder" ? "folder" : "file";
+            const proposedName = window.prompt(`Rename ${promptLabel}`, node.name);
+
+            if (!proposedName || proposedName.trim() === "" || proposedName.trim() === node.name) {
+                return;
+            }
+
+            setIsMutatingFiles(true);
+
+            try {
+                const endpoint = node.type === "folder" ? "/api/files/folder" : "/api/files/file";
+                const response = await fetch(endpoint, {
+                    method: "PATCH",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ pathname: node.pathname, newName: proposedName }),
+                });
+                const payload = (await response.json().catch(() => null)) as
+                    | { relativePath?: string; error?: string }
+                    | null;
+
+                if (!response.ok || !payload) {
+                    throw new Error(payload?.error ?? "Unable to rename");
+                }
+
+                await refreshFiles({ silent: true });
+
+                if (node.type === "folder") {
+                    const updatedRelative = payload.relativePath ?? node.relativePath;
+                    setExpandedNodes((prev) => {
+                        const updated = { ...prev };
+                        if (prev[node.relativePath]) {
+                            delete updated[node.relativePath];
+                            updated[updatedRelative] = true;
+                        }
+                        if (node.parentPath) {
+                            updated[node.parentPath] = true;
+                        }
+                        return updated;
+                    });
+                }
+
+                const serverRelative = payload.relativePath ?? node.relativePath;
+                const newLabel = serverRelative
+                    ? serverRelative.replace(/\/+$/, "").split("/").pop() ?? proposedName
+                    : proposedName;
+
+                toast.success("Renamed", {
+                    description: `${node.name} → ${newLabel}`,
+                });
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to rename";
+                toast.error("Rename failed", { description: message });
+            } finally {
+                setIsMutatingFiles(false);
+            }
+        },
+        [isSignedIn, refreshFiles, user?.id]
+    );
+
+    const handleDeleteNode = useCallback(
+        async (node: FileNode) => {
+            if (!isSignedIn || !user?.id) {
+                toast.error("Sign in to manage files");
+                return;
+            }
+
+            if (!node.pathname) {
+                toast.error("Invalid item selected");
+                return;
+            }
+
+            if (node.type === "folder" && node.isDefault) {
+                toast.error("The default folder cannot be deleted");
+                return;
+            }
+
+            const confirmMessage =
+                node.type === "folder"
+                    ? `Delete the folder "${node.name}" and all of its contents?`
+                    : `Delete the file "${node.name}"?`;
+
+            if (!window.confirm(confirmMessage)) {
+                return;
+            }
+
+            setIsMutatingFiles(true);
+
+            try {
+                const endpoint = node.type === "folder" ? "/api/files/folder" : "/api/files/file";
+                const response = await fetch(endpoint, {
+                    method: "DELETE",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ pathname: node.pathname }),
+                });
+
+                const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+
+                if (!response.ok) {
+                    throw new Error(payload?.error ?? "Unable to delete");
+                }
+
+                await refreshFiles({ silent: true });
+
+                if (node.type === "folder" && node.relativePath) {
+                    setExpandedNodes((prev) => {
+                        const updated = { ...prev };
+                        delete updated[node.relativePath];
+                        return updated;
+                    });
+                }
+
+                if (node.docId && pathname === `/documents/${node.docId}`) {
+                    router.push("/");
+                }
+
+                toast.success(node.type === "folder" ? "Folder deleted" : "File deleted", {
+                    description: node.name,
+                });
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Failed to delete";
+                toast.error("Delete failed", { description: message });
+            } finally {
+                setIsMutatingFiles(false);
+            }
+        },
+        [isSignedIn, pathname, refreshFiles, router, user?.id]
+    );
+
+    const filesBusy = useMemo(
+        () => isFilesLoading || isMutatingFiles || creatingDocId !== null,
+        [isFilesLoading, isMutatingFiles, creatingDocId]
+    );
+    const canManageFiles = isLoaded && isSignedIn && !!user?.id;
+
+    useEffect(() => {
+        if (canManageFiles) {
+            setIsFilesOpen(true);
+            setIsCreateOpen(true);
+        }
+    }, [canManageFiles]);
+
+    return (
+        <Sidebar className="flex h-[calc(100vh-4rem)] flex-col border-r border-slate-200 bg-white/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60 md:top-16 md:bottom-0 md:h-[calc(100vh-4rem)]">
+            <SidebarHeader className="space-y-1 border-b border-slate-200 bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-6 text-left">
+                <div className="text-base font-semibold text-white">{greeting}</div>
+                <p className="text-xs text-white/80">Quick access to your research tools</p>
+            </SidebarHeader>
+            <SidebarContent className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
+                <div className="flex flex-col items-center gap-3">
+                    <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
+                        {avatarUrl ? (
+                            <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                        ) : null}
+                        <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
+                    </Avatar>
+                    <Link
+                        className="text-xs font-medium text-slate-600 transition hover:text-slate-900"
+                        href="/profile/edit"
+                    >
+                        Update profile
+                    </Link>
                 </div>
-                <div className="w-full">
-                <Link className="text-xs text-blue-600 hover:text-lg hover:text-black" href="#">Update Profile</Link>
-                <h4 className="pl-4 font-bold mt-2 text-start">Documents</h4>
-                <div>
-                    
-                </div>
-                <h4 className="pl-4 font-bold mt-2 text-start">Connections</h4>
-                <h4 className="pl-4 font-bold mt-2 text-start">Events</h4>
-                </div>
+
+                {!isLoaded ? (
+                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-6 shadow-sm">
+                        <div className="flex items-center gap-3 text-sm font-medium text-slate-600">
+                            <Loader2 className="h-4 w-4 animate-spin text-slate-400" />
+                            Preparing your workspace…
+                        </div>
+                    </section>
+                ) : canManageFiles ? (
+                    <>
+                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                <div className="flex items-center gap-2">
+                                    <h4>Manage files</h4>
+                                    {filesBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsFilesOpen((prev) => !prev)}
+                                    aria-expanded={isFilesOpen}
+                                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                                >
+                                    {isFilesOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                                    <span className="sr-only">Toggle manage files</span>
+                                </button>
+                            </header>
+                            {isFilesOpen ? (
+                                <div className="rounded-lg border border-dashed border-slate-200 bg-white/60 p-3">
+                                    <div className="mb-3 flex justify-end">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleCreateFolder("")}
+                                            disabled={filesBusy}
+                                            className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                                        >
+                                            <FolderPlus className="h-3.5 w-3.5" />
+                                            Add folder
+                                        </button>
+                                    </div>
+                                    {filesError ? (
+                                        <p className="text-xs text-rose-500">{filesError}</p>
+                                    ) : isFilesLoading && !fileNodes.length ? (
+                                        <p className="text-xs text-slate-500">Loading files…</p>
+                                    ) : fileNodes.length ? (
+                                        <FileTree
+                                            nodes={fileNodes}
+                                            expanded={expandedNodes}
+                                            onToggle={handleToggle}
+                                            onAddFolder={(node) => handleCreateFolder(node.relativePath)}
+                                            onRename={handleRenameNode}
+                                            onDelete={handleDeleteNode}
+                                            onOpen={handleOpenNode}
+                                            disabled={filesBusy}
+                                        />
+                                    ) : (
+                                        <p className="text-xs text-slate-500">No files yet. Upload to get started.</p>
+                                    )}
+                                </div>
+                            ) : null}
+                        </section>
+
+                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                <h4>Create documents</h4>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsCreateOpen((prev) => !prev)}
+                                    aria-expanded={isCreateOpen}
+                                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                                >
+                                    {isCreateOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                                    <span className="sr-only">Toggle create documents</span>
+                                </button>
+                            </header>
+                            {isCreateOpen ? (
+                                <TooltipProvider delayDuration={100}>
+                                    <div className="space-y-4">
+                                        <div className="space-y-2">
+                                            <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Core</h5>
+                                            <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
+                                                {coreOptions.map(({ id, name, description, icon: Icon, accent }) => {
+                                                    const isUploadOption = id === "upload";
+                                                    const isProcessing = isUploadOption ? !!uploadingFile : creatingDocId === id;
+                                                    const tooltipDescription = isProcessing
+                                                        ? isUploadOption
+                                                            ? `Uploading ${uploadingFile} (${uploadProgress}%)`
+                                                            : "Creating document…"
+                                                        : description;
+
+                                                    const handleClick = () => {
+                                                        if (isUploadOption) {
+                                                            handleUploadClick();
+                                                            return;
+                                                        }
+
+                                                        void handleCreateDocument(id);
+                                                    };
+
+                                                    const disabled = isUploadOption
+                                                        ? isProcessing
+                                                        : isProcessing || filesBusy || !defaultFolder;
+
+                                                    return (
+                                                        <Tooltip key={id}>
+                                                            <TooltipTrigger asChild>
+                                                                <button
+                                                                    type="button"
+                                                                    aria-label={name}
+                                                                    onClick={handleClick}
+                                                                    aria-disabled={disabled}
+                                                                    disabled={disabled}
+                                                                    className="flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 bg-white/90 shadow-sm transition hover:border-slate-300 hover:shadow-md disabled:cursor-not-allowed"
+                                                                >
+                                                                    <span className={`flex h-10 w-10 items-center justify-center rounded-full ${accent}`}>
+                                                                        <Icon className="h-5 w-5" />
+                                                                    </span>
+                                                                </button>
+                                                            </TooltipTrigger>
+                                                            <TooltipContent
+                                                                side="bottom"
+                                                                className="max-w-[220px] rounded-md border border-white bg-slate-200 px-3 py-2 text-xs text-slate-900 shadow-lg"
+                                                            >
+                                                                <p className="font-semibold">{name}</p>
+                                                                <p>{tooltipDescription}</p>
+                                                            </TooltipContent>
+                                                        </Tooltip>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Coming soon</h5>
+                                            <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
+                                                {comingSoonOptions.map(({ id, name, description, icon: Icon, accent, badge }) => (
+                                                    <div
+                                                        key={id}
+                                                        className="flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-full border border-dashed border-slate-200 bg-white/60 text-slate-400"
+                                                    >
+                                                        <span className={`flex h-10 w-10 items-center justify-center rounded-full ${accent} opacity-60`}>
+                                                            <Icon className="h-5 w-5" />
+                                                        </span>
+                                                        <span className="text-[10px] font-semibold uppercase">{badge}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TooltipProvider>
+                            ) : null}
+                        </section>
+
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            onChange={handleFileChange}
+                            className="hidden"
+                        />
+                    </>
+                ) : (
+                    <section className="rounded-xl border border-slate-100 bg-white/70 p-4 text-sm text-slate-600 shadow-sm">
+                        Sign in to manage and create documents.
+                    </section>
+                )}
+
+                <section className="rounded-xl border border-dashed border-slate-200 bg-slate-50/80 p-4 shadow-inner">
+                    <h4 className="text-sm font-semibold text-slate-700">Social network</h4>
+                    <p className="mt-1 text-xs text-slate-500">
+                        Coming soon — collaborate with colleagues and share research updates in real time.
+                    </p>
+                </section>
             </SidebarContent>
-               
-            
-           
         </Sidebar>
-        
-    )
+    );
 }

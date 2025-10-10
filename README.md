@@ -20,6 +20,15 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Social workspace
+
+- Visit `/social` to access the community feed with post creation, likes, comments, and follow actions.
+- Posts live under the Firestore collection `social_posts`, with per-post `comments` and `likes` subcollections, and follow relationships under `social_follows`.
+- Topic channels and project groups live under `social_channels` with membership in `social_channel_members`, letting teams organise conversations before posting.
+- Server routes expose REST endpoints under `/api/social/**` for creating posts, toggling likes, managing comments, maintaining follow relationships, and administering channels/groups.
+- Make sure your Firebase client and admin env variables are configured; both are required so the API routes can mint custom tokens and talk to Firestore securely.
+- The feed UI resides in `components/social/**` and provides a clear starting point for extending attachments, surfacing AI highlights, or adding custom moderation hooks.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

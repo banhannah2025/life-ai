@@ -8,7 +8,8 @@ export async function isAdminUser(userId: string | null | undefined): Promise<bo
   }
 
   try {
-    const user = await clerkClient.users.getUser(userId);
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
     const emailCandidates = [
       user.primaryEmailAddress?.emailAddress ?? null,
       ...user.emailAddresses.map((address) => address.emailAddress ?? ""),

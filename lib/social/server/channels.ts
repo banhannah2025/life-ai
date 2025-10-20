@@ -2,6 +2,7 @@ import type { DocumentSnapshot, QueryDocumentSnapshot } from "firebase-admin/fir
 import { FieldValue } from "firebase-admin/firestore";
 
 import { getAdminFirestore } from "@/lib/firebase/admin";
+import { extractSearchTokens } from "@/lib/search/keywords";
 
 import type {
   SocialChannel,
@@ -91,6 +92,47 @@ export async function listChannels(viewerId?: string | null): Promise<SocialChan
       isMember: membershipIds.has(channel.id),
     };
   });
+}
+
+export async function searchChannels({
+  query,
+  limit = 25,
+  viewerId,
+}: {
+  query: string;
+  limit?: number;
+  viewerId?: string | null;
+}): Promise<SocialChannelWithMembership[]> {
+  const tokens = extractSearchTokens(query).slice(0, 5);
+  if (!tokens.length) {
+    return [];
+  }
+
+  const snapshot = await channelsCollection().limit(200).get();
+  if (!snapshot.size) {
+    return [];
+  }
+
+  let membershipIds = new Set<string>();
+  if (viewerId) {
+    const memberships = await channelMembersCollection().where("userId", "==", viewerId).get();
+    membershipIds = new Set(memberships.docs.map((doc) => (doc.data().channelId as string) ?? doc.id.split(":")[0]));
+  }
+
+  const normalizedTokens = tokens.map((token) => token.toLowerCase());
+
+  const matches = snapshot.docs
+    .map((doc) => toChannel(doc))
+    .filter((channel) => {
+      const haystack = [channel.name, channel.description ?? ""].join(" ").toLowerCase();
+      return normalizedTokens.every((token) => haystack.includes(token));
+    })
+    .slice(0, limit);
+
+  return matches.map((channel) => ({
+    ...channel,
+    isMember: membershipIds.has(channel.id),
+  }));
 }
 
 type CreateChannelInput = {

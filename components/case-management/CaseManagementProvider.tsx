@@ -1,0 +1,1129 @@
+'use client';
+
+import { createContext, useContext, useEffect, useMemo, useReducer, useState, type ReactNode } from "react";
+
+type CaseStage = "intake" | "investigation" | "discovery" | "briefing" | "hearing" | "appeal" | "closed";
+type CaseStatus = "active" | "on_hold" | "closed";
+type PriorityLevel = "low" | "medium" | "high";
+
+export type ClientRecord = {
+  id: string;
+  name: string;
+  organization?: string;
+  primaryContact?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  notes?: string;
+  caseIds: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CaseRecord = {
+  id: string;
+  matterNumber: string;
+  caseName: string;
+  clientId: string | null;
+  clientName: string | null;
+  stage: CaseStage;
+  status: CaseStatus;
+  practiceArea: string;
+  leadAttorney: string;
+  team: string[];
+  openedOn: string;
+  nextDeadline?: string;
+  description: string;
+  priority: PriorityLevel;
+  tags: string[];
+  riskNotes?: string;
+  documentIds: string[];
+  researchIds: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DocumentStatus = "Drafting" | "In Review" | "Finalized";
+export type DocumentWorkspaceType = "doc" | "sheet" | "slide" | "form" | "drawing";
+
+export type DocumentJurisdiction = {
+  id: string;
+  label: string;
+  courtRules: string[];
+};
+
+export type DocumentRecord = {
+  id: string;
+  caseIds: string[];
+  title: string;
+  type: string;
+  owner: string;
+  dueOn?: string;
+  status: DocumentStatus;
+  version: string;
+  lastTouchedBy: string;
+  updatedAt: string;
+  summary: string;
+  workspaceDocId?: string;
+  workspaceDocType?: DocumentWorkspaceType;
+  jurisdiction: DocumentJurisdiction | null;
+};
+
+export type ResearchStatus = "In Progress" | "Needs Update" | "Ready for Briefing";
+
+export type ResearchAuthority = {
+  citation: string;
+  court: string;
+  holding: string;
+};
+
+export type ResearchItem = {
+  id: string;
+  caseIds: string[];
+  title: string;
+  issue: string;
+  jurisdiction: string;
+  status: ResearchStatus;
+  nextAction?: string;
+  analysts: string[];
+  updatedAt: string;
+  summary: string;
+  authorities: ResearchAuthority[];
+  tags: string[];
+};
+
+export type TimeEntryStatus = "Draft" | "Submitted" | "Approved";
+
+export type TimeEntry = {
+  id: string;
+  caseId: string;
+  caseName: string;
+  author: string;
+  activity: string;
+  hours: number;
+  date: string;
+  status: TimeEntryStatus;
+  notes?: string;
+};
+
+export type ActivityType =
+  | "case-created"
+  | "case-updated"
+  | "document-created"
+  | "document-updated"
+  | "research-created"
+  | "research-updated"
+  | "time-logged";
+
+export type ActivityItem = {
+  id: string;
+  type: ActivityType;
+  label: string;
+  relatedCaseIds: string[];
+  timestamp: string;
+};
+
+const VALID_CASE_STAGES: Set<CaseStage> = new Set(["intake", "investigation", "discovery", "briefing", "hearing", "appeal", "closed"]);
+const VALID_CASE_STATUS: Set<CaseStatus> = new Set(["active", "on_hold", "closed"]);
+const VALID_PRIORITY: Set<PriorityLevel> = new Set(["low", "medium", "high"]);
+const VALID_DOCUMENT_STATUS: Set<DocumentStatus> = new Set(["Drafting", "In Review", "Finalized"]);
+const VALID_RESEARCH_STATUS: Set<ResearchStatus> = new Set(["In Progress", "Needs Update", "Ready for Briefing"]);
+const VALID_TIME_STATUS: Set<TimeEntryStatus> = new Set(["Draft", "Submitted", "Approved"]);
+
+function isString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+const PLACEHOLDER_CASE_IDS = new Set([
+  "case-acme-finch",
+  "case-state-rivera",
+  "case-harbor-audit",
+  "case-westhaven-renewable",
+]);
+
+const PLACEHOLDER_CLIENT_IDS = new Set(["client-acme", "client-state-program", "client-harbor", "client-westhaven"]);
+
+function normalizeKey(value: string | null | undefined) {
+  if (!value) {
+    return "";
+  }
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+const PLACEHOLDER_CASE_NAME_KEYS = new Set(
+  ["Acme Corp. v. Finch Supply Co.", "State v. Rivera", "Harbor Group Internal Audit", "Westhaven Renewable Series B"].map(normalizeKey),
+);
+
+const PLACEHOLDER_CLIENT_NAME_KEYS = new Set(
+  ["Acme Corporation", "State Appointed Counsel Program", "Harbor Group Holdings", "Westhaven Renewable, Inc."].map(normalizeKey),
+);
+
+type CaseManagementState = {
+  clients: ClientRecord[];
+  cases: CaseRecord[];
+  documents: DocumentRecord[];
+  research: ResearchItem[];
+  timeEntries: TimeEntry[];
+  activity: ActivityItem[];
+};
+
+const STORAGE_KEY = "life-ai.case-management";
+
+type CreateCaseInput = {
+  caseName: string;
+  client: string;
+  clientId?: string | null;
+  matterNumber: string;
+  practiceArea: string;
+  stage: CaseStage;
+  status?: CaseStatus;
+  leadAttorney: string;
+  team?: string[];
+  openedOn: string;
+  nextDeadline?: string;
+  description: string;
+  priority: PriorityLevel;
+  tags?: string[];
+  riskNotes?: string;
+};
+
+type UpdateCaseInput = Partial<Omit<CreateCaseInput, "matterNumber" | "openedOn">> & {
+  nextDeadline?: string | null;
+  tags?: string[];
+  riskNotes?: string | null;
+  clientId?: string | null;
+  client?: string;
+};
+
+type CreateDocumentInput = {
+  caseIds: string[];
+  title: string;
+  type: string;
+  owner: string;
+  dueOn?: string;
+  status: DocumentStatus;
+  summary: string;
+  workspaceDocId?: string;
+  workspaceDocType?: DocumentWorkspaceType;
+  jurisdiction: DocumentJurisdiction | null;
+};
+
+type UpdateDocumentInput = Partial<Omit<CreateDocumentInput, "caseIds">> & {
+  caseIds?: string[];
+};
+
+type CreateResearchInput = {
+  caseIds: string[];
+  title: string;
+  issue: string;
+  jurisdiction: string;
+  status: ResearchStatus;
+  nextAction?: string;
+  analysts: string[];
+  summary: string;
+  authorities: ResearchAuthority[];
+  tags?: string[];
+};
+
+type UpdateResearchInput = Partial<CreateResearchInput> & {
+  authorities?: ResearchAuthority[];
+};
+
+type LogTimeEntryInput = {
+  caseId: string;
+  author: string;
+  activity: string;
+  hours: number;
+  date: string;
+  notes?: string;
+  status: TimeEntryStatus;
+};
+
+type UpdateTimeEntryInput = Partial<{
+  caseId: string;
+  caseName: string;
+  author: string;
+  activity: string;
+  hours: number;
+  date: string;
+  notes?: string;
+  status: TimeEntryStatus;
+}>;
+
+type CreateClientInput = {
+  name: string;
+  organization?: string;
+  primaryContact?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  notes?: string;
+};
+
+type UpdateClientInput = Partial<CreateClientInput>;
+
+type CaseManagementAction =
+  | { type: "hydrate"; payload: CaseManagementState }
+  | { type: "create-client"; payload: ClientRecord; activity: ActivityItem }
+  | { type: "update-client"; payload: { clientId: string; updates: UpdateClientInput }; activity?: ActivityItem }
+  | { type: "create-case"; payload: CaseRecord; activity: ActivityItem }
+  | {
+      type: "update-case";
+      payload: { caseId: string; updates: UpdateCaseInput };
+      activity?: ActivityItem;
+    }
+  | { type: "create-document"; payload: DocumentRecord; activity: ActivityItem }
+  | {
+      type: "update-document";
+      payload: { documentId: string; updates: UpdateDocumentInput };
+      activity?: ActivityItem;
+    }
+  | { type: "create-research"; payload: ResearchItem; activity: ActivityItem }
+  | {
+      type: "update-research";
+      payload: { researchId: string; updates: UpdateResearchInput };
+      activity?: ActivityItem;
+    }
+  | { type: "log-time"; payload: TimeEntry; activity: ActivityItem }
+  | {
+      type: "update-time";
+      payload: { timeEntryId: string; updates: UpdateTimeEntryInput };
+      activity?: ActivityItem;
+    };
+
+function generateId(prefix: string) {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return `${prefix}-${crypto.randomUUID()}`;
+  }
+  return `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function createInitialState(): CaseManagementState {
+  return {
+    clients: [],
+    cases: [],
+    documents: [],
+    research: [],
+    timeEntries: [],
+    activity: [],
+  };
+}
+
+function migrateStoredState(raw: unknown): CaseManagementState {
+  const fallback = createInitialState();
+  if (!raw || typeof raw !== "object") {
+    return fallback;
+  }
+
+  const maybe = raw as Partial<CaseManagementState> & {
+    cases?: unknown[];
+    clients?: unknown[];
+    documents?: unknown[];
+    research?: unknown[];
+    timeEntries?: unknown[];
+    activity?: unknown[];
+  };
+
+  const now = new Date().toISOString();
+
+  let clients: ClientRecord[] = Array.isArray(maybe.clients)
+    ? maybe.clients
+        .filter((client): client is Record<string, unknown> => typeof client === "object" && client !== null)
+        .map((client) => {
+          const id = isString(client.id) ? client.id : generateId("client");
+          const name = isString(client.name) ? client.name : "Client";
+          return {
+            id,
+            name,
+            organization: isString(client.organization) ? client.organization : undefined,
+            primaryContact: isString(client.primaryContact) ? client.primaryContact : undefined,
+            contactEmail: isString(client.contactEmail) ? client.contactEmail : undefined,
+            contactPhone: isString(client.contactPhone) ? client.contactPhone : undefined,
+            notes: isString(client.notes) ? client.notes : undefined,
+            caseIds: Array.isArray(client.caseIds) ? client.caseIds.filter(isString) : [],
+            createdAt: isString(client.createdAt) ? client.createdAt : now,
+            updatedAt: isString(client.updatedAt) ? client.updatedAt : now,
+          };
+        })
+    : [];
+
+  clients = clients.filter((client) => {
+    if (PLACEHOLDER_CLIENT_IDS.has(client.id)) {
+      return false;
+    }
+    if (PLACEHOLDER_CLIENT_NAME_KEYS.has(normalizeKey(client.name))) {
+      return false;
+    }
+    return true;
+  });
+
+  const clientsById = new Map<string, ClientRecord>();
+  const clientsByName = new Map<string, ClientRecord>();
+  clients.forEach((client) => {
+    clientsById.set(client.id, client);
+    clientsByName.set(client.name.toLowerCase(), client);
+  });
+
+  const ensureClient = (name: string | null): ClientRecord | null => {
+    if (!name) {
+      return null;
+    }
+    const key = name.toLowerCase();
+    const existing = clientsByName.get(key);
+    if (existing) {
+      return existing;
+    }
+    const id = generateId("client");
+    const record: ClientRecord = {
+      id,
+      name,
+      organization: undefined,
+      primaryContact: undefined,
+      contactEmail: undefined,
+      contactPhone: undefined,
+      notes: undefined,
+      caseIds: [],
+      createdAt: now,
+      updatedAt: now,
+    };
+    clients.push(record);
+    clientsById.set(id, record);
+    clientsByName.set(key, record);
+    return record;
+  };
+
+  let cases: CaseRecord[] = Array.isArray(maybe.cases)
+    ? maybe.cases
+        .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
+        .map((item) => {
+          const id = isString(item.id) ? item.id : generateId("case");
+          const caseName = isString(item.caseName)
+            ? item.caseName
+            : isString((item as Record<string, string>).name)
+              ? (item as Record<string, string>).name
+              : "Untitled matter";
+          const matterNumber = isString(item.matterNumber) ? item.matterNumber : "";
+
+          let clientId = isString(item.clientId) ? item.clientId : null;
+          let clientName =
+            isString(item.clientName)
+              ? item.clientName
+              : isString((item as Record<string, string>).client)
+                ? (item as Record<string, string>).client
+                : null;
+
+          if (clientId && clientsById.has(clientId)) {
+            clientName = clientsById.get(clientId)?.name ?? clientName;
+          } else if (clientName) {
+            const record = ensureClient(clientName);
+            clientId = record?.id ?? clientId;
+            clientName = record?.name ?? clientName;
+          } else if (clientId && !clientsById.has(clientId)) {
+            const record = ensureClient(clientName ?? "Client");
+            clientId = record?.id ?? clientId;
+            clientName = record?.name ?? clientName;
+          }
+
+          const stage = isString(item.stage) && VALID_CASE_STAGES.has(item.stage as CaseStage) ? (item.stage as CaseStage) : "intake";
+          const status = isString(item.status) && VALID_CASE_STATUS.has(item.status as CaseStatus) ? (item.status as CaseStatus) : "active";
+          const priority = isString(item.priority) && VALID_PRIORITY.has(item.priority as PriorityLevel) ? (item.priority as PriorityLevel) : "medium";
+
+          return {
+            id,
+            matterNumber,
+            caseName,
+            clientId,
+            clientName: clientName ?? null,
+            stage,
+            status,
+            practiceArea: isString(item.practiceArea) ? item.practiceArea : "General Practice",
+            leadAttorney: isString(item.leadAttorney) ? item.leadAttorney : "Unassigned",
+            team: Array.isArray(item.team) ? item.team.filter(isString) : [],
+            openedOn: isString(item.openedOn) ? item.openedOn : now.slice(0, 10),
+            nextDeadline: isString(item.nextDeadline) ? item.nextDeadline : undefined,
+            description: isString(item.description) ? item.description : "",
+            priority,
+            tags: Array.isArray(item.tags) ? item.tags.filter(isString) : [],
+            riskNotes: isString(item.riskNotes) ? item.riskNotes : undefined,
+            documentIds: Array.isArray(item.documentIds) ? item.documentIds.filter(isString) : [],
+            researchIds: Array.isArray(item.researchIds) ? item.researchIds.filter(isString) : [],
+            createdAt: isString(item.createdAt) ? item.createdAt : now,
+            updatedAt: isString(item.updatedAt) ? item.updatedAt : now,
+          } as CaseRecord;
+        })
+    : [];
+
+  cases = cases.filter((matter) => {
+    if (PLACEHOLDER_CASE_IDS.has(matter.id)) {
+      return false;
+    }
+    if (PLACEHOLDER_CASE_NAME_KEYS.has(normalizeKey(matter.caseName))) {
+      return false;
+    }
+    return true;
+  });
+
+  const validCaseIds = new Set(cases.map((matter) => matter.id));
+  clients = clients.map((client) => ({
+    ...client,
+    caseIds: client.caseIds.filter((caseId) => validCaseIds.has(caseId)),
+  }));
+
+  if (
+    !cases.length &&
+    !clients.length &&
+    !Array.isArray(maybe.documents) &&
+    !Array.isArray(maybe.research) &&
+    !Array.isArray(maybe.timeEntries)
+  ) {
+    return fallback;
+  }
+
+  cases.forEach((matter) => {
+    if (matter.clientId) {
+      const client = clientsById.get(matter.clientId);
+      if (client && !client.caseIds.includes(matter.id)) {
+        client.caseIds.push(matter.id);
+        client.updatedAt = now;
+      }
+    }
+  });
+
+  const documents: DocumentRecord[] = Array.isArray(maybe.documents)
+    ? maybe.documents
+        .filter((doc): doc is Record<string, unknown> => typeof doc === "object" && doc !== null)
+        .map((doc) => {
+          const id = isString(doc.id) ? doc.id : generateId("document");
+          const owner = isString(doc.owner) ? doc.owner : "Unassigned";
+          const status = isString(doc.status) && VALID_DOCUMENT_STATUS.has(doc.status as DocumentStatus) ? (doc.status as DocumentStatus) : "Drafting";
+          const caseIds = Array.isArray(doc.caseIds) ? doc.caseIds.filter(isString) : [];
+          const sanitizedCaseIds = caseIds.filter((caseId) => validCaseIds.has(caseId));
+          const workspaceDocId = isString(doc.workspaceDocId) ? doc.workspaceDocId : undefined;
+          const workspaceType = isString(doc.workspaceDocType) && ["doc", "sheet", "slide", "form", "drawing"].includes(doc.workspaceDocType)
+            ? (doc.workspaceDocType as DocumentWorkspaceType)
+            : undefined;
+          const jurisdiction =
+            doc.jurisdiction && typeof doc.jurisdiction === "object"
+              ? {
+                  id: isString((doc.jurisdiction as Record<string, unknown>).id)
+                    ? ((doc.jurisdiction as Record<string, unknown>).id as string)
+                    : "",
+                  label: isString((doc.jurisdiction as Record<string, unknown>).label)
+                    ? ((doc.jurisdiction as Record<string, unknown>).label as string)
+                    : "",
+                  courtRules: Array.isArray((doc.jurisdiction as Record<string, unknown>).courtRules)
+                    ? ((doc.jurisdiction as Record<string, unknown>).courtRules as unknown[]).filter(isString)
+                    : [],
+                }
+              : null;
+          return {
+            id,
+            caseIds: sanitizedCaseIds,
+            title: isString(doc.title) ? doc.title : "Untitled document",
+            type: isString(doc.type) ? doc.type : "Document",
+            owner,
+            dueOn: isString(doc.dueOn) ? doc.dueOn : undefined,
+            status,
+            version: isString(doc.version) ? doc.version : "v1",
+            lastTouchedBy: isString(doc.lastTouchedBy) ? doc.lastTouchedBy : owner,
+            updatedAt: isString(doc.updatedAt) ? doc.updatedAt : now,
+            summary: isString(doc.summary) ? doc.summary : "",
+            workspaceDocId,
+            workspaceDocType: workspaceType,
+            jurisdiction: jurisdiction && jurisdiction.id && jurisdiction.label ? jurisdiction : null,
+          } as DocumentRecord;
+        })
+        .filter((doc) => doc.caseIds.length > 0)
+    : [];
+
+  const research: ResearchItem[] = Array.isArray(maybe.research)
+    ? maybe.research
+        .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
+        .map((item) => {
+          const id = isString(item.id) ? item.id : generateId("research");
+          const status = isString(item.status) && VALID_RESEARCH_STATUS.has(item.status as ResearchStatus) ? (item.status as ResearchStatus) : "In Progress";
+          const caseIds = Array.isArray(item.caseIds) ? item.caseIds.filter(isString) : [];
+          const sanitizedCaseIds = caseIds.filter((caseId) => validCaseIds.has(caseId));
+          return {
+            id,
+            caseIds: sanitizedCaseIds,
+            title: isString(item.title) ? item.title : "Research note",
+            issue: isString(item.issue) ? item.issue : "Unspecified issue",
+            jurisdiction: isString(item.jurisdiction) ? item.jurisdiction : "Mixed",
+            status,
+            nextAction: isString(item.nextAction) ? item.nextAction : undefined,
+            analysts: Array.isArray(item.analysts) ? item.analysts.filter(isString) : [],
+            updatedAt: isString(item.updatedAt) ? item.updatedAt : now,
+            summary: isString(item.summary) ? item.summary : "",
+            authorities: Array.isArray(item.authorities)
+              ? item.authorities
+                  .filter((auth): auth is Record<string, unknown> => typeof auth === "object" && auth !== null)
+                  .map((auth) => ({
+                    citation: isString(auth.citation) ? auth.citation : "Citation pending",
+                    court: isString(auth.court) ? auth.court : "Authority",
+                    holding: isString(auth.holding) ? auth.holding : "Holding summary pending",
+                  }))
+              : [],
+            tags: Array.isArray(item.tags) ? item.tags.filter(isString) : [],
+          } as ResearchItem;
+        })
+        .filter((item) => item.caseIds.length > 0)
+    : [];
+
+  const timeEntries: TimeEntry[] = Array.isArray(maybe.timeEntries)
+    ? maybe.timeEntries
+        .filter((entry): entry is Record<string, unknown> => typeof entry === "object" && entry !== null)
+        .map((entry) => {
+          const id = isString(entry.id) ? entry.id : generateId("time");
+          const status = isString(entry.status) && VALID_TIME_STATUS.has(entry.status as TimeEntryStatus) ? (entry.status as TimeEntryStatus) : "Draft";
+          return {
+            id,
+            caseId: isString(entry.caseId) ? entry.caseId : "",
+            caseName: isString(entry.caseName) ? entry.caseName : "",
+            author: isString(entry.author) ? entry.author : "Unknown",
+            activity: isString(entry.activity) ? entry.activity : "Unspecified activity",
+            hours: typeof entry.hours === "number" ? entry.hours : 0,
+            date: isString(entry.date) ? entry.date : now.slice(0, 10),
+            status,
+            notes: isString(entry.notes) ? entry.notes : undefined,
+          } as TimeEntry;
+        })
+        .filter((entry) => entry.caseId && validCaseIds.has(entry.caseId))
+    : [];
+
+  const activity: ActivityItem[] = Array.isArray(maybe.activity)
+    ? maybe.activity
+        .filter((log): log is Record<string, unknown> => typeof log === "object" && log !== null)
+        .map((log) => ({
+          id: isString(log.id) ? log.id : generateId("activity"),
+          type: isString(log.type) ? (log.type as ActivityType) : "case-updated",
+          label: isString(log.label) ? log.label : "Activity recorded",
+          relatedCaseIds: Array.isArray(log.relatedCaseIds) ? log.relatedCaseIds.filter(isString) : [],
+          timestamp: isString(log.timestamp) ? log.timestamp : now,
+        }))
+        .map((item) => ({
+          ...item,
+          relatedCaseIds: item.relatedCaseIds.filter((caseId) => !PLACEHOLDER_CASE_IDS.has(caseId)),
+        }))
+        .filter((item) => item.relatedCaseIds.length === 0 || item.relatedCaseIds.some((caseId) => validCaseIds.has(caseId)))
+    : [];
+
+  return {
+    clients,
+    cases,
+    documents,
+    research,
+    timeEntries,
+    activity,
+  };
+}
+
+function pruneActivity(activity: ActivityItem[]) {
+  return activity
+    .slice()
+    .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
+    .slice(0, 25);
+}
+
+function caseManagementReducer(state: CaseManagementState, action: CaseManagementAction): CaseManagementState {
+  switch (action.type) {
+    case "hydrate": {
+      return action.payload;
+    }
+    case "create-client": {
+      const clients = [action.payload, ...state.clients];
+      const activity = pruneActivity([action.activity, ...state.activity]);
+      return { ...state, clients, activity };
+    }
+    case "update-client": {
+      const { clientId, updates } = action.payload;
+      const clients = state.clients.map((client) =>
+        client.id === clientId
+          ? {
+              ...client,
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            }
+          : client,
+      );
+      const activity = action.activity ? pruneActivity([action.activity, ...state.activity]) : state.activity;
+      const cases = state.cases.map((caseRecord) => {
+        if (caseRecord.clientId !== clientId) {
+          return caseRecord;
+        }
+        return {
+          ...caseRecord,
+          clientName: updates.name ?? caseRecord.clientName,
+        };
+      });
+      return { ...state, clients, cases, activity };
+    }
+    case "create-case": {
+      const cases = [action.payload, ...state.cases];
+      const activity = pruneActivity([action.activity, ...state.activity]);
+      const clients = state.clients.map((client) =>
+        action.payload.clientId === client.id
+          ? {
+              ...client,
+              caseIds: Array.from(new Set([action.payload.id, ...client.caseIds])),
+              updatedAt: new Date().toISOString(),
+            }
+          : client,
+      );
+      return { ...state, cases, clients, activity };
+    }
+    case "update-case": {
+      const { caseId, updates } = action.payload;
+      const cases = state.cases.map((item) => {
+        if (item.id !== caseId) {
+          return item;
+        }
+        const nextDeadline =
+          updates.nextDeadline === null
+            ? undefined
+            : updates.nextDeadline ?? item.nextDeadline;
+        const riskNotes = updates.riskNotes === null ? undefined : updates.riskNotes ?? item.riskNotes;
+        const updated: CaseRecord = {
+          ...item,
+          ...updates,
+          nextDeadline,
+          riskNotes,
+          tags: updates.tags ?? item.tags,
+          updatedAt: new Date().toISOString(),
+        };
+        if (typeof updates.clientId !== "undefined" || typeof updates.client !== "undefined") {
+          updated.clientId = typeof updates.clientId !== "undefined" ? updates.clientId : item.clientId;
+          if (updates.clientId) {
+            const client = state.clients.find((record) => record.id === updates.clientId);
+            updated.clientName = client?.name ?? updates.client ?? updated.clientName ?? null;
+          } else if (updates.client) {
+            updated.clientName = updates.client;
+          }
+        }
+        if (updates.client && !updates.clientId) {
+          updated.clientName = updates.client;
+        }
+        return updated;
+      });
+      const activity = action.activity ? pruneActivity([action.activity, ...state.activity]) : state.activity;
+      let clients = state.clients;
+      if (typeof updates.clientId !== "undefined") {
+        const previousClientId = state.cases.find((item) => item.id === caseId)?.clientId ?? null;
+        const nextClientId = updates.clientId ?? null;
+
+        clients = state.clients.map((client) => {
+          if (client.id === previousClientId && previousClientId !== nextClientId) {
+            return {
+              ...client,
+              caseIds: client.caseIds.filter((id) => id !== caseId),
+              updatedAt: new Date().toISOString(),
+            };
+          }
+          if (client.id === nextClientId) {
+            return {
+              ...client,
+              caseIds: Array.from(new Set([caseId, ...client.caseIds])),
+              updatedAt: new Date().toISOString(),
+            };
+          }
+          return client;
+        });
+      }
+      return { ...state, cases, clients, activity };
+    }
+    case "create-document": {
+      const documents = [action.payload, ...state.documents];
+      const cases = state.cases.map((item) =>
+        action.payload.caseIds.includes(item.id)
+          ? {
+              ...item,
+              documentIds: Array.from(new Set([action.payload.id, ...item.documentIds])),
+              updatedAt: new Date().toISOString(),
+            }
+          : item,
+      );
+      const activity = pruneActivity([action.activity, ...state.activity]);
+      return { ...state, documents, cases, activity };
+    }
+    case "update-document": {
+      const { documentId, updates } = action.payload;
+      const documents = state.documents.map((doc) => {
+        if (doc.id !== documentId) {
+          return doc;
+        }
+        return {
+          ...doc,
+          ...updates,
+          caseIds: updates.caseIds ?? doc.caseIds,
+          updatedAt: new Date().toISOString(),
+        };
+      });
+
+      let cases = state.cases;
+      if (action.payload.updates.caseIds) {
+        const newCaseIds = action.payload.updates.caseIds;
+        cases = state.cases.map((item) => {
+          const hasDoc = documents.find((doc) => doc.id === documentId && doc.caseIds.includes(item.id));
+          if (hasDoc && !item.documentIds.includes(documentId)) {
+            return {
+              ...item,
+              documentIds: [documentId, ...item.documentIds],
+            };
+          }
+          if (!hasDoc && item.documentIds.includes(documentId)) {
+            return {
+              ...item,
+              documentIds: item.documentIds.filter((id) => id !== documentId),
+            };
+          }
+          return item;
+        });
+        // ensure cases referenced in newCaseIds contain document id
+        cases = cases.map((item) =>
+          newCaseIds.includes(item.id)
+            ? {
+                ...item,
+                documentIds: Array.from(new Set([documentId, ...item.documentIds])),
+              }
+            : item,
+        );
+      }
+
+      const activity = action.activity ? pruneActivity([action.activity, ...state.activity]) : state.activity;
+      return { ...state, documents, cases, activity };
+    }
+    case "create-research": {
+      const research = [action.payload, ...state.research];
+      const cases = state.cases.map((item) =>
+        action.payload.caseIds.includes(item.id)
+          ? {
+              ...item,
+              researchIds: Array.from(new Set([action.payload.id, ...item.researchIds])),
+              updatedAt: new Date().toISOString(),
+            }
+          : item,
+      );
+      const activity = pruneActivity([action.activity, ...state.activity]);
+      return { ...state, research, cases, activity };
+    }
+    case "update-research": {
+      const { researchId, updates } = action.payload;
+      const research = state.research.map((item) => {
+        if (item.id !== researchId) {
+          return item;
+        }
+        return {
+          ...item,
+          ...updates,
+          caseIds: updates.caseIds ?? item.caseIds,
+          authorities: updates.authorities ?? item.authorities,
+          updatedAt: new Date().toISOString(),
+        };
+      });
+
+      let cases = state.cases;
+      if (updates.caseIds) {
+        const newCaseIds = updates.caseIds;
+        cases = state.cases.map((item) => {
+          const linked = research.find((note) => note.id === researchId && note.caseIds.includes(item.id));
+          if (linked && !item.researchIds.includes(researchId)) {
+            return {
+              ...item,
+              researchIds: [researchId, ...item.researchIds],
+            };
+          }
+          if (!linked && item.researchIds.includes(researchId)) {
+            return {
+              ...item,
+              researchIds: item.researchIds.filter((id) => id !== researchId),
+            };
+          }
+          return item;
+        });
+        cases = cases.map((item) =>
+          newCaseIds.includes(item.id)
+            ? {
+                ...item,
+                researchIds: Array.from(new Set([researchId, ...item.researchIds])),
+              }
+            : item,
+        );
+      }
+
+      const activity = action.activity ? pruneActivity([action.activity, ...state.activity]) : state.activity;
+      return { ...state, research, cases, activity };
+    }
+    case "log-time": {
+      const timeEntries = [action.payload, ...state.timeEntries];
+      const activity = pruneActivity([action.activity, ...state.activity]);
+      return { ...state, timeEntries, activity };
+    }
+    case "update-time": {
+      const timeEntries = state.timeEntries.map((entry) =>
+        entry.id === action.payload.timeEntryId ? { ...entry, ...action.payload.updates } : entry,
+      );
+      const activity = action.activity ? pruneActivity([action.activity, ...state.activity]) : state.activity;
+      return { ...state, timeEntries, activity };
+    }
+    default:
+      return state;
+  }
+}
+
+type CaseManagementContextValue = {
+  createClient: (input: CreateClientInput) => string;
+  updateClient: (clientId: string, updates: UpdateClientInput) => void;
+  state: CaseManagementState;
+  createCase: (input: CreateCaseInput) => string;
+  updateCase: (caseId: string, updates: UpdateCaseInput) => void;
+  createDocument: (input: CreateDocumentInput) => string;
+  updateDocument: (documentId: string, updates: UpdateDocumentInput) => void;
+  createResearchItem: (input: CreateResearchInput) => string;
+  updateResearchItem: (researchId: string, updates: UpdateResearchInput) => void;
+  logTimeEntry: (input: LogTimeEntryInput) => string;
+  updateTimeEntry: (timeEntryId: string, updates: UpdateTimeEntryInput) => void;
+};
+
+const CaseManagementContext = createContext<CaseManagementContextValue | null>(null);
+
+export function CaseManagementProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(caseManagementReducer, undefined, createInitialState);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = migrateStoredState(JSON.parse(stored));
+        dispatch({ type: "hydrate", payload: parsed });
+      }
+    } catch (error) {
+      console.warn("Failed to restore case management state from storage", error);
+    } finally {
+      setHydrated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !hydrated) {
+      return;
+    }
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [state, hydrated]);
+
+  const value = useMemo<CaseManagementContextValue>(() => {
+    function buildActivity(label: string, type: ActivityType, relatedCaseIds: string[]): ActivityItem {
+      return {
+        id: generateId("activity"),
+        type,
+        label,
+        relatedCaseIds,
+        timestamp: new Date().toISOString(),
+      };
+    }
+
+    return {
+      state,
+      createClient: (input) => {
+        const now = new Date().toISOString();
+        const id = generateId("client");
+        const record: ClientRecord = {
+          id,
+          name: input.name,
+          organization: input.organization,
+          primaryContact: input.primaryContact,
+          contactEmail: input.contactEmail,
+          contactPhone: input.contactPhone,
+          notes: input.notes,
+          caseIds: [],
+          createdAt: now,
+          updatedAt: now,
+        };
+        dispatch({
+          type: "create-client",
+          payload: record,
+          activity: buildActivity(`New client added: ${input.name}`, "case-created", []),
+        });
+        return id;
+      },
+      updateClient: (clientId, updates) => {
+        dispatch({
+          type: "update-client",
+          payload: { clientId, updates },
+          activity: buildActivity(`Client updated: ${updates.name ?? ""}`.trim() || "Client updated", "case-updated", []),
+        });
+      },
+      createCase: (input) => {
+        const now = new Date().toISOString();
+        const id = generateId("case");
+        const clientId = input.clientId ?? null;
+        const client = clientId ? state.clients.find((record) => record.id === clientId) : null;
+        const record: CaseRecord = {
+          id,
+          matterNumber: input.matterNumber,
+          caseName: input.caseName,
+          clientId,
+          clientName: client?.name ?? input.client ?? null,
+          stage: input.stage,
+          status: input.status ?? "active",
+          practiceArea: input.practiceArea,
+          leadAttorney: input.leadAttorney,
+          team: input.team ?? [],
+          openedOn: input.openedOn,
+          nextDeadline: input.nextDeadline,
+          description: input.description,
+          priority: input.priority,
+          tags: input.tags ?? [],
+          riskNotes: input.riskNotes ?? undefined,
+          documentIds: [],
+          researchIds: [],
+          createdAt: now,
+          updatedAt: now,
+        };
+        dispatch({
+          type: "create-case",
+          payload: record,
+          activity: buildActivity(`New matter created: ${input.caseName}`, "case-created", [id]),
+        });
+        return id;
+      },
+      updateCase: (caseId, updates) => {
+        dispatch({
+          type: "update-case",
+          payload: { caseId, updates },
+          activity: buildActivity(`Matter updated: ${updates.caseName ?? ""}`.trim() || "Matter updated", "case-updated", [
+            caseId,
+          ]),
+        });
+      },
+      createDocument: (input) => {
+        const now = new Date().toISOString();
+        const id = generateId("document");
+        const record: DocumentRecord = {
+          id,
+          caseIds: input.caseIds,
+          title: input.title,
+          type: input.type,
+          owner: input.owner,
+          dueOn: input.dueOn,
+          status: input.status,
+          version: "Draft",
+          lastTouchedBy: input.owner,
+          updatedAt: now,
+          summary: input.summary,
+          workspaceDocId: input.workspaceDocId,
+          workspaceDocType: input.workspaceDocType,
+          jurisdiction: input.jurisdiction ?? null,
+        };
+        dispatch({
+          type: "create-document",
+          payload: record,
+          activity: buildActivity(`Document added: ${input.title}`, "document-created", input.caseIds),
+        });
+        return id;
+      },
+      updateDocument: (documentId, updates) => {
+        dispatch({
+          type: "update-document",
+          payload: { documentId, updates },
+          activity: buildActivity("Document updated", "document-updated", updates.caseIds ?? []),
+        });
+      },
+      createResearchItem: (input) => {
+        const now = new Date().toISOString();
+        const id = generateId("research");
+        const record: ResearchItem = {
+          id,
+          caseIds: input.caseIds,
+          title: input.title,
+          issue: input.issue,
+          jurisdiction: input.jurisdiction,
+          status: input.status,
+          nextAction: input.nextAction,
+          analysts: input.analysts,
+          updatedAt: now,
+          summary: input.summary,
+          authorities: input.authorities,
+          tags: input.tags ?? [],
+        };
+        dispatch({
+          type: "create-research",
+          payload: record,
+          activity: buildActivity(`Research logged: ${input.title}`, "research-created", input.caseIds),
+        });
+        return id;
+      },
+      updateResearchItem: (researchId, updates) => {
+        dispatch({
+          type: "update-research",
+          payload: { researchId, updates },
+          activity: buildActivity("Research updated", "research-updated", updates.caseIds ?? []),
+        });
+      },
+      logTimeEntry: (input) => {
+        const id = generateId("time");
+        const entry: TimeEntry = {
+          id,
+          caseId: input.caseId,
+          caseName: state.cases.find((item) => item.id === input.caseId)?.caseName ?? "",
+          author: input.author,
+          activity: input.activity,
+          hours: input.hours,
+          date: input.date,
+          status: input.status,
+          notes: input.notes,
+        };
+        dispatch({
+          type: "log-time",
+          payload: entry,
+          activity: buildActivity(`Time logged: ${input.activity}`, "time-logged", [input.caseId]),
+        });
+        return id;
+      },
+      updateTimeEntry: (timeEntryId, updates) => {
+        const existing = state.timeEntries.find((entry) => entry.id === timeEntryId);
+        if (!existing) {
+          return;
+        }
+        const caseId = updates.caseId ?? existing.caseId;
+        const caseName =
+          updates.caseId && updates.caseId !== existing.caseId
+            ? state.cases.find((item) => item.id === updates.caseId)?.caseName ?? existing.caseName
+            : existing.caseName;
+
+        dispatch({
+          type: "update-time",
+          payload: {
+            timeEntryId,
+            updates: {
+              ...updates,
+              caseId,
+              caseName,
+            },
+          },
+          activity: buildActivity("Time entry updated", "time-logged", caseId ? [caseId] : []),
+        });
+      },
+    };
+  }, [state]);
+
+  return <CaseManagementContext.Provider value={value}>{children}</CaseManagementContext.Provider>;
+}
+
+export function useCaseManagement() {
+  const context = useContext(CaseManagementContext);
+  if (!context) {
+    throw new Error("useCaseManagement must be used within a CaseManagementProvider");
+  }
+  return context;
+}
+
+export function useOptionalCaseManagement() {
+  return useContext(CaseManagementContext);
+}

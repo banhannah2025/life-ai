@@ -17,7 +17,7 @@ import {
     PresentationChartBarIcon,
     TableCellsIcon,
 } from "@heroicons/react/24/outline";
-import { FolderPlus, Loader2, Minus, Pencil, Plus, Trash } from "lucide-react";
+import { Briefcase, Camera, Clock, FileText, FolderPlus, Lightbulb, Loader2, Minus, Pencil, Plus, Trash, Users } from "lucide-react";
 import { upload } from "@vercel/blob/client";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
@@ -29,6 +29,8 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
+import { hasCaseManagementAccess } from "@/lib/auth/roles";
+import { isAdminEmail } from "@/lib/admin/config";
 import { pathToId } from "@/lib/blob/utils";
 
 type FileNode = {
@@ -105,6 +107,46 @@ const comingSoonOptions: Array<Omit<CreateOption, "accent"> & { accent: string; 
         icon: ClipboardDocumentListIcon,
         accent: "bg-violet-100 text-violet-600",
         badge: "Coming soon",
+    },
+];
+
+type CaseManagementNavItem = {
+    href: string;
+    label: string;
+    description: string;
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
+};
+
+const caseManagementNavItems: CaseManagementNavItem[] = [
+    {
+        href: "/case-management",
+        label: "Case dashboard",
+        description: "Track open matters, assigned teams, and upcoming deadlines.",
+        icon: Briefcase,
+    },
+    {
+        href: "/case-management/clients",
+        label: "Clients",
+        description: "Manage client records, contacts, and associated matters.",
+        icon: Users,
+    },
+    {
+        href: "/case-management/time-tracking",
+        label: "Time tracking",
+        description: "Capture billable time and monitor utilization in real time.",
+        icon: Clock,
+    },
+    {
+        href: "/case-management/document-drafting",
+        label: "Document drafting",
+        description: "Launch templates and collaborate on pleadings, motions, and agreements.",
+        icon: FileText,
+    },
+    {
+        href: "/case-management/case-analysis",
+        label: "Case analysis",
+        description: "Maintain issue outlines, arguments, and supporting authorities.",
+        icon: Lightbulb,
     },
 ];
 
@@ -403,6 +445,8 @@ export function AppSidebar() {
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const { isLoaded, isSignedIn, user } = useUser();
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [userRole, setUserRole] = useState<string | null>(null);
+    const [isAvatarUploading, setIsAvatarUploading] = useState(false);
     const [fileNodes, setFileNodes] = useState<FileNode[]>([]);
     const [isFilesLoading, setIsFilesLoading] = useState(false);
     const [filesError, setFilesError] = useState<string | null>(null);
@@ -410,8 +454,11 @@ export function AppSidebar() {
     const [defaultFolder, setDefaultFolder] = useState<{ relativePath: string; pathname: string } | null>(null);
     const [creatingDocId, setCreatingDocId] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const avatarInputRef = useRef<HTMLInputElement | null>(null);
     const [uploadingFile, setUploadingFile] = useState<string | null>(null);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const emailAddresses = user?.emailAddresses ?? [];
+    const isAdminUser = emailAddresses.some((address) => isAdminEmail(address.emailAddress));
 
     const handleToggle = (path: string) => {
         setExpandedNodes((prev) => ({
@@ -423,6 +470,7 @@ export function AppSidebar() {
     useEffect(() => {
         if (!isLoaded || !isSignedIn || !user?.id) {
             setAvatarUrl(null);
+            setUserRole(null);
             return;
         }
 
@@ -434,11 +482,13 @@ export function AppSidebar() {
                 const profile = await getUserProfile(user.id);
                 if (!ignore) {
                     setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
+                    setUserRole(profile.role ?? null);
                 }
             } catch (error) {
                 console.error("Failed to load sidebar profile", error);
                 if (!ignore) {
                     setAvatarUrl(user.imageUrl || null);
+                    setUserRole(null);
                 }
             }
         })();
@@ -448,9 +498,21 @@ export function AppSidebar() {
         };
     }, [isLoaded, isSignedIn, user?.id, user?.imageUrl]);
 
-    const greeting = isLoaded && isSignedIn && user?.firstName
-        ? `Hello ${user.firstName}`
-        : "Hello Guest";
+    const [hasHydrated, setHasHydrated] = useState(false);
+
+    useEffect(() => {
+        setHasHydrated(true);
+    }, []);
+
+    const canAccessCaseManagement = useMemo(
+        () => isAdminUser || hasCaseManagementAccess(userRole),
+        [isAdminUser, userRole]
+    );
+
+    const greeting =
+        hasHydrated && isLoaded && isSignedIn && user?.firstName
+            ? `Hello ${user.firstName}`
+            : "Hello Guest";
 
     const resetFileInput = useCallback(() => {
         if (fileInputRef.current) {
@@ -535,6 +597,36 @@ export function AppSidebar() {
 
         void refreshFiles();
     }, [isLoaded, isSignedIn, refreshFiles, user?.id]);
+
+    const handleAvatarChange = useCallback(
+        async (event: ChangeEvent<HTMLInputElement>) => {
+            const file = event.target.files?.[0];
+            if (!file) {
+                return;
+            }
+
+            if (!user) {
+                toast.error("Sign in to update your profile photo.");
+                event.target.value = "";
+                return;
+            }
+
+            setIsAvatarUploading(true);
+            try {
+                const result = await user.setProfileImage({ file });
+                await user.reload?.();
+                setAvatarUrl(result?.publicUrl ?? user.imageUrl ?? null);
+                toast.success("Profile photo updated.");
+            } catch (error) {
+                const message = error instanceof Error ? error.message : "Unable to update photo.";
+                toast.error("Failed to update photo", { description: message });
+            } finally {
+                setIsAvatarUploading(false);
+                event.target.value = "";
+            }
+        },
+        [user]
+    );
 
     const handleUploadClick = useCallback(() => {
         if (!isSignedIn || !user?.id) {
@@ -971,13 +1063,6 @@ export function AppSidebar() {
     );
     const canManageFiles = isLoaded && isSignedIn && !!user?.id;
 
-    useEffect(() => {
-        if (canManageFiles) {
-            setIsFilesOpen(true);
-            setIsCreateOpen(true);
-        }
-    }, [canManageFiles]);
-
     return (
         <Sidebar className="flex h-[calc(100vh-4rem)] flex-col border-r border-slate-200 bg-white/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60 md:top-16 md:bottom-0 md:h-[calc(100vh-4rem)]">
             <SidebarHeader className="space-y-1 border-b border-slate-200 bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-6 text-left">
@@ -986,18 +1071,29 @@ export function AppSidebar() {
             </SidebarHeader>
             <SidebarContent className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
                 <div className="flex flex-col items-center gap-3">
-                    <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
-                        {avatarUrl ? (
-                            <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
-                        ) : null}
-                        <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
-                    </Avatar>
-                    <Link
-                        className="text-xs font-medium text-slate-600 transition hover:text-slate-900"
-                        href="/profile/edit"
-                    >
-                        Update profile
-                    </Link>
+                    <div className="relative">
+                        <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
+                            {avatarUrl ? (
+                                <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                            ) : null}
+                            <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
+                        </Avatar>
+                        <input
+                            ref={avatarInputRef}
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleAvatarChange}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => avatarInputRef.current?.click()}
+                            disabled={!user || isAvatarUploading}
+                            className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
+                        >
+                            {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+                        </button>
+                    </div>
                 </div>
 
                 {!isLoaded ? (
@@ -1009,6 +1105,33 @@ export function AppSidebar() {
                     </section>
                 ) : canManageFiles ? (
                     <>
+                        {canAccessCaseManagement ? (
+                            <section className="space-y-4 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                                <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                    <h4>Case management</h4>
+                                    <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                                        Admin · Attorney · Law firm
+                                    </span>
+                                </header>
+                                <div className="space-y-3">
+                                    {caseManagementNavItems.map(({ href, label, description, icon: Icon }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            className="group flex items-start gap-3 rounded-lg border border-slate-100 bg-white/80 p-3 text-left shadow-sm transition hover:border-slate-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
+                                        >
+                                            <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-slate-700 transition group-hover:bg-slate-900/10">
+                                                <Icon className="h-4 w-4" />
+                                            </span>
+                                            <span className="space-y-1">
+                                                <span className="block text-sm font-semibold text-slate-800">{label}</span>
+                                                <span className="block text-xs text-slate-500">{description}</span>
+                                            </span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        ) : null}
                         <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
                             <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
                                 <div className="flex items-center gap-2">
@@ -1132,7 +1255,7 @@ export function AppSidebar() {
                                         <div className="space-y-2">
                                             <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Coming soon</h5>
                                             <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
-                                                {comingSoonOptions.map(({ id, name, description, icon: Icon, accent, badge }) => (
+                                                {comingSoonOptions.map(({ id, icon: Icon, accent, badge }) => (
                                                     <div
                                                         key={id}
                                                         className="flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-full border border-dashed border-slate-200 bg-white/60 text-slate-400"
@@ -1163,12 +1286,6 @@ export function AppSidebar() {
                     </section>
                 )}
 
-                <section className="rounded-xl border border-dashed border-slate-200 bg-slate-50/80 p-4 shadow-inner">
-                    <h4 className="text-sm font-semibold text-slate-700">Social network</h4>
-                    <p className="mt-1 text-xs text-slate-500">
-                        Coming soon — collaborate with colleagues and share research updates in real time.
-                    </p>
-                </section>
             </SidebarContent>
         </Sidebar>
     );

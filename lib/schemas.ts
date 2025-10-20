@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const UserSchema = z.object({
   email: z.string().email(),
-  role: z.enum(["admin", "member", "moderator", "guest"]).default("member"),
+  role: z.enum(["admin", "member", "moderator", "guest", "attorney", "law_firm", "pro_se"]).default("member"),
   createdAt: z.any(), // Firestore Timestamp
   updatedAt: z.any(),
   professionalProfile: z.object({

@@ -1,5 +1,14 @@
+import type { CourtListenerOpinion } from "@/lib/courtlistener/types";
+import type { FederalRegisterDocument } from "@/lib/federalregister/types";
+import type { GovInfoDocument } from "@/lib/govinfo/types";
+import type { LibraryOfCongressItem } from "@/lib/loc/types";
+import type { EcfrDocument } from "@/lib/ecfr/types";
+import type { LibraryResource } from "@/lib/library/resources";
+import type { OpenStatesBill } from "@/lib/openstates/types";
+import type { RegulationsDocument } from "@/lib/regulations/types";
 import type { UserProfile } from "@/lib/profile/schema";
 import type { SocialPostDTO } from "@/lib/social/client";
+import type { SocialChannelDTO } from "@/lib/social/client";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",
@@ -49,14 +58,64 @@ export type ProfileSearchResult = {
 export type SearchResponse = {
   profiles: ProfileSearchResult[];
   posts: SocialPostDTO[];
+  channels: SocialChannelDTO[];
+  opinions: CourtListenerOpinion[];
+  govDocuments: GovInfoDocument[];
+  libraryItems: LibraryOfCongressItem[];
+  federalRegisterDocuments: FederalRegisterDocument[];
+  ecfrDocuments: EcfrDocument[];
+  regulationsDocuments: RegulationsDocument[];
+  openStatesBills: OpenStatesBill[];
+  localDocuments: LibraryResource[];
 };
 
-export async function searchDirectory(query: string, type: "all" | "profiles" | "posts" = "all", limit = 10): Promise<SearchResponse> {
+export type SearchFilters = {
+  jurisdictions?: string[];
+  collections?: string[];
+  dateRange?: "any" | "5y" | "2y" | "1y" | "90d";
+  phraseBoost?: string;
+  state?: string;
+};
+
+export async function searchDirectory(
+  query: string,
+  type:
+    | "all"
+    | "profiles"
+    | "posts"
+    | "channels"
+    | "legal"
+    | "opinions"
+    | "govinfo"
+    | "loc"
+    | "federalregister"
+    | "ecfr"
+    | "regulations"
+    | "openstates" = "all",
+  limit = 10,
+  filters?: SearchFilters
+): Promise<SearchResponse> {
   const params = new URLSearchParams({
     q: query,
     type,
     limit: limit.toString(),
   });
+
+  if (filters?.jurisdictions?.length) {
+    params.set("jurisdictions", filters.jurisdictions.join(","));
+  }
+  if (filters?.collections?.length) {
+    params.set("collections", filters.collections.join(","));
+  }
+  if (filters?.dateRange) {
+    params.set("dateRange", filters.dateRange);
+  }
+  if (filters?.phraseBoost) {
+    params.set("phraseBoost", filters.phraseBoost);
+  }
+  if (filters?.state && filters.state !== "ALL") {
+    params.set("state", filters.state);
+  }
 
   return handleResponse<SearchResponse>(await fetch(`/api/search?${params.toString()}`, { cache: "no-store" }));
 }

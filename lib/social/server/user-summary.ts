@@ -13,8 +13,9 @@ type ProfileRecord = {
 };
 
 export async function resolveUserSummary(userId: string): Promise<UserSummary> {
+  const client = await clerkClient();
   const [clerkUser, profileSnapshot] = await Promise.all([
-    clerkClient.users.getUser(userId).catch(() => null),
+    client.users.getUser(userId).catch(() => null),
     getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get(),
   ]);
 

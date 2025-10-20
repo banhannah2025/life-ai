@@ -60,7 +60,8 @@ export async function fetchAdminUserDirectory(): Promise<AdminDirectoryUser[]> {
     postCounts.set(data.authorId, (postCounts.get(data.authorId) ?? 0) + 1);
   });
 
-  const clerkUsers = await clerkClient.users.getUserList({ limit: 200 });
+  const client = await clerkClient();
+  const clerkUsers = await client.users.getUserList({ limit: 200 });
 
   const users: AdminDirectoryUser[] = clerkUsers.data.map((user) => {
     const profile = profileMap.get(user.id) ?? DEFAULT_USER_PROFILE;

@@ -23,6 +23,7 @@ import type { UserSummary } from "@/lib/social/types";
 
 type SocialFeedProps = {
   initialPosts?: SocialPostDTO[];
+  initialChannelId?: string | null;
 };
 
 const channelOrder: Record<SocialChannelDTO["type"], number> = {
@@ -39,10 +40,10 @@ function sortChannels(channels: SocialChannelDTO[]) {
   });
 }
 
-export function SocialFeed({ initialPosts = [] }: SocialFeedProps) {
+export function SocialFeed({ initialPosts = [], initialChannelId = null }: SocialFeedProps) {
   const [posts, setPosts] = useState<SocialPostDTO[]>(initialPosts);
   const [channels, setChannels] = useState<SocialChannelDTO[]>([]);
-  const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
+  const [selectedChannelId, setSelectedChannelId] = useState<string | null>(initialChannelId);
   const [followingAuthorIds, setFollowingAuthorIds] = useState<Set<string>>(new Set());
   const [followerAuthorIds, setFollowerAuthorIds] = useState<Set<string>>(new Set());
   const [followingUsers, setFollowingUsers] = useState<UserSummary[]>([]);
@@ -68,7 +69,7 @@ export function SocialFeed({ initialPosts = [] }: SocialFeedProps) {
       try {
         const [channelData, postData] = await Promise.all([
           fetchChannels(),
-          fetchPosts({ channelId: null }),
+          fetchPosts({ channelId: initialChannelId ?? null }),
         ]);
 
         if (!active) {
@@ -97,7 +98,17 @@ export function SocialFeed({ initialPosts = [] }: SocialFeedProps) {
       active = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initialChannelId]);
+
+  useEffect(() => {
+    if (!initialChannelId) {
+      return;
+    }
+
+    selectedChannelRef.current = initialChannelId;
+    setSelectedChannelId(initialChannelId);
+    void loadPostsForChannel(initialChannelId, { silent: true });
+  }, [initialChannelId]);
 
   async function loadRelationships() {
     try {
@@ -227,19 +238,21 @@ export function SocialFeed({ initialPosts = [] }: SocialFeedProps) {
         </aside>
 
         <div className="space-y-6">
-          <header className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h1 className="text-xl font-semibold text-slate-900 sm:text-2xl">Community Feed</h1>
-              <p className="text-sm text-slate-500">See updates from channels and friends across Life-AI.</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={handleRefresh} disabled={isRefreshing}>
-                <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
-                Refresh
-              </Button>
-              <Button size="sm" onClick={() => setIsCreateDialogOpen(true)}>
-                New channel
-              </Button>
+          <header className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h1 className="text-xl font-semibold text-slate-900 sm:text-2xl">Social Feed</h1>
+                <p className="text-sm text-slate-500">See updates from everyone across Life-AI.</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button variant="outline" size="sm" onClick={handleRefresh} disabled={isRefreshing}>
+                  <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
+                  Refresh
+                </Button>
+                <Button size="sm" onClick={() => setIsCreateDialogOpen(true)}>
+                  New channel
+                </Button>
+              </div>
             </div>
           </header>
 
@@ -247,8 +260,8 @@ export function SocialFeed({ initialPosts = [] }: SocialFeedProps) {
             <Button variant="outline" size="sm" className="justify-start" onClick={() => setIsCreateDialogOpen(true)}>
               Browse channels
             </Button>
-            <Button asChild variant="outline" size="sm" className="justify-start">
-              <Link href="/people">Find friends</Link>
+            <Button variant="outline" size="sm" className="justify-start" asChild>
+              <Link href="/library">Explore resources</Link>
             </Button>
           </div>
 

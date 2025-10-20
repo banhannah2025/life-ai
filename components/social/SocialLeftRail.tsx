@@ -7,7 +7,6 @@ import { useUser } from "@clerk/nextjs";
 import type { SocialChannelDTO } from "@/lib/social/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChannelSidebar } from "./ChannelSidebar";
 
@@ -21,14 +20,6 @@ type SocialLeftRailProps = {
   channelsLoading: boolean;
 };
 
-const navItems = [
-  { label: "News Feed", href: "/social" },
-  { label: "My Profile", href: "/profile" },
-  { label: "Friends", href: "/people" },
-  { label: "Search", href: "/search" },
-  { label: "Library", href: "/library" },
-];
-
 export function SocialLeftRail({
   channels,
   selectedChannelId,
@@ -39,6 +30,7 @@ export function SocialLeftRail({
   channelsLoading,
 }: SocialLeftRailProps) {
   const { user } = useUser();
+
   const initials = useMemo(() => {
     if (!user?.fullName) {
       return "LA";
@@ -84,16 +76,27 @@ export function SocialLeftRail({
           <CardTitle className="text-sm font-semibold text-slate-900">Shortcuts</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
-            >
-              <span>{item.label}</span>
-              <span className="text-xs text-slate-400">›</span>
-            </Link>
-          ))}
+          <Link
+            href="/profile"
+            className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          >
+            <span>My profile</span>
+            <span className="text-xs text-slate-400">›</span>
+          </Link>
+          <Link
+            href="/profile/edit"
+            className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          >
+            <span>Edit profile</span>
+            <span className="text-xs text-slate-400">›</span>
+          </Link>
+          <Link
+            href="/social"
+            className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          >
+            <span>Social feed</span>
+            <span className="text-xs text-slate-400">›</span>
+          </Link>
         </CardContent>
       </Card>
 
@@ -109,20 +112,6 @@ export function SocialLeftRail({
           onRequestCreateChannel={onRequestCreateChannel}
         />
       )}
-
-      <Card className="border border-slate-200 bg-white shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-sm font-semibold text-slate-900">Create</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <Button size="sm" className="w-full" onClick={onRequestCreateChannel}>
-            Create channel
-          </Button>
-          <Button asChild size="sm" variant="outline" className="w-full">
-            <Link href="/documents/new">Start new doc</Link>
-          </Button>
-        </CardContent>
-      </Card>
     </div>
   );
 }

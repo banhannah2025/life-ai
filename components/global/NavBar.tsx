@@ -9,19 +9,53 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
 import { isAdminEmail } from "@/lib/admin/config";
+import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
+import { getUserProfile } from "@/lib/firebase/profile";
+import { hasCaseManagementAccess } from "@/lib/auth/roles";
 
 const baseNavLinks = [
     { href: "/", label: "Home" },
     { href: "/library", label: "Library" },
-    { href: "/social", label: "Community" },
-    { href: "/search", label: "Search" },
-    { href: "/people", label: "People" },
-    { href: "/profile", label: "Profile" },
+    { href: "/social", label: "Social" },
+    { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice" },
 ];
 
 export function NavBar() {
     const [isMounted, setIsMounted] = useState(false);
     const { user } = useUser();
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function resolveRole() {
+            if (!user?.id) {
+                if (!cancelled) {
+                    setUserRole(null);
+                }
+                return;
+            }
+
+            try {
+                await ensureFirebaseSignedIn();
+                const profile = await getUserProfile(user.id);
+                if (!cancelled) {
+                    setUserRole(profile.role ?? null);
+                }
+            } catch (error) {
+                console.error("Failed to resolve user role for navigation", error);
+                if (!cancelled) {
+                    setUserRole(null);
+                }
+            }
+        }
+
+        void resolveRole();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [user?.id]);
 
     useEffect(() => {
         setIsMounted(true);
@@ -30,11 +64,18 @@ export function NavBar() {
     const links = useMemo(() => {
         const items = [...baseNavLinks];
         const emails = user?.emailAddresses ?? [];
-        if (emails.some((address) => isAdminEmail(address.emailAddress))) {
+        const isAdminUser = emails.some((address) => isAdminEmail(address.emailAddress));
+
+        if (isMounted && isAdminUser) {
             items.push({ href: "/admin", label: "Admin" });
         }
+
+        if (isMounted && (hasCaseManagementAccess(userRole) || isAdminUser)) {
+            items.splice(1, 0, { href: "/case-management", label: "Cases" });
+        }
+
         return items;
-    }, [user?.emailAddresses]);
+    }, [isMounted, user?.emailAddresses, userRole]);
 
     return (
         <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">

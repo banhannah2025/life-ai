@@ -8,28 +8,17 @@ type ClerkUserCreatedData = {
   email_addresses: Array<{ email_address: string | null | undefined }>;
 };
 
-function isUserCreatedEvent(payload: unknown): payload is { type: "user.created"; data: ClerkUserCreatedData } {
-  if (typeof payload !== "object" || payload === null) {
+function isUserCreatedData(value: unknown): value is ClerkUserCreatedData {
+  if (typeof value !== "object" || value === null) {
     return false;
   }
 
-  const { type, data } = payload as { type?: unknown; data?: unknown };
+  const candidate = value as Partial<ClerkUserCreatedData>;
 
-  if (type !== "user.created" || typeof data !== "object" || data === null) {
-    return false;
-  }
-
-  const candidate = data as Partial<ClerkUserCreatedData>;
-
-  if (typeof candidate.id !== "string") {
-    return false;
-  }
-
-  if (!Array.isArray(candidate.email_addresses)) {
-    return false;
-  }
-
-  return true;
+  return (
+    typeof candidate.id === "string" &&
+    Array.isArray(candidate.email_addresses)
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -39,12 +28,16 @@ export async function POST(req: NextRequest) {
   const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
 
   try {
-    const evt = wh.verify(body, headers) as unknown;
+    const evt = wh.verify(body, headers) as { type: string; data: unknown };
 
-    if (isUserCreatedEvent(evt)) {
-      const { id, email_addresses } = evt.data;
-      const email = email_addresses[0]?.email_address ?? "";
-      await createUserDoc(id, email); // ✅ Create Firestore doc automatically
+    if (evt.type === "user.created") {
+      if (isUserCreatedData(evt.data)) {
+        const { id, email_addresses } = evt.data;
+        const email = email_addresses[0]?.email_address ?? "";
+        await createUserDoc(id, email); // ✅ Create Firestore doc automatically
+      } else {
+        console.warn("Received user.created webhook with unexpected payload shape");
+      }
     }
 
     return NextResponse.json({ ok: true });

@@ -119,23 +119,30 @@ export async function POST(request: NextRequest) {
           const computedParentPath = relativePath.replace(/[^/]+\/?$/, "");
           const parentPath = parsed.parentPath ?? computedParentPath;
           const name = relativePath.split("/").pop() ?? blob.pathname;
-          await firestore.collection("userFiles").doc(docId).set(
-            {
-              userId: parsed.userId,
-              pathname: blob.pathname,
-              url: blob.url,
-              downloadUrl: blob.downloadUrl,
-              contentType: blob.contentType,
-              size: blob.size,
-              originalName: parsed.originalName ?? null,
-              name,
-              relativePath,
-              parentPath,
-              updatedAt: Timestamp.now(),
-              uploadedAt: blob.uploadedAt ? Timestamp.fromDate(new Date(blob.uploadedAt)) : Timestamp.now(),
-            },
-            { merge: true }
-          );
+          const blobMeta = blob as typeof blob & { size?: number; uploadedAt?: string };
+
+          const uploadedAtTimestamp =
+            blobMeta.uploadedAt != null ? Timestamp.fromDate(new Date(blobMeta.uploadedAt)) : Timestamp.now();
+
+          const updatePayload: Record<string, unknown> = {
+            userId: parsed.userId,
+            pathname: blob.pathname,
+            url: blob.url,
+            downloadUrl: blob.downloadUrl,
+            contentType: blob.contentType,
+            originalName: parsed.originalName ?? null,
+            name,
+            relativePath,
+            parentPath,
+            updatedAt: Timestamp.now(),
+            uploadedAt: uploadedAtTimestamp,
+          };
+
+          if (typeof blobMeta.size === "number") {
+            updatePayload.size = blobMeta.size;
+          }
+
+          await firestore.collection("userFiles").doc(docId).set(updatePayload, { merge: true });
         } catch (error) {
           console.error("Failed to parse upload completion payload", error);
         }

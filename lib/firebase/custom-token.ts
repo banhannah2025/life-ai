@@ -29,7 +29,7 @@ export function createFirebaseCustomToken(uid: string, additionalClaims: Record<
     throw new Error("Firebase UID is required and must be <= 128 characters");
   }
 
-  const { projectId, clientEmail, privateKey } = getServiceAccount();
+  const { clientEmail, privateKey } = getServiceAccount();
 
   const issuedAt = Math.floor(Date.now() / 1000);
   const payload = {

@@ -18,11 +18,8 @@ function validateConfig(config: Record<string, string | undefined>) {
     .map(([key]) => key);
 
   if (missing.length) {
-    // eslint-disable-next-line no-console
     console.warn(
-      `Firebase configuration is missing the following environment variables: ${missing.join(
-        ", "
-      )}`
+      `Firebase configuration is missing the following environment variables: ${missing.join(", ")}`
     );
   }
 }

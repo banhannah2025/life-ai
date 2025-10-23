@@ -31,7 +31,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
       if (data?.details) {
         details = data.details;
       }
-    } catch (error) {
+    } catch {
       // swallow
     }
     const error = new Error(message || "Request failed") as ApiError;

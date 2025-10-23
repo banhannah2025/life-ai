@@ -55,7 +55,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
       if (data?.details) {
         details = data.details;
       }
-    } catch (error) {
+    } catch {
       // Ignore JSON parse errors and use default message.
     }
     const error = new Error(message || "Request failed") as ApiError;

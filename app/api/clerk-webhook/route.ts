@@ -1,29 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
-import { createUserDoc } from "@/lib/firestore";
 
-type ClerkWebhookEvent = {
-  type: string;
-  data: unknown;
-};
+import { createUserDoc } from "@/lib/firestore";
 
 type ClerkUserCreatedData = {
   id: string;
   email_addresses: Array<{ email_address: string | null | undefined }>;
 };
 
-function isUserCreatedEvent(event: ClerkWebhookEvent): event is { type: "user.created"; data: ClerkUserCreatedData } {
-  if (event.type !== "user.created" || typeof event.data !== "object" || event.data === null) {
+function isUserCreatedEvent(payload: unknown): payload is { type: "user.created"; data: ClerkUserCreatedData } {
+  if (typeof payload !== "object" || payload === null) {
     return false;
   }
 
-  const data = event.data as Partial<ClerkUserCreatedData>;
+  const { type, data } = payload as { type?: unknown; data?: unknown };
 
-  if (typeof data.id !== "string") {
+  if (type !== "user.created" || typeof data !== "object" || data === null) {
     return false;
   }
 
-  if (!Array.isArray(data.email_addresses)) {
+  const candidate = data as Partial<ClerkUserCreatedData>;
+
+  if (typeof candidate.id !== "string") {
+    return false;
+  }
+
+  if (!Array.isArray(candidate.email_addresses)) {
     return false;
   }
 
@@ -37,7 +39,7 @@ export async function POST(req: NextRequest) {
   const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
 
   try {
-    const evt = wh.verify(body, headers) as ClerkWebhookEvent;
+    const evt = wh.verify(body, headers) as unknown;
 
     if (isUserCreatedEvent(evt)) {
       const { id, email_addresses } = evt.data;

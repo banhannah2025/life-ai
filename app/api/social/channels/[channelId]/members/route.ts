@@ -26,7 +26,7 @@ export async function POST(request: Request, context: RouteContext) {
   let parsedBody: unknown = {};
   try {
     parsedBody = await request.json();
-  } catch (error) {
+  } catch {
     parsedBody = {};
   }
 

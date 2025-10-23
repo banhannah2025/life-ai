@@ -16,11 +16,6 @@ type AdminDashboardProps = {
   users: AdminDirectoryUser[];
 };
 
-const ROLE_LABELS: Record<"admin" | "member", string> = {
-  admin: "Administrator",
-  member: "Member",
-};
-
 function formatDate(value: Date | null): string {
   if (!value) {
     return "—";

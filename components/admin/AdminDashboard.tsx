@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import type { AdminDirectoryUser } from "@/lib/admin/users";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -74,6 +75,28 @@ export function AdminDashboard({ users }: AdminDashboardProps) {
 
   return (
     <div className="space-y-8">
+      <Card className="border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-slate-100 shadow-sm">
+        <CardHeader className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <CardTitle className="text-lg font-semibold text-slate-900">Life-AI Codex</CardTitle>
+            <p className="mt-1 text-sm text-slate-600">
+              Pair Groq&apos;s coding models with repository context to plan refactors, draft patches, and review diffs
+              directly inside the admin workspace.
+            </p>
+          </div>
+          <Button asChild className="w-full sm:w-auto">
+            <Link href="/admin/codex">Open Codex</Link>
+          </Button>
+        </CardHeader>
+        <CardContent className="text-xs text-slate-500">
+          <ul className="grid gap-2 sm:grid-cols-3">
+            <li>Generate patch proposals grounded in our Next.js + TypeScript stack.</li>
+            <li>Review Groq usage to stay within free-tier quotas before running CI.</li>
+            <li>Capture design notes and risks before opening GitHub pull requests.</li>
+          </ul>
+        </CardContent>
+      </Card>
+
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card className="border border-slate-200 bg-white shadow-sm">
           <CardHeader>

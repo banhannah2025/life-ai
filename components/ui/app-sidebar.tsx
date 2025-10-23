@@ -443,6 +443,7 @@ export function AppSidebar() {
     const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
     const [isFilesOpen, setIsFilesOpen] = useState(false);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [isCaseManagementOpen, setIsCaseManagementOpen] = useState(false);
     const { isLoaded, isSignedIn, user } = useUser();
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
@@ -503,6 +504,12 @@ export function AppSidebar() {
     useEffect(() => {
         setHasHydrated(true);
     }, []);
+
+    useEffect(() => {
+        if (pathname && pathname.startsWith("/case-management")) {
+            setIsCaseManagementOpen(true);
+        }
+    }, [pathname]);
 
     const canAccessCaseManagement = useMemo(
         () => isAdminUser || hasCaseManagementAccess(userRole),
@@ -1108,28 +1115,47 @@ export function AppSidebar() {
                         {canAccessCaseManagement ? (
                             <section className="space-y-4 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
                                 <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                                    <h4>Case management</h4>
-                                    <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-                                        Admin · Attorney · Law firm
-                                    </span>
+                                    <div className="flex flex-col gap-1 text-left">
+                                        <h4>Case management</h4>
+                                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                                            Admin · Attorney · Law firm
+                                        </span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsCaseManagementOpen((prev) => !prev)}
+                                        aria-expanded={isCaseManagementOpen}
+                                        className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                                    >
+                                        {isCaseManagementOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                                        <span className="sr-only">Toggle case management section</span>
+                                    </button>
                                 </header>
-                                <div className="space-y-3">
-                                    {caseManagementNavItems.map(({ href, label, description, icon: Icon }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            className="group flex items-start gap-3 rounded-lg border border-slate-100 bg-white/80 p-3 text-left shadow-sm transition hover:border-slate-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
-                                        >
-                                            <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-slate-700 transition group-hover:bg-slate-900/10">
-                                                <Icon className="h-4 w-4" />
-                                            </span>
-                                            <span className="space-y-1">
-                                                <span className="block text-sm font-semibold text-slate-800">{label}</span>
-                                                <span className="block text-xs text-slate-500">{description}</span>
-                                            </span>
-                                        </Link>
-                                    ))}
-                                </div>
+                                {isCaseManagementOpen ? (
+                                    <div className="space-y-3">
+                                        {caseManagementNavItems.map(({ href, label, description, icon: Icon }) => {
+                                            const isActive =
+                                                pathname === href ||
+                                                (pathname && pathname.startsWith(`${href}/`));
+                                            return (
+                                                <Link
+                                                    key={href}
+                                                    href={href}
+                                                    aria-current={isActive ? "page" : undefined}
+                                                    className={`group flex items-start gap-3 rounded-lg border border-slate-100 bg-white/80 p-3 text-left shadow-sm transition hover:border-slate-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 ${isActive ? "border-slate-300 bg-white shadow-md ring-1 ring-slate-200" : ""}`}
+                                                >
+                                                    <span className={`mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-slate-700 transition group-hover:bg-slate-900/10 ${isActive ? "bg-slate-900/10 text-slate-800" : ""}`}>
+                                                        <Icon className="h-4 w-4" />
+                                                    </span>
+                                                    <span className="space-y-1">
+                                                        <span className="block text-sm font-semibold text-slate-800">{label}</span>
+                                                        <span className="block text-xs text-slate-500">{description}</span>
+                                                    </span>
+                                                </Link>
+                                            );
+                                        })}
+                                    </div>
+                                ) : null}
                             </section>
                         ) : null}
                         <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">

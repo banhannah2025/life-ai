@@ -250,18 +250,23 @@ export function CaseDocumentDrafting() {
       return;
     }
 
+    setFormError(null);
+
     const trimmedTitle = documentForm.title.trim();
     const trimmedOwner = documentForm.owner.trim();
 
-    if (!trimmedTitle || !trimmedOwner || !selectedJurisdiction) {
-      if (!selectedJurisdiction) {
-        setFormError("Select a jurisdiction so we can apply the correct court rules.");
-      }
+    if (!trimmedTitle || !trimmedOwner) {
       return;
     }
 
+    if (!selectedJurisdiction) {
+      setFormError("Select a jurisdiction so we can apply the correct court rules.");
+      return;
+    }
+
+    const jurisdiction = selectedJurisdiction;
+
     setIsSavingDocument(true);
-    setFormError(null);
 
     let workspaceDocId: string | undefined;
     let workspaceDocType: DocumentWorkspaceType | undefined;
@@ -293,7 +298,7 @@ export function CaseDocumentDrafting() {
           docType: workspaceDocType,
           title: trimmedTitle,
           owner: trimmedOwner,
-          jurisdiction: selectedJurisdiction,
+          jurisdiction,
         });
       } else if (documentForm.existingWorkspaceDocId.trim()) {
         workspaceDocId = documentForm.existingWorkspaceDocId.trim();
@@ -310,7 +315,7 @@ export function CaseDocumentDrafting() {
         summary: documentForm.summary.trim(),
         workspaceDocId,
         workspaceDocType,
-        jurisdiction: selectedJurisdiction,
+        jurisdiction,
       });
 
       if (workspaceDocId && workspaceDocType) {
@@ -318,7 +323,7 @@ export function CaseDocumentDrafting() {
           docId: workspaceDocId,
           docType: workspaceDocType,
           title: trimmedTitle,
-          jurisdictionLabel: selectedJurisdiction.label,
+          jurisdictionLabel: jurisdiction.label,
         });
       }
 
@@ -786,12 +791,14 @@ export function CaseDocumentDrafting() {
                 <Button type="button" variant="outline" onClick={() => setCreateDialogOpen(false)}>
                   Cancel
                 </Button>
-                <Button type="submit" disabled={isSavingDocument}>
+                <Button type="submit" disabled={isSavingDocument || !canSubmit}>
                   {isSavingDocument ? (
                     <span className="inline-flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
                       Saving…
                     </span>
+                  ) : !canSubmit ? (
+                    "Select jurisdiction to save"
                   ) : (
                     "Save drafting item"
                   )}

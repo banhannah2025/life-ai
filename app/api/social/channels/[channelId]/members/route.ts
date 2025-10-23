@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { updateChannelMembership } from "@/lib/social/server/channels";
@@ -6,19 +6,16 @@ import { resolveUserSummary } from "@/lib/social/server/user-summary";
 import { serializeChannel } from "@/lib/social/serialization";
 import { channelMembershipSchema } from "@/lib/social/validators";
 
-type RouteContext = {
-  params: {
-    channelId: string;
-  };
-};
-
-export async function POST(request: Request, context: RouteContext) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ channelId: string }> }
+) {
   const { userId } = await auth();
   if (!userId) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const channelId = context.params.channelId;
+  const { channelId } = await params;
   if (!channelId) {
     return NextResponse.json({ error: "Missing channel id." }, { status: 400 });
   }

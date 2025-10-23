@@ -91,7 +91,10 @@ export async function PUT(
       });
       blobDownloadUrl = blob.downloadUrl;
       blobUrl = blob.url;
-      blobSize = typeof blob.size === "number" ? blob.size : blobSize;
+      const blobMetadata = blob as typeof blob & { size?: number };
+      if (typeof blobMetadata.size === "number") {
+        blobSize = blobMetadata.size;
+      }
     }
 
     const updatePayload: Record<string, unknown> = {

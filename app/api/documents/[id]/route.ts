@@ -14,7 +14,10 @@ async function fetchDocumentContent(url: string) {
   return response.text();
 }
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   const { userId } = getAuth(request);
 
   if (!userId) {
@@ -22,7 +25,8 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 
   try {
-    const document = await getDocumentForUser(userId, params.id);
+    const { id } = await params;
+    const document = await getDocumentForUser(userId, id);
 
     if (!document) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -41,7 +45,10 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   const { userId } = getAuth(request);
 
   if (!userId) {
@@ -49,7 +56,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 
   try {
-    const document = await getDocumentForUser(userId, params.id);
+    const { id } = await params;
+    const document = await getDocumentForUser(userId, id);
 
     if (!document) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -101,7 +109,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       updatePayload.title = body.title.trim() || document.title || "Untitled Document";
     }
 
-    await firestore.collection("userFiles").doc(params.id).set(updatePayload, { merge: true });
+    await firestore.collection("userFiles").doc(id).set(updatePayload, { merge: true });
 
     return NextResponse.json({ status: "ok", url: blobUrl, downloadUrl: blobDownloadUrl });
   } catch (error) {

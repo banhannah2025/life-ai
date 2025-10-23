@@ -134,7 +134,11 @@ export async function POST(request: NextRequest) {
     const docId = pathToId(blob.pathname);
     const now = Timestamp.now();
     const title = baseTitle;
-    const size = typeof blob.size === "number" ? blob.size : Buffer.byteLength(template.content, "utf8");
+    const blobMetadata = blob as typeof blob & { size?: number };
+    const size =
+      typeof blobMetadata.size === "number"
+        ? blobMetadata.size
+        : Buffer.byteLength(template.content, "utf8");
 
     await firestore
       .collection("userFiles")

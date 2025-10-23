@@ -38,6 +38,9 @@ export function ProfileForm() {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   const userId = useMemo(() => (isLoaded ? user?.id ?? null : null), [isLoaded, user?.id]);
+  const clerkFirstName = user?.firstName ?? "";
+  const clerkLastName = user?.lastName ?? "";
+  const clerkImageUrl = user?.imageUrl ?? "";
 
   useEffect(() => {
     if (!userId) {
@@ -53,12 +56,12 @@ export function ProfileForm() {
         if (ignore) return;
         setForm({
           ...profile,
-          firstName: profile.firstName || user?.firstName || "",
-          lastName: profile.lastName || user?.lastName || "",
-          avatarUrl: profile.avatarUrl || user?.imageUrl || "",
+          firstName: profile.firstName || clerkFirstName || "",
+          lastName: profile.lastName || clerkLastName || "",
+          avatarUrl: profile.avatarUrl || clerkImageUrl || "",
           skillsInput: profile.skills?.join(", ") ?? "",
         });
-        setAvatarPreview(profile.avatarUrl || user?.imageUrl || null);
+        setAvatarPreview(profile.avatarUrl || clerkImageUrl || null);
       } catch (error) {
         console.error("Failed to load profile", error);
         if (!ignore) {
@@ -70,7 +73,7 @@ export function ProfileForm() {
     return () => {
       ignore = true;
     };
-  }, [userId]);
+  }, [userId, clerkFirstName, clerkLastName, clerkImageUrl, user?.firstName, user?.lastName, user?.imageUrl]);
 
   if (!isLoaded) {
     return <div className="text-sm text-slate-600">Loading user…</div>;
@@ -98,7 +101,7 @@ export function ProfileForm() {
       };
       reader.readAsDataURL(file);
     } else {
-      setAvatarPreview(form.avatarUrl || user?.imageUrl || null);
+      setAvatarPreview(form.avatarUrl || clerkImageUrl || null);
     }
   };
 
@@ -124,7 +127,7 @@ export function ProfileForm() {
         .map((skill) => skill.trim())
         .filter(Boolean);
 
-      let avatarUrl = form.avatarUrl || user?.imageUrl || "";
+      let avatarUrl = form.avatarUrl || clerkImageUrl || "";
 
       if (avatarFile && user) {
         const image = await user.setProfileImage({ file: avatarFile });

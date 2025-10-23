@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
@@ -56,6 +56,49 @@ export function SocialFeed({ initialPosts = [], initialChannelId = null }: Socia
   const [isRefreshing, startRefreshTransition] = useTransition();
   const selectedChannelRef = useRef<string | null>(selectedChannelId);
 
+  const loadRelationships = useCallback(async () => {
+    try {
+      const relationships = await fetchRelationships();
+      setFollowingAuthorIds(new Set(relationships.following.map((user) => user.id)));
+      setFollowerAuthorIds(new Set(relationships.followers.map((user) => user.id)));
+      setFollowingUsers(relationships.following);
+      setFollowerUsers(relationships.followers);
+      setFriendUsers(relationships.friends);
+    } catch (error) {
+      if (!(error instanceof Error) || (error as Error & { status?: number }).status !== 401) {
+        toast.error(error instanceof Error ? error.message : "Unable to load your connections.");
+      }
+    }
+  }, []);
+
+  const loadPostsForChannel = useCallback(
+    async (channelId: string | null, options: { silent?: boolean } = {}): Promise<boolean> => {
+      let success = false;
+      if (!options.silent) {
+        setIsLoadingPosts(true);
+      }
+
+      try {
+        const postData = await fetchPosts({ channelId: channelId ?? undefined });
+        if (selectedChannelRef.current === channelId) {
+          setPosts(postData);
+          success = true;
+        }
+      } catch (error) {
+        if (selectedChannelRef.current === channelId) {
+          toast.error(error instanceof Error ? error.message : "Unable to load posts for this channel.");
+        }
+      } finally {
+        if (!options.silent) {
+          setIsLoadingPosts(false);
+        }
+      }
+
+      return success;
+    },
+    [],
+  );
+
   useEffect(() => {
     selectedChannelRef.current = selectedChannelId;
   }, [selectedChannelId]);
@@ -97,8 +140,7 @@ export function SocialFeed({ initialPosts = [], initialChannelId = null }: Socia
     return () => {
       active = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialChannelId]);
+  }, [initialChannelId, loadRelationships]);
 
   useEffect(() => {
     if (!initialChannelId) {
@@ -108,48 +150,7 @@ export function SocialFeed({ initialPosts = [], initialChannelId = null }: Socia
     selectedChannelRef.current = initialChannelId;
     setSelectedChannelId(initialChannelId);
     void loadPostsForChannel(initialChannelId, { silent: true });
-  }, [initialChannelId]);
-
-  async function loadRelationships() {
-    try {
-      const relationships = await fetchRelationships();
-      setFollowingAuthorIds(new Set(relationships.following.map((user) => user.id)));
-      setFollowerAuthorIds(new Set(relationships.followers.map((user) => user.id)));
-      setFollowingUsers(relationships.following);
-      setFollowerUsers(relationships.followers);
-      setFriendUsers(relationships.friends);
-    } catch (error) {
-      if (!(error instanceof Error) || (error as Error & { status?: number }).status !== 401) {
-        toast.error(error instanceof Error ? error.message : "Unable to load your connections.");
-      }
-    }
-  }
-
-  async function loadPostsForChannel(channelId: string | null, options: { silent?: boolean } = {}): Promise<boolean> {
-    let success = false;
-    if (!options.silent) {
-      setIsLoadingPosts(true);
-    }
-
-    try {
-      const postData = await fetchPosts({ channelId: channelId ?? undefined });
-      if (selectedChannelRef.current === channelId) {
-        setPosts(postData);
-        success = true;
-      }
-    } catch (error) {
-      if (selectedChannelRef.current === channelId) {
-        toast.error(error instanceof Error ? error.message : "Unable to load posts for this space.");
-      }
-      return false;
-    } finally {
-      if (!options.silent && selectedChannelRef.current === channelId) {
-        setIsLoadingPosts(false);
-      }
-    }
-
-    return success;
-  }
+  }, [initialChannelId, loadPostsForChannel]);
 
   function handlePostCreated(post: SocialPostDTO) {
     const currentChannel = selectedChannelRef.current;

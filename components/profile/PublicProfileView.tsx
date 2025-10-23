@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { fetchRelationships, type SocialPostDTO } from "@/lib/social/client";
 import { FriendshipButton } from "@/components/social/FriendshipButton";
 import { PostList } from "@/components/social/PostList";

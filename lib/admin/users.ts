@@ -2,8 +2,6 @@ import { clerkClient } from "@clerk/nextjs/server";
 
 import { getAdminFirestore } from "@/lib/firebase/admin";
 import { DEFAULT_USER_PROFILE, type UserProfile } from "@/lib/profile/schema";
-import type { UserSummary } from "@/lib/social/types";
-
 import { isAdminEmail } from "./config";
 
 export type AdminDirectoryUser = {

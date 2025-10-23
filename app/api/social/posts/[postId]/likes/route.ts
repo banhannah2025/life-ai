@@ -1,22 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { togglePostLike } from "@/lib/social/server/posts";
 import { resolveUserSummary } from "@/lib/social/server/user-summary";
 
-type RouteContext = {
-  params: {
-    postId: string;
-  };
-};
-
-export async function POST(_request: Request, context: RouteContext) {
+export async function POST(
+  _request: NextRequest,
+  { params }: { params: Promise<{ postId: string }> }
+) {
   const { userId } = await auth();
   if (!userId) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const postId = context.params.postId;
+  const { postId } = await params;
   if (!postId) {
     return NextResponse.json({ error: "Missing postId in route parameter." }, { status: 400 });
   }

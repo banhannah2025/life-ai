@@ -123,20 +123,25 @@ export async function GET(request: NextRequest) {
         ensureFolder(parentPath, "derived");
       }
 
-      items.push({
+      const blobDetails = blob as typeof blob & { contentType?: string };
+      const metadataContentType =
+        typeof metadata.contentType === "string" ? (metadata.contentType as string) : undefined;
+
+      const baseItem: Record<string, unknown> = {
         type: "file",
         name: relativePath.split("/").pop() ?? blob.pathname,
         pathname: blob.pathname,
         relativePath,
         parentPath,
         size: blob.size,
-        contentType: blob.contentType,
+        contentType: metadataContentType ?? blobDetails.contentType ?? null,
         url: blob.url,
         downloadUrl: blob.downloadUrl,
         uploadedAt: blob.uploadedAt,
         source: "blob",
-        ...metadata,
-      });
+      };
+
+      items.push({ ...baseItem, ...metadata });
     }
 
     for (const folder of folderMap.values()) {

@@ -1,15 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { getPublicUserProfile } from "@/lib/firebase/server-profile";
 
-type RouteContext = {
-  params: {
-    userId: string;
-  };
-};
-
-export async function GET(_request: Request, context: RouteContext) {
-  const userId = context.params.userId;
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ userId: string }> }
+) {
+  const { userId } = await params;
   if (!userId) {
     return NextResponse.json({ error: "Missing userId parameter." }, { status: 400 });
   }

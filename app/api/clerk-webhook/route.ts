@@ -31,12 +31,13 @@ export async function POST(req: NextRequest) {
     const evt = wh.verify(body, headers) as { type: string; data: unknown };
 
     if (evt.type === "user.created") {
-      if (isUserCreatedData(evt.data)) {
-        const { id, email_addresses } = evt.data;
+      const data = evt.data;
+      if (!isUserCreatedData(data)) {
+        console.warn("Received user.created webhook with unexpected payload shape");
+      } else {
+        const { id, email_addresses } = data;
         const email = email_addresses[0]?.email_address ?? "";
         await createUserDoc(id, email); // ✅ Create Firestore doc automatically
-      } else {
-        console.warn("Received user.created webhook with unexpected payload shape");
       }
     }
 

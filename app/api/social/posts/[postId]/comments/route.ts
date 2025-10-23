@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { addComment, listComments } from "@/lib/social/server/posts";
@@ -6,15 +6,12 @@ import { resolveUserSummary } from "@/lib/social/server/user-summary";
 import { serializeComment } from "@/lib/social/serialization";
 import { addCommentSchema } from "@/lib/social/validators";
 
-type RouteContext = {
-  params: {
-    postId: string;
-  };
-};
-
-export async function GET(_request: Request, context: RouteContext) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ postId: string }> }
+) {
   const { userId } = await auth();
-  const postId = context.params.postId;
+  const { postId } = await params;
 
   if (!postId) {
     return NextResponse.json({ error: "Missing postId in route parameter." }, { status: 400 });
@@ -35,13 +32,16 @@ export async function GET(_request: Request, context: RouteContext) {
   }
 }
 
-export async function POST(request: Request, context: RouteContext) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ postId: string }> }
+) {
   const { userId } = await auth();
   if (!userId) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const postId = context.params.postId;
+  const { postId } = await params;
   if (!postId) {
     return NextResponse.json({ error: "Missing postId in route parameter." }, { status: 400 });
   }

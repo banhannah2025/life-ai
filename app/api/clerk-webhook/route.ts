@@ -12,7 +12,7 @@ type ClerkUserCreatedData = {
   email_addresses: Array<{ email_address: string | null | undefined }>;
 };
 
-function isUserCreatedEvent(event: ClerkWebhookEvent): event is ClerkWebhookEvent & { type: "user.created"; data: ClerkUserCreatedData } {
+function isUserCreatedEvent(event: ClerkWebhookEvent): event is { type: "user.created"; data: ClerkUserCreatedData } {
   if (event.type !== "user.created" || typeof event.data !== "object" || event.data === null) {
     return false;
   }

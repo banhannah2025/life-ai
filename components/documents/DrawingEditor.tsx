@@ -460,7 +460,7 @@ function useCanvasRenderer(
     }
 
     ctx.restore();
-  }, [canvasRef, shapes, background, gridEnabled, dimensions]);
+  }, [canvasRef, shapes, background, gridEnabled, dimensions, selectedId]);
 }
 
 function downloadDataURL(dataUrl: string, filename: string) {

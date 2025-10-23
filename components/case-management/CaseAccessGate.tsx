@@ -24,6 +24,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
   const { isLoaded, isSignedIn, user } = useUser();
   const [status, setStatus] = useState<AccessState>("checking");
   const [roleLabel, setRoleLabel] = useState<string | null>(null);
+  const emailAddresses = useMemo(() => user?.emailAddresses ?? [], [user?.emailAddresses]);
 
   useEffect(() => {
     let cancelled = false;
@@ -42,7 +43,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
       }
 
       try {
-        const adminByEmail = (user.emailAddresses ?? []).some((address) => isAdminEmail(address.emailAddress));
+        const adminByEmail = emailAddresses.some((address) => isAdminEmail(address.emailAddress));
 
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
@@ -71,7 +72,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
     return () => {
       cancelled = true;
     };
-  }, [isLoaded, isSignedIn, user?.id]);
+  }, [isLoaded, isSignedIn, user?.id, emailAddresses]);
 
   const roleDisplay = useMemo(() => {
     if (!roleLabel) {

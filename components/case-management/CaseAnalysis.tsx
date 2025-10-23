@@ -138,7 +138,6 @@ export function CaseAnalysis() {
   }, [cases, research, documents]);
 
   const hasCases = cases.length > 0;
-  const hasResearch = research.length > 0;
 
   function handleCreateResearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

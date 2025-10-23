@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useEffect, useMemo, useRef, useState, type ElementType } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState, type ElementType } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useUser } from "@clerk/nextjs";
 import { upload } from "@vercel/blob/client";
@@ -171,11 +171,11 @@ export function DocEditor({ documentId, initialContent, initialTitle }: DocEdito
     }
   }, 700);
 
-  const queueSave = () => {
+  const queueSave = useCallback(() => {
     setStatus("saving");
     setError(null);
     saveDocument();
-  };
+  }, [saveDocument]);
 
   useEffect(() => {
     latestTitleRef.current = title || "Untitled Document";
@@ -196,7 +196,7 @@ export function DocEditor({ documentId, initialContent, initialTitle }: DocEdito
     return () => {
       editor.off("update", updateHandler);
     };
-  }, [editor]);
+  }, [editor, queueSave]);
 
   useEffect(() => {
     if (!editor) {

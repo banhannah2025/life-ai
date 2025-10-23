@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     const token = process.env.BLOB_READ_WRITE_TOKEN;
 
-    await createFolder(fullPath, { access: "public", token: token ?? undefined });
+    await createFolder(fullPath, { token: token ?? undefined });
 
     const firestore = getAdminFirestore();
     const docId = pathToId(fullPath);

@@ -1,18 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { serializePost } from "@/lib/social/serialization";
 import { listPostsByAuthor } from "@/lib/social/server/posts";
 
-type RouteContext = {
-  params: {
-    userId: string;
-  };
-};
-
-export async function GET(request: Request, context: RouteContext) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ userId: string }> }
+) {
   const { userId: viewerId } = await auth();
-  const targetUserId = context.params.userId;
+  const { userId: targetUserId } = await params;
 
   if (!targetUserId) {
     return NextResponse.json({ error: "Missing userId parameter." }, { status: 400 });

@@ -1,23 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { removeComment } from "@/lib/social/server/posts";
 import { removeCommentSchema } from "@/lib/social/validators";
 
-type RouteContext = {
-  params: {
-    postId: string;
-    commentId: string;
-  };
-};
-
-export async function DELETE(_request: Request, context: RouteContext) {
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ postId: string; commentId: string }> }
+) {
   const { userId } = await auth();
   if (!userId) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const validation = removeCommentSchema.safeParse(context.params);
+  const routeParams = await params;
+  const validation = removeCommentSchema.safeParse(routeParams);
   if (!validation.success) {
     return NextResponse.json(
       {

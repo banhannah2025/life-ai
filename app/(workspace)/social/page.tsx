@@ -3,14 +3,17 @@ import { Suspense } from "react";
 import { SocialFeed } from "@/components/social/SocialFeed";
 import { SearchView } from "@/components/search/SearchView";
 
-type SocialPageProps = {
-  searchParams?: {
-    channel?: string | string[];
-  };
+type SocialPageSearchParams = {
+  channel?: string | string[];
 };
 
-export default function SocialPage({ searchParams }: SocialPageProps) {
-  const channelParam = searchParams?.channel;
+type SocialPageProps = {
+  searchParams?: Promise<SocialPageSearchParams>;
+};
+
+export default async function SocialPage({ searchParams }: SocialPageProps) {
+  const params = (await searchParams) ?? {};
+  const channelParam = params.channel;
   const initialChannelId = Array.isArray(channelParam) ? channelParam[0] ?? null : channelParam ?? null;
 
   return (

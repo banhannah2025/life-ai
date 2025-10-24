@@ -34,8 +34,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "./command";
 import { toast } from "sonner";
-import { Check, ChevronDown, ChevronRight } from "lucide-react";
+import { Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import { useOptionalCaseManagement, type CaseRecord } from "@/components/case-management/CaseManagementProvider";
+import { Switch } from "./switch";
+import { requestAiSearchAssist } from "@/lib/search/ai";
 
 type ResearchType = "legal" | "academic" | "ai";
 
@@ -873,6 +875,9 @@ export function LibSearchBar() {
     const [phraseBoost, setPhraseBoost] = useState("");
     const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
     const [resourcePages, setResourcePages] = useState<Record<string, number>>({});
+    const [aiAssistEnabled, setAiAssistEnabled] = useState(false);
+    const [aiAssistSummary, setAiAssistSummary] = useState<string | null>(null);
+    const [aiAssistQuery, setAiAssistQuery] = useState<string | null>(null);
     const previousSelectedStateRef = useRef<string>("ALL");
     const caseManagement = useOptionalCaseManagement();
     const [attachDialogOpen, setAttachDialogOpen] = useState(false);
@@ -1107,6 +1112,13 @@ export function LibSearchBar() {
         }
     }, [researchType]);
 
+    useEffect(() => {
+        if (!aiAssistEnabled) {
+            setAiAssistSummary(null);
+            setAiAssistQuery(null);
+        }
+    }, [aiAssistEnabled]);
+
     const handleNextPage = (resourceKey: string, label: string, totalCount: number) => {
         const current = resourcePages[resourceKey] ?? 0;
         const currentCount = Math.min((current + 1) * LEGAL_RESOURCE_PAGE_SIZE, totalCount);
@@ -1138,6 +1150,28 @@ export function LibSearchBar() {
         setIsSearching(true);
         setError(null);
         try {
+            setAiAssistSummary(null);
+            setAiAssistQuery(null);
+            let effectiveQuery = trimmed;
+            if (aiAssistEnabled) {
+                try {
+                    const assist = await requestAiSearchAssist(trimmed, researchType);
+                    const rewritten = assist.searchQuery?.trim();
+                    if (rewritten) {
+                        effectiveQuery = rewritten;
+                    }
+                    setAiAssistSummary(
+                        assist.summary?.trim() || "AI assist refined your query for better matching.",
+                    );
+                    setAiAssistQuery(effectiveQuery);
+                } catch (assistError) {
+                    console.error(assistError);
+                    toast.error(
+                        assistError instanceof Error ? assistError.message : "AI assist unavailable. Using original query.",
+                    );
+                }
+            }
+
             const searchMode = researchType === "legal" ? "legal" : "all";
             let legalFilters: LegalFilters | undefined;
             let requestFilters: SearchFilters | undefined;
@@ -1168,10 +1202,10 @@ export function LibSearchBar() {
             }
 
             const perSourceLimit = researchType === "legal" ? 25 : 10;
-            const response = await searchDirectory(trimmed, searchMode, perSourceLimit, requestFilters);
-            const aggregated = aggregateSearchResults(trimmed, response, researchType, legalFilters);
+            const response = await searchDirectory(effectiveQuery, searchMode, perSourceLimit, requestFilters);
+            const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters);
             setResults(aggregated);
-            setLastQuery(trimmed);
+            setLastQuery(effectiveQuery);
             if (aggregated.length === 0) {
                 setError("No matches found. Try refining your keywords or adjusting filters.");
             }
@@ -1225,6 +1259,32 @@ export function LibSearchBar() {
                             </Label>
                         </div>
                     </RadioGroup>
+                </div>
+
+                <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-4 py-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                        <Switch id="ai-assist-toggle" checked={aiAssistEnabled} onCheckedChange={(checked) => setAiAssistEnabled(!!checked)} />
+                        <Label htmlFor="ai-assist-toggle" className="text-sm text-slate-700">
+                            Natural language AI assist
+                        </Label>
+                        <Badge variant="outline" className="text-[10px] uppercase text-emerald-700">
+                            Beta
+                        </Badge>
+                        <span className="text-xs text-slate-500">Use Groq to rewrite complex questions into precise queries.</span>
+                    </div>
+                    {aiAssistEnabled && aiAssistSummary ? (
+                        <div className="mt-3 flex items-start gap-2 rounded-md border border-emerald-100 bg-emerald-50/90 px-3 py-2 text-sm text-emerald-900">
+                            <Sparkles className="mt-0.5 h-4 w-4" />
+                            <div>
+                                <p>{aiAssistSummary}</p>
+                                {aiAssistQuery ? (
+                                    <p className="text-xs text-emerald-800">
+                                        Query used: <span className="font-semibold">{aiAssistQuery}</span>
+                                    </p>
+                                ) : null}
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
 
                 {researchType === "legal" ? (

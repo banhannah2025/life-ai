@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { Loader2, Plus, Trash } from "lucide-react";
 
@@ -49,33 +49,40 @@ export function SheetEditor({ documentId, initialData }: { documentId: string; i
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const saveSheet = useDebouncedCallback(async (payload: SheetData) => {
-    try {
-      const response = await fetch(`/api/documents/${documentId}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: JSON.stringify(payload) }),
-      });
+  const persistSheet = useCallback(
+    async (payload: SheetData) => {
+      try {
+        setStatus("saving");
+        setError(null);
+        const response = await fetch(`/api/documents/${documentId}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: JSON.stringify(payload) }),
+        });
 
-      if (!response.ok) {
-        const message = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(message?.error ?? "Failed to save sheet");
+        if (!response.ok) {
+          const message = (await response.json().catch(() => null)) as { error?: string } | null;
+          throw new Error(message?.error ?? "Failed to save sheet");
+        }
+
+        setStatus("saved");
+      } catch (err) {
+        console.error(err);
+        setStatus("error");
+        setError(err instanceof Error ? err.message : "Failed to save sheet");
       }
+    },
+    [documentId],
+  );
 
-      setStatus("saved");
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Failed to save sheet");
-    }
+  const saveSheet = useDebouncedCallback((payload: SheetData) => {
+    void persistSheet(payload);
   }, 800);
 
   const queueSave = (next: SheetData) => {
-    setStatus("saving");
-    setError(null);
     saveSheet(next);
   };
 
@@ -141,7 +148,7 @@ export function SheetEditor({ documentId, initialData }: { documentId: string; i
 
   const handleManualSave = async () => {
     setLoading(true);
-    await saveSheet.flush(data);
+    await persistSheet(data);
     setLoading(false);
   };
 

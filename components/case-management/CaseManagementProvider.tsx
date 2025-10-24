@@ -49,6 +49,7 @@ export type DocumentJurisdiction = {
   id: string;
   label: string;
   courtRules: string[];
+  filingNote?: string;
 };
 
 export type DocumentRecord = {
@@ -331,7 +332,7 @@ function migrateStoredState(raw: unknown): CaseManagementState {
 
   let clients: ClientRecord[] = Array.isArray(maybe.clients)
     ? maybe.clients
-        .filter((client): client is Record<string, unknown> => typeof client === "object" && client !== null)
+        .filter((client: unknown): client is Record<string, unknown> => typeof client === "object" && client !== null)
         .map((client) => {
           const id = isString(client.id) ? client.id : generateId("client");
           const name = isString(client.name) ? client.name : "Client";
@@ -397,13 +398,14 @@ function migrateStoredState(raw: unknown): CaseManagementState {
 
   let cases: CaseRecord[] = Array.isArray(maybe.cases)
     ? maybe.cases
-        .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
+        .filter((item: unknown): item is Record<string, unknown> => typeof item === "object" && item !== null)
         .map((item) => {
+          const record = item as Record<string, unknown>;
           const id = isString(item.id) ? item.id : generateId("case");
           const caseName = isString(item.caseName)
             ? item.caseName
-            : isString((item as Record<string, string>).name)
-              ? (item as Record<string, string>).name
+            : isString(record.name)
+              ? (record.name as string)
               : "Untitled matter";
           const matterNumber = isString(item.matterNumber) ? item.matterNumber : "";
 
@@ -411,8 +413,8 @@ function migrateStoredState(raw: unknown): CaseManagementState {
           let clientName =
             isString(item.clientName)
               ? item.clientName
-              : isString((item as Record<string, string>).client)
-                ? (item as Record<string, string>).client
+              : isString(record.client)
+                ? (record.client as string)
                 : null;
 
           if (clientId && clientsById.has(clientId)) {
@@ -494,116 +496,138 @@ function migrateStoredState(raw: unknown): CaseManagementState {
 
   const documents: DocumentRecord[] = Array.isArray(maybe.documents)
     ? maybe.documents
-        .filter((doc): doc is Record<string, unknown> => typeof doc === "object" && doc !== null)
+        .filter((doc: unknown): doc is Record<string, unknown> => typeof doc === "object" && doc !== null)
         .map((doc) => {
-          const id = isString(doc.id) ? doc.id : generateId("document");
-          const owner = isString(doc.owner) ? doc.owner : "Unassigned";
-          const status = isString(doc.status) && VALID_DOCUMENT_STATUS.has(doc.status as DocumentStatus) ? (doc.status as DocumentStatus) : "Drafting";
-          const caseIds = Array.isArray(doc.caseIds) ? doc.caseIds.filter(isString) : [];
+          const record = doc as Record<string, unknown>;
+          const id = isString(record.id) ? (record.id as string) : generateId("document");
+          const owner = isString(record.owner) ? (record.owner as string) : "Unassigned";
+          const status =
+            isString(record.status) && VALID_DOCUMENT_STATUS.has(record.status as DocumentStatus)
+              ? (record.status as DocumentStatus)
+              : "Drafting";
+          const caseIds = Array.isArray(record.caseIds) ? (record.caseIds as unknown[]).filter(isString) : [];
           const sanitizedCaseIds = caseIds.filter((caseId) => validCaseIds.has(caseId));
-          const workspaceDocId = isString(doc.workspaceDocId) ? doc.workspaceDocId : undefined;
-          const workspaceType = isString(doc.workspaceDocType) && ["doc", "sheet", "slide", "form", "drawing"].includes(doc.workspaceDocType)
-            ? (doc.workspaceDocType as DocumentWorkspaceType)
-            : undefined;
+          const workspaceDocId = isString(record.workspaceDocId) ? (record.workspaceDocId as string) : undefined;
+          const workspaceType =
+            isString(record.workspaceDocType) && ["doc", "sheet", "slide", "form", "drawing"].includes(record.workspaceDocType as string)
+              ? (record.workspaceDocType as DocumentWorkspaceType)
+              : undefined;
           const jurisdiction =
-            doc.jurisdiction && typeof doc.jurisdiction === "object"
+            record.jurisdiction && typeof record.jurisdiction === "object"
               ? {
-                  id: isString((doc.jurisdiction as Record<string, unknown>).id)
-                    ? ((doc.jurisdiction as Record<string, unknown>).id as string)
+                  id: isString((record.jurisdiction as Record<string, unknown>).id)
+                    ? ((record.jurisdiction as Record<string, unknown>).id as string)
                     : "",
-                  label: isString((doc.jurisdiction as Record<string, unknown>).label)
-                    ? ((doc.jurisdiction as Record<string, unknown>).label as string)
+                  label: isString((record.jurisdiction as Record<string, unknown>).label)
+                    ? ((record.jurisdiction as Record<string, unknown>).label as string)
                     : "",
-                  courtRules: Array.isArray((doc.jurisdiction as Record<string, unknown>).courtRules)
-                    ? ((doc.jurisdiction as Record<string, unknown>).courtRules as unknown[]).filter(isString)
+                  courtRules: Array.isArray((record.jurisdiction as Record<string, unknown>).courtRules)
+                    ? ((record.jurisdiction as Record<string, unknown>).courtRules as unknown[]).filter(isString)
                     : [],
+                  filingNote: isString((record.jurisdiction as Record<string, unknown>).filingNote)
+                    ? ((record.jurisdiction as Record<string, unknown>).filingNote as string)
+                    : undefined,
                 }
               : null;
-          return {
+          const documentRecord: DocumentRecord = {
             id,
             caseIds: sanitizedCaseIds,
-            title: isString(doc.title) ? doc.title : "Untitled document",
-            type: isString(doc.type) ? doc.type : "Document",
+            title: isString(record.title) ? (record.title as string) : "Untitled document",
+            type: isString(record.type) ? (record.type as string) : "Document",
             owner,
-            dueOn: isString(doc.dueOn) ? doc.dueOn : undefined,
+            dueOn: isString(record.dueOn) ? (record.dueOn as string) : undefined,
             status,
-            version: isString(doc.version) ? doc.version : "v1",
-            lastTouchedBy: isString(doc.lastTouchedBy) ? doc.lastTouchedBy : owner,
-            updatedAt: isString(doc.updatedAt) ? doc.updatedAt : now,
-            summary: isString(doc.summary) ? doc.summary : "",
+            version: isString(record.version) ? (record.version as string) : "v1",
+            lastTouchedBy: isString(record.lastTouchedBy) ? (record.lastTouchedBy as string) : owner,
+            updatedAt: isString(record.updatedAt) ? (record.updatedAt as string) : now,
+            summary: isString(record.summary) ? (record.summary as string) : "",
             workspaceDocId,
             workspaceDocType: workspaceType,
             jurisdiction: jurisdiction && jurisdiction.id && jurisdiction.label ? jurisdiction : null,
-          } as DocumentRecord;
+          };
+          return documentRecord;
         })
         .filter((doc) => doc.caseIds.length > 0)
     : [];
 
   const research: ResearchItem[] = Array.isArray(maybe.research)
     ? maybe.research
-        .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
+        .filter((item: unknown): item is Record<string, unknown> => typeof item === "object" && item !== null)
         .map((item) => {
-          const id = isString(item.id) ? item.id : generateId("research");
-          const status = isString(item.status) && VALID_RESEARCH_STATUS.has(item.status as ResearchStatus) ? (item.status as ResearchStatus) : "In Progress";
-          const caseIds = Array.isArray(item.caseIds) ? item.caseIds.filter(isString) : [];
+          const record = item as Record<string, unknown>;
+          const id = isString(record.id) ? (record.id as string) : generateId("research");
+          const status =
+            isString(record.status) && VALID_RESEARCH_STATUS.has(record.status as ResearchStatus)
+              ? (record.status as ResearchStatus)
+              : "In Progress";
+          const caseIds = Array.isArray(record.caseIds) ? (record.caseIds as unknown[]).filter(isString) : [];
           const sanitizedCaseIds = caseIds.filter((caseId) => validCaseIds.has(caseId));
-          return {
+          const researchRecord: ResearchItem = {
             id,
             caseIds: sanitizedCaseIds,
-            title: isString(item.title) ? item.title : "Research note",
-            issue: isString(item.issue) ? item.issue : "Unspecified issue",
-            jurisdiction: isString(item.jurisdiction) ? item.jurisdiction : "Mixed",
+            title: isString(record.title) ? (record.title as string) : "Research note",
+            issue: isString(record.issue) ? (record.issue as string) : "Unspecified issue",
+            jurisdiction: isString(record.jurisdiction) ? (record.jurisdiction as string) : "Mixed",
             status,
-            nextAction: isString(item.nextAction) ? item.nextAction : undefined,
-            analysts: Array.isArray(item.analysts) ? item.analysts.filter(isString) : [],
-            updatedAt: isString(item.updatedAt) ? item.updatedAt : now,
-            summary: isString(item.summary) ? item.summary : "",
-            authorities: Array.isArray(item.authorities)
-              ? item.authorities
-                  .filter((auth): auth is Record<string, unknown> => typeof auth === "object" && auth !== null)
+            nextAction: isString(record.nextAction) ? (record.nextAction as string) : undefined,
+            analysts: Array.isArray(record.analysts) ? (record.analysts as unknown[]).filter(isString) : [],
+            updatedAt: isString(record.updatedAt) ? (record.updatedAt as string) : now,
+            summary: isString(record.summary) ? (record.summary as string) : "",
+            authorities: Array.isArray(record.authorities)
+              ? (record.authorities as unknown[])
+                  .filter((auth: unknown): auth is Record<string, unknown> => typeof auth === "object" && auth !== null)
                   .map((auth) => ({
                     citation: isString(auth.citation) ? auth.citation : "Citation pending",
                     court: isString(auth.court) ? auth.court : "Authority",
                     holding: isString(auth.holding) ? auth.holding : "Holding summary pending",
-                  }))
+              }))
               : [],
-            tags: Array.isArray(item.tags) ? item.tags.filter(isString) : [],
-          } as ResearchItem;
+            tags: Array.isArray(record.tags) ? (record.tags as unknown[]).filter(isString) : [],
+          };
+          return researchRecord;
         })
         .filter((item) => item.caseIds.length > 0)
     : [];
 
   const timeEntries: TimeEntry[] = Array.isArray(maybe.timeEntries)
     ? maybe.timeEntries
-        .filter((entry): entry is Record<string, unknown> => typeof entry === "object" && entry !== null)
+        .filter((entry: unknown): entry is Record<string, unknown> => typeof entry === "object" && entry !== null)
         .map((entry) => {
-          const id = isString(entry.id) ? entry.id : generateId("time");
-          const status = isString(entry.status) && VALID_TIME_STATUS.has(entry.status as TimeEntryStatus) ? (entry.status as TimeEntryStatus) : "Draft";
-          return {
+          const record = entry as Record<string, unknown>;
+          const id = isString(record.id) ? (record.id as string) : generateId("time");
+          const status =
+            isString(record.status) && VALID_TIME_STATUS.has(record.status as TimeEntryStatus)
+              ? (record.status as TimeEntryStatus)
+              : "Draft";
+          const timeEntry: TimeEntry = {
             id,
-            caseId: isString(entry.caseId) ? entry.caseId : "",
-            caseName: isString(entry.caseName) ? entry.caseName : "",
-            author: isString(entry.author) ? entry.author : "Unknown",
-            activity: isString(entry.activity) ? entry.activity : "Unspecified activity",
-            hours: typeof entry.hours === "number" ? entry.hours : 0,
-            date: isString(entry.date) ? entry.date : now.slice(0, 10),
+            caseId: isString(record.caseId) ? (record.caseId as string) : "",
+            caseName: isString(record.caseName) ? (record.caseName as string) : "",
+            author: isString(record.author) ? (record.author as string) : "Unknown",
+            activity: isString(record.activity) ? (record.activity as string) : "Unspecified activity",
+            hours: typeof record.hours === "number" ? (record.hours as number) : 0,
+            date: isString(record.date) ? (record.date as string) : now.slice(0, 10),
             status,
-            notes: isString(entry.notes) ? entry.notes : undefined,
-          } as TimeEntry;
+            notes: isString(record.notes) ? (record.notes as string) : undefined,
+          };
+          return timeEntry;
         })
         .filter((entry) => entry.caseId && validCaseIds.has(entry.caseId))
     : [];
 
   const activity: ActivityItem[] = Array.isArray(maybe.activity)
     ? maybe.activity
-        .filter((log): log is Record<string, unknown> => typeof log === "object" && log !== null)
-        .map((log) => ({
-          id: isString(log.id) ? log.id : generateId("activity"),
-          type: isString(log.type) ? (log.type as ActivityType) : "case-updated",
-          label: isString(log.label) ? log.label : "Activity recorded",
-          relatedCaseIds: Array.isArray(log.relatedCaseIds) ? log.relatedCaseIds.filter(isString) : [],
-          timestamp: isString(log.timestamp) ? log.timestamp : now,
-        }))
+        .filter((log: unknown): log is Record<string, unknown> => typeof log === "object" && log !== null)
+        .map((log) => {
+          const record = log as Record<string, unknown>;
+          return {
+            id: isString(record.id) ? (record.id as string) : generateId("activity"),
+            type: isString(record.type) ? (record.type as ActivityType) : "case-updated",
+            label: isString(record.label) ? (record.label as string) : "Activity recorded",
+            relatedCaseIds: Array.isArray(record.relatedCaseIds) ? (record.relatedCaseIds as unknown[]).filter(isString) : [],
+            timestamp: isString(record.timestamp) ? (record.timestamp as string) : now,
+          };
+        })
         .map((item) => ({
           ...item,
           relatedCaseIds: item.relatedCaseIds.filter((caseId) => !PLACEHOLDER_CASE_IDS.has(caseId)),

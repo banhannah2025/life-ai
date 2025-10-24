@@ -7,6 +7,9 @@ export type SocialPostDTO = {
   attachments: SocialAttachment[];
   tags: string[];
   visibility: SocialVisibility;
+  channelId?: string;
+  channelName?: string;
+  channelType?: SocialChannelType;
   createdAt: string;
   updatedAt: string;
   likeCount: number;

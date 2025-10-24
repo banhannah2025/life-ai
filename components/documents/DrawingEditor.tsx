@@ -87,6 +87,7 @@ type TextShape = BaseShape & {
   type: "text";
   x: number;
   y: number;
+  width: number;
   text: string;
   fontSize: number;
   color: string;
@@ -193,12 +194,14 @@ function convertLegacyDrawing(legacy: LegacyDrawing): CanvasSnapshot {
         cornerRadius: 12,
       });
       if (element.text) {
+        const defaultWidth = (element.width ?? 180) - 32;
         shapes.push({
           id: generateId(),
           name: "Text",
           type: "text",
           x: (element.x ?? 0) + 16,
           y: (element.y ?? 0) + 16,
+          width: defaultWidth > 60 ? defaultWidth : 120,
           text: element.text,
           fontSize: 24,
           color: "#1f2937",
@@ -398,7 +401,7 @@ function drawGrid(ctx: CanvasRenderingContext2D, width: number, height: number, 
 }
 
 function useCanvasRenderer(
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
   shapes: Shape[],
   background: string,
   gridEnabled: boolean,
@@ -702,37 +705,44 @@ export function DrawingEditor({
     };
   }, []);
 
-  const saveDrawing = useDebouncedCallback((snapshot?: CanvasSnapshot) => {
-    const payload = snapshot ?? latestSnapshotRef.current;
-    if (!payload || !documentId) {
+  const persistSnapshot = useCallback(async (payload: CanvasSnapshot) => {
+    if (!documentId) {
       return;
     }
     setStatus("saving");
     setError(null);
-    fetch(`/api/documents/${documentId}`, {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content: JSON.stringify(payload),
-        title: latestTitleRef.current,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((data) => {
-            throw new Error(data?.error ?? "Failed to save drawing");
-          });
-        }
-        setStatus("saved");
-      })
-      .catch((err) => {
-        console.error(err);
-        setStatus("error");
-        setError(err instanceof Error ? err.message : "Failed to save drawing");
+    try {
+      const response = await fetch(`/api/documents/${documentId}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: JSON.stringify(payload),
+          title: latestTitleRef.current,
+        }),
       });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? "Failed to save drawing");
+      }
+
+      setStatus("saved");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Failed to save drawing");
+    }
+  }, [documentId]);
+
+  const saveDrawing = useDebouncedCallback((snapshot?: CanvasSnapshot) => {
+    const payload = snapshot ?? latestSnapshotRef.current;
+    if (!payload) {
+      return;
+    }
+    void persistSnapshot(payload);
   }, 600);
 
   const commitSnapshot = useCallback(
@@ -900,10 +910,7 @@ export function DrawingEditor({
       }
       redoStackRef.current = [];
       latestSnapshotRef.current = snapshot;
-      setStatus("saving");
-      setError(null);
-      await saveDrawing.flush(snapshot);
-      setStatus("saved");
+      await persistSnapshot(snapshot);
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -911,7 +918,7 @@ export function DrawingEditor({
     } finally {
       setLoading(false);
     }
-  }, [backgroundColor, gridEnabled, saveDrawing]);
+  }, [backgroundColor, gridEnabled, persistSnapshot]);
 
   const handleExport = useCallback((format: "png" | "jpeg") => {
     const canvas = canvasRef.current;

@@ -772,24 +772,22 @@ export function AppSidebar() {
 
             let requestedName: string | null = null;
 
-            if (type !== "upload") {
-                const promptMap: Record<CreateOption["id"], { message: string; fallback: string }> = {
-                    doc: { message: "Document name", fallback: "Untitled Document" },
-                    sheet: { message: "Spreadsheet name", fallback: "Untitled Sheet" },
-                    slide: { message: "Presentation name", fallback: "Untitled Deck" },
-                    form: { message: "Form name", fallback: "Untitled Form" },
-                    drawing: { message: "Canvas name", fallback: "Untitled Canvas" },
-                    upload: { message: "", fallback: "" },
-                };
+            const promptMap: Record<Exclude<CreateOption["id"], "upload">, { message: string; fallback: string }> = {
+                doc: { message: "Document name", fallback: "Untitled Document" },
+                sheet: { message: "Spreadsheet name", fallback: "Untitled Sheet" },
+                slide: { message: "Presentation name", fallback: "Untitled Deck" },
+                form: { message: "Form name", fallback: "Untitled Form" },
+                drawing: { message: "Canvas name", fallback: "Untitled Canvas" },
+            };
 
-                const promptConfig = promptMap[type];
-                if (promptConfig?.message) {
-                    requestedName = window.prompt(promptConfig.message, promptConfig.fallback);
-                    if (requestedName === null) {
-                        return;
-                    }
-                    requestedName = requestedName.trim();
+            const nonUploadType = type as Exclude<CreateOption["id"], "upload">;
+            const promptConfig = promptMap[nonUploadType];
+            if (promptConfig?.message) {
+                requestedName = window.prompt(promptConfig.message, promptConfig.fallback);
+                if (requestedName === null) {
+                    return;
                 }
+                requestedName = requestedName.trim();
             }
 
             setCreatingDocId(type);

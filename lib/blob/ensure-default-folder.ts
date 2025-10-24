@@ -24,7 +24,6 @@ export async function ensureDefaultFolder(userId: string) {
 
     try {
       await createFolder(pathname, {
-        access: "public",
         token: token ?? undefined,
       });
     } catch (error) {

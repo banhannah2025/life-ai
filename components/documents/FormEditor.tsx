@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { Loader2, Plus, Trash } from "lucide-react";
 
@@ -82,33 +82,40 @@ export function FormEditor({ documentId, initialForm }: { documentId: string; in
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const saveForm = useDebouncedCallback(async (payload: FormDocumentData) => {
-    try {
-      const response = await fetch(`/api/documents/${documentId}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: JSON.stringify(payload) }),
-      });
+  const persistForm = useCallback(
+    async (payload: FormDocumentData) => {
+      try {
+        setStatus("saving");
+        setError(null);
+        const response = await fetch(`/api/documents/${documentId}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: JSON.stringify(payload) }),
+        });
 
-      if (!response.ok) {
-        const message = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(message?.error ?? "Failed to save form");
+        if (!response.ok) {
+          const message = (await response.json().catch(() => null)) as { error?: string } | null;
+          throw new Error(message?.error ?? "Failed to save form");
+        }
+
+        setStatus("saved");
+      } catch (err) {
+        console.error(err);
+        setStatus("error");
+        setError(err instanceof Error ? err.message : "Failed to save form");
       }
+    },
+    [documentId],
+  );
 
-      setStatus("saved");
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Failed to save form");
-    }
+  const saveForm = useDebouncedCallback((payload: FormDocumentData) => {
+    void persistForm(payload);
   }, 800);
 
   const queueSave = (next: FormDocumentData) => {
-    setStatus("saving");
-    setError(null);
     saveForm(next);
   };
 
@@ -202,7 +209,7 @@ export function FormEditor({ documentId, initialForm }: { documentId: string; in
 
   const handleManualSave = async () => {
     setLoading(true);
-    await saveForm.flush(form);
+    await persistForm(form);
     setLoading(false);
   };
 

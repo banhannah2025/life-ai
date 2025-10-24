@@ -1,4 +1,4 @@
-import type { DocumentSnapshot, QueryDocumentSnapshot } from "firebase-admin/firestore";
+import type { DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot } from "firebase-admin/firestore";
 import { FieldValue } from "firebase-admin/firestore";
 
 import { getAdminFirestore } from "@/lib/firebase/admin";
@@ -158,7 +158,7 @@ export async function createPost({
     searchTerms,
   });
 
-  const snapshot = await docRef.get();
+  const snapshot = (await docRef.get()) as DocumentSnapshot<SocialPostRecord>;
   if (!snapshot.exists) {
     throw new Error("Failed to create post");
   }
@@ -205,7 +205,7 @@ export async function updatePost({
     });
   });
 
-  const refreshedSnapshot = await docRef.get();
+  const refreshedSnapshot = (await docRef.get()) as DocumentSnapshot<SocialPostRecord>;
   if (!refreshedSnapshot.exists) {
     throw new Error("Failed to load updated post");
   }
@@ -240,7 +240,7 @@ export async function listRecentPosts({
   viewerId?: string | null;
   channelId?: string | null;
 }): Promise<SocialPost[]> {
-  let snapshot;
+  let snapshot: QuerySnapshot<SocialPostRecord> | undefined;
   try {
     let query = postsCollection().orderBy("createdAt", "desc").limit(limit);
 
@@ -248,19 +248,19 @@ export async function listRecentPosts({
       query = postsCollection().where("channelId", "==", channelId).orderBy("createdAt", "desc").limit(limit);
     }
 
-    snapshot = await query.get();
+    snapshot = (await query.get()) as QuerySnapshot<SocialPostRecord>;
   } catch (error) {
     if (!channelId || !isIndexMissingError(error)) {
       throw error;
     }
-    snapshot = await postsCollection().where("channelId", "==", channelId).limit(limit * 2).get();
+    snapshot = (await postsCollection().where("channelId", "==", channelId).limit(limit * 2).get()) as QuerySnapshot<SocialPostRecord>;
   }
 
-  if (!snapshot.size) {
+  if (!snapshot?.size) {
     return [];
   }
 
-  const posts = snapshot.docs
+  const posts = (snapshot.docs as Array<QueryDocumentSnapshot<SocialPostRecord>>)
     .slice()
     .sort((a, b) => {
       const aTime = a.data()?.createdAt?.toMillis?.() ?? 0;
@@ -297,25 +297,25 @@ export async function listPostsByAuthor({
     return [];
   }
 
-  let snapshot;
+  let snapshot: QuerySnapshot<SocialPostRecord> | undefined;
   try {
-    snapshot = await postsCollection()
+    snapshot = (await postsCollection()
       .where("authorId", "==", authorId)
       .orderBy("createdAt", "desc")
       .limit(limit)
-      .get();
+      .get()) as QuerySnapshot<SocialPostRecord>;
   } catch (error) {
     if (!isIndexMissingError(error)) {
       throw error;
     }
-    snapshot = await postsCollection().where("authorId", "==", authorId).limit(limit * 2).get();
+    snapshot = (await postsCollection().where("authorId", "==", authorId).limit(limit * 2).get()) as QuerySnapshot<SocialPostRecord>;
   }
 
-  if (!snapshot.size) {
+  if (!snapshot?.size) {
     return [];
   }
 
-  const posts = snapshot.docs
+  const posts = (snapshot.docs as Array<QueryDocumentSnapshot<SocialPostRecord>>)
     .slice()
     .sort((a, b) => {
       const aTime = a.data()?.createdAt?.toMillis?.() ?? 0;
@@ -355,33 +355,33 @@ export async function searchPosts({
 
   const [firstToken, ...restTokens] = tokens;
 
-  let snapshot;
+  let snapshot: QuerySnapshot<SocialPostRecord> | undefined;
   try {
-    snapshot = await postsCollection()
+    snapshot = (await postsCollection()
       .where("searchTerms", "array-contains", firstToken)
       .orderBy("createdAt", "desc")
       .limit(limit * 3)
-      .get();
+      .get()) as QuerySnapshot<SocialPostRecord>;
   } catch (error) {
     if (!isIndexMissingError(error)) {
       throw error;
     }
-    snapshot = await postsCollection()
+    snapshot = (await postsCollection()
       .where("searchTerms", "array-contains", firstToken)
       .limit(limit * 5)
-      .get();
+      .get()) as QuerySnapshot<SocialPostRecord>;
   }
 
-  if (!snapshot.size) {
+  if (!snapshot?.size) {
     return [];
   }
 
-  const matchingDocs = snapshot.docs
+  const matchingDocs = (snapshot.docs as Array<QueryDocumentSnapshot<SocialPostRecord>>)
     .filter((doc) => {
       if (!restTokens.length) {
         return true;
       }
-      const data = doc.data() as SocialPostRecord;
+      const data = doc.data();
       const terms = data.searchTerms ?? [];
       return restTokens.every((token) => terms.includes(token));
     })
@@ -455,17 +455,17 @@ export async function togglePostLike(postId: string, user: UserSummary): Promise
 
 export async function listComments(postId: string, viewerId: string | null): Promise<SocialComment[]> {
   const postRef = postsCollection().doc(postId);
-  const snapshot = await postRef
+  const snapshot = (await postRef
     .collection(COMMENTS_SUBCOLLECTION)
     .orderBy("createdAt", "asc")
     .limit(100)
-    .get();
+    .get()) as QuerySnapshot<SocialCommentRecord>;
 
   if (!snapshot.size) {
     return [];
   }
 
-  return snapshot.docs.map((doc) => toComment(doc, viewerId));
+  return (snapshot.docs as Array<QueryDocumentSnapshot<SocialCommentRecord>>).map((doc) => toComment(doc, viewerId));
 }
 
 export async function addComment({
@@ -503,7 +503,7 @@ export async function addComment({
     });
   });
 
-  const snapshot = await commentRef.get();
+  const snapshot = (await commentRef.get()) as DocumentSnapshot<SocialCommentRecord>;
   if (!snapshot.exists) {
     throw new Error("Failed to create comment");
   }

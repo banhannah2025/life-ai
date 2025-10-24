@@ -195,13 +195,12 @@ export function ClientDirectory() {
         caseName: caseFormState.caseName.trim(),
         clientId: currentClient.id,
         client: currentClient.name,
-        matterNumber: caseFormState.matterNumber.trim() || caseBeingEdited.matterNumber,
         practiceArea: caseFormState.practiceArea.trim() || caseBeingEdited.practiceArea,
         stage: caseFormState.stage,
         priority: caseFormState.priority,
         leadAttorney: caseFormState.leadAttorney.trim(),
         team: normalizeList(caseFormState.team),
-        nextDeadline: caseFormState.nextDeadline ? caseFormState.nextDeadline : null,
+        nextDeadline: caseFormState.nextDeadline ? caseFormState.nextDeadline : undefined,
         description: caseFormState.description.trim(),
       });
     } else {

@@ -494,9 +494,10 @@ function aggregateSearchResults(
     if (includePosts) {
         for (const post of data.posts) {
             const preview = post.content.replace(/\s+/g, " ").slice(0, 160);
+            const authorLabel = post.author.name?.split(" ")[0] || post.author.name || "Community";
             pushIfAllowed({
                 id: `post-${post.id}`,
-                title: `${post.author.firstName ?? "Community"} – Social update`,
+                title: `${authorLabel} – Social update`,
                 snippet: preview || "Community post",
                 snippetHtml: null,
                 type: "Community post",

@@ -525,6 +525,7 @@ export function SearchView({
       const includeFederalRegister = mode === "all" || mode === "federalregister";
       const includeEcfr = mode === "all" || mode === "ecfr";
       const includeRegulations = mode === "all" || mode === "regulations";
+      const includeOpenStates = mode === "all" || mode === "openstates";
 
       setResults({
         profiles: includeProfiles ? response.profiles : [],
@@ -536,6 +537,7 @@ export function SearchView({
         federalRegisterDocuments: includeFederalRegister ? response.federalRegisterDocuments : [],
         ecfrDocuments: includeEcfr ? response.ecfrDocuments : [],
         regulationsDocuments: includeRegulations ? response.regulationsDocuments : [],
+        openStatesBills: includeOpenStates ? response.openStatesBills : [],
       });
     } catch (searchError) {
       console.error(searchError);

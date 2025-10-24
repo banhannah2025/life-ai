@@ -33,9 +33,12 @@ export async function getDocumentForUser(userId: string, docId: string) {
     return null;
   }
 
+  const { id: _ignoredId, ...rest } = data;
+  void _ignoredId;
+
   return {
+    ...rest,
     id: docId,
-    ...data,
   } satisfies UserDocumentRecord;
 }
 

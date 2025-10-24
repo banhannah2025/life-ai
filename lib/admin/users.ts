@@ -4,6 +4,19 @@ import { getAdminFirestore } from "@/lib/firebase/admin";
 import { DEFAULT_USER_PROFILE, type UserProfile } from "@/lib/profile/schema";
 import { isAdminEmail } from "./config";
 
+type TimestampLike = {
+  toDate: () => Date;
+};
+
+function isTimestampLike(value: unknown): value is TimestampLike {
+  return Boolean(
+    value &&
+      typeof value === "object" &&
+      "toDate" in value &&
+      typeof (value as { toDate?: unknown }).toDate === "function",
+  );
+}
+
 export type AdminDirectoryUser = {
   id: string;
   name: string;
@@ -29,13 +42,13 @@ export async function fetchAdminUserDirectory(): Promise<AdminDirectoryUser[]> {
 
   const profileMap = new Map<string, UserProfile>();
   profileSnapshot.forEach((doc) => {
-    const data = doc.data() as UserProfile & { updatedAt?: { toDate?: () => Date } };
+    const data = doc.data() as UserProfile & { updatedAt?: TimestampLike | Date | null };
+    const updatedAtValue = data.updatedAt;
+
     const profile: UserProfile = {
       ...DEFAULT_USER_PROFILE,
       ...data,
-      updatedAt: data.updatedAt && typeof data.updatedAt === "object" && "toDate" in data.updatedAt
-        ? data.updatedAt.toDate()
-        : data.updatedAt ?? null,
+      updatedAt: isTimestampLike(updatedAtValue) ? updatedAtValue.toDate() : updatedAtValue ?? null,
     };
     profileMap.set(doc.id, profile);
   });
@@ -70,10 +83,11 @@ export async function fetchAdminUserDirectory(): Promise<AdminDirectoryUser[]> {
 
     const createdAt = user.createdAt ? new Date(user.createdAt) : null;
     const lastActiveAt = user.lastActiveAt ? new Date(user.lastActiveAt) : null;
+    const fallbackName = `${profile.firstName} ${profile.lastName}`.trim() || primaryEmail || "Life-AI member";
 
     return {
       id: user.id,
-      name: user.fullName ?? `${profile.firstName} ${profile.lastName}`.trim() || primaryEmail || "Life-AI member",
+      name: user.fullName ?? fallbackName,
       email: primaryEmail,
       otherEmails,
       profile,

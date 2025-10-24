@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { FilePlus, Loader2, Trash } from "lucide-react";
 
@@ -58,33 +58,40 @@ export function SlideEditor({ documentId, initialDeck }: { documentId: string; i
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const saveDeck = useDebouncedCallback(async (payload: SlideDeck) => {
-    try {
-      const response = await fetch(`/api/documents/${documentId}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: JSON.stringify(payload) }),
-      });
+  const persistDeck = useCallback(
+    async (payload: SlideDeck) => {
+      try {
+        setStatus("saving");
+        setError(null);
+        const response = await fetch(`/api/documents/${documentId}`, {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: JSON.stringify(payload) }),
+        });
 
-      if (!response.ok) {
-        const message = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(message?.error ?? "Failed to save deck");
+        if (!response.ok) {
+          const message = (await response.json().catch(() => null)) as { error?: string } | null;
+          throw new Error(message?.error ?? "Failed to save deck");
+        }
+
+        setStatus("saved");
+      } catch (err) {
+        console.error(err);
+        setStatus("error");
+        setError(err instanceof Error ? err.message : "Failed to save deck");
       }
+    },
+    [documentId],
+  );
 
-      setStatus("saved");
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Failed to save deck");
-    }
+  const saveDeck = useDebouncedCallback((payload: SlideDeck) => {
+    void persistDeck(payload);
   }, 800);
 
   const queueSave = (next: SlideDeck) => {
-    setStatus("saving");
-    setError(null);
     saveDeck(next);
   };
 
@@ -135,7 +142,7 @@ export function SlideEditor({ documentId, initialDeck }: { documentId: string; i
 
   const handleManualSave = async () => {
     setLoading(true);
-    await saveDeck.flush(deck);
+    await persistDeck(deck);
     setLoading(false);
   };
 

@@ -1425,6 +1425,8 @@ const faqs = [
   },
 ];
 
+const OUGM_RESTORATIVE_PUBLIC_ACCESS = true;
+
 function useIsOUGMMember(): boolean {
   const { user } = useUser();
 
@@ -1458,6 +1460,7 @@ function useIsOUGMMember(): boolean {
 
 export default function OUGMRestorativeJusticePage() {
   const isOUGMMember = useIsOUGMMember();
+  const canViewContent = OUGM_RESTORATIVE_PUBLIC_ACCESS || isOUGMMember;
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8">
@@ -1473,28 +1476,44 @@ export default function OUGMRestorativeJusticePage() {
         </p>
       </header>
 
-      <SignedOut>
-        <Alert variant="default" className="border-amber-300 bg-amber-50">
-          <AlertTitle>Sign in required</AlertTitle>
+      {!OUGM_RESTORATIVE_PUBLIC_ACCESS && (
+        <>
+          <SignedOut>
+            <Alert variant="default" className="border-amber-300 bg-amber-50">
+              <AlertTitle>Sign in required</AlertTitle>
+              <AlertDescription>
+                Please sign in with your Life-AI account. OUGM restorative justice resources are reserved for authorized
+                Union Gospel Mission team members. Contact your program director if you need access.
+              </AlertDescription>
+            </Alert>
+          </SignedOut>
+          <SignedIn>
+            {!canViewContent ? (
+              <Alert variant="destructive" className="border-rose-300 bg-rose-50 text-rose-900">
+                <AlertTitle>OUGM credentials needed</AlertTitle>
+                <AlertDescription>
+                  Your account is missing the <code>ougmMember</code> access flag. Supervisors can enable access in Clerk
+                  by setting <code>publicMetadata.ougmMember</code> to <code>true</code> or adding &ldquo;OUGM&rdquo; to
+                  the organizations list. Once updated, refresh this page to view the training materials.
+                </AlertDescription>
+              </Alert>
+            ) : null}
+          </SignedIn>
+        </>
+      )}
+
+      {OUGM_RESTORATIVE_PUBLIC_ACCESS ? (
+        <Alert variant="default" className="border-emerald-200 bg-emerald-50 text-emerald-900">
+          <AlertTitle>Temporary public access</AlertTitle>
           <AlertDescription>
-            Please sign in with your Life-AI account. OUGM restorative justice resources are reserved for authorized
-            Union Gospel Mission team members. Contact your program director if you need access.
+            OUGM is sharing this restorative justice hub openly for now so partners can onboard quickly. Sign in with
+            your Life-AI account to save notes and access personalized features.
           </AlertDescription>
         </Alert>
-      </SignedOut>
+      ) : null}
 
-      <SignedIn>
-        {!isOUGMMember ? (
-          <Alert variant="destructive" className="border-rose-300 bg-rose-50 text-rose-900">
-            <AlertTitle>OUGM credentials needed</AlertTitle>
-            <AlertDescription>
-              Your account is missing the <code>ougmMember</code> access flag. Supervisors can enable access in Clerk by
-              setting <code>publicMetadata.ougmMember</code> to <code>true</code> or adding &ldquo;OUGM&rdquo; to the
-              organizations list. Once updated, refresh this page to view the training materials.
-            </AlertDescription>
-          </Alert>
-        ) : (
-          <section className="space-y-10">
+      {canViewContent ? (
+        <section className="space-y-10">
             <nav className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-slate-900">Course roadmap</h2>
               <p className="mt-1 text-sm text-slate-600">
@@ -1885,9 +1904,8 @@ export default function OUGMRestorativeJusticePage() {
                 </p>
               </CardContent>
             </Card>
-          </section>
-        )}
-      </SignedIn>
+        </section>
+      ) : null}
     </div>
   );
 }

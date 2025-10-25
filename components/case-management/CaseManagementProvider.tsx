@@ -5,6 +5,73 @@ import { createContext, useContext, useEffect, useMemo, useReducer, useState, ty
 type CaseStage = "intake" | "investigation" | "discovery" | "briefing" | "hearing" | "appeal" | "closed";
 type CaseStatus = "active" | "on_hold" | "closed";
 type PriorityLevel = "low" | "medium" | "high";
+export type CaseType = "legal" | "restorative" | "mock_trial";
+
+type RestorativeParticipantRole = "harmed" | "responsible" | "caregiver" | "advocate";
+
+export type RestorativeParticipant = {
+  id: string;
+  name: string;
+  role: RestorativeParticipantRole;
+  contact?: string;
+};
+
+export type RestorativeIntake = {
+  referralSource: string;
+  incidentSummary: string;
+  goals: string[];
+  supportNeeds?: string;
+  riskFactors: string[];
+  preferredFacilitator?: string;
+  notes?: string;
+};
+
+export type RestorativeFormStatus = {
+  consentSigned: boolean;
+  safetyPlanOnFile: boolean;
+  mediaReleaseSigned: boolean;
+};
+
+export type RestorativeSession = {
+  id: string;
+  date: string;
+  facilitator: string;
+  focusArea: string;
+  summary: string;
+  agreements: string[];
+  followUpDate?: string;
+};
+
+export type RestorativeProfile = {
+  intake: RestorativeIntake | null;
+  participants: RestorativeParticipant[];
+  forms: RestorativeFormStatus;
+  carePlan?: string;
+  sessions: RestorativeSession[];
+};
+
+export type MockTrialRole = "prosecution" | "defense" | "judge" | "restorative_panel";
+
+export type MockTrialRound = {
+  id: string;
+  roundName: string;
+  scheduledFor: string;
+  venue?: string;
+  judgePanel: string[];
+  prosecutionScore?: number;
+  defenseScore?: number;
+  verdict?: string;
+  notes?: string;
+};
+
+export type MockTrialProfile = {
+  teamName: string;
+  role: MockTrialRole;
+  opponent?: string;
+  casePacket?: string;
+  strategyNotes?: string;
+  rounds: MockTrialRound[];
+};
 
 export type ClientRecord = {
   id: string;
@@ -25,6 +92,7 @@ export type CaseRecord = {
   caseName: string;
   clientId: string | null;
   clientName: string | null;
+  caseType: CaseType;
   stage: CaseStage;
   status: CaseStatus;
   practiceArea: string;
@@ -36,8 +104,11 @@ export type CaseRecord = {
   priority: PriorityLevel;
   tags: string[];
   riskNotes?: string;
+  programTag?: string | null;
   documentIds: string[];
   researchIds: string[];
+  restorativeProfile?: RestorativeProfile | null;
+  mockTrialProfile?: MockTrialProfile | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -155,6 +226,160 @@ function normalizeKey(value: string | null | undefined) {
     .replace(/^-|-$/g, "");
 }
 
+const defaultRestorativeForms: RestorativeFormStatus = {
+  consentSigned: false,
+  safetyPlanOnFile: false,
+  mediaReleaseSigned: false,
+};
+
+function createEmptyRestorativeProfile(): RestorativeProfile {
+  return {
+    intake: null,
+    participants: [],
+    forms: { ...defaultRestorativeForms },
+    carePlan: undefined,
+    sessions: [],
+  };
+}
+
+function createEmptyMockTrialProfile(teamName = "", role: MockTrialRole = "prosecution"): MockTrialProfile {
+  return {
+    teamName,
+    role,
+    rounds: [],
+  };
+}
+
+function normalizeRestorativeProfile(value: unknown): RestorativeProfile | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+  const record = value as Record<string, unknown>;
+  const participants: RestorativeParticipant[] = Array.isArray(record.participants)
+    ? record.participants.reduce<RestorativeParticipant[]>((acc, entry) => {
+        if (!entry || typeof entry !== "object") {
+          return acc;
+        }
+        const ref = entry as Record<string, unknown>;
+        const name = isString(ref.name) ? ref.name : null;
+        if (!name) {
+          return acc;
+        }
+        const role = isString(ref.role) ? (ref.role as RestorativeParticipantRole) : "harmed";
+        acc.push({
+          id: isString(ref.id) ? ref.id : generateId("restorative-participant"),
+          name,
+          role,
+          contact: isString(ref.contact) ? ref.contact : undefined,
+        });
+        return acc;
+      }, [])
+    : [];
+
+  const forms: RestorativeFormStatus = record.forms && typeof record.forms === "object"
+    ? {
+        consentSigned: Boolean((record.forms as Record<string, unknown>).consentSigned),
+        safetyPlanOnFile: Boolean((record.forms as Record<string, unknown>).safetyPlanOnFile),
+        mediaReleaseSigned: Boolean((record.forms as Record<string, unknown>).mediaReleaseSigned),
+      }
+    : { ...defaultRestorativeForms };
+
+  const sessions: RestorativeSession[] = Array.isArray(record.sessions)
+    ? record.sessions.reduce<RestorativeSession[]>((acc, entry) => {
+        if (!entry || typeof entry !== "object") {
+          return acc;
+        }
+        const ref = entry as Record<string, unknown>;
+        const date = isString(ref.date) ? ref.date : null;
+        const facilitator = isString(ref.facilitator) ? ref.facilitator : null;
+        const focusArea = isString(ref.focusArea) ? ref.focusArea : "Circle";
+        const summary = isString(ref.summary) ? ref.summary : "";
+        if (!date || !facilitator) {
+          return acc;
+        }
+        acc.push({
+          id: isString(ref.id) ? ref.id : generateId("restorative-session"),
+          date,
+          facilitator,
+          focusArea,
+          summary,
+          agreements: Array.isArray(ref.agreements) ? ref.agreements.filter(isString) : [],
+          followUpDate: isString(ref.followUpDate) ? ref.followUpDate : undefined,
+        });
+        return acc;
+      }, [])
+    : [];
+
+  const intakeRecord = record.intake && typeof record.intake === "object"
+    ? ((): RestorativeIntake | null => {
+        const ref = record.intake as Record<string, unknown>;
+        const referralSource = isString(ref.referralSource) ? ref.referralSource : "";
+        const incidentSummary = isString(ref.incidentSummary) ? ref.incidentSummary : "";
+        const goals = Array.isArray(ref.goals) ? ref.goals.filter(isString) : [];
+        const riskFactors = Array.isArray(ref.riskFactors) ? ref.riskFactors.filter(isString) : [];
+        if (!referralSource && !incidentSummary && !goals.length && !riskFactors.length) {
+          return null;
+        }
+        return {
+          referralSource,
+          incidentSummary,
+          goals,
+          supportNeeds: isString(ref.supportNeeds) ? ref.supportNeeds : undefined,
+          riskFactors,
+          preferredFacilitator: isString(ref.preferredFacilitator) ? ref.preferredFacilitator : undefined,
+          notes: isString(ref.notes) ? ref.notes : undefined,
+        };
+      })()
+    : null;
+
+  return {
+    intake: intakeRecord,
+    participants,
+    forms,
+    carePlan: isString(record.carePlan) ? record.carePlan : undefined,
+    sessions,
+  };
+}
+
+function normalizeMockTrialProfile(value: unknown): MockTrialProfile | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+  const record = value as Record<string, unknown>;
+  const rounds: MockTrialRound[] = Array.isArray(record.rounds)
+    ? record.rounds.reduce<MockTrialRound[]>((acc, entry) => {
+        if (!entry || typeof entry !== "object") {
+          return acc;
+        }
+        const ref = entry as Record<string, unknown>;
+        const roundName = isString(ref.roundName) ? ref.roundName : "Round";
+        const scheduledFor = isString(ref.scheduledFor) ? ref.scheduledFor : new Date().toISOString();
+        acc.push({
+          id: isString(ref.id) ? ref.id : generateId("mock-round"),
+          roundName,
+          scheduledFor,
+          venue: isString(ref.venue) ? ref.venue : undefined,
+          judgePanel: Array.isArray(ref.judgePanel) ? ref.judgePanel.filter(isString) : [],
+          prosecutionScore: typeof ref.prosecutionScore === "number" ? ref.prosecutionScore : undefined,
+          defenseScore: typeof ref.defenseScore === "number" ? ref.defenseScore : undefined,
+          verdict: isString(ref.verdict) ? ref.verdict : undefined,
+          notes: isString(ref.notes) ? ref.notes : undefined,
+        });
+        return acc;
+      }, [])
+    : [];
+
+  const role = isString(record.role) ? (record.role as MockTrialRole) : "prosecution";
+  return {
+    teamName: isString(record.teamName) ? record.teamName : "Mock Trial Team",
+    role,
+    opponent: isString(record.opponent) ? record.opponent : undefined,
+    casePacket: isString(record.casePacket) ? record.casePacket : undefined,
+    strategyNotes: isString(record.strategyNotes) ? record.strategyNotes : undefined,
+    rounds,
+  };
+}
+
 const PLACEHOLDER_CASE_NAME_KEYS = new Set(
   ["Acme Corp. v. Finch Supply Co.", "State v. Rivera", "Harbor Group Internal Audit", "Westhaven Renewable Series B"].map(normalizeKey),
 );
@@ -190,6 +415,10 @@ type CreateCaseInput = {
   priority: PriorityLevel;
   tags?: string[];
   riskNotes?: string;
+  caseType?: CaseType;
+  programTag?: string | null;
+  restorativeProfile?: RestorativeProfile | null;
+  mockTrialProfile?: MockTrialProfile | null;
 };
 
 type UpdateCaseInput = Partial<Omit<CreateCaseInput, "matterNumber" | "openedOn">> & {
@@ -254,6 +483,22 @@ type UpdateTimeEntryInput = Partial<{
   notes?: string;
   status: TimeEntryStatus;
 }>;
+
+type RestorativeSessionInput = Omit<RestorativeSession, "id">;
+
+type MockTrialRoundInput = {
+  roundName: string;
+  scheduledFor: string;
+  venue?: string;
+  judgePanel: string[];
+};
+
+type MockTrialRoundScoreInput = {
+  prosecutionScore: number;
+  defenseScore: number;
+  verdict?: string;
+  notes?: string;
+};
 
 type CreateClientInput = {
   name: string;
@@ -432,6 +677,12 @@ function migrateStoredState(raw: unknown): CaseManagementState {
           const stage = isString(item.stage) && VALID_CASE_STAGES.has(item.stage as CaseStage) ? (item.stage as CaseStage) : "intake";
           const status = isString(item.status) && VALID_CASE_STATUS.has(item.status as CaseStatus) ? (item.status as CaseStatus) : "active";
           const priority = isString(item.priority) && VALID_PRIORITY.has(item.priority as PriorityLevel) ? (item.priority as PriorityLevel) : "medium";
+          const rawCaseType = isString((record as Record<string, unknown>).caseType)
+            ? ((record as Record<string, unknown>).caseType as CaseType)
+            : "legal";
+          const caseType: CaseType = rawCaseType === "restorative" || rawCaseType === "mock_trial" ? rawCaseType : "legal";
+          const restorativeProfile = normalizeRestorativeProfile((record as Record<string, unknown>).restorativeProfile);
+          const mockTrialProfile = normalizeMockTrialProfile((record as Record<string, unknown>).mockTrialProfile);
 
           return {
             id,
@@ -439,6 +690,7 @@ function migrateStoredState(raw: unknown): CaseManagementState {
             caseName,
             clientId,
             clientName: clientName ?? null,
+            caseType,
             stage,
             status,
             practiceArea: isString(item.practiceArea) ? item.practiceArea : "General Practice",
@@ -450,8 +702,13 @@ function migrateStoredState(raw: unknown): CaseManagementState {
             priority,
             tags: Array.isArray(item.tags) ? item.tags.filter(isString) : [],
             riskNotes: isString(item.riskNotes) ? item.riskNotes : undefined,
+             programTag: isString((record as Record<string, unknown>).programTag)
+               ? ((record as Record<string, unknown>).programTag as string)
+               : null,
             documentIds: Array.isArray(item.documentIds) ? item.documentIds.filter(isString) : [],
             researchIds: Array.isArray(item.researchIds) ? item.researchIds.filter(isString) : [],
+            restorativeProfile: restorativeProfile ?? (caseType === "restorative" ? createEmptyRestorativeProfile() : null),
+            mockTrialProfile: mockTrialProfile ?? (caseType === "mock_trial" ? createEmptyMockTrialProfile(caseName) : null),
             createdAt: isString(item.createdAt) ? item.createdAt : now,
             updatedAt: isString(item.updatedAt) ? item.updatedAt : now,
           } as CaseRecord;
@@ -909,6 +1166,10 @@ type CaseManagementContextValue = {
   updateResearchItem: (researchId: string, updates: UpdateResearchInput) => void;
   logTimeEntry: (input: LogTimeEntryInput) => string;
   updateTimeEntry: (timeEntryId: string, updates: UpdateTimeEntryInput) => void;
+  saveRestorativeProfile: (caseId: string, profile: RestorativeProfile) => void;
+  logRestorativeSession: (caseId: string, session: RestorativeSessionInput) => void;
+  scheduleMockTrialRound: (caseId: string, round: MockTrialRoundInput) => void;
+  scoreMockTrialRound: (caseId: string, roundId: string, result: MockTrialRoundScoreInput) => void;
 };
 
 const CaseManagementContext = createContext<CaseManagementContextValue | null>(null);
@@ -988,12 +1249,22 @@ export function CaseManagementProvider({ children }: { children: ReactNode }) {
         const id = generateId("case");
         const clientId = input.clientId ?? null;
         const client = clientId ? state.clients.find((record) => record.id === clientId) : null;
+        const caseType: CaseType = input.caseType ?? "legal";
+        const restorativeProfile =
+          caseType === "restorative"
+            ? input.restorativeProfile ?? createEmptyRestorativeProfile()
+            : input.restorativeProfile ?? null;
+        const mockTrialProfile =
+          caseType === "mock_trial"
+            ? input.mockTrialProfile ?? createEmptyMockTrialProfile(input.caseName)
+            : input.mockTrialProfile ?? null;
         const record: CaseRecord = {
           id,
           matterNumber: input.matterNumber,
           caseName: input.caseName,
           clientId,
           clientName: client?.name ?? input.client ?? null,
+          caseType,
           stage: input.stage,
           status: input.status ?? "active",
           practiceArea: input.practiceArea,
@@ -1005,8 +1276,11 @@ export function CaseManagementProvider({ children }: { children: ReactNode }) {
           priority: input.priority,
           tags: input.tags ?? [],
           riskNotes: input.riskNotes ?? undefined,
+          programTag: input.programTag ?? null,
           documentIds: [],
           researchIds: [],
+          restorativeProfile,
+          mockTrialProfile,
           createdAt: now,
           updatedAt: now,
         };
@@ -1132,6 +1406,79 @@ export function CaseManagementProvider({ children }: { children: ReactNode }) {
             },
           },
           activity: buildActivity("Time entry updated", "time-logged", caseId ? [caseId] : []),
+        });
+      },
+      saveRestorativeProfile: (caseId, profile) => {
+        dispatch({
+          type: "update-case",
+          payload: { caseId, updates: { restorativeProfile: profile, caseType: "restorative" } },
+          activity: buildActivity("Restorative profile updated", "case-updated", [caseId]),
+        });
+      },
+      logRestorativeSession: (caseId, sessionInput) => {
+        const matter = state.cases.find((item) => item.id === caseId);
+        if (!matter) {
+          return;
+        }
+        const baseProfile = matter.restorativeProfile ?? createEmptyRestorativeProfile();
+        const session: RestorativeSession = {
+          id: generateId("restorative-session"),
+          ...sessionInput,
+        };
+        const updatedProfile: RestorativeProfile = {
+          ...baseProfile,
+          sessions: [session, ...baseProfile.sessions],
+        };
+        dispatch({
+          type: "update-case",
+          payload: { caseId, updates: { restorativeProfile: updatedProfile, caseType: "restorative" } },
+          activity: buildActivity("Restorative session logged", "case-updated", [caseId]),
+        });
+      },
+      scheduleMockTrialRound: (caseId, roundInput) => {
+        const matter = state.cases.find((item) => item.id === caseId);
+        if (!matter) {
+          return;
+        }
+        const baseProfile = matter.mockTrialProfile ?? createEmptyMockTrialProfile(matter.caseName);
+        const round: MockTrialRound = {
+          id: generateId("mock-round"),
+          ...roundInput,
+        };
+        const updatedProfile: MockTrialProfile = {
+          ...baseProfile,
+          rounds: [round, ...baseProfile.rounds],
+        };
+        dispatch({
+          type: "update-case",
+          payload: { caseId, updates: { mockTrialProfile: updatedProfile, caseType: "mock_trial" } },
+          activity: buildActivity("Mock trial round scheduled", "case-updated", [caseId]),
+        });
+      },
+      scoreMockTrialRound: (caseId, roundId, result) => {
+        const matter = state.cases.find((item) => item.id === caseId);
+        if (!matter || !matter.mockTrialProfile) {
+          return;
+        }
+        const rounds = matter.mockTrialProfile.rounds.map((round) =>
+          round.id === roundId
+            ? {
+                ...round,
+                prosecutionScore: result.prosecutionScore,
+                defenseScore: result.defenseScore,
+                verdict: result.verdict,
+                notes: result.notes,
+              }
+            : round,
+        );
+        const updatedProfile: MockTrialProfile = {
+          ...matter.mockTrialProfile,
+          rounds,
+        };
+        dispatch({
+          type: "update-case",
+          payload: { caseId, updates: { mockTrialProfile: updatedProfile, caseType: "mock_trial" } },
+          activity: buildActivity("Mock trial round scored", "case-updated", [caseId]),
         });
       },
     };

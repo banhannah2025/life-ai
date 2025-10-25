@@ -4,7 +4,13 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { differenceInCalendarDays, format, parseISO } from "date-fns";
 
-import { useCaseManagement, type CaseRecord } from "@/components/case-management/CaseManagementProvider";
+import {
+  useCaseManagement,
+  type CaseRecord,
+  type CaseType,
+} from "@/components/case-management/CaseManagementProvider";
+import { RestorativePortal } from "@/components/case-management/RestorativePortal";
+import { MockTrialPortal } from "@/components/case-management/MockTrialPortal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -62,6 +68,8 @@ type CaseFormState = {
   description: string;
   tags: string;
   riskNotes: string;
+  caseType: CaseType;
+  programTag: string;
 };
 
 const stageOptions: { value: CaseStage; label: string }[] = [
@@ -97,6 +105,8 @@ function createEmptyCaseForm(): CaseFormState {
     description: "",
     tags: "",
     riskNotes: "",
+    caseType: "legal",
+    programTag: "",
   };
 }
 
@@ -124,6 +134,7 @@ function formatDate(value?: string) {
 export function CaseOverview() {
   const { state, createCase, updateCase, createClient } = useCaseManagement();
   const { cases, clients, documents, research, activity } = state;
+  const legalCases = useMemo(() => cases.filter((matter) => matter.caseType === "legal"), [cases]);
 
   const [isCreateDialogOpen, setCreateDialogOpen] = useState(false);
   const [caseForm, setCaseForm] = useState<CaseFormState>(() => createEmptyCaseForm());
@@ -132,20 +143,20 @@ export function CaseOverview() {
 
   const practiceAreas = useMemo(() => {
     const defaults = new Set<string>();
-    cases.forEach((matter) => defaults.add(matter.practiceArea));
+    legalCases.forEach((matter) => defaults.add(matter.practiceArea));
     return Array.from(defaults).sort((a, b) => a.localeCompare(b));
-  }, [cases]);
+  }, [legalCases]);
 
   const clientLookup = useMemo(() => {
     return new Map(clients.map((client) => [client.id, client]));
   }, [clients]);
 
   const hasClients = clients.length > 0;
-  const hasCases = cases.length > 0;
+  const hasCases = legalCases.length > 0;
 
   const upcomingDeadlines = useMemo(() => {
     const now = new Date();
-    return cases
+    return legalCases
       .filter((matter) => matter.nextDeadline)
       .map((matter) => ({
         ...matter,
@@ -154,7 +165,7 @@ export function CaseOverview() {
       .filter((matter): matter is CaseRecord & { deadline: Date } => Boolean(matter.deadline))
       .filter((matter) => differenceInCalendarDays(matter.deadline, now) >= -3)
       .sort((a, b) => a.deadline.getTime() - b.deadline.getTime());
-  }, [cases]);
+  }, [legalCases]);
 
   const documentsInFlight = useMemo(() => documents.filter((doc) => doc.status !== "Finalized"), [documents]);
   const researchNeedingAttention = useMemo(
@@ -164,7 +175,7 @@ export function CaseOverview() {
 
   const metrics = useMemo(() => {
     const now = new Date();
-    const activeMatters = cases.filter((matter) => matter.status !== "closed");
+    const activeMatters = legalCases.filter((matter) => matter.status !== "closed");
     const briefingCount = activeMatters.filter((matter) => matter.stage === "briefing").length;
     const nextDeadlineSummary = upcomingDeadlines[0]
       ? `${upcomingDeadlines[0].caseName.split(" ")[0]} · ${format(upcomingDeadlines[0].deadline, "MMM d")}`
@@ -193,18 +204,18 @@ export function CaseOverview() {
         helper: researchNeedingAttention.length ? `${researchNeedingAttention.length} need updates` : "Log research to track progress",
       },
     ];
-  }, [cases, clients, research, researchNeedingAttention.length, upcomingDeadlines]);
+  }, [legalCases, clients, research, researchNeedingAttention.length, upcomingDeadlines]);
 
   const stageGroups = useMemo(() => {
     return stageOptions.map((stage) => ({
       ...stage,
-      cases: cases.filter((matter) => matter.stage === stage.value),
+      cases: legalCases.filter((matter) => matter.stage === stage.value),
     }));
-  }, [cases]);
+  }, [legalCases]);
 
   const filteredCases = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
-    return cases
+    return legalCases
       .filter((matter) => (stageFilter === "all" ? true : matter.stage === stageFilter))
       .filter((matter) => {
         if (!term) {
@@ -220,7 +231,7 @@ export function CaseOverview() {
         const priorityOrder: PriorityLevel[] = ["high", "medium", "low"];
         return priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority);
       });
-  }, [cases, stageFilter, searchTerm]);
+  }, [legalCases, stageFilter, searchTerm]);
 
   function resetForm() {
     setCaseForm(createEmptyCaseForm());
@@ -256,7 +267,13 @@ export function CaseOverview() {
       client: clientName,
       clientId,
       matterNumber: caseForm.matterNumber.trim() || `MAT-${Date.now()}`,
-      practiceArea: caseForm.practiceArea.trim() || "General Practice",
+      practiceArea:
+        caseForm.practiceArea.trim() ||
+        (caseForm.caseType === "restorative"
+          ? "Restorative Justice"
+          : caseForm.caseType === "mock_trial"
+            ? "Mock Trial"
+            : "General Practice"),
       stage: caseForm.stage,
       status: "active",
       leadAttorney: caseForm.leadAttorney.trim(),
@@ -267,6 +284,10 @@ export function CaseOverview() {
       priority: caseForm.priority,
       tags: normalizeList(caseForm.tags),
       riskNotes: caseForm.riskNotes.trim() || undefined,
+      caseType: caseForm.caseType,
+      programTag: caseForm.programTag.trim() || null,
+      restorativeProfile: caseForm.caseType === "restorative" ? undefined : null,
+      mockTrialProfile: caseForm.caseType === "mock_trial" ? undefined : null,
     });
 
     resetForm();
@@ -430,6 +451,31 @@ export function CaseOverview() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="case-type">Case type</Label>
+                    <Select
+                      value={caseForm.caseType}
+                      onValueChange={(value) => setCaseForm((prev) => ({ ...prev, caseType: value as CaseType }))}
+                    >
+                      <SelectTrigger id="case-type">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="legal">Legal</SelectItem>
+                        <SelectItem value="restorative">OUGM Restorative</SelectItem>
+                        <SelectItem value="mock_trial">Mock Trial</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="program-tag">Program / portal tag</Label>
+                    <Input
+                      id="program-tag"
+                      value={caseForm.programTag}
+                      onChange={(event) => setCaseForm((prev) => ({ ...prev, programTag: event.target.value }))}
+                      placeholder="e.g. OUGM Cohort A or Spring Mock"
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="priority">Priority</Label>
@@ -882,6 +928,9 @@ export function CaseOverview() {
           </CardContent>
         </Card>
       </section>
+
+      <RestorativePortal />
+      <MockTrialPortal />
     </div>
   );
 }

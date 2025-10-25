@@ -41,7 +41,7 @@ export function LibraryWorkspaceSwitcher() {
             <p className="text-sm text-slate-600">{meta.description}</p>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1">
+            <div className="flex flex-wrap items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 p-1">
               <ModeToggleButton
                 icon={BookOpen}
                 label="Library browser"

@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -196,8 +195,8 @@ export function LibraryBrowser() {
           </div>
 
           {topicFacets.length ? (
-            <ScrollArea className="w-full whitespace-nowrap rounded-xl border border-slate-200/80 bg-slate-50/70">
-              <div className="flex w-full gap-2 px-3 py-2">
+            <div className="w-full rounded-xl border border-slate-200/80 bg-slate-50/70">
+              <div className="flex flex-wrap gap-2 px-3 py-2">
                 {topicFacets.map((facet) => {
                   const active = selectedTopics.includes(facet.value);
                   return (
@@ -218,7 +217,7 @@ export function LibraryBrowser() {
                   );
                 })}
               </div>
-            </ScrollArea>
+            </div>
           ) : null}
         </div>
       </section>

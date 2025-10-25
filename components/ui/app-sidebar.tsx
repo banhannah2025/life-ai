@@ -17,7 +17,7 @@ import {
     PresentationChartBarIcon,
     TableCellsIcon,
 } from "@heroicons/react/24/outline";
-import { Briefcase, Camera, Clock, FileText, FolderPlus, Lightbulb, Loader2, Minus, Pencil, Plus, Trash, Users } from "lucide-react";
+import { Briefcase, Camera, Clock, FileText, FolderPlus, Gavel, Lightbulb, Loader2, Minus, Pencil, Plus, Trash, Users } from "lucide-react";
 import { upload } from "@vercel/blob/client";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
@@ -141,6 +141,12 @@ const caseManagementNavItems: CaseManagementNavItem[] = [
         label: "Document drafting",
         description: "Launch templates and collaborate on pleadings, motions, and agreements.",
         icon: FileText,
+    },
+    {
+        href: "/case-management/mock-trial",
+        label: "Mock trial portal",
+        description: "Plan scrimmages, manage rounds, and capture scorecards.",
+        icon: Gavel,
     },
     {
         href: "/case-management/case-analysis",

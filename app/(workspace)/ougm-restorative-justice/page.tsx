@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { InteractiveModuleCard, type InteractiveTrainingModule } from "@/components/ougm/InteractiveModuleCard";
 import { DigitalFormCard, type DigitalForm } from "@/components/ougm/DigitalFormCard";
+import { RestorativePortal } from "@/components/case-management/RestorativePortal";
 
 const implementationPhases = [
   {
@@ -1514,8 +1515,9 @@ export default function OUGMRestorativeJusticePage() {
 
       {canViewContent ? (
         <section className="space-y-10">
-            <nav className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-semibold text-slate-900">Course roadmap</h2>
+          <RestorativePortal />
+          <nav className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-slate-900">Course roadmap</h2>
               <p className="mt-1 text-sm text-slate-600">
                 Work through the curriculum in order. Each section links directly to the materials you need for that stage
                 of training—from launch planning through post-program evaluation.

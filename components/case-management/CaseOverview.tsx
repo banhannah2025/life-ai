@@ -9,8 +9,6 @@ import {
   type CaseRecord,
   type CaseType,
 } from "@/components/case-management/CaseManagementProvider";
-import { RestorativePortal } from "@/components/case-management/RestorativePortal";
-import { MockTrialPortal } from "@/components/case-management/MockTrialPortal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -929,8 +927,6 @@ export function CaseOverview() {
         </Card>
       </section>
 
-      <RestorativePortal />
-      <MockTrialPortal />
     </div>
   );
 }

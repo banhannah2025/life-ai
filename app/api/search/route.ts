@@ -36,6 +36,7 @@ export async function GET(request: Request) {
   const limit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 25) : 10;
   const collectionsParam = url.searchParams.get("collections") ?? "";
   const jurisdictionsParam = url.searchParams.get("jurisdictions") ?? "";
+  const stateParam = (url.searchParams.get("state") ?? "").trim().toUpperCase();
   const selectedCollections = new Set(
     collectionsParam
       .split(",")
@@ -48,6 +49,7 @@ export async function GET(request: Request) {
       .map((entry) => entry.trim())
       .filter(Boolean)
   );
+  const stateFilter = stateParam && stateParam !== "ALL" && stateParam.length === 2 ? stateParam : null;
 
   if (!query) {
     return NextResponse.json({
@@ -119,7 +121,14 @@ export async function GET(request: Request) {
     shouldSearchProfiles ? searchProfiles(query, limit) : Promise.resolve([]),
     shouldSearchPosts ? searchPosts({ query, limit, viewerId: userId ?? null }) : Promise.resolve([]),
     shouldSearchChannels ? searchChannels({ query, limit, viewerId: userId ?? null }) : Promise.resolve([]),
-    shouldSearchOpinions ? searchCourtListenerOpinions(query, limit) : Promise.resolve([]),
+    shouldSearchOpinions
+      ? searchCourtListenerOpinions(query, limit, {
+          includeFederal,
+          includeState,
+          includeAgency,
+          stateFilter,
+        })
+      : Promise.resolve([]),
     shouldSearchGovDocuments ? searchGovInfoDocuments(query, limit) : Promise.resolve([]),
     shouldSearchLibrary ? searchLibraryOfCongress(query, limit) : Promise.resolve([]),
     shouldSearchFederalRegister ? searchFederalRegisterDocuments(query, limit) : Promise.resolve([]),

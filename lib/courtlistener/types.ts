@@ -1,3 +1,5 @@
+export type CourtJurisdictionCategory = "federal" | "state" | "agency" | "mixed";
+
 export type CourtListenerOpinion = {
   id: string;
   caseName: string;
@@ -12,4 +14,7 @@ export type CourtListenerOpinion = {
   year: string | null;
   court: string | null;
   courtCitation: string | null;
+  courtId: string | null;
+  jurisdictionCategory: CourtJurisdictionCategory;
+  stateCode: string | null;
 };

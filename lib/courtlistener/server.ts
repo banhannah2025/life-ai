@@ -1,4 +1,7 @@
-import type { CourtListenerOpinion } from "./types";
+import { findStateCodeInText, STATE_OPTIONS } from "@/lib/location/states";
+import { extractSearchTokens } from "@/lib/search/keywords";
+
+import type { CourtJurisdictionCategory, CourtListenerOpinion } from "./types";
 
 const COURT_LISTENER_BASE_URL = "https://www.courtlistener.com/api/rest/v3";
 
@@ -13,6 +16,23 @@ type CourtListenerOpinionRaw = {
   precedential_status?: string;
   citations?: Array<{ cite?: string | null }>;
 };
+
+type CourtMetadata = {
+  id: string;
+  jurisdiction: string | null;
+  fullName: string | null;
+  shortName: string | null;
+};
+
+type CourtListenerSearchOptions = {
+  includeFederal?: boolean;
+  includeState?: boolean;
+  includeAgency?: boolean;
+  stateFilter?: string | null;
+  requireAllTokens?: boolean;
+};
+
+const courtMetadataCache = new Map<string, CourtMetadata | null>();
 
 function toTitleCase(value: string): string {
   const lowercaseWords = new Set(["and", "or", "of", "the", "in", "for", "on", "at", "vs", "vs."]);
@@ -110,15 +130,133 @@ function getAuthHeader(): { header: string; scheme: "token" | "basic" } | null {
   return null;
 }
 
-export async function searchCourtListenerOpinions(query: string, limit = 5): Promise<CourtListenerOpinion[]> {
+async function fetchCourtMetadata(courtId: string, authHeader: string): Promise<CourtMetadata | null> {
+  const url = `${COURT_LISTENER_BASE_URL}/courts/${courtId}/`;
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: authHeader,
+        Accept: "application/json",
+      },
+      cache: "force-cache",
+    });
+    if (!response.ok) {
+      console.error(`CourtListener court metadata failed for ${courtId}: ${response.status}`);
+      return null;
+    }
+    const payload = (await response.json()) as {
+      id?: string;
+      jurisdiction?: string | null;
+      full_name?: string | null;
+      short_name?: string | null;
+    };
+    return {
+      id: payload.id ?? courtId,
+      jurisdiction: payload.jurisdiction ?? null,
+      fullName: payload.full_name ?? null,
+      shortName: payload.short_name ?? null,
+    };
+  } catch (error) {
+    console.error(`CourtListener court metadata request failed for ${courtId}`, error);
+    return null;
+  }
+}
+
+async function hydrateCourtMetadata(courtIds: string[], authHeader: string) {
+  const missing = courtIds.filter((courtId) => !courtMetadataCache.has(courtId));
+  if (!missing.length) {
+    return;
+  }
+  await Promise.all(
+    missing.map(async (courtId) => {
+      const metadata = await fetchCourtMetadata(courtId, authHeader);
+      courtMetadataCache.set(courtId, metadata);
+    })
+  );
+}
+
+function mapJurisdiction(code: string | null): CourtJurisdictionCategory {
+  if (!code) {
+    return "mixed";
+  }
+  const normalized = code.toUpperCase();
+  if (normalized.startsWith("F")) {
+    return "federal";
+  }
+  if (normalized.startsWith("S") || normalized.startsWith("T") || normalized.startsWith("M")) {
+    return "state";
+  }
+  if (normalized.startsWith("A") || normalized.startsWith("B")) {
+    return "agency";
+  }
+  return "mixed";
+}
+
+function deriveStateCode(
+  metadata: CourtMetadata | null,
+  courtName: string | null,
+  citation: string | null
+): string | null {
+  const candidates = [metadata?.fullName, metadata?.shortName, courtName, citation];
+  for (const candidate of candidates) {
+    const detected = findStateCodeInText(candidate ?? null);
+    if (detected) {
+      return detected;
+    }
+  }
+  return null;
+}
+
+function inferStateFromSlug(courtId: string | null): string | null {
+  if (!courtId) {
+    return null;
+  }
+  const lowered = courtId.toLowerCase();
+  for (const state of STATE_OPTIONS) {
+    const prefix = state.code.toLowerCase();
+    if (lowered.startsWith(prefix)) {
+      return state.code;
+    }
+  }
+  return null;
+}
+
+function normalizeTokenSet(query: string): string[] {
+  const tokens = extractSearchTokens(query)
+    .map((token) => token.trim())
+    .filter((token) => token.length >= 3);
+  return Array.from(new Set(tokens));
+}
+
+function matchesAllTokens(text: string, tokens: string[]): boolean {
+  if (!tokens.length) {
+    return true;
+  }
+  const haystack = text.toLowerCase();
+  return tokens.every((token) => haystack.includes(token));
+}
+
+export async function searchCourtListenerOpinions(
+  query: string,
+  limit = 5,
+  options: CourtListenerSearchOptions = {}
+): Promise<CourtListenerOpinion[]> {
   const auth = getAuthHeader();
   if (!auth) {
     return [];
   }
 
+  const tokenSet = normalizeTokenSet(query);
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length > 1;
+  const allowFederal = options.includeFederal !== false;
+  const allowState = options.includeState !== false;
+  const allowAgency = options.includeAgency !== false;
+  const restrictJurisdictions = !allowFederal || !allowState || !allowAgency;
+  const stateFilter = options.stateFilter ? options.stateFilter.toUpperCase() : null;
+
   const url = new URL(`${COURT_LISTENER_BASE_URL}/search/`);
   url.searchParams.set("q", query);
-  url.searchParams.set("page_size", Math.max(1, Math.min(limit * 3, 50)).toString());
+  url.searchParams.set("page_size", Math.max(1, Math.min(limit * 4, 80)).toString());
   url.searchParams.set(
     "fields",
     [
@@ -131,6 +269,8 @@ export async function searchCourtListenerOpinions(query: string, limit = 5): Pro
       "citation",
       "court",
       "court_citation_string",
+      "court_id",
+      "court_exact",
       "status",
     ].join(",")
   );
@@ -172,12 +312,25 @@ export async function searchCourtListenerOpinions(query: string, limit = 5): Pro
       citation?: string | null;
       court?: string | null;
       court_citation_string?: string | null;
+      court_id?: string | null;
+      court_exact?: string | null;
       status?: string | null;
       snippet?: string | null;
     }>;
   };
 
   const results = Array.isArray(data.results) ? data.results : [];
+  const courtIds = Array.from(
+    new Set(
+      results
+        .map((result) => result?.court_id ?? result?.court_exact ?? null)
+        .filter((value): value is string => Boolean(value))
+    )
+  );
+  if (courtIds.length) {
+    await hydrateCourtMetadata(courtIds, auth.header);
+  }
+
   const opinions: CourtListenerOpinion[] = [];
 
   for (const result of results) {
@@ -197,6 +350,44 @@ export async function searchCourtListenerOpinions(query: string, limit = 5): Pro
     const absoluteUrl = `https://www.courtlistener.com${result.absolute_url}`;
     const snippet = sanitizeSnippet(result.snippet ?? null);
     const year = extractYear(result.dateFiled ?? null);
+    const courtId = result.court_id ?? result.court_exact ?? null;
+    const metadata = courtId ? courtMetadataCache.get(courtId) ?? null : null;
+    const jurisdictionCategory = metadata ? mapJurisdiction(metadata.jurisdiction ?? null) : "mixed";
+    const stateCode =
+      jurisdictionCategory === "state"
+        ? deriveStateCode(metadata ?? null, result.court ?? null, result.court_citation_string ?? null) ??
+          inferStateFromSlug(courtId)
+        : null;
+
+    if (jurisdictionCategory === "federal" && !allowFederal) {
+      continue;
+    }
+    if (jurisdictionCategory === "state" && !allowState) {
+      continue;
+    }
+    if (jurisdictionCategory === "agency" && !allowAgency) {
+      continue;
+    }
+    if (restrictJurisdictions && jurisdictionCategory === "mixed") {
+      continue;
+    }
+    if (stateFilter && jurisdictionCategory === "state") {
+      if (!stateCode || stateCode.toUpperCase() !== stateFilter) {
+        continue;
+      }
+    }
+
+    const searchableText = [
+      caseName,
+      caseNameShort ?? "",
+      snippet.plain ?? "",
+      result.citation ?? "",
+      result.docketNumber ?? "",
+    ].join(" ");
+
+    if (requireAllTokens && !matchesAllTokens(searchableText, tokenSet)) {
+      continue;
+    }
 
     opinions.push({
       id: result.id ? result.id.toString() : absoluteUrl,
@@ -212,6 +403,9 @@ export async function searchCourtListenerOpinions(query: string, limit = 5): Pro
       year,
       court: result.court ?? null,
       courtCitation: result.court_citation_string ?? null,
+      courtId: courtId ?? null,
+      jurisdictionCategory,
+      stateCode: stateCode ?? null,
     });
 
     if (opinions.length >= limit) {

@@ -38,6 +38,8 @@ import { Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import { useOptionalCaseManagement, type CaseRecord } from "@/components/case-management/CaseManagementProvider";
 import { Switch } from "./switch";
 import { requestAiSearchAssist } from "@/lib/search/ai";
+import { extractSearchTokens } from "@/lib/search/keywords";
+import { STATE_NAME_TO_CODE, STATE_OPTIONS } from "@/lib/location/states";
 
 type ResearchType = "legal" | "academic" | "ai";
 
@@ -111,65 +113,6 @@ const AGENCY_JURISDICTIONS: JurisdictionOption[] = [
     { label: "Federal Trade Commission", value: "agency:ftc" },
     { label: "International Tribunals", value: "agency:international" },
 ];
-
-const STATE_OPTIONS = [
-    { code: "AL", name: "Alabama" },
-    { code: "AK", name: "Alaska" },
-    { code: "AZ", name: "Arizona" },
-    { code: "AR", name: "Arkansas" },
-    { code: "CA", name: "California" },
-    { code: "CO", name: "Colorado" },
-    { code: "CT", name: "Connecticut" },
-    { code: "DE", name: "Delaware" },
-    { code: "DC", name: "District of Columbia" },
-    { code: "FL", name: "Florida" },
-    { code: "GA", name: "Georgia" },
-    { code: "HI", name: "Hawaii" },
-    { code: "ID", name: "Idaho" },
-    { code: "IL", name: "Illinois" },
-    { code: "IN", name: "Indiana" },
-    { code: "IA", name: "Iowa" },
-    { code: "KS", name: "Kansas" },
-    { code: "KY", name: "Kentucky" },
-    { code: "LA", name: "Louisiana" },
-    { code: "ME", name: "Maine" },
-    { code: "MD", name: "Maryland" },
-    { code: "MA", name: "Massachusetts" },
-    { code: "MI", name: "Michigan" },
-    { code: "MN", name: "Minnesota" },
-    { code: "MS", name: "Mississippi" },
-    { code: "MO", name: "Missouri" },
-    { code: "MT", name: "Montana" },
-    { code: "NE", name: "Nebraska" },
-    { code: "NV", name: "Nevada" },
-    { code: "NH", name: "New Hampshire" },
-    { code: "NJ", name: "New Jersey" },
-    { code: "NM", name: "New Mexico" },
-    { code: "NY", name: "New York" },
-    { code: "NC", name: "North Carolina" },
-    { code: "ND", name: "North Dakota" },
-    { code: "OH", name: "Ohio" },
-    { code: "OK", name: "Oklahoma" },
-    { code: "OR", name: "Oregon" },
-    { code: "PA", name: "Pennsylvania" },
-    { code: "RI", name: "Rhode Island" },
-    { code: "SC", name: "South Carolina" },
-    { code: "SD", name: "South Dakota" },
-    { code: "TN", name: "Tennessee" },
-    { code: "TX", name: "Texas" },
-    { code: "UT", name: "Utah" },
-    { code: "VT", name: "Vermont" },
-    { code: "VA", name: "Virginia" },
-    { code: "WA", name: "Washington" },
-    { code: "WV", name: "West Virginia" },
-    { code: "WI", name: "Wisconsin" },
-    { code: "WY", name: "Wyoming" },
-];
-
-const STATE_NAME_TO_CODE = STATE_OPTIONS.reduce<Record<string, string>>((acc, state) => {
-    acc[state.name.toLowerCase()] = state.code;
-    return acc;
-}, {});
 
 const STATE_COURT_OPTIONS: Record<string, JurisdictionOption[]> = STATE_OPTIONS.reduce<
     Record<string, JurisdictionOption[]>
@@ -426,15 +369,17 @@ function aggregateSearchResults(
     const phrase = filters?.phraseBoost?.trim().toLowerCase() ?? "";
     const dateRange = filters?.dateRange ?? "any";
     const stateFilter = filters?.state && filters.state !== "ALL" ? filters.state : null;
+    const requiredTokens =
+        isLegal ? Array.from(new Set(extractSearchTokens(query).filter((token) => token.length >= 3))) : [];
+    const requireTokenCoverage = isLegal && requiredTokens.length > 1;
 
     const shouldIncludeCollection = (collection: AggregatedResult["collection"]) =>
         !isLegal || activeCollections.has(collection);
     const shouldIncludeJurisdiction = (jurisdiction: AggregatedResult["jurisdiction"]) =>
         !isLegal ||
-        jurisdiction === "mixed" ||
         activeJurisdictions.size === 0 ||
         activeJurisdictions.has(jurisdiction) ||
-        activeJurisdictions.has("mixed");
+        (jurisdiction === "mixed" && (activeJurisdictions.has("mixed") || activeJurisdictions.size >= 3));
 
     const maybeBoostScore = (item: AggregatedResult) => {
         if (!phrase) {
@@ -464,6 +409,13 @@ function aggregateSearchResults(
         }
         if (stateFilter && item.jurisdiction === "state") {
             if (!item.stateCode || item.stateCode.toUpperCase() !== stateFilter) {
+                return;
+            }
+        }
+        if (requireTokenCoverage) {
+            const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`.toLowerCase();
+            const matchesAllTokens = requiredTokens.every((token) => haystack.includes(token));
+            if (!matchesAllTokens) {
                 return;
             }
         }
@@ -541,6 +493,7 @@ function aggregateSearchResults(
             const text = `${opinion.caseName} ${opinion.citation ?? ""} ${opinion.precedentialStatus ?? ""}`;
             const fallbackSummary =
                 opinion.citation || opinion.precedentialStatus || opinion.docketNumber || "Court opinion";
+            const jurisdiction = opinion.jurisdictionCategory ?? "mixed";
             pushIfAllowed({
                 id: `opinion-${opinion.id}`,
                 title: formatOpinionTitle(opinion),
@@ -553,11 +506,11 @@ function aggregateSearchResults(
                 date: opinion.dateFiled,
                 year: opinion.year,
                 collection: "primary-law",
-                jurisdiction: "mixed",
+                jurisdiction,
                 sourceLabel: "CourtListener",
                 resourceKey: "courtlistener",
                 resourceLabel: "CourtListener",
-                stateCode: null,
+                stateCode: opinion.stateCode ?? null,
             });
         }
     }

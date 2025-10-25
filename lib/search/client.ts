@@ -3,7 +3,7 @@ import type { FederalRegisterDocument } from "@/lib/federalregister/types";
 import type { GovInfoDocument } from "@/lib/govinfo/types";
 import type { LibraryOfCongressItem } from "@/lib/loc/types";
 import type { EcfrDocument } from "@/lib/ecfr/types";
-import type { LibraryResource } from "@/lib/library/resources";
+import type { LibraryResource } from "@/lib/library/types";
 import type { OpenStatesBill } from "@/lib/openstates/types";
 import type { RegulationsDocument } from "@/lib/regulations/types";
 import type { UserProfile } from "@/lib/profile/schema";

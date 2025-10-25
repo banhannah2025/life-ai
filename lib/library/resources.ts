@@ -1,62 +1,108 @@
-export type LibraryResource = {
-  id: string;
-  title: string;
-  summary: string;
-  url: string;
-  tags: string[];
-  body: string;
-  source: string;
-};
+import type { LibraryResource } from "./types";
 
-const RAW_RESOURCES: LibraryResource[] = [
+export const LIBRARY_CATALOG: LibraryResource[] = [
   {
-    id: "ougm-restorative-overview",
-    title: "Restorative Justice Orientation Handbook (OUGM)",
-    summary:
-      "Trainer handbook detailing OUGM's restorative justice vision, implementation roadmap, and facilitator expectations.",
+    id: "ougm-restorative-orientation",
+    title: "Restorative Justice Orientation Handbook",
+    summary: "Trainer handbook detailing OUGM's restorative justice vision, facilitator agreements, and practice labs.",
+    description:
+      "A living playbook for facilitators that covers theology of reconciliation, trauma-informed hospitality, and the Learn–Practice–Integrate loops driving the OUGM cohort.",
     url: "/ougm-restorative-justice",
-    tags: ["restorative justice", "handbook", "training", "ougm"],
-    source: "Life-AI",
+    source: "Life-AI Research Studio",
+    sourceType: "internal",
+    contentType: "guide",
+    format: "notion",
+    tags: ["handbook", "training", "implementation"],
+    topics: ["Restorative Justice", "Program Design", "Trauma-Informed Care"],
+    projects: ["OUGM Restorative Justice"],
+    authors: [
+      { name: "Sydney Romero", role: "Program Architect" },
+      { name: "Life-AI Research Labs" },
+    ],
+    featured: true,
+    interactive: true,
+    stats: { pages: 46, level: "intro" },
+    publishedAt: "2024-12-01",
+    updatedAt: "2024-12-18",
+    dataSources: ["OUGM interviews", "Restorative practice cohorts"],
     body:
-      "Orientation module covering theology of reconciliation, trauma-informed shelter practices, and the Learn-Practice-Integrate framework for facilitators.",
+      "Orientation module covering theology of reconciliation, trauma-informed shelter practices, facilitator competencies, and the Learn–Practice–Integrate framework for apprentices.",
   },
   {
-    id: "restorative-questions",
+    id: "restorative-questions-cheat-sheet",
     title: "Restorative Questions Cheat Sheet",
     summary: "Core restorative questions for caregivers, facilitators, and participants during circles and conferences.",
+    description:
+      "Pocket reference that separates prompts for those harmed and those responsible, with tone notes and escalation tips.",
     url: "https://www.iirp.edu/restorative-practices/explained",
-    tags: ["restorative", "questions", "facilitation", "iirp"],
     source: "International Institute for Restorative Practices",
+    sourceType: "external",
+    contentType: "toolkit",
+    format: "pdf",
+    tags: ["restorative", "questions", "facilitation"],
+    topics: ["Restorative Justice", "Facilitation"],
+    projects: ["Circle Practice Exchange"],
+    authors: [{ name: "IIRP Faculty" }],
+    dataSources: ["IIRP"],
+    stats: { pages: 4, level: "intro" },
     body:
       "List of classic restorative questions, including prompts for those harmed and those responsible, with guidance on tone and sequencing.",
   },
   {
     id: "intentional-infliction-outline",
-    title: "Intentional Infliction of Emotional Distress – Outline & Case Digest",
+    title: "Intentional Infliction of Emotional Distress – Litigation Digest",
     summary: "Elements, defenses, and notable U.S. cases for IIED claims with practitioner commentary.",
+    description:
+      "Outline covering extreme-and-outrageous conduct tests, severe harm thresholds, and citations practitioners rely on when briefing tort teams.",
     url: "https://law.lifetutor.dev/civil-torts/intentional-infliction-emotional-distress",
-    tags: ["torts", "intentional infliction", "emotional distress", "civil"],
     source: "Life-AI Knowledge Base",
+    sourceType: "internal",
+    contentType: "article",
+    format: "web",
+    tags: ["torts", "emotional distress", "civil"],
+    topics: ["Tort Law", "Litigation"],
+    projects: ["Life-AI Legal Lab"],
+    authors: [
+      { name: "Maya Lopez", role: "Litigation Fellow" },
+      { name: "Life-AI Legal Lab" },
+    ],
+    stats: { pages: 18, level: "intermediate" },
+    publishedAt: "2024-11-05",
+    updatedAt: "2024-12-12",
     body:
       "Detailed outline describing the IIED tort, extreme and outrageous conduct threshold, severe emotional harm requirement, and leading cases such as Harris v. Jones and Hustler Magazine v. Falwell.",
   },
   {
-    id: "trauma-informed-shelters",
+    id: "trauma-informed-frontline",
     title: "Trauma-Informed Frontline Workers Guide",
     summary: "Practical toolkit of grounding exercises and safety planning tips for shelter staff walking alongside trauma survivors.",
     url: "https://www.nctsn.org/resources/trauma-informed-frontline-workers",
-    tags: ["trauma", "shelter", "grounding", "training"],
     source: "National Child Traumatic Stress Network",
+    sourceType: "external",
+    contentType: "toolkit",
+    format: "pdf",
+    tags: ["trauma", "grounding", "training"],
+    topics: ["Trauma-Informed Care", "Shelter Operations"],
+    projects: ["Community Resilience Studio"],
+    authors: [{ name: "NCTSN" }],
+    stats: { pages: 22, level: "intro" },
     body:
       "Guide includes grounding techniques, co-regulation scripts, and checklists for trauma-informed service delivery in high-stress environments.",
   },
   {
     id: "restorative-housing-case-study",
     title: "Restorative Re-entry Circles – Housing Stability Case Study",
-    summary: "Case study documenting how re-entry circles reduced conflicts and improved retention in transitional housing programs.",
+    summary: "How re-entry circles reduced conflicts and improved retention in transitional housing programs.",
     url: "https://ccpros.org/resources/restorative-reentry-circles.pdf",
-    tags: ["housing", "re-entry", "restorative", "case study"],
     source: "CCPROS",
+    sourceType: "external",
+    contentType: "brief",
+    format: "pdf",
+    tags: ["housing", "re-entry", "case study"],
+    topics: ["Housing", "Re-entry"],
+    projects: ["Community Resilience Studio"],
+    authors: [{ name: "CCPROS Research" }],
+    stats: { pages: 12, level: "intermediate" },
     body:
       "Insights from a transitional housing pilot linking restorative agreements with case management, including metrics on incidents and retention.",
   },
@@ -65,18 +111,30 @@ const RAW_RESOURCES: LibraryResource[] = [
     title: "Open States Quick Start Guide",
     summary: "How-to guide for searching state legislation, tracking bills, and monitoring hearings using Open States.",
     url: "https://docs.openstates.org/en/latest/quickstart.html",
-    tags: ["legislation", "state", "open states", "guide"],
     source: "Open States",
+    sourceType: "external",
+    contentType: "guide",
+    format: "web",
+    tags: ["legislation", "state", "open states"],
+    topics: ["Legislative Tracking", "Civic Data"],
+    projects: ["Legislative Intelligence"],
+    authors: [{ name: "Open States Team" }],
     body:
       "Overview of search syntax, filtering, API usage, and webhook notifications for state-level bill tracking.",
   },
   {
-    id: "federal-register-overview",
+    id: "federal-register-reader-aids",
     title: "Federal Register Reader Aids",
     summary: "Reference library explaining how to navigate and interpret Federal Register documents and entries.",
     url: "https://www.federalregister.gov/reader-aids",
-    tags: ["federal register", "research", "federal", "rulemaking"],
     source: "Federal Register",
+    sourceType: "external",
+    contentType: "guide",
+    format: "web",
+    tags: ["federal register", "research", "rulemaking"],
+    topics: ["Rulemaking", "Federal Agencies"],
+    projects: ["Regulatory Intelligence"],
+    authors: [{ name: "Office of the Federal Register" }],
     body:
       "Guidance on document structure, search strategies, and regulatory history research within the Federal Register.",
   },
@@ -85,8 +143,14 @@ const RAW_RESOURCES: LibraryResource[] = [
     title: "eCFR Navigation Toolkit",
     summary: "Best practices for finding and bookmarking Code of Federal Regulations provisions online.",
     url: "https://www.ecfr.gov/current/title-24",
-    tags: ["ecfr", "federal regulations", "compliance"],
     source: "eCFR",
+    sourceType: "external",
+    contentType: "toolkit",
+    format: "web",
+    tags: ["ecfr", "compliance"],
+    topics: ["Compliance", "Federal Agencies"],
+    projects: ["Regulatory Intelligence"],
+    authors: [{ name: "Office of the Federal Register" }],
     body:
       "Toolkit demonstrating title/part navigation, advanced search filters, and update alerts in the electronic CFR.",
   },
@@ -95,8 +159,14 @@ const RAW_RESOURCES: LibraryResource[] = [
     title: "Regulations.gov Public Comment Playbook",
     summary: "Step-by-step instructions for locating dockets, analyzing comments, and submitting feedback through Regulations.gov.",
     url: "https://www.regulations.gov/learn",
-    tags: ["regulations", "public comment", "guide"],
     source: "Regulations.gov",
+    sourceType: "external",
+    contentType: "guide",
+    format: "web",
+    tags: ["regulations", "public comment", "guide"],
+    topics: ["Rulemaking", "Public Participation"],
+    projects: ["Regulatory Intelligence"],
+    authors: [{ name: "Regulations.gov" }],
     body:
       "Explains docket structure, tracking features, and best practices for drafting effective public comments.",
   },
@@ -105,10 +175,86 @@ const RAW_RESOURCES: LibraryResource[] = [
     title: "CourtListener API Reference",
     summary: "API documentation for querying opinions, oral arguments, and PACER data on CourtListener.",
     url: "https://www.courtlistener.com/api/",
-    tags: ["courtlistener", "api", "opinions", "federal"],
     source: "CourtListener",
+    sourceType: "external",
+    contentType: "dataset",
+    format: "web",
+    tags: ["courtlistener", "api", "opinions"],
+    topics: ["Case Law", "APIs"],
+    projects: ["Life-AI Legal Lab"],
+    authors: [{ name: "Free Law Project" }],
     body:
       "Provides endpoints, authentication details, and sample queries for legal opinions and audio through the CourtListener REST API.",
+  },
+  {
+    id: "lifeai-community-justice-blueprint",
+    title: "Blueprint for Community Justice Teams (Preview)",
+    summary: "Upcoming e-book mapping cross-jurisdictional justice teams, intake flows, and data loops for community safety work.",
+    description:
+      "Draft e-book that braids together case studies from tribal courts, problem-solving dockets, and restorative coalitions with Life-AI tooling screenshots.",
+    url: "/library/community-justice-blueprint",
+    source: "Life-AI Justice Lab",
+    sourceType: "internal",
+    contentType: "ebook",
+    format: "pdf",
+    tags: ["community justice", "design", "playbook"],
+    topics: ["Community Justice", "Program Design", "Data Collaboration"],
+    projects: ["Life-AI Justice Lab"],
+    authors: [
+      { name: "Jordan Gomez", role: "Justice Lab Director" },
+      { name: "Life-AI Fellows" },
+    ],
+    featured: true,
+    stage: "beta",
+    stats: { pages: 120, level: "advanced" },
+    attachments: [{ label: "Sample chapter", url: "/files/community-justice-sample.pdf", format: "pdf" }],
+    body:
+      "Explains how jurisdictions assemble cross-functional justice teams, align data loops, and deploy AI copilots with care safeguards. Includes drafts of facilitator agreements, charter templates, and reporting dashboards.",
+  },
+  {
+    id: "ai-research-workbench",
+    title: "AI-Assisted Research Workbench Playbook",
+    summary: "How Life-AI pairs generative copilots with matter-linked research threads, including governance checklists.",
+    url: "/docs/research-workbench",
+    source: "Life-AI Research Studio",
+    sourceType: "internal",
+    contentType: "guide",
+    format: "web",
+    tags: ["ai", "research", "workflow"],
+    topics: ["AI Operations", "Legal Research"],
+    projects: ["Life-AI Platform"],
+    authors: [
+      { name: "Priya Narayanan", role: "AI Operations Lead" },
+      { name: "Life-AI Engineering" },
+    ],
+    interactive: true,
+    stats: { pages: 34, level: "intermediate" },
+    publishedAt: "2024-10-10",
+    updatedAt: "2024-12-10",
+    body:
+      "Explains prompt libraries, citation capture, human-in-the-loop reviews, and research-to-drafting linking with screenshots of the Life-AI workspace.",
+  },
+  {
+    id: "jurisdictional-mapping-dataset",
+    title: "Jurisdictional Mapping Dataset",
+    summary: "Database export that links courts, agencies, and community partners for conflict systems mapping.",
+    url: "/datasets/jurisdictional-map",
+    source: "Life-AI Civic Data",
+    sourceType: "database",
+    contentType: "dataset",
+    format: "dataset",
+    tags: ["jurisdictions", "civic data", "systems map"],
+    topics: ["Civic Data", "Systems Mapping"],
+    projects: ["Justice Infrastructure Atlas"],
+    authors: [
+      { name: "Civic Data Guild" },
+      { name: "Life-AI Fellows" },
+    ],
+    featured: true,
+    stats: { downloads: 312, level: "intermediate" },
+    dataSources: ["CourtListener", "Open States", "Local uploads"],
+    body:
+      "CSV + Parquet bundle that standardizes courts, agencies, and mutual aid partners with tags for focus area, geography, and integration status.",
   },
 ];
 
@@ -122,10 +268,21 @@ export function searchLocalLibraryResources(query: string, limit = 10): LibraryR
     return [];
   }
 
-  const scored = RAW_RESOURCES.map((resource) => {
-    let score = 0;
-    const haystack = `${resource.title} ${resource.summary} ${resource.body} ${resource.tags.join(" ")}`.toLowerCase();
+  return LIBRARY_CATALOG.map((resource) => {
+    const haystack = [
+      resource.title,
+      resource.summary,
+      resource.description ?? "",
+      resource.body ?? "",
+      resource.tags.join(" "),
+      resource.topics.join(" "),
+      resource.projects.join(" "),
+      resource.authors.map((author) => author.name).join(" "),
+    ]
+      .join(" ")
+      .toLowerCase();
 
+    let score = 0;
     for (const token of tokens) {
       if (haystack.includes(token)) {
         score += 1;
@@ -142,8 +299,8 @@ export function searchLocalLibraryResources(query: string, limit = 10): LibraryR
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((entry) => entry.resource);
-
-  return scored;
 }
 
-export { RAW_RESOURCES as ALL_LIBRARY_RESOURCES };
+export function getStaticLibraryResources(): LibraryResource[] {
+  return LIBRARY_CATALOG;
+}

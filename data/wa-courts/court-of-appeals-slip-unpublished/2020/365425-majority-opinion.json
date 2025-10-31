@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36542-5",
+  "docketNumberNormalized": "365425",
+  "caseTitle": "State of Washington v. Kenneth Leroy Stephens",
+  "fileDate": "2020-05-12",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "May 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=365425MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/365425_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=365425MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/365425_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.548Z",
+  "division": "III"
+}

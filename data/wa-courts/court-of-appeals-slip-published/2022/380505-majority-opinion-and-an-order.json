@@ -1,0 +1,17 @@
+{
+  "docketNumber": "38050-5",
+  "docketNumberNormalized": "380505",
+  "caseTitle": "State of Washington v. Santiago Ayala-Pineda",
+  "fileDate": "2022-09-27",
+  "fileContains": "Majority Opinion and an Order",
+  "fileMonthSection": null,
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=380505MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/380505_ord.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=380505MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2022/380505_ord.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:49:14.634Z",
+  "division": "III"
+}

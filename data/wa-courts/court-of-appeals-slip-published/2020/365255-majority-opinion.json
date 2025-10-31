@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36525-5",
+  "docketNumberNormalized": "365255",
+  "caseTitle": "Loyal Pig, LLC, et al v. Dep't of Ecology, et al",
+  "fileDate": "2020-05-05",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "May 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=365255MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/365255_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=365255MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2020/365255_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:23:47.518Z",
+  "division": "III"
+}

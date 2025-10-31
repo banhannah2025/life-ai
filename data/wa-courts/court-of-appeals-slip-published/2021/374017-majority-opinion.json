@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37401-7",
+  "docketNumberNormalized": "374017",
+  "caseTitle": "State of Washington v. D.K.V.",
+  "fileDate": "2021-04-01",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "April 2021",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374017MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/374017_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374017MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2021/374017_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:05:58.158Z",
+  "division": "III"
+}

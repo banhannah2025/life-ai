@@ -1,0 +1,17 @@
+{
+  "docketNumber": "80321-2",
+  "docketNumberNormalized": "803212",
+  "caseTitle": "John Doe Aa, Et Al. V. King County, Et Al.",
+  "fileDate": "2020-12-07",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=803212MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/803212.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=803212MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2020/803212.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:23:47.675Z",
+  "division": "I"
+}

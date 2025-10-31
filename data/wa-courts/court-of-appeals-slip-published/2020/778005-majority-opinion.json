@@ -1,0 +1,17 @@
+{
+  "docketNumber": "77800-5",
+  "docketNumberNormalized": "778005",
+  "caseTitle": "State Of Washington, Petitioner V. Bryant Jieta, Respondent",
+  "fileDate": "2020-02-10",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "February 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=778005MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/778005.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=778005MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2020/778005.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:23:47.444Z",
+  "division": "I"
+}

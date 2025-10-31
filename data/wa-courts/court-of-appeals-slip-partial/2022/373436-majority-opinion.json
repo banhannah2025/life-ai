@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37343-6",
+  "docketNumberNormalized": "373436",
+  "caseTitle": "State of Washington v. Alejandro S. Martinez",
+  "fileDate": "2022-06-28",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2022",
+  "courtLevel": "C",
+  "publicationStatus": "PAR",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373436MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/373436_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373436MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-partial/2022/373436_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:52:15.999Z",
+  "division": "III"
+}

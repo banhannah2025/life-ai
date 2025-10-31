@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36666-9",
+  "docketNumberNormalized": "366669",
+  "caseTitle": "Michael F. Cronin v. Central Valley School District",
+  "fileDate": "2020-01-30",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=366669MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/366669_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=366669MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2020/366669_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:23:47.435Z",
+  "division": "III"
+}

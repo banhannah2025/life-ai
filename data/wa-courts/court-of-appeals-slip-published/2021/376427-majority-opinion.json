@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37642-7",
+  "docketNumberNormalized": "376427",
+  "caseTitle": "State of Washington v. P.M.E.",
+  "fileDate": "2021-08-26",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2021",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=376427MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/376427_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=376427MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2021/376427_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:05:58.315Z",
+  "division": "III"
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "35035-5",
+  "docketNumberNormalized": "350355",
+  "caseTitle": "State of Washington v. Roy H. Murry",
+  "fileDate": "2020-06-04",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PAR",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=350355MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/350355_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=350355MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-partial/2020/350355_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:26:40.056Z",
+  "division": "III"
+}

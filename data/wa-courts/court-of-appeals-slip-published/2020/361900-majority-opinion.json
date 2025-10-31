@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36190-0",
+  "docketNumberNormalized": "361900",
+  "caseTitle": "State of Washington v. Juan Enriquez-Martinez",
+  "fileDate": "2020-08-18",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=361900MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/361900_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=361900MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2020/361900_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:23:47.592Z",
+  "division": "III"
+}

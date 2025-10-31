@@ -1,0 +1,17 @@
+{
+  "docketNumber": "38492-6",
+  "docketNumberNormalized": "384926",
+  "caseTitle": "State of Washington v. Roy H. Murry",
+  "fileDate": "2022-12-15",
+  "fileContains": "Majority Opinion and an Order",
+  "fileMonthSection": null,
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=384926MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/384926_ord.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=384926MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2022/384926_ord.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:49:14.675Z",
+  "division": "III"
+}

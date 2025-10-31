@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37820-9",
+  "docketNumberNormalized": "378209",
+  "caseTitle": "State of Washington v. B.B.",
+  "fileDate": "2021-08-03",
+  "fileContains": "Majority Opinion and an Order",
+  "fileMonthSection": "August 2021",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=378209MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/378209_ord.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=378209MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2021/378209_ord.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:05:58.276Z",
+  "division": "III"
+}

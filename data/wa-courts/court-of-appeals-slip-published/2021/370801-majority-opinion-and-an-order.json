@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37080-1",
+  "docketNumberNormalized": "370801",
+  "caseTitle": "State of Washington v. Kevin Ray Edgar",
+  "fileDate": "2021-05-06",
+  "fileContains": "Majority Opinion and an Order",
+  "fileMonthSection": "May 2021",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370801MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370801_ord.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370801MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2021/370801_ord.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:05:58.188Z",
+  "division": "III"
+}

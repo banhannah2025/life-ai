@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36262-1",
+  "docketNumberNormalized": "362621",
+  "caseTitle": "State of Washington v. P.W.W.",
+  "fileDate": "2020-01-02",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=362621MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/362621_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=362621MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/362621_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.066Z",
+  "division": "III"
+}

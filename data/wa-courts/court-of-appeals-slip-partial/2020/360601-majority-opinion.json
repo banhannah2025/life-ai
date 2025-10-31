@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36060-1",
+  "docketNumberNormalized": "360601",
+  "caseTitle": "State of Washington v. Abdul Rahman Sweidan",
+  "fileDate": "2020-04-21",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "April 2020",
+  "courtLevel": "C",
+  "publicationStatus": "PAR",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=360601MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/360601_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=360601MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-partial/2020/360601_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:26:40.049Z",
+  "division": "III"
+}

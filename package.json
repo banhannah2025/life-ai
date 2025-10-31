@@ -10,7 +10,7 @@
     "scrape:rcw": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' lib/library/scrape-rcw.ts",
     "scrape:wa-opinions": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/scrape-wa-opinions.ts",
     "fetch:uscode": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/fetch-uscode.ts"
-      },
+  },
   "dependencies": {
     "@clerk/nextjs": "^6.32.2",
     "@heroicons/react": "^2.2.0",
@@ -57,8 +57,8 @@
     "@tiptap/react": "^2.6.0",
     "@tiptap/starter-kit": "^2.6.0",
     "@vercel/blob": "^2.0.0",
-    "axios": "^1.12.2",
     "adm-zip": "^0.5.10",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -86,6 +86,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/adm-zip": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -97,7 +98,4 @@
     "tw-animate-css": "^1.4.0",
     "typescript": "^5"
   }
-
-
-  
 }

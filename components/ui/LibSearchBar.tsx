@@ -68,6 +68,13 @@ type AggregatedResult = {
     resourceLabel: string;
 };
 
+type SanitizedWebResult = {
+    title: string;
+    url: string;
+    snippet: string | null;
+    source: string | null;
+};
+
 type JurisdictionOption = {
     label: string;
     value?: string;
@@ -1402,30 +1409,30 @@ export function LibSearchBar() {
                     setAiAssistQuery(effectiveQuery);
                     const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
                     const seenUrls = new Set<string>();
-                    const sanitizedWebResults = rawWebResults
-                        .filter(
-                            (result): result is AiSearchAssistWebResult =>
-                                Boolean(result) &&
-                                typeof result.title === "string" &&
-                                result.title.trim().length > 0 &&
-                                isValidHttpUrl(result.url ?? undefined)
-                        )
-                        .map((result) => {
+                    const sanitizedWebResults: SanitizedWebResult[] = rawWebResults
+                        .map((result): SanitizedWebResult | null => {
+                            if (
+                                !result ||
+                                typeof result.title !== "string" ||
+                                result.title.trim().length === 0 ||
+                                !isValidHttpUrl(result.url)
+                            ) {
+                                return null;
+                            }
                             const trimmedTitle = result.title.trim();
-                            const trimmedUrl = result.url!.trim();
+                            const trimmedUrl = (result.url ?? "").trim();
                             if (seenUrls.has(trimmedUrl)) {
                                 return null;
                             }
                             seenUrls.add(trimmedUrl);
                             return {
-                                ...result,
                                 title: trimmedTitle,
                                 url: trimmedUrl,
                                 snippet: result.snippet?.trim() ?? null,
                                 source: result.source?.trim() ?? null,
                             };
                         })
-                        .filter((entry): entry is AiSearchAssistWebResult => entry !== null);
+                        .filter((entry): entry is SanitizedWebResult => entry !== null);
                     assistWebResults = sanitizedWebResults.length ? sanitizedWebResults : null;
                     setAiAssistSources(assistWebResults);
                 } catch (assistError) {

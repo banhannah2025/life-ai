@@ -1,5 +1,6 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
+import type { Cheerio, Element } from "cheerio"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { setTimeout as delay } from "node:timers/promises"
@@ -110,7 +111,7 @@ function absoluteUrl(href: string | undefined | null) {
   return new URL(href, BASE_URL).toString()
 }
 
-function detectSuperseded($row: cheerio.Cheerio) {
+function detectSuperseded($row: Cheerio<Element>) {
   return $row.find("b.error, span.error, .error").length > 0
 }
 

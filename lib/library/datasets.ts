@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 
 import { extractSearchTokens } from "@/lib/search/keywords";
 
@@ -11,7 +12,6 @@ type RcwSectionIndexEntry = {
   chapterTitle: string;
   sectionNumber: string;
   caption: string;
-  bodyText: string;
   summary: string;
   searchText: string;
   officialUrl: string;
@@ -126,7 +126,9 @@ export type LibraryDatasetSearchResults = {
 };
 
 const RCW_ROOT = path.join(process.cwd(), "public", "rcw");
+const RCW_INDEX_PATH = path.join(process.cwd(), "data", "library-indices", "rcw-sections-index.json.gz");
 const USCODE_ROOT = path.join(process.cwd(), "data", "uscode");
+const USCODE_INDEX_PATH = path.join(process.cwd(), "data", "library-indices", "uscode-index.json");
 const WA_OPINIONS_INDEX_PATH = path.join(process.cwd(), "data", "library-indices", "wa-opinions-index.json");
 const WA_COURT_RULES_ROOT = path.join(process.cwd(), "data", "wa-court-rules");
 
@@ -158,6 +160,63 @@ function truncateText(input: string, limit = 220): string {
 function ensureRcwSectionIndex(): RcwSectionIndexEntry[] {
   if (rcwSectionIndexCache) {
     return rcwSectionIndexCache;
+  }
+
+  try {
+    const rawBuffer = fs.readFileSync(RCW_INDEX_PATH);
+    const json = zlib.gunzipSync(rawBuffer).toString("utf-8");
+    const parsed = JSON.parse(json) as {
+      entries?: Array<{
+        id?: string;
+        titleNumber?: string;
+        titleName?: string;
+        chapterNumber?: string;
+        chapterTitle?: string;
+        sectionNumber?: string;
+        caption?: string;
+        summary?: string;
+        searchText?: string;
+        officialUrl?: string;
+        appPath?: string;
+      }>;
+    };
+    if (parsed && Array.isArray(parsed.entries)) {
+      const normalized = parsed.entries
+        .map((entry) => {
+          const id = typeof entry.id === "string" ? entry.id : null;
+          const titleNumber = typeof entry.titleNumber === "string" ? entry.titleNumber : null;
+          const titleName = typeof entry.titleName === "string" ? entry.titleName : null;
+          const chapterNumber = typeof entry.chapterNumber === "string" ? entry.chapterNumber : null;
+          const chapterTitle = typeof entry.chapterTitle === "string" ? entry.chapterTitle : null;
+          const sectionNumber = typeof entry.sectionNumber === "string" ? entry.sectionNumber : null;
+          const caption = typeof entry.caption === "string" ? entry.caption : null;
+          const summary = typeof entry.summary === "string" ? entry.summary : "";
+          const searchText = typeof entry.searchText === "string" ? entry.searchText : "";
+          const officialUrl = typeof entry.officialUrl === "string" ? entry.officialUrl : "";
+          const appPath = typeof entry.appPath === "string" ? entry.appPath : "";
+          if (!id || !titleNumber || !titleName || !chapterNumber || !chapterTitle || !sectionNumber || !caption) {
+            return null;
+          }
+          return {
+            id,
+            titleNumber,
+            titleName,
+            chapterNumber,
+            chapterTitle,
+            sectionNumber,
+            caption,
+            summary,
+            searchText,
+            officialUrl,
+            appPath,
+          } satisfies RcwSectionIndexEntry;
+        })
+        .filter((entry): entry is RcwSectionIndexEntry => entry !== null);
+      rcwSectionIndexCache = normalized;
+      return normalized;
+    }
+  } catch (error) {
+    console.error("[LibrarySearch] Failed to read RCW index", error);
   }
 
   const entries: RcwSectionIndexEntry[] = [];
@@ -238,7 +297,6 @@ function ensureRcwSectionIndex(): RcwSectionIndexEntry[] {
           chapterTitle,
           sectionNumber,
           caption,
-          bodyText,
           summary,
           searchText,
           officialUrl,
@@ -269,6 +327,55 @@ function slugToTitleLabel(slug: string): { label: string; number: string | null 
 function ensureUsCodeIndex(): UsCodeDownloadIndexEntry[] {
   if (usCodeIndexCache) {
     return usCodeIndexCache;
+  }
+
+  // Prefer loading from pre-baked index to keep deployment bundles small.
+  try {
+    const raw = JSON.parse(fs.readFileSync(USCODE_INDEX_PATH, "utf-8")) as {
+      entries?: Array<{
+        releaseLabel?: string;
+        titleSlug?: string;
+        description?: string;
+        href?: string;
+        fileSize?: number | null;
+        hasLocalFile?: boolean;
+      }>;
+    };
+    if (raw && Array.isArray(raw.entries)) {
+      const normalized = raw.entries
+        .map((entry) => {
+          const titleSlug = typeof entry.titleSlug === "string" ? entry.titleSlug : null;
+          const href = typeof entry.href === "string" ? entry.href : null;
+          if (!titleSlug || !href) {
+            return null;
+          }
+          const { label: titleLabel, number: titleNumber } = slugToTitleLabel(titleSlug);
+          const releaseLabel = typeof entry.releaseLabel === "string" ? entry.releaseLabel : "latest";
+          const description = typeof entry.description === "string" ? entry.description : "";
+          return {
+            id: `${releaseLabel}-${titleSlug}`,
+            titleSlug,
+            titleLabel,
+            titleNumber,
+            description,
+            releaseLabel,
+            remoteUrl: href,
+            localPath:
+              entry.hasLocalFile
+                ? path.join(USCODE_ROOT, releaseLabel, "zip", `${titleSlug}.zip`)
+                : null,
+            fileSize: typeof entry.fileSize === "number" ? entry.fileSize : null,
+            searchText: [titleLabel, description, releaseLabel, titleSlug]
+              .join(" ")
+              .toLowerCase(),
+          } satisfies UsCodeDownloadIndexEntry;
+        })
+        .filter((entry): entry is UsCodeDownloadIndexEntry => entry !== null);
+      usCodeIndexCache = normalized;
+      return normalized;
+    }
+  } catch (error) {
+    console.error("[LibrarySearch] Failed to read US Code index", error);
   }
 
   const entries: UsCodeDownloadIndexEntry[] = [];

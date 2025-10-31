@@ -1621,11 +1621,19 @@ export default function OUGMRestorativeJusticePage() {
                         outcomes, real-world scenarios, and reflection prompts contextualized for Union Gospel Mission shelters.
                       </p>
                     </div>
-                    <div className="space-y-6">
-                      {trainingModules.map((module) => (
-                        <InteractiveModuleCard key={module.title} module={module} />
+                    <Accordion type="multiple" className="space-y-4">
+                      {trainingModules.map((module, index) => (
+                        <AccordionItem key={module.title} value={`module-${index + 1}`}>
+                          <AccordionTrigger className="flex flex-col items-start gap-1 px-1 text-left text-base font-semibold text-slate-900 sm:flex-row sm:items-center sm:justify-between">
+                            <span>{module.title}</span>
+                            <span className="text-sm font-medium text-slate-500 sm:text-right">Duration: {module.duration}</span>
+                          </AccordionTrigger>
+                          <AccordionContent className="pt-2">
+                            <InteractiveModuleCard module={module} />
+                          </AccordionContent>
+                        </AccordionItem>
                       ))}
-                    </div>
+                    </Accordion>
                   </AccordionContent>
                 </AccordionItem>
               </div>

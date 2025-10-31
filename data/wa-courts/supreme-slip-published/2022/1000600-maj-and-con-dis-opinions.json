@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,060-0",
+  "docketNumberNormalized": "1000600",
+  "caseTitle": "State v. Hawkins",
+  "fileDate": "2022-10-27",
+  "fileContains": "Maj., and Con/Dis Opinions",
+  "fileMonthSection": "October 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000600MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1000600.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000600MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1000600.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.758Z",
+  "division": null
+}

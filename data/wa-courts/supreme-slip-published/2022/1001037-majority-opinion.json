@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,103-7",
+  "docketNumberNormalized": "1001037",
+  "caseTitle": "Martin v. Dep't of Corrections",
+  "fileDate": "2022-05-26",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "May 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001037MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1001037.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001037MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1001037.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.692Z",
+  "division": null
+}

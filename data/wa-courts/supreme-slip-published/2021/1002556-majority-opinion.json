@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,255-6",
+  "docketNumberNormalized": "1002556",
+  "caseTitle": "Johnson v. Inslee",
+  "fileDate": "2021-10-22",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "October 2021",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1002556MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1002556.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1002556MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2021/1002556.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:04:16.098Z",
+  "division": null
+}

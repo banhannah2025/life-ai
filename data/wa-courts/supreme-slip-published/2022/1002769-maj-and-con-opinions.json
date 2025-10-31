@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,276-9",
+  "docketNumberNormalized": "1002769",
+  "caseTitle": "State v. Butler",
+  "fileDate": "2022-12-22",
+  "fileContains": "Maj., and Con. Opinions",
+  "fileMonthSection": "December 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1002769MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1002769.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1002769MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1002769.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.789Z",
+  "division": null
+}

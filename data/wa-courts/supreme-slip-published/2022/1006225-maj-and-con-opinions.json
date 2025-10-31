@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,622-5",
+  "docketNumberNormalized": "1006225",
+  "caseTitle": "State v. Waits",
+  "fileDate": "2022-11-17",
+  "fileContains": "Maj., and Con. Opinions",
+  "fileMonthSection": "November 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1006225MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1006225.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1006225MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1006225.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.771Z",
+  "division": null
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,008-1",
+  "docketNumberNormalized": "1000081",
+  "caseTitle": "In re Dependency of N.G.",
+  "fileDate": "2022-06-02",
+  "fileContains": "Maj., and Con. Opinions",
+  "fileMonthSection": "June 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000081MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1000081.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000081MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1000081.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.698Z",
+  "division": null
+}

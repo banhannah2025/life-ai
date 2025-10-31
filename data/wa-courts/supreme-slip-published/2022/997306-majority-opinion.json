@@ -1,0 +1,17 @@
+{
+  "docketNumber": "99730-6",
+  "docketNumberNormalized": "997306",
+  "caseTitle": "State v. Sum",
+  "fileDate": "2022-06-09",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=997306MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/997306.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=997306MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/997306.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.700Z",
+  "division": null
+}

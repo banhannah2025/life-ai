@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,166-5",
+  "docketNumberNormalized": "1001665",
+  "caseTitle": "State v. Tesfasilasye",
+  "fileDate": "2022-10-06",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "October 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001665MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1001665.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001665MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1001665.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.753Z",
+  "division": null
+}

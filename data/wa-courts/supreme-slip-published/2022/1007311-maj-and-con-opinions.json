@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,731-1",
+  "docketNumberNormalized": "1007311",
+  "caseTitle": "King County v. Sorensen",
+  "fileDate": "2022-09-08",
+  "fileContains": "Maj., and Con. Opinions",
+  "fileMonthSection": "September 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1007311MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1007311.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1007311MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1007311.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.747Z",
+  "division": null
+}

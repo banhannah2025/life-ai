@@ -1,0 +1,17 @@
+{
+  "docketNumber": "99101-4",
+  "docketNumberNormalized": "991014",
+  "caseTitle": "State v. Enriquez-Martinez",
+  "fileDate": "2021-07-29",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "July 2021",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=991014MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/991014.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=991014MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2021/991014.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T05:04:16.074Z",
+  "division": null
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,012-0",
+  "docketNumberNormalized": "1000120",
+  "caseTitle": "State v. Garza",
+  "fileDate": "2022-10-20",
+  "fileContains": "Maj., and Dis. Opinions",
+  "fileMonthSection": "October 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000120MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1000120.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1000120MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1000120.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.757Z",
+  "division": null
+}

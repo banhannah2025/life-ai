@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,526-1",
+  "docketNumberNormalized": "1005261",
+  "caseTitle": "Pacheco v. United States",
+  "fileDate": "2022-08-18",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2022",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1005261MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1005261.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1005261MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2022/1005261.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:47:50.740Z",
+  "division": null
+}

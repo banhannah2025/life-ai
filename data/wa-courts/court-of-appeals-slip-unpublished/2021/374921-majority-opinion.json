@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37492-1",
+  "docketNumberNormalized": "374921",
+  "caseTitle": "State of Washington v. Eduardo G. Populus",
+  "fileDate": "2021-07-15",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "July 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374921MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/374921_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374921MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/374921_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.739Z",
+  "division": "III"
+}

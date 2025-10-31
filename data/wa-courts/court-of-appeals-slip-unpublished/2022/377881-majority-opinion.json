@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37788-1",
+  "docketNumberNormalized": "377881",
+  "caseTitle": "State of Washington v. Shawn Lee Van Zandt",
+  "fileDate": "2022-01-13",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2022",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=377881MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/377881_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=377881MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2022/377881_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:52:39.010Z",
+  "division": "III"
+}

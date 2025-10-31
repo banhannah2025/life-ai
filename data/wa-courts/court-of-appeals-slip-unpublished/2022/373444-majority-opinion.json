@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37344-4",
+  "docketNumberNormalized": "373444",
+  "caseTitle": "State of Washington v. Eduardo S. Martinez",
+  "fileDate": "2022-06-28",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2022",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373444MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/373444_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373444MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2022/373444_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:52:39.475Z",
+  "division": "III"
+}

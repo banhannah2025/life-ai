@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37123-9",
+  "docketNumberNormalized": "371239",
+  "caseTitle": "State of Washington v. Manuel Carrosco Mendoza Jr.",
+  "fileDate": "2021-03-30",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "March 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=371239MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/371239_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=371239MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/371239_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.539Z",
+  "division": "III"
+}

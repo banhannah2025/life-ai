@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37022-4",
+  "docketNumberNormalized": "370224",
+  "caseTitle": "State of Washington v. Thomas Ray McBride",
+  "fileDate": "2021-02-04",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "February 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370224MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370224_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370224MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/370224_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.325Z",
+  "division": "III"
+}

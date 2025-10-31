@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36682-1",
+  "docketNumberNormalized": "366821",
+  "caseTitle": "State of Washington v. D.C.W.",
+  "fileDate": "2020-06-25",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=366821MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/366821_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=366821MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/366821_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.641Z",
+  "division": "III"
+}

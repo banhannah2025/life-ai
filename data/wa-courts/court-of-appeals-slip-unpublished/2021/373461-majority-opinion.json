@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37346-1",
+  "docketNumberNormalized": "373461",
+  "caseTitle": "State of Washington v. Nikolay Ivanovich Kalachik",
+  "fileDate": "2021-12-14",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373461MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/373461_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=373461MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/373461_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.987Z",
+  "division": "III"
+}

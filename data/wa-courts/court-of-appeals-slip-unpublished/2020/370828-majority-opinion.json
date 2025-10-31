@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37082-8",
+  "docketNumberNormalized": "370828",
+  "caseTitle": "State of Washington v. Nikolayevich Petr Sichkar",
+  "fileDate": "2020-12-15",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370828MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370828_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370828MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/370828_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.897Z",
+  "division": "III"
+}

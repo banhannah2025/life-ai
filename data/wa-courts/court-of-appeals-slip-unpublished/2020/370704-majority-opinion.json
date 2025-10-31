@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37070-4",
+  "docketNumberNormalized": "370704",
+  "caseTitle": "State of Washington v. Edward Jon Gunn",
+  "fileDate": "2020-10-08",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "October 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370704MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370704_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370704MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/370704_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.781Z",
+  "division": "III"
+}

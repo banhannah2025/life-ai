@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37050-0",
+  "docketNumberNormalized": "370500",
+  "caseTitle": "State of Washington v. Angela Lee Franklin",
+  "fileDate": "2020-09-10",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "September 2020",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370500MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370500_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370500MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2020/370500_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:27:08.744Z",
+  "division": "III"
+}

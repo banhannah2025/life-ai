@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37011-9",
+  "docketNumberNormalized": "370119",
+  "caseTitle": "State of Washington v. Monty Ray Bockman",
+  "fileDate": "2021-02-04",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "February 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370119MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370119_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370119MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/370119_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.316Z",
+  "division": "III"
+}

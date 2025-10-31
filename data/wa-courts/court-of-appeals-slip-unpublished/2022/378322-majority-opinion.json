@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37832-2",
+  "docketNumberNormalized": "378322",
+  "caseTitle": "State of Washington v. M.P.B.",
+  "fileDate": "2022-03-08",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "March 2022",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=378322MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/378322_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=378322MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2022/378322_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:52:39.208Z",
+  "division": "III"
+}

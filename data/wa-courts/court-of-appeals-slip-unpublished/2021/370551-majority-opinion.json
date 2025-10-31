@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37055-1",
+  "docketNumberNormalized": "370551",
+  "caseTitle": "State of Washington v. Eduardo S. Martinez",
+  "fileDate": "2021-08-31",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370551MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/370551_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=370551MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/370551_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.841Z",
+  "division": "III"
+}

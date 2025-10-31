@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37923-0",
+  "docketNumberNormalized": "379230",
+  "caseTitle": "State of Washington v. David M. Campbell",
+  "fileDate": "2022-12-08",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2022",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=379230MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/379230_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=379230MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2022/379230_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:52:39.678Z",
+  "division": "III"
+}

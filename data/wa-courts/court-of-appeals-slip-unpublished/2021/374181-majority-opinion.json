@@ -1,0 +1,17 @@
+{
+  "docketNumber": "37418-1",
+  "docketNumberNormalized": "374181",
+  "caseTitle": "State of Washington v. Alberto Alvarez",
+  "fileDate": "2021-12-09",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2021",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374181MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/374181_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=374181MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2021/374181_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T05:10:14.974Z",
+  "division": "III"
+}

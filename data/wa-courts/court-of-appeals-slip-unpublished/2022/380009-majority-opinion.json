@@ -1,0 +1,17 @@
+{
+  "docketNumber": "38000-9",
+  "docketNumberNormalized": "380009",
+  "caseTitle": "State of Washington v. Justin Michael Paffhausen",
+  "fileDate": "2022-06-30",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "June 2022",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=380009MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/380009_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=380009MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2022/380009_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:52:39.479Z",
+  "division": "III"
+}

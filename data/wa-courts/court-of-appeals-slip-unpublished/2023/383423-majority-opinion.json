@@ -1,0 +1,17 @@
+{
+  "docketNumber": "38342-3",
+  "docketNumberNormalized": "383423",
+  "caseTitle": "State of Washington v. Juan Enciso Pena",
+  "fileDate": "2023-01-26",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2023",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=383423MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/383423_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=383423MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2023/383423_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:38:36.920Z",
+  "division": "III"
+}

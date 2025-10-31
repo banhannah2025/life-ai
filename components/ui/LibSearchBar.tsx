@@ -37,7 +37,12 @@ import { toast } from "sonner";
 import { Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import { useOptionalCaseManagement, type CaseRecord } from "@/components/case-management/CaseManagementProvider";
 import { Switch } from "./switch";
-import { requestAiSearchAssist, type AiSearchAssistWebResult } from "@/lib/search/ai";
+import {
+    requestAiSearchAssist,
+    requestAiSearchAnswer,
+    type AiSearchAnswerCitation,
+    type AiSearchAssistWebResult,
+} from "@/lib/search/ai";
 import { extractSearchTokens } from "@/lib/search/keywords";
 import { STATE_NAME_TO_CODE, STATE_OPTIONS } from "@/lib/location/states";
 
@@ -349,6 +354,23 @@ function getPriority(result: AggregatedResult, researchType: ResearchType): numb
     return 5;
 }
 
+function meetsTokenThreshold(text: string, tokens: string[], minimumMatches: number): boolean {
+    if (!tokens.length || minimumMatches <= 0) {
+        return true;
+    }
+    const haystack = text.toLowerCase();
+    let matches = 0;
+    for (const token of tokens) {
+        if (haystack.includes(token)) {
+            matches += 1;
+            if (matches >= minimumMatches) {
+                return true;
+            }
+        }
+    }
+    return matches >= minimumMatches;
+}
+
 function aggregateSearchResults(
     query: string,
     data: SearchResponse,
@@ -386,7 +408,12 @@ function aggregateSearchResults(
     const stateFilter = filters?.state && filters.state !== "ALL" ? filters.state : null;
     const requiredTokens =
         isLegal ? Array.from(new Set(extractSearchTokens(query).filter((token) => token.length >= 3))) : [];
-    const requireTokenCoverage = isLegal && requiredTokens.length > 1;
+    const minimumTokenMatches =
+        !isLegal || requiredTokens.length === 0
+            ? 0
+            : requiredTokens.length <= 3
+                ? requiredTokens.length
+                : Math.max(1, Math.ceil(requiredTokens.length * 0.6));
 
     const shouldIncludeCollection = (collection: AggregatedResult["collection"]) =>
         !isLegal || activeCollections.has(collection);
@@ -427,10 +454,9 @@ function aggregateSearchResults(
                 return;
             }
         }
-        if (requireTokenCoverage) {
-            const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`.toLowerCase();
-            const matchesAllTokens = requiredTokens.every((token) => haystack.includes(token));
-            if (!matchesAllTokens) {
+        if (minimumTokenMatches > 0) {
+            const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`;
+            if (!meetsTokenThreshold(haystack, requiredTokens, minimumTokenMatches)) {
                 return;
             }
         }
@@ -969,6 +995,8 @@ export function LibSearchBar() {
     const [aiAssistSummary, setAiAssistSummary] = useState<string | null>(null);
     const [aiAssistQuery, setAiAssistQuery] = useState<string | null>(null);
     const [aiAssistSources, setAiAssistSources] = useState<AiSearchAssistWebResult[] | null>(null);
+    const [aiAssistAnswer, setAiAssistAnswer] = useState<string | null>(null);
+    const [aiAssistCitations, setAiAssistCitations] = useState<AiSearchAnswerCitation[] | null>(null);
     const previousSelectedStateRef = useRef<string>("ALL");
     const caseManagement = useOptionalCaseManagement();
     const [attachDialogOpen, setAttachDialogOpen] = useState(false);
@@ -1207,6 +1235,9 @@ export function LibSearchBar() {
         if (!aiAssistEnabled) {
             setAiAssistSummary(null);
             setAiAssistQuery(null);
+            setAiAssistSources(null);
+            setAiAssistAnswer(null);
+            setAiAssistCitations(null);
         }
     }, [aiAssistEnabled]);
 
@@ -1244,6 +1275,8 @@ export function LibSearchBar() {
             setAiAssistSummary(null);
             setAiAssistQuery(null);
             setAiAssistSources(null);
+            setAiAssistAnswer(null);
+            setAiAssistCitations(null);
             let effectiveQuery = trimmed;
             if (aiAssistEnabled) {
                 try {
@@ -1300,6 +1333,30 @@ export function LibSearchBar() {
             const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters);
             setResults(aggregated);
             setLastQuery(effectiveQuery);
+            if (aiAssistEnabled && aggregated.length > 0) {
+                try {
+                    const topResults = aggregated.slice(0, 8).map((item, index) => ({
+                        title: item.title,
+                        snippet: item.snippet,
+                        url:
+                            item.external || (item.href && /^https?:\/\//i.test(item.href))
+                                ? item.href
+                                : item.href ?? null,
+                        source: item.resourceLabel ?? item.type ?? `Result ${index + 1}`,
+                        date: item.date ?? item.year ?? null,
+                    }));
+                    const answer = await requestAiSearchAnswer(trimmed, researchType, topResults);
+                    setAiAssistAnswer(answer.answer);
+                    setAiAssistCitations(answer.citations.length ? answer.citations : null);
+                } catch (answerError) {
+                    console.error(answerError);
+                    toast.error(
+                        answerError instanceof Error ? answerError.message : "AI answer unavailable. Showing results only."
+                    );
+                    setAiAssistAnswer(null);
+                    setAiAssistCitations(null);
+                }
+            }
             if (aggregated.length === 0) {
                 setError("No matches found. Try refining your keywords or adjusting filters.");
             }
@@ -1367,6 +1424,8 @@ export function LibSearchBar() {
                                     setAiAssistSummary(null);
                                     setAiAssistQuery(null);
                                     setAiAssistSources(null);
+                                    setAiAssistAnswer(null);
+                                    setAiAssistCitations(null);
                                 }
                             }}
                         />
@@ -1378,11 +1437,41 @@ export function LibSearchBar() {
                         </Badge>
                         <span className="text-xs text-slate-500">Use Groq to rewrite complex questions into precise queries.</span>
                     </div>
-                    {aiAssistEnabled && aiAssistSummary ? (
+                    {aiAssistEnabled && (aiAssistSummary || aiAssistAnswer) ? (
                         <div className="mt-3 flex items-start gap-2 rounded-md border border-emerald-100 bg-emerald-50/90 px-3 py-2 text-sm text-emerald-900">
                             <Sparkles className="mt-0.5 h-4 w-4" />
                             <div className="space-y-2">
-                                <p>{aiAssistSummary}</p>
+                                {aiAssistAnswer ? (
+                                    <div className="space-y-2">
+                                        <p className="font-semibold uppercase tracking-wide text-emerald-700">
+                                            AI research answer
+                                        </p>
+                                        <p>{aiAssistAnswer}</p>
+                                        {aiAssistCitations ? (
+                                            <ul className="list-inside list-disc text-xs text-emerald-800">
+                                                {aiAssistCitations.map((citation) => (
+                                                    <li key={`citation-${citation.ref}`}>
+                                                        [${citation.ref}] {citation.label}
+                                                        {citation.url ? (
+                                                            <>
+                                                                {" "}
+                                                                <Link
+                                                                    href={citation.url}
+                                                                    className="text-emerald-700 underline"
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                >
+                                                                    {citation.url}
+                                                                </Link>
+                                                            </>
+                                                        ) : null}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : null}
+                                    </div>
+                                ) : null}
+                                {aiAssistSummary ? <p>{aiAssistSummary}</p> : null}
                                 {aiAssistQuery ? (
                                     <p className="text-xs text-emerald-800">
                                         Query used: <span className="font-semibold">{aiAssistQuery}</span>

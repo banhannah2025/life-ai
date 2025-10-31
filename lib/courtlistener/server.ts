@@ -1,7 +1,7 @@
 import { findStateCodeInText, STATE_OPTIONS } from "@/lib/location/states";
 import { extractSearchTokens } from "@/lib/search/keywords";
 
-import type { CourtJurisdictionCategory, CourtListenerOpinion } from "./types";
+import type { CourtJurisdictionCategory, CourtListenerOpinion, CourtListenerRecapDocket } from "./types";
 
 const COURT_LISTENER_BASE_URL = "https://www.courtlistener.com/api/rest/v3";
 
@@ -15,6 +15,24 @@ type CourtListenerOpinionRaw = {
   date_filed?: string;
   precedential_status?: string;
   citations?: Array<{ cite?: string | null }>;
+};
+
+type CourtListenerDocketRaw = {
+  id?: number;
+  absolute_url?: string | null;
+  case_name?: string | null;
+  case_name_short?: string | null;
+  docket_number?: string | null;
+  date_filed?: string | null;
+  docket_entries_url?: string | null;
+  court?: string | null;
+  court_id?: string | null;
+  appeal_from?: string | null;
+  assigned_to?: string | null;
+  cause?: string | null;
+  nature_of_suit?: string | null;
+  source?: string | null;
+  snippet?: string | null;
 };
 
 type CourtMetadata = {
@@ -221,6 +239,33 @@ function inferStateFromSlug(courtId: string | null): string | null {
   return null;
 }
 
+function extractCourtIdFromResource(resource: string | null): string | null {
+  if (!resource) {
+    return null;
+  }
+  const trimmed = resource.trim();
+  if (!trimmed) {
+    return null;
+  }
+  const normalized = trimmed.startsWith("http") ? trimmed : `https://www.courtlistener.com${trimmed}`;
+  try {
+    const url = new URL(normalized);
+    const segments = url.pathname.split("/").filter(Boolean);
+    const courtsIndex = segments.lastIndexOf("courts");
+    if (courtsIndex !== -1 && segments[courtsIndex + 1]) {
+      return segments[courtsIndex + 1];
+    }
+    return segments.pop() ?? null;
+  } catch {
+    const parts = trimmed.split("/").filter(Boolean);
+    const courtsIndex = parts.lastIndexOf("courts");
+    if (courtsIndex !== -1 && parts[courtsIndex + 1]) {
+      return parts[courtsIndex + 1];
+    }
+    return parts.pop() ?? null;
+  }
+}
+
 function normalizeTokenSet(query: string): string[] {
   const tokens = extractSearchTokens(query)
     .map((token) => token.trim())
@@ -414,6 +459,159 @@ export async function searchCourtListenerOpinions(
   }
 
   return opinions;
+}
+
+export async function searchCourtListenerRecapDockets(
+  query: string,
+  limit = 5,
+  options: CourtListenerSearchOptions = {}
+): Promise<CourtListenerRecapDocket[]> {
+  const auth = getAuthHeader();
+  if (!auth) {
+    return [];
+  }
+
+  const tokenSet = normalizeTokenSet(query);
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length > 1;
+  const allowFederal = options.includeFederal !== false;
+  const allowState = options.includeState !== false;
+  const allowAgency = options.includeAgency !== false;
+  const restrictJurisdictions = !allowFederal || !allowState || !allowAgency;
+  const stateFilter = options.stateFilter ? options.stateFilter.toUpperCase() : null;
+
+  const url = new URL(`${COURT_LISTENER_BASE_URL}/dockets/`);
+  url.searchParams.set("search", query);
+  url.searchParams.set("page_size", Math.max(1, Math.min(limit * 4, 80)).toString());
+  url.searchParams.set("order_by", "-date_filed");
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      headers: {
+        Authorization: auth.header,
+        Accept: "application/json",
+      },
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.error("CourtListener RECAP docket request failed", error);
+    return [];
+  }
+
+  if (!response.ok) {
+    console.error(
+      `CourtListener RECAP docket request failed with status ${response.status}: ${response.statusText ?? "Unknown error"}`
+    );
+    return [];
+  }
+
+  const data = (await response.json()) as { results?: CourtListenerDocketRaw[] };
+  const results = Array.isArray(data.results) ? data.results : [];
+  const courtIds = Array.from(
+    new Set(
+      results
+        .map((result) => extractCourtIdFromResource(result?.court ?? null) ?? result?.court_id ?? null)
+        .filter((value): value is string => Boolean(value))
+    )
+  );
+
+  if (courtIds.length) {
+    await hydrateCourtMetadata(courtIds, auth.header);
+  }
+
+  const dockets: CourtListenerRecapDocket[] = [];
+
+  for (const result of results) {
+    const rawForName: CourtListenerOpinionRaw = {
+      case_name: result.case_name ?? undefined,
+      case_name_short: result.case_name_short ?? undefined,
+      absolute_url: result.absolute_url ?? undefined,
+      docket_number: result.docket_number ?? undefined,
+    };
+
+    const { full: caseName, short: caseNameShort } = deriveCaseName(rawForName);
+    const absoluteUrl = result.absolute_url
+      ? result.absolute_url.startsWith("http")
+        ? result.absolute_url
+        : `https://www.courtlistener.com${result.absolute_url}`
+      : null;
+    const docketEntriesUrl = result.docket_entries_url
+      ? result.docket_entries_url.startsWith("http")
+        ? result.docket_entries_url
+        : `https://www.courtlistener.com${result.docket_entries_url}`
+      : null;
+    const courtId = extractCourtIdFromResource(result.court ?? null) ?? result.court_id ?? null;
+    const metadata = courtId ? courtMetadataCache.get(courtId) ?? null : null;
+    const jurisdictionCategory = metadata ? mapJurisdiction(metadata.jurisdiction ?? null) : "mixed";
+    const stateCode =
+      jurisdictionCategory === "state"
+        ? deriveStateCode(metadata ?? null, metadata?.fullName ?? result.case_name ?? null, metadata?.shortName ?? null) ??
+          inferStateFromSlug(courtId)
+        : null;
+
+    if (jurisdictionCategory === "federal" && !allowFederal) {
+      continue;
+    }
+    if (jurisdictionCategory === "state" && !allowState) {
+      continue;
+    }
+    if (jurisdictionCategory === "agency" && !allowAgency) {
+      continue;
+    }
+    if (restrictJurisdictions && jurisdictionCategory === "mixed") {
+      continue;
+    }
+    if (stateFilter && jurisdictionCategory === "state") {
+      if (!stateCode || stateCode.toUpperCase() !== stateFilter) {
+        continue;
+      }
+    }
+
+    const searchableText = [
+      caseName,
+      caseNameShort ?? "",
+      result.docket_number ?? "",
+      result.nature_of_suit ?? "",
+      result.cause ?? "",
+      result.appeal_from ?? "",
+      result.assigned_to ?? "",
+      metadata?.fullName ?? "",
+      metadata?.shortName ?? "",
+    ].join(" ");
+
+    if (requireAllTokens && !matchesAllTokens(searchableText, tokenSet)) {
+      continue;
+    }
+
+    const snippetCandidate = result.snippet ?? result.nature_of_suit ?? result.cause ?? null;
+    const snippet = snippetCandidate ? sanitizeSnippet(snippetCandidate, 200) : { plain: null, html: null };
+
+    dockets.push({
+      id: result.id ? result.id.toString() : absoluteUrl ?? caseName,
+      caseName,
+      caseNameShort,
+      docketNumber: result.docket_number ?? null,
+      absoluteUrl,
+      docketEntriesUrl,
+      dateFiled: result.date_filed ?? null,
+      courtId: courtId ?? null,
+      courtName: metadata?.fullName ?? metadata?.shortName ?? null,
+      jurisdictionCategory,
+      stateCode: stateCode ?? null,
+      assignedTo: result.assigned_to ?? null,
+      natureOfSuit: result.nature_of_suit ?? null,
+      cause: result.cause ?? null,
+      appealFrom: result.appeal_from ?? null,
+      recapSource: result.source ?? null,
+      snippet: snippet.plain,
+    });
+
+    if (dockets.length >= limit) {
+      break;
+    }
+  }
+
+  return dockets;
 }
 
 function extractYear(dateString: string | null): string | null {

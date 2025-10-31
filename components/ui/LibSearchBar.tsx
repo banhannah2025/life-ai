@@ -171,6 +171,8 @@ const BASE_WEIGHTS: Record<string, number> = {
     post: 0.6,
     channel: 0.5,
     opinion: 0.78,
+    waOpinion: 0.77,
+    recap: 0.8,
     govDocument: 0.82,
     libraryItem: 0.85,
     federalRegister: 0.8,
@@ -178,16 +180,22 @@ const BASE_WEIGHTS: Record<string, number> = {
     regulations: 0.76,
     openStates: 0.74,
     localDoc: 0.88,
+    rcw: 0.73,
+    uscode: 0.72,
 };
 
 const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
     courtlistener: 0,
-    govinfo: 1,
-    ecfr: 2,
-    regulations: 3,
-    federalregister: 4,
-    openstates: 5,
-    knowledge: 6,
+    waopinions: 1,
+    rcw: 2,
+    uscode: 3,
+    recap: 4,
+    govinfo: 5,
+    ecfr: 6,
+    regulations: 7,
+    federalregister: 8,
+    openstates: 9,
+    knowledge: 10,
 };
 
 const LEGAL_RESOURCE_PAGE_SIZE = 5;
@@ -352,6 +360,8 @@ function aggregateSearchResults(
     const includePosts = !isLegal;
     const includeChannels = !isLegal;
     const includeOpinions = isLegal || researchType === "ai";
+    const includeRecap = isLegal || researchType === "ai";
+    const includeWaOpinions = isLegal || researchType === "ai";
     const includeGovDocuments = isLegal || isAcademic || researchType === "ai";
     const includeLibraryItems = isAcademic || researchType === "ai";
     const includeFederalRegister = isLegal || researchType === "ai";
@@ -359,6 +369,8 @@ function aggregateSearchResults(
     const includeRegulations = isLegal || researchType === "ai";
     const includeOpenStates = isLegal || researchType === "ai";
     const includeLocalDocuments = isLegal || researchType === "ai";
+    const includeRcwSections = isLegal || researchType === "ai";
+    const includeUsCodeDownloads = isLegal || researchType === "ai";
 
     const activeCollections =
         filters?.collections && filters.collections.size > 0 ? filters.collections : new Set(legalCollections.map((c) => c.value));
@@ -515,6 +527,58 @@ function aggregateSearchResults(
         }
     }
 
+    if (includeRecap) {
+        for (const docket of data.recapDockets ?? []) {
+            const text = `${docket.caseName} ${docket.docketNumber ?? ""} ${docket.natureOfSuit ?? ""} ${docket.cause ?? ""}`;
+            const snippet =
+                docket.snippet ?? docket.natureOfSuit ?? docket.cause ?? "Recent RECAP docket entry";
+            const jurisdiction = docket.jurisdictionCategory ?? "mixed";
+            pushIfAllowed({
+                id: `recap-${docket.id}`,
+                title: docket.docketNumber ? `${docket.caseName} (Docket ${docket.docketNumber})` : docket.caseName,
+                snippet,
+                snippetHtml: null,
+                type: "RECAP docket",
+                href: docket.absoluteUrl ?? "#",
+                external: true,
+                score: computeScore(query, BASE_WEIGHTS.recap, text),
+                date: docket.dateFiled,
+                year: extractYear(docket.dateFiled ?? null),
+                collection: "litigation",
+                jurisdiction,
+                sourceLabel: "CourtListener RECAP",
+                resourceKey: "recap",
+                resourceLabel: "CourtListener RECAP",
+                stateCode: docket.stateCode ?? null,
+            });
+        }
+    }
+
+    if (includeWaOpinions) {
+        for (const opinion of data.waOpinions ?? []) {
+            const text = `${opinion.caseTitle} ${opinion.docketNumber} ${opinion.fileContains}`;
+            const snippet = opinion.summary || opinion.fileContains || "Washington appellate opinion";
+            pushIfAllowed({
+                id: `wa-opinion-${opinion.id}`,
+                title: `${opinion.caseTitle} (Docket ${opinion.docketNumber})`,
+                snippet,
+                snippetHtml: null,
+                type: opinion.courtLabel,
+                href: opinion.detailUrl ?? opinion.pdfUrl ?? "#",
+                external: Boolean(opinion.detailUrl || opinion.pdfUrl),
+                score: computeScore(query, BASE_WEIGHTS.waOpinion, text),
+                date: opinion.fileDate,
+                year: extractYear(opinion.fileDate ?? null),
+                collection: "primary-law",
+                jurisdiction: "state",
+                sourceLabel: "Washington Courts",
+                resourceKey: "waopinions",
+                resourceLabel: "Washington Courts",
+                stateCode: "WA",
+            });
+        }
+    }
+
     if (includeGovDocuments) {
         for (const doc of data.govDocuments) {
             const text = `${doc.title} ${doc.collectionName ?? ""} ${doc.citation ?? ""}`;
@@ -654,6 +718,53 @@ function aggregateSearchResults(
                 resourceKey: "openstates",
                 resourceLabel: "Open States",
                 stateCode: bill.jurisdiction ? STATE_NAME_TO_CODE[bill.jurisdiction.toLowerCase()] ?? null : null,
+            });
+        }
+    }
+
+    if (includeRcwSections) {
+        for (const section of data.rcwSections ?? []) {
+            const text = `${section.sectionNumber} ${section.heading} ${section.summary}`;
+            pushIfAllowed({
+                id: `rcw-${section.id}`,
+                title: `RCW ${section.sectionNumber} – ${section.heading}`,
+                snippet: section.summary,
+                snippetHtml: null,
+                type: "RCW",
+                href: section.appPath,
+                external: false,
+                score: computeScore(query, BASE_WEIGHTS.rcw, text),
+                collection: "primary-law",
+                jurisdiction: "state",
+                sourceLabel: "Washington RCW",
+                resourceKey: "rcw",
+                resourceLabel: "RCW",
+                stateCode: "WA",
+            });
+        }
+    }
+
+    if (includeUsCodeDownloads) {
+        for (const item of data.uscodeTitles ?? []) {
+            const text = `${item.titleLabel} ${item.description} ${item.releaseLabel}`;
+            const snippetParts = [item.description, item.localPath ? "Cached locally" : "Remote bundle"]
+                .filter(Boolean)
+                .join(" • ");
+            pushIfAllowed({
+                id: `uscode-${item.id}`,
+                title: `${item.titleLabel} (Release ${item.releaseLabel})`,
+                snippet: snippetParts || "U.S. Code XML download",
+                snippetHtml: null,
+                type: "U.S. Code XML",
+                href: item.remoteUrl,
+                external: true,
+                score: computeScore(query, BASE_WEIGHTS.uscode, text),
+                collection: "primary-law",
+                jurisdiction: "federal",
+                sourceLabel: "Office of the Law Revision Counsel",
+                resourceKey: "uscode",
+                resourceLabel: "U.S. Code",
+                stateCode: null,
             });
         }
     }

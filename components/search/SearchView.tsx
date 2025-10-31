@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PostList } from "@/components/social/PostList";
 import type { SocialPostDTO, SocialChannelDTO } from "@/lib/social/client";
-import type { CourtListenerOpinion } from "@/lib/courtlistener/types";
+import type { CourtListenerOpinion, CourtListenerRecapDocket } from "@/lib/courtlistener/types";
 import { formatOpinionTitle } from "@/lib/courtlistener/format";
 import type { EcfrDocument } from "@/lib/ecfr/types";
 import type { FederalRegisterDocument } from "@/lib/federalregister/types";
@@ -24,18 +24,27 @@ import { fetchRelationships } from "@/lib/social/client";
 import { searchDirectory, type ProfileSearchResult } from "@/lib/search/client";
 import { FriendshipButton } from "@/components/social/FriendshipButton";
 import type { FriendRelationshipStatus } from "@/components/social/PostList";
+import type {
+  RcwSectionSearchResult,
+  UsCodeDownloadSearchResult,
+  WashingtonCourtOpinionSearchResult,
+} from "@/lib/library/datasets";
 
 type SearchResultsState = {
   profiles: ProfileSearchResult[];
   posts: SocialPostDTO[];
   channels: SocialChannelDTO[];
   opinions: CourtListenerOpinion[];
+  recapDockets: CourtListenerRecapDocket[];
   govDocuments: GovInfoDocument[];
   libraryItems: LibraryOfCongressItem[];
   federalRegisterDocuments: FederalRegisterDocument[];
   ecfrDocuments: EcfrDocument[];
   regulationsDocuments: RegulationsDocument[];
   openStatesBills: OpenStatesBill[];
+  waOpinions: WashingtonCourtOpinionSearchResult[];
+  rcwSections: RcwSectionSearchResult[];
+  uscodeTitles: UsCodeDownloadSearchResult[];
 };
 
 const initialResults: SearchResultsState = {
@@ -43,12 +52,16 @@ const initialResults: SearchResultsState = {
   posts: [],
   channels: [],
   opinions: [],
+  recapDockets: [],
   govDocuments: [],
   libraryItems: [],
   federalRegisterDocuments: [],
   ecfrDocuments: [],
   regulationsDocuments: [],
   openStatesBills: [],
+  waOpinions: [],
+  rcwSections: [],
+  uscodeTitles: [],
 };
 
 type SearchViewProps = {
@@ -58,6 +71,10 @@ type SearchViewProps = {
     | "posts"
     | "channels"
     | "opinions"
+    | "recap"
+    | "waopinions"
+    | "rcw"
+    | "uscode"
     | "govinfo"
     | "loc"
     | "federalregister"
@@ -167,6 +184,18 @@ function formatDisplayDate(value: string | null): string | null {
   }).format(date);
 }
 
+function formatFileSize(bytes: number | null): string | null {
+  if (!bytes || bytes <= 0) {
+    return null;
+  }
+  const megabytes = bytes / (1024 * 1024);
+  if (megabytes < 1) {
+    const kilobytes = bytes / 1024;
+    return `${kilobytes.toFixed(1)} KB`;
+  }
+  return `${megabytes.toFixed(megabytes >= 10 ? 0 : 1)} MB`;
+}
+
 type OpinionResultCardProps = {
   opinion: CourtListenerOpinion;
 };
@@ -209,6 +238,192 @@ function OpinionResultCard({ opinion }: OpinionResultCardProps) {
             </a>
           </Button>
         ) : null}
+      </CardContent>
+    </Card>
+  );
+}
+
+type RecapDocketResultCardProps = {
+  docket: CourtListenerRecapDocket;
+};
+
+function RecapDocketResultCard({ docket }: RecapDocketResultCardProps) {
+  const formattedDate = useMemo(() => formatDisplayDate(docket.dateFiled), [docket.dateFiled]);
+  const snippet = docket.snippet ?? docket.natureOfSuit ?? docket.cause ?? null;
+  const courtLabel = docket.courtName ?? docket.courtId ?? "Court";
+
+  return (
+    <Card className="border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex items-start gap-3">
+          <ScrollText className="mt-1 h-4 w-4 flex-shrink-0 text-slate-500" aria-hidden />
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-slate-900">{docket.caseName}</h3>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+              {formattedDate ? <span>{formattedDate}</span> : null}
+              {docket.docketNumber ? <span>Docket {docket.docketNumber}</span> : null}
+              <Badge variant="outline">{courtLabel}</Badge>
+              {docket.assignedTo ? <Badge variant="secondary">Judge {docket.assignedTo}</Badge> : null}
+            </div>
+            {docket.caseNameShort && docket.caseNameShort !== docket.caseName ? (
+              <p className="text-sm text-slate-500">{docket.caseNameShort}</p>
+            ) : null}
+            {snippet ? <p className="text-sm leading-relaxed text-slate-600">{snippet}</p> : null}
+            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+              {docket.natureOfSuit ? <span>Nature: {docket.natureOfSuit}</span> : null}
+              {docket.cause ? <span>Cause: {docket.cause}</span> : null}
+              {docket.appealFrom ? <span>Appeal from {docket.appealFrom}</span> : null}
+              {docket.stateCode ? <span>{docket.stateCode}</span> : null}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 sm:min-w-[160px]">
+          {docket.absoluteUrl ? (
+            <Button variant="outline" size="sm" asChild>
+              <a href={docket.absoluteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                View docket
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </Button>
+          ) : null}
+          {docket.docketEntriesUrl ? (
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href={docket.docketEntriesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                Docket entries
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </Button>
+          ) : null}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+type WaOpinionResultCardProps = {
+  opinion: WashingtonCourtOpinionSearchResult;
+};
+
+function WaOpinionResultCard({ opinion }: WaOpinionResultCardProps) {
+  const formattedDate = useMemo(() => formatDisplayDate(opinion.fileDate), [opinion.fileDate]);
+
+  return (
+    <Card className="border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex items-start gap-3">
+          <Gavel className="mt-1 h-4 w-4 flex-shrink-0 text-slate-500" aria-hidden />
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-slate-900">{opinion.caseTitle}</h3>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+              {formattedDate ? <span>{formattedDate}</span> : null}
+              <Badge variant="outline">{opinion.courtLabel}</Badge>
+              {opinion.division ? <Badge variant="secondary">Division {opinion.division}</Badge> : null}
+              <span>Docket {opinion.docketNumber}</span>
+            </div>
+            <p className="text-sm text-slate-500">{opinion.fileContains}</p>
+            <p className="text-sm leading-relaxed text-slate-600">{opinion.summary}</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 sm:min-w-[160px]">
+          {opinion.detailUrl ? (
+            <Button variant="outline" size="sm" asChild>
+              <a href={opinion.detailUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                Opinion detail
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </Button>
+          ) : null}
+          {opinion.pdfUrl ? (
+            <Button variant="outline" size="sm" asChild>
+              <a href={opinion.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                Download PDF
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </Button>
+          ) : null}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+type RcwSectionResultCardProps = {
+  section: RcwSectionSearchResult;
+};
+
+function RcwSectionResultCard({ section }: RcwSectionResultCardProps) {
+  return (
+    <Card className="border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex items-start gap-3">
+          <BookOpen className="mt-1 h-4 w-4 flex-shrink-0 text-slate-500" aria-hidden />
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-slate-900">
+              RCW {section.sectionNumber} – {section.heading}
+            </h3>
+            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+              <span>Title {section.titleNumber}</span>
+              <span>Chapter {section.chapterNumber}</span>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-600">{section.summary}</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 sm:min-w-[160px]">
+          <Button variant="outline" size="sm" asChild>
+            <Link href={section.appPath} className="inline-flex items-center gap-2">
+              Open in workspace
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
+          <Button variant="outline" size="sm" asChild>
+            <a href={section.officialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              View on legislature site
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </a>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+type UsCodeDownloadResultCardProps = {
+  item: UsCodeDownloadSearchResult;
+};
+
+function UsCodeDownloadResultCard({ item }: UsCodeDownloadResultCardProps) {
+  const formattedSize = useMemo(() => formatFileSize(item.fileSize), [item.fileSize]);
+
+  return (
+    <Card className="border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex items-start gap-3">
+          <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-slate-500" aria-hidden />
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-slate-900">
+              {item.titleLabel} – Release {item.releaseLabel}
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">{item.description}</p>
+            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+              {item.titleNumber ? <span>Title {item.titleNumber}</span> : null}
+              {formattedSize ? <span>{formattedSize}</span> : null}
+              {item.localPath ? <span>Cached locally</span> : <span>Remote download</span>}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 sm:min-w-[160px]">
+          <Button variant="outline" size="sm" asChild>
+            <a href={item.remoteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              Download XML bundle
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </a>
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
@@ -520,24 +735,32 @@ export function SearchView({
       const includePosts = mode === "all" || mode === "posts";
       const includeChannels = mode === "all" || mode === "channels";
       const includeOpinions = mode === "all" || mode === "opinions";
+      const includeWaOpinions = mode === "all" || mode === "opinions" || mode === "waopinions";
+      const includeRecap = mode === "all" || mode === "recap";
       const includeGovDocuments = mode === "all" || mode === "govinfo";
       const includeLibraryItems = mode === "all" || mode === "loc";
       const includeFederalRegister = mode === "all" || mode === "federalregister";
       const includeEcfr = mode === "all" || mode === "ecfr";
       const includeRegulations = mode === "all" || mode === "regulations";
       const includeOpenStates = mode === "all" || mode === "openstates";
+      const includeRcw = mode === "all" || mode === "rcw";
+      const includeUsCode = mode === "all" || mode === "uscode";
 
       setResults({
         profiles: includeProfiles ? response.profiles : [],
         posts: includePosts ? response.posts : [],
         channels: includeChannels ? response.channels : [],
         opinions: includeOpinions ? response.opinions : [],
+        waOpinions: includeWaOpinions ? response.waOpinions : [],
+        recapDockets: includeRecap ? response.recapDockets : [],
         govDocuments: includeGovDocuments ? response.govDocuments : [],
         libraryItems: includeLibraryItems ? response.libraryItems : [],
         federalRegisterDocuments: includeFederalRegister ? response.federalRegisterDocuments : [],
         ecfrDocuments: includeEcfr ? response.ecfrDocuments : [],
         regulationsDocuments: includeRegulations ? response.regulationsDocuments : [],
         openStatesBills: includeOpenStates ? response.openStatesBills : [],
+        rcwSections: includeRcw ? response.rcwSections : [],
+        uscodeTitles: includeUsCode ? response.uscodeTitles : [],
       });
     } catch (searchError) {
       console.error(searchError);
@@ -601,12 +824,16 @@ export function SearchView({
     results.posts.length > 0 ||
     results.channels.length > 0 ||
     results.opinions.length > 0 ||
+    results.recapDockets.length > 0 ||
     results.govDocuments.length > 0 ||
     results.libraryItems.length > 0 ||
     results.federalRegisterDocuments.length > 0 ||
     results.ecfrDocuments.length > 0 ||
     results.regulationsDocuments.length > 0 ||
-    results.openStatesBills.length > 0;
+    results.openStatesBills.length > 0 ||
+    results.waOpinions.length > 0 ||
+    results.rcwSections.length > 0 ||
+    results.uscodeTitles.length > 0;
 
   const resultsContent = (
     <>
@@ -675,6 +902,38 @@ export function SearchView({
           <div className="space-y-3">
             {results.opinions.map((opinion) => (
               <OpinionResultCard key={opinion.id} opinion={opinion} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(mode === "all" || mode === "recap") && results.recapDockets.length > 0 ? (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">RECAP dockets</h2>
+            <span className="text-sm text-slate-500">
+              {results.recapDockets.length} result{results.recapDockets.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {results.recapDockets.map((docket) => (
+              <RecapDocketResultCard key={docket.id} docket={docket} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(mode === "all" || mode === "opinions" || mode === "waopinions") && results.waOpinions.length > 0 ? (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">Washington appellate opinions</h2>
+            <span className="text-sm text-slate-500">
+              {results.waOpinions.length} result{results.waOpinions.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {results.waOpinions.map((opinion) => (
+              <WaOpinionResultCard key={opinion.id} opinion={opinion} />
             ))}
           </div>
         </section>
@@ -755,6 +1014,38 @@ export function SearchView({
           <div className="space-y-3">
             {results.ecfrDocuments.map((document) => (
               <EcfrResultCard key={document.id} document={document} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(mode === "all" || mode === "rcw") && results.rcwSections.length > 0 ? (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">RCW sections</h2>
+            <span className="text-sm text-slate-500">
+              {results.rcwSections.length} result{results.rcwSections.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {results.rcwSections.map((section) => (
+              <RcwSectionResultCard key={section.id} section={section} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(mode === "all" || mode === "uscode") && results.uscodeTitles.length > 0 ? (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">U.S. Code release bundles</h2>
+            <span className="text-sm text-slate-500">
+              {results.uscodeTitles.length} result{results.uscodeTitles.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {results.uscodeTitles.map((item) => (
+              <UsCodeDownloadResultCard key={item.id} item={item} />
             ))}
           </div>
         </section>

@@ -18,3 +18,23 @@ export type CourtListenerOpinion = {
   jurisdictionCategory: CourtJurisdictionCategory;
   stateCode: string | null;
 };
+
+export type CourtListenerRecapDocket = {
+  id: string;
+  caseName: string;
+  caseNameShort: string | null;
+  docketNumber: string | null;
+  absoluteUrl: string | null;
+  docketEntriesUrl: string | null;
+  dateFiled: string | null;
+  courtId: string | null;
+  courtName: string | null;
+  jurisdictionCategory: CourtJurisdictionCategory;
+  stateCode: string | null;
+  assignedTo: string | null;
+  natureOfSuit: string | null;
+  cause: string | null;
+  appealFrom: string | null;
+  recapSource: string | null;
+  snippet: string | null;
+};

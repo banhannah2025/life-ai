@@ -5,7 +5,7 @@ import { serializeChannel, serializePost } from "@/lib/social/serialization";
 import { searchPosts } from "@/lib/social/server/posts";
 import { searchChannels } from "@/lib/social/server/channels";
 import { searchProfiles } from "@/lib/search/server";
-import { searchCourtListenerOpinions } from "@/lib/courtlistener/server";
+import { searchCourtListenerOpinions, searchCourtListenerRecapDockets } from "@/lib/courtlistener/server";
 import { searchGovInfoDocuments } from "@/lib/govinfo/server";
 import { searchLibraryOfCongress } from "@/lib/loc/server";
 import { searchFederalRegisterDocuments } from "@/lib/federalregister/server";
@@ -13,6 +13,7 @@ import { searchEcfrDocuments } from "@/lib/ecfr/server";
 import { searchRegulationsDocuments } from "@/lib/regulations/server";
 import { searchOpenStatesBills } from "@/lib/openstates/server";
 import { searchLocalLibraryResources } from "@/lib/library/resources";
+import { searchLibraryDatasets } from "@/lib/library/datasets";
 
 function toProfileResult(response: Awaited<ReturnType<typeof searchProfiles>>[number]) {
   const { id, fullName, profile } = response;
@@ -57,12 +58,16 @@ export async function GET(request: Request) {
       posts: [],
       channels: [],
       opinions: [],
+      recapDockets: [],
       govDocuments: [],
       libraryItems: [],
       federalRegisterDocuments: [],
       ecfrDocuments: [],
       regulationsDocuments: [],
       openStatesBills: [],
+      waOpinions: [],
+      rcwSections: [],
+      uscodeTitles: [],
       localDocuments: [],
     });
   }
@@ -91,6 +96,18 @@ export async function GET(request: Request) {
   const shouldSearchChannels = !searchLegal && (searchAll || type === "channels");
   const shouldSearchOpinions =
     (searchAll || searchLegal || type === "opinions") && canAccessPrimaryLaw && (includeFederal || includeState);
+  const shouldSearchWaLocalOpinions =
+    (searchAll || searchLegal || type === "opinions" || type === "waopinions") &&
+    canAccessPrimaryLaw &&
+    includeState;
+  const shouldSearchRcw =
+    (searchAll || searchLegal || type === "rcw") && canAccessPrimaryLaw && includeState;
+  const shouldSearchUsCode =
+    (searchAll || searchLegal || type === "uscode") && canAccessPrimaryLaw && includeFederal;
+  const shouldSearchRecap =
+    (searchAll || searchLegal || type === "recap") &&
+    (canAccessLitigation || canAccessPrimaryLaw) &&
+    (includeFederal || includeState);
   const shouldSearchGovDocuments =
     (searchAll || searchLegal || type === "govinfo") && canAccessPrimaryLaw && includeFederal;
   const shouldSearchLibrary = searchAll || type === "loc";
@@ -110,6 +127,7 @@ export async function GET(request: Request) {
     postMatches,
     channelMatches,
     opinionMatches,
+    recapMatches,
     govDocumentMatches,
     libraryMatches,
     federalRegisterMatches,
@@ -129,6 +147,14 @@ export async function GET(request: Request) {
           stateFilter,
         })
       : Promise.resolve([]),
+    shouldSearchRecap
+      ? searchCourtListenerRecapDockets(query, limit, {
+          includeFederal,
+          includeState,
+          includeAgency,
+          stateFilter,
+        })
+      : Promise.resolve([]),
     shouldSearchGovDocuments ? searchGovInfoDocuments(query, limit) : Promise.resolve([]),
     shouldSearchLibrary ? searchLibraryOfCongress(query, limit) : Promise.resolve([]),
     shouldSearchFederalRegister ? searchFederalRegisterDocuments(query, limit) : Promise.resolve([]),
@@ -138,17 +164,34 @@ export async function GET(request: Request) {
     shouldSearchLocal ? Promise.resolve(searchLocalLibraryResources(query, limit)) : Promise.resolve([]),
   ]);
 
+  const datasetResults =
+    shouldSearchRcw || shouldSearchUsCode || shouldSearchWaLocalOpinions
+      ? searchLibraryDatasets(query, {
+          rcwLimit: limit,
+          uscodeLimit: limit,
+          waOpinionsLimit: limit,
+        })
+      : { rcwSections: [], uscodeTitles: [], waOpinions: [] };
+
+  const rcwMatches = shouldSearchRcw ? datasetResults.rcwSections : [];
+  const uscodeMatches = shouldSearchUsCode ? datasetResults.uscodeTitles : [];
+  const waLocalOpinionMatches = shouldSearchWaLocalOpinions ? datasetResults.waOpinions : [];
+
   return NextResponse.json({
     profiles: profileMatches.map(toProfileResult),
     posts: postMatches.map(serializePost),
     channels: channelMatches.map(serializeChannel),
     opinions: opinionMatches,
+    recapDockets: recapMatches,
     govDocuments: govDocumentMatches,
     libraryItems: libraryMatches,
     federalRegisterDocuments: federalRegisterMatches,
     ecfrDocuments: ecfrMatches,
     regulationsDocuments: regulationsMatches,
     openStatesBills: openStatesMatches,
+    waOpinions: waLocalOpinionMatches,
+    rcwSections: rcwMatches,
+    uscodeTitles: uscodeMatches,
     localDocuments: localResourceMatches,
   });
 }

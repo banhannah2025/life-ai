@@ -1,6 +1,5 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
-import type { Cheerio, Element } from "cheerio"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { setTimeout as delay } from "node:timers/promises"
@@ -10,6 +9,7 @@ const RECENT_OPINIONS_URL = `${BASE_URL}/opinions/?fa=opinions.recent`
 const OUTPUT_ROOT = path.join(process.cwd(), "data", "wa-courts")
 const REQUEST_DELAY_MS = 250
 const USER_AGENT = "life-ai-wa-courts-scraper/1.0 (+https://life.ai)"
+
 
 type OpinionSection = {
   court: "Supreme Court" | "Court of Appeals"
@@ -111,7 +111,7 @@ function absoluteUrl(href: string | undefined | null) {
   return new URL(href, BASE_URL).toString()
 }
 
-function detectSuperseded($row: Cheerio<Element>) {
+function detectSuperseded($row: any) {
   return $row.find("b.error, span.error, .error").length > 0
 }
 
@@ -119,7 +119,10 @@ function buildSectionSlug(court: OpinionSection["court"], category: string) {
   return `${court.toLowerCase().replace(/\s+/g, "-")}-${slugify(category, 40)}`
 }
 
-function parseOpinionsTable($: cheerio.CheerioAPI, table: cheerio.Element, context: { court: OpinionSection["court"]; category: string }): CourtOpinion[] {
+function parseOpinionsTable($: cheerio.CheerioAPI, table: any, context: { court: OpinionSection["court"]; category: string }): CourtOpinion[] {
+  if (!table) {
+    return []
+  }
   const opinions: CourtOpinion[] = []
   const $table = $(table)
   const hasDivisionColumn = $table.find("tr").first().find("td").length === 5

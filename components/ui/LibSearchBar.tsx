@@ -41,6 +41,7 @@ import {
     requestAiSearchAssist,
     requestAiSearchAnswer,
     type AiSearchAnswerCitation,
+    type AiSearchAnswerResultInput,
     type AiSearchAssistWebResult,
 } from "@/lib/search/ai";
 import { extractSearchTokens } from "@/lib/search/keywords";
@@ -1278,6 +1279,7 @@ export function LibSearchBar() {
             setAiAssistAnswer(null);
             setAiAssistCitations(null);
             let effectiveQuery = trimmed;
+            let assistWebResults: AiSearchAssistWebResult[] | null = null;
             if (aiAssistEnabled) {
                 try {
                     const assist = await requestAiSearchAssist(trimmed, researchType);
@@ -1289,13 +1291,15 @@ export function LibSearchBar() {
                         assist.summary?.trim() || "AI assist refined your query for better matching.",
                     );
                     setAiAssistQuery(effectiveQuery);
-                    setAiAssistSources(assist.webResults && assist.webResults.length ? assist.webResults : null);
+                    assistWebResults = assist.webResults && assist.webResults.length ? assist.webResults : null;
+                    setAiAssistSources(assistWebResults);
                 } catch (assistError) {
                     console.error(assistError);
                     toast.error(
                         assistError instanceof Error ? assistError.message : "AI assist unavailable. Using original query.",
                     );
                     setAiAssistSources(null);
+                    assistWebResults = null;
                 }
             }
 
@@ -1333,21 +1337,37 @@ export function LibSearchBar() {
             const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters);
             setResults(aggregated);
             setLastQuery(effectiveQuery);
-            if (aiAssistEnabled && aggregated.length > 0) {
-                try {
-                    const topResults = aggregated.slice(0, 8).map((item, index) => ({
+            let answerContext: AiSearchAnswerResultInput[] = [];
+            if (aiAssistEnabled) {
+                if (aggregated.length > 0) {
+                    answerContext = aggregated.slice(0, 8).map((item, index) => ({
                         title: item.title,
                         snippet: item.snippet,
                         url:
                             item.external || (item.href && /^https?:\/\//i.test(item.href))
                                 ? item.href
-                                : item.href ?? null,
+                                : null,
                         source: item.resourceLabel ?? item.type ?? `Result ${index + 1}`,
                         date: item.date ?? item.year ?? null,
                     }));
-                    const answer = await requestAiSearchAnswer(trimmed, researchType, topResults);
+                } else if (assistWebResults && assistWebResults.length > 0) {
+                    answerContext = assistWebResults.slice(0, 6).map((source) => ({
+                        title: source.title,
+                        snippet: source.snippet ?? null,
+                        url: source.url ?? null,
+                        source: source.source ?? "Web",
+                        date: null,
+                    }));
+                }
+            }
+
+            let answerGenerated = false;
+            if (aiAssistEnabled && answerContext.length > 0) {
+                try {
+                    const answer = await requestAiSearchAnswer(trimmed, researchType, answerContext);
                     setAiAssistAnswer(answer.answer);
                     setAiAssistCitations(answer.citations.length ? answer.citations : null);
+                    answerGenerated = true;
                 } catch (answerError) {
                     console.error(answerError);
                     toast.error(
@@ -1356,9 +1376,19 @@ export function LibSearchBar() {
                     setAiAssistAnswer(null);
                     setAiAssistCitations(null);
                 }
+            } else {
+                setAiAssistAnswer(null);
+                setAiAssistCitations(null);
             }
+
             if (aggregated.length === 0) {
-                setError("No matches found. Try refining your keywords or adjusting filters.");
+                if (answerGenerated) {
+                    setError(
+                        "No direct database matches were found. Review the AI synthesis above and check connector credentials or filters."
+                    );
+                } else {
+                    setError("No matches found. Try refining your keywords or adjusting filters.");
+                }
             }
         } catch (searchError) {
             console.error(searchError);

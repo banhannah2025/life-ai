@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59156-1",
+  "docketNumberNormalized": "591561",
+  "caseTitle": "State Of Washington, Respondent V. Daniel James Gilmore, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=591561MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059156-1-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/591561-state-of-washington-respondent-v-daniel-james-gilmore-appell.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:04.000Z",
+  "detail": {
+    "Docket Number": "59156-1",
+    "Title of Case": "State Of Washington, Respondent V. Daniel James Gilmore, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "22-1-00108-4",
+    "Date filed": "01/19/2024",
+    "Judge signing": "Honorable Brandon Mack",
+    "Authored by": "Bradley Maxa",
+    "Concurring": "Bernard Veljacic"
+  }
+}

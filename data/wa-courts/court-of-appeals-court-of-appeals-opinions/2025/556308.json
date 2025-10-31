@@ -1,0 +1,25 @@
+{
+  "docketNumber": "55630-8",
+  "docketNumberNormalized": "556308",
+  "caseTitle": "State Of Washington, Respondent V. Miguel Angel Medel Lopez, Appellant",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=556308MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2055630-8-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/556308-state-of-washington-respondent-v-miguel-angel-medel-lopez-ap.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:51.307Z",
+  "detail": {
+    "Docket Number": "55630-8",
+    "Title of Case": "State Of Washington, Respondent V. Miguel Angel Medel Lopez, Appellant",
+    "File Date": "10/28/2025",
+    "Docket No": "19-1-00504-1",
+    "Date filed": "11/24/2020",
+    "Judge signing": "Honorable Simon Barnhart",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Bradley Maxa"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59582-6",
+  "docketNumberNormalized": "595826",
+  "caseTitle": "State Of Washington, Respondent V Charles A. Cooper, Jr., Appellant",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=595826MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059582-6-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/595826-state-of-washington-respondent-v-charles-a-cooper-jr-appella.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:47.641Z",
+  "detail": {
+    "Docket Number": "59582-6",
+    "Title of Case": "State Of Washington, Respondent V Charles A. Cooper, Jr., Appellant",
+    "File Date": "10/28/2025",
+    "Docket No": "21-1-01529-4",
+    "Date filed": "04/19/2024",
+    "Judge signing": "Honorable John Fairgrieve",
+    "Authored by": "Erik Price",
+    "Concurring": "Linda Lee"
+  }
+}

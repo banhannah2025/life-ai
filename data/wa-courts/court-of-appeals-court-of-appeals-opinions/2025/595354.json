@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59535-4",
+  "docketNumberNormalized": "595354",
+  "caseTitle": "State Of Washington, Respondent V. Devon Robert Moore, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=595354MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059535-4-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/595354-state-of-washington-respondent-v-devon-robert-moore-appellan.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:04.625Z",
+  "detail": {
+    "Docket Number": "59535-4",
+    "Title of Case": "State Of Washington, Respondent V. Devon Robert Moore, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "11-1-00049-2",
+    "Date filed": "04/19/2024",
+    "Judge signing": "Honorable Donald J Richter",
+    "Authored by": "Bernard Veljacic",
+    "Concurring": "Anne Cruser"
+  }
+}

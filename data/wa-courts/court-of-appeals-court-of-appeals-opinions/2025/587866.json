@@ -1,0 +1,25 @@
+{
+  "docketNumber": "58786-6",
+  "docketNumberNormalized": "587866",
+  "caseTitle": "State Of Washington, Appellant V. Scott Joseph Perrin, Respondent",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=587866MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2058786-6-II%20Published%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/587866-state-of-washington-appellant-v-scott-joseph-perrin-responde.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:36.457Z",
+  "detail": {
+    "Docket Number": "58786-6",
+    "Title of Case": "State Of Washington, Appellant V. Scott Joseph Perrin, Respondent",
+    "File Date": "10/28/2025",
+    "Docket No": "22-1-02941-2",
+    "Date filed": "09/13/2023",
+    "Judge signing": "Honorable Nancy N. Retsinas",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Bradley Maxa"
+  }
+}

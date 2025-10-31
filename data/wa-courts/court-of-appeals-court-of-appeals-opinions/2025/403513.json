@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40351-3",
+  "docketNumberNormalized": "403513",
+  "caseTitle": "State of Washington v. Reymundo Izaak Hernandez",
+  "fileDate": "2025-10-30",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=403513MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/403513_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/403513-state-of-washington-v-reymundo-izaak-hernandez.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:40.898Z",
+  "detail": {
+    "Docket Number": "40351-3",
+    "Title of Case": "State of Washington v. Reymundo Izaak Hernandez",
+    "File Date": "10/30/2025",
+    "Docket No": "22-1-10321-4",
+    "Date filed": "03/08/2024",
+    "Judge signing": "Honorable Tony D. Hazel",
+    "Authored by": "Tracy Staab",
+    "Concurring": "Robert Lawrence-Berrey"
+  }
+}

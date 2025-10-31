@@ -1,0 +1,24 @@
+{
+  "docketNumber": "85428-3",
+  "docketNumberNormalized": "854283",
+  "caseTitle": "State Of Washington, Respondent V. Brandon Jerome Robinson, Appellant",
+  "fileDate": "2025-10-27",
+  "division": "I",
+  "fileContains": "Majority Opinion and an Order",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=854283MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/854283%20orderandopinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/854283-state-of-washington-respondent-v-brandon-jerome-robinson-app.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:59.093Z",
+  "detail": {
+    "Docket Number": "85428-3",
+    "Title of Case": "State Of Washington, Respondent V. Brandon Jerome Robinson, Appellant",
+    "File Date": "10/27/2025",
+    "Date filed": "06/08/2023",
+    "Judge signing": "Honorable Aimee Sutton",
+    "Authored by": "Leonard Feldman",
+    "Concurring": "Linda Coburn"
+  }
+}

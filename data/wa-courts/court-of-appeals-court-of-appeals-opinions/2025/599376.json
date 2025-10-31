@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59937-6",
+  "docketNumberNormalized": "599376",
+  "caseTitle": "Detention Of L.c.",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=599376MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059937-6-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/599376-detention-of-l-c.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:43.373Z",
+  "detail": {
+    "Docket Number": "59937-6",
+    "Title of Case": "Detention Of L.c.",
+    "File Date": "10/28/2025",
+    "Docket No": "24-6-01037-8",
+    "Date filed": "08/16/2024",
+    "Judge signing": "Honorable Susan Adams",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Rebecca Glasgow"
+  }
+}

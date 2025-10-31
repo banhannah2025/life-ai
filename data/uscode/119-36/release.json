@@ -1,0 +1,308 @@
+{
+  "releaseLabel": "119-36",
+  "releasePath": "releasepoints/us/pl/119/36",
+  "fetchedAt": "2025-10-30T20:16:01.370Z",
+  "downloads": [
+    {
+      "titleSlug": "usc01",
+      "description": "Title 1 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc01@119-36.zip"
+    },
+    {
+      "titleSlug": "usc02",
+      "description": "Title 2 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc02@119-36.zip"
+    },
+    {
+      "titleSlug": "usc03",
+      "description": "Title ? XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc03@119-36.zip"
+    },
+    {
+      "titleSlug": "usc04",
+      "description": "Title 4 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc04@119-36.zip"
+    },
+    {
+      "titleSlug": "usc05",
+      "description": "Title 5 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc05@119-36.zip"
+    },
+    {
+      "titleSlug": "usc05a",
+      "description": "Title 5 App. XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc05a@119-36.zip"
+    },
+    {
+      "titleSlug": "usc06",
+      "description": "Title 6 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc06@119-36.zip"
+    },
+    {
+      "titleSlug": "usc07",
+      "description": "Title 7 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc07@119-36.zip"
+    },
+    {
+      "titleSlug": "usc08",
+      "description": "Title 8 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc08@119-36.zip"
+    },
+    {
+      "titleSlug": "usc09",
+      "description": "Title 9 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc09@119-36.zip"
+    },
+    {
+      "titleSlug": "usc10",
+      "description": "Title 10 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc10@119-36.zip"
+    },
+    {
+      "titleSlug": "usc11",
+      "description": "Title 11 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc11@119-36.zip"
+    },
+    {
+      "titleSlug": "usc11a",
+      "description": "Title 11 App.  XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc11a@119-36.zip"
+    },
+    {
+      "titleSlug": "usc12",
+      "description": "Title 12 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc12@119-36.zip"
+    },
+    {
+      "titleSlug": "usc13",
+      "description": "Title 13 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc13@119-36.zip"
+    },
+    {
+      "titleSlug": "usc14",
+      "description": "Title 14 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc14@119-36.zip"
+    },
+    {
+      "titleSlug": "usc15",
+      "description": "Title 15 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc15@119-36.zip"
+    },
+    {
+      "titleSlug": "usc16",
+      "description": "Title 16 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc16@119-36.zip"
+    },
+    {
+      "titleSlug": "usc17",
+      "description": "Title 17 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc17@119-36.zip"
+    },
+    {
+      "titleSlug": "usc18",
+      "description": "Title 18 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc18@119-36.zip"
+    },
+    {
+      "titleSlug": "usc18a",
+      "description": "Title 18 App. XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc18a@119-36.zip"
+    },
+    {
+      "titleSlug": "usc19",
+      "description": "Title 19 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc19@119-36.zip"
+    },
+    {
+      "titleSlug": "usc20",
+      "description": "Title 20 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc20@119-36.zip"
+    },
+    {
+      "titleSlug": "usc21",
+      "description": "Title 21 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc21@119-36.zip"
+    },
+    {
+      "titleSlug": "usc22",
+      "description": "Title 22 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc22@119-36.zip"
+    },
+    {
+      "titleSlug": "usc23",
+      "description": "Title 23 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc23@119-36.zip"
+    },
+    {
+      "titleSlug": "usc24",
+      "description": "Title 24 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc24@119-36.zip"
+    },
+    {
+      "titleSlug": "usc25",
+      "description": "Title 25 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc25@119-36.zip"
+    },
+    {
+      "titleSlug": "usc26",
+      "description": "Title 26 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc26@119-36.zip"
+    },
+    {
+      "titleSlug": "usc27",
+      "description": "Title 27 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc27@119-36.zip"
+    },
+    {
+      "titleSlug": "usc28",
+      "description": "Title 28 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc28@119-36.zip"
+    },
+    {
+      "titleSlug": "usc28a",
+      "description": "Title 28 App. XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc28a@119-36.zip"
+    },
+    {
+      "titleSlug": "usc29",
+      "description": "Title 29 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc29@119-36.zip"
+    },
+    {
+      "titleSlug": "usc30",
+      "description": "Title 30 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc30@119-36.zip"
+    },
+    {
+      "titleSlug": "usc31",
+      "description": "Title 31 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc31@119-36.zip"
+    },
+    {
+      "titleSlug": "usc32",
+      "description": "Title 32 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc32@119-36.zip"
+    },
+    {
+      "titleSlug": "usc33",
+      "description": "Title 33 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc33@119-36.zip"
+    },
+    {
+      "titleSlug": "usc34",
+      "description": "Title 34 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc34@119-36.zip"
+    },
+    {
+      "titleSlug": "usc35",
+      "description": "Title 35 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc35@119-36.zip"
+    },
+    {
+      "titleSlug": "usc36",
+      "description": "Title 36 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc36@119-36.zip"
+    },
+    {
+      "titleSlug": "usc37",
+      "description": "Title 37 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc37@119-36.zip"
+    },
+    {
+      "titleSlug": "usc38",
+      "description": "Title 38 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc38@119-36.zip"
+    },
+    {
+      "titleSlug": "usc39",
+      "description": "Title 39 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc39@119-36.zip"
+    },
+    {
+      "titleSlug": "usc40",
+      "description": "Title 40 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc40@119-36.zip"
+    },
+    {
+      "titleSlug": "usc41",
+      "description": "Title 41 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc41@119-36.zip"
+    },
+    {
+      "titleSlug": "usc42",
+      "description": "Title 42 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc42@119-36.zip"
+    },
+    {
+      "titleSlug": "usc43",
+      "description": "Title 43 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc43@119-36.zip"
+    },
+    {
+      "titleSlug": "usc44",
+      "description": "Title 44 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc44@119-36.zip"
+    },
+    {
+      "titleSlug": "usc45",
+      "description": "Title 45 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc45@119-36.zip"
+    },
+    {
+      "titleSlug": "usc46",
+      "description": "Title 46 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc46@119-36.zip"
+    },
+    {
+      "titleSlug": "usc47",
+      "description": "Title 47 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc47@119-36.zip"
+    },
+    {
+      "titleSlug": "usc48",
+      "description": "Title 48 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc48@119-36.zip"
+    },
+    {
+      "titleSlug": "usc49",
+      "description": "Title 49 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc49@119-36.zip"
+    },
+    {
+      "titleSlug": "usc50",
+      "description": "Title 50 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc50@119-36.zip"
+    },
+    {
+      "titleSlug": "usc50a",
+      "description": "Title 50 App. XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc50a@119-36.zip"
+    },
+    {
+      "titleSlug": "usc51",
+      "description": "Title 51 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc51@119-36.zip"
+    },
+    {
+      "titleSlug": "usc52",
+      "description": "Title 52 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc52@119-36.zip"
+    },
+    {
+      "titleSlug": "usc53",
+      "description": "Title 53 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc53@119-36.zip"
+    },
+    {
+      "titleSlug": "usc54",
+      "description": "Title 54 XML",
+      "href": "releasepoints/us/pl/119/36/xml_usc54@119-36.zip"
+    },
+    {
+      "titleSlug": "uscAll",
+      "description": "All USC Titles in XML",
+      "href": "releasepoints/us/pl/119/36/xml_uscAll@119-36.zip"
+    }
+  ],
+  "source": "https://uscode.house.gov/download/download.shtml"
+}

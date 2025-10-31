@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59578-8",
+  "docketNumberNormalized": "595788",
+  "caseTitle": "State Of Washington, Respondent V. Treyvone Ishaq, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=595788MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059578-8-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/595788-state-of-washington-respondent-v-treyvone-ishaq-appellant.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:06.320Z",
+  "detail": {
+    "Docket Number": "59578-8",
+    "Title of Case": "State Of Washington, Respondent V. Treyvone Ishaq, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "21-1-03934-9",
+    "Date filed": "09/08/2023",
+    "Judge signing": "Honorable Alicia Burton",
+    "Authored by": "Bernard Veljacic",
+    "Concurring": "Rebecca Glasgow"
+  }
+}

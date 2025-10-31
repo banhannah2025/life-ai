@@ -1,0 +1,33 @@
+{
+  "docketNumber": "103,135-1",
+  "docketNumberNormalized": "1031351",
+  "caseTitle": "Erickson v. Pharmacia LLC",
+  "fileDate": "2025-10-30",
+  "division": null,
+  "fileContains": "Maj., and Dis. Opinions",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1031351MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1031351.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/supreme-court-supreme-court-opinions/2025/1031351-erickson-v-pharmacia-llc.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:33.958Z",
+  "detail": {
+    "Docket Number": "103,135-1",
+    "Title of Case": "Erickson v. Pharmacia LLC",
+    "File Date": "10/30/2025",
+    "Oral Argument Date": "02/11/2025",
+    "Docket No": "18-2-11915-4",
+    "Date filed": "09/27/2021",
+    "Judge signing": "Honorable Douglass A. North",
+    "Debra L. Stephens": "Majority Author",
+    "Charles W. Johnson": "Signed Dissent",
+    "Barbara A. Madsen": "Signed Dissent",
+    "Steven C. González": "Signed Majority",
+    "Sheryl Gordon McCloud": "Dissent Author",
+    "Mary I. Yu": "Signed Majority",
+    "Raquel Montoya-Lewis": "Signed Majority",
+    "G. Helen Whitener": "Signed Majority",
+    "Salvador A. Mungia": "Signed Majority"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40395-5",
+  "docketNumberNormalized": "403955",
+  "caseTitle": "In the Matter of the Marriage of: Melissa P. Uribe & J. Jesus Uribe Carrillo",
+  "fileDate": "2025-10-21",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=403955MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/403955_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/403955-in-the-matter-of-the-marriage-of-melissa-p-uribe-j-jesus-uri.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:06.860Z",
+  "detail": {
+    "Docket Number": "40395-5",
+    "Title of Case": "In the Matter of the Marriage of: Melissa P. Uribe & J. Jesus Uribe Carrillo",
+    "File Date": "10/21/2025",
+    "Docket No": "18-3-50414-3",
+    "Date filed": "04/19/2024",
+    "Judge signing": "Honorable Norma Rodriguez",
+    "Authored by": "Megan Murphy",
+    "Concurring": "John Cooney"
+  }
+}

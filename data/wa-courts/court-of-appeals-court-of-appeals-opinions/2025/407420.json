@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40742-0",
+  "docketNumberNormalized": "407420",
+  "caseTitle": "In the Matter of the Marriage of: Jared Barber & Mindy Tanimoto",
+  "fileDate": "2025-10-28",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=407420MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/407420_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/407420-in-the-matter-of-the-marriage-of-jared-barber-mindy-tanimoto.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:54.198Z",
+  "detail": {
+    "Docket Number": "40742-0",
+    "Title of Case": "In the Matter of the Marriage of: Jared Barber & Mindy Tanimoto",
+    "File Date": "10/28/2025",
+    "Docket No": "20-3-00152-1",
+    "Date filed": "09/23/2024",
+    "Judge signing": "Honorable Jacqueline Shea-Brown",
+    "Authored by": "John Cooney",
+    "Concurring": "Tracy Staab"
+  }
+}

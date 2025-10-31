@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59189-8",
+  "docketNumberNormalized": "591898",
+  "caseTitle": "State Of Washington, Respondent, V Francis E. Hickman, Petitioner",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=591898MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059189-8-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/591898-state-of-washington-respondent-v-francis-e-hickman-petitione.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:53.630Z",
+  "detail": {
+    "Docket Number": "59189-8",
+    "Title of Case": "State Of Washington, Respondent, V Francis E. Hickman, Petitioner",
+    "File Date": "10/28/2025",
+    "Docket No": "98-1-00829-3",
+    "Date filed": "12/22/2023",
+    "Judge signing": "Honorable Jill Karmy",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Linda Lee"
+  }
+}

@@ -1,0 +1,960 @@
+{
+  "titleNumber": "1",
+  "titleName": "GENERAL PROVISIONS",
+  "chapters": [
+    {
+      "chapterNumber": "1.04",
+      "chapterTitle": "THE CODE",
+      "sections": [
+        {
+          "sectionNumber": "1.04.010",
+          "caption": "Revised Code of Washington enacted.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The ninety-one titles with chapters and sections designated as the \"Revised Code of Washington\" and attested by the secretary of the senate and the chief clerk of the house of representatives of the legislature of the state of Washington, are hereby enacted and designated as the \"Revised Code of Washington.\" Said code is intended to embrace in a revised, consolidated, and codified form and arrangement all the laws of the state of a general and permanent nature.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 2\">1951 c 5 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1950ex1c16.pdf?cite=1950 ex.s. c 16 s 1\">1950 ex.s. c 16 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.013",
+          "caption": "1950 Supplement enacted.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The titles, chapters, and sections designated as the \"1950 Supplement to the Revised Code of Washington\" attested by the secretary of the senate and the chief clerk of the house of representatives of the legislature of the state of Washington, and filed with the secretary of state, are hereby enacted and consolidated into and with the Revised Code of Washington. Said 1950 supplement is intended to embrace (1) in a revised and codified form, all those laws of the state of Washington of a general and permanent nature enacted since January 1, 1949, (2) revision and recodification of certain of the titles, chapters, and sections of the revised code, and (3) application of a new system of numbering to all of the sections and certain of the chapters of the revised code, subject to RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.04.014\">1.04.014</a>.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 1\">1951 c 5 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.014",
+          "caption": "Numbering system adopted—Application.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The system of numbering employed in the 1950 supplement is hereby adopted as the general system to be followed in designating sections of the revised code. Specific numbers, in accordance with such system, are authorized to be assigned to sections of the revised code as follows:</div><div style=\"text-indent:0.5in;\">Those chapters and sections of the revised code expressly numbered or renumbered in the 1950 supplement are authorized to be numbered or renumbered to the new number respectively shown in the 1950 supplement. All other sections of the revised code now existing are authorized to be renumbered by tens according to the plan generally used in the 1950 supplement, using the number of the title, the new number, if any, of the chapter in which the section occurs, and adding the digit \"0\" to the terminal end of the number marking the position of the section within the chapter. The secretary of state shall, before publication of any laws enacted at this session of the legislature which are by their terms expressly amendatory of any section or sections contained in the revised code or the 1950 supplement, renumber each section and correlate the numbers of sections so renumbered, in accordance with this provision, so that each such section when published bears or is referred to by its proper new number. The secretary of state, in publishing the session laws of this thirty-second session of the legislature shall use therein the applicable new numbers of the respective sections so renumbered.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 3\">1951 c 5 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.015",
+          "caption": "Numbering new sections, chapters—Corrections.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">New chapters or sections added to the Revised Code of Washington (as supplemented or modified by the 1950 supplement), as the result of laws enacted at this or subsequent sessions of the legislature, shall be numbered in harmony with said general numbering system, and shall bear such respective numbers in accordance therewith as may be assigned by such official or agency as may be expressly authorized by law so to do.</div><div style=\"text-indent:0.5in;\">This section shall not prohibit or prevent the correction by any such official or agency, of the number of any section of the revised code found clearly to be incorrectly numbered or incorrectly correlated with other sections as to number.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 4\">1951 c 5 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.016",
+          "caption": "Expansion of numbering system—Decimal factor.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">It is the intent that under said numbering system the section factor of the section number shall be treated as a decimal figure, and where new sections must hereafter in codifying be inserted between sections then already consecutively numbered, the proper number for such new section shall be created by the insertion of an additional digit at the terminal end of the number of the section immediately preceding the location at which such new section is to be inserted.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 5\">1951 c 5 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.020",
+          "caption": "Code as evidence of the law—Rule of construction—Effect of amendment.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The contents of the Revised Code of Washington, after striking therefrom sections repealed or superseded by laws of the state of Washington enacted since January 1, 1949, as the revised code is supplemented or modified in the 1950 supplement, shall establish the laws of this state of a general and permanent nature in effect on January 1, 1951; except, that nothing herein shall be construed as changing the meaning of any such laws and, as a rule of construction, in case of any omissions or any inconsistency between any of the provisions of the revised code as so supplemented or modified and the laws existing immediately preceding this enactment, the previously existing laws shall control. Any section of the Revised Code of Washington (as supplemented or modified by the 1950 supplement) expressly amended by the legislature, including the entire context set out, shall, as so amended, constitute the law and the ultimate declaration of legislative intent.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c5.pdf?cite=1951 c 5 s 6\">1951 c 5 s 6</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.021",
+          "caption": "Rule of construction—Prima facie law.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The contents of said code shall establish prima facie the laws of this state of a general and permanent nature in effect on January 1, 1949, but nothing herein shall be construed as changing the meaning of any such laws. In case of any omissions, or any inconsistency between any of the provisions of said code and the laws existing immediately preceding this enactment, the previously existing laws shall control.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1950ex1c16.pdf?cite=1950 ex.s. c 16 s 2\">1950 ex.s. c 16 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.030",
+          "caption": "New laws to be added to code.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">All laws of a general and permanent nature enacted after January 1, 1949, shall, from time to time, be incorporated into and become a part of said code.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1950ex1c16.pdf?cite=1950 ex.s. c 16 s 3\">1950 ex.s. c 16 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.04.040",
+          "caption": "Code may be cited as \"RCW.\"",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The code may be cited by the abbreviation \"RCW.\"</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1950ex1c16.pdf?cite=1950 ex.s. c 16 s 4\">1950 ex.s. c 16 s 4</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.08",
+      "chapterTitle": "STATUTE LAW COMMITTEE(CODE REVISER)",
+      "sections": [
+        {
+          "sectionNumber": "1.08.001",
+          "caption": "Statute law committee created—Membership.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">There is created a permanent statute law committee consisting of eleven members as follows:</div><div style=\"text-indent:0.5in;\">(1) The secretary of the senate, ex officio;</div><div style=\"text-indent:0.5in;\">(2) Two members of the senate, one from each of the two largest caucuses in the senate, appointed by the president of the senate;</div><div style=\"text-indent:0.5in;\">(3) The chief clerk of the house of representatives, ex officio;</div><div style=\"text-indent:0.5in;\">(4) Two members of the house of representatives, one from each of the two largest caucuses in the house of representatives, appointed by the speaker of the house of representatives;</div><div style=\"text-indent:0.5in;\">(5) The staff director of the nonpartisan professional committee staff of the senate, ex officio;</div><div style=\"text-indent:0.5in;\">(6) The staff director of the nonpartisan professional committee staff of the house of representatives, ex officio;</div><div style=\"text-indent:0.5in;\">(7) A lawyer admitted to practice in this state, appointed by the board of governors of the Washington State Bar Association;</div><div style=\"text-indent:0.5in;\">(8) A judge of the supreme court or a lawyer who has been admitted to practice in this state, appointed by the chief justice of the supreme court; and</div><div style=\"text-indent:0.5in;\">(9) A lawyer staff member of the governor's office or a state agency, appointed by the governor.</div><div style=\"text-indent:0.5in;\">All such initial appointments shall be made within thirty days of May 11, 2005.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1847-S.SL.pdf?cite=2005 c 409 s 1\">2005 c 409 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1967ex1c124.pdf?cite=1967 ex.s. c 124 s 1\">1967 ex.s. c 124 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c95.pdf?cite=1959 c 95 s 1\">1959 c 95 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 1\">1955 c 235 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 1\">1953 c 257 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 1\">1951 c 157 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.003",
+          "caption": "Terms of members—Filling vacancies.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The term of the member of the committee appointed by the State Bar Association, shall be for two years.</div><div style=\"text-indent:0.5in;\">The term of any ex officio member expires upon expiration of tenure of the position by virtue of which he or she is a member of the committee. The remaining members of the committee shall serve at the pleasure of the appointing authority. Vacancies shall be filled by designation, appointment, or ex officio in the same manner as for the member so vacating, and if a vacancy results other than from expiration of a term, the vacancy shall be filled for the unexpired term.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1847-S.SL.pdf?cite=2005 c 409 s 2\">2005 c 409 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c95.pdf?cite=1959 c 95 s 2\">1959 c 95 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 2\">1955 c 235 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 2\">1953 c 257 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 2\">1951 c 157 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.005",
+          "caption": "Compensation and expenses of members.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">For attendance at meetings of the committee or in attending to such other business of the committee as may be authorized thereby, each legislative member of the committee shall receive the per diem and travel allowances provided for such members by RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=44.04.120\">44.04.120</a>, and each other member shall be compensated in accordance with RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=43.03.240\">43.03.240</a> and shall be reimbursed for travel expenses in accordance with RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=43.03.050\">43.03.050</a> and  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=43.03.060\">43.03.060</a>.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1984c287.pdf?cite=1984 c 287 s 6\">1984 c 287 s 6</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1969c21.pdf?cite=1969 c 21 s 1\">1969 c 21 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 3\">1951 c 157 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.007",
+          "caption": "Committee meetings.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee shall from time to time elect a chair from among its members and adopt rules to govern its procedures. Four members of the committee shall constitute a quorum for the transaction of any business but no proceeding of the committee shall be valid unless carried by the vote of a majority of the members present. The code reviser or a member of his or her staff shall act as secretary of the committee.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 1\">2011 c 336 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1847-S.SL.pdf?cite=2005 c 409 s 3\">2005 c 409 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 3\">1953 c 257 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 4\">1951 c 157 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.011",
+          "caption": "Employment of code reviser and staff.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee shall employ on behalf of the state and from time to time fix the compensation of a competent code reviser, with power to terminate any such employment at any time. The committee shall also employ on behalf of the state and fix the compensation of such additional legal and clerical assistance to the code reviser as may reasonably be required under this chapter. The committee shall have general supervision and control over the functions and performance of the code reviser.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1847-S.SL.pdf?cite=2005 c 409 s 4\">2005 c 409 s 4</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 5\">1951 c 157 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.013",
+          "caption": "Code reviser defined.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Code reviser shall mean any lawyer or law publisher employing competent lawyers, each deemed by the committee to be qualified to compile the statutory law of the state of Washington as enacted by the legislature into a code or compilation of laws by title, chapter and section, without substantive change or alteration of purpose or intent.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 6\">1951 c 157 s 6</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.015",
+          "caption": "Codification and revision of laws—Scope of revision.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Subject to such general policies as may be promulgated by the committee and to the general supervision of the committee, the reviser shall:</div><div style=\"text-indent:0.5in;\">(1) Codify for consolidation into the Revised Code of Washington all laws of a general and permanent nature heretofore or hereafter enacted by the legislature, and assign permanent numbers as provided by law to all new titles, chapters, and sections so added to the revised code.</div><div style=\"text-indent:0.5in;\">(2) Edit and revise such laws for such consolidation, to the extent deemed necessary or desirable by the reviser and without changing the meaning of any such law, in the following respects only:</div><div style=\"text-indent:0.5in;\">(a) Make capitalization uniform with that followed generally in the revised code.</div><div style=\"text-indent:0.5in;\">(b) Make chapter or section division and subdivision designations uniform with that followed in the revised code.</div><div style=\"text-indent:0.5in;\">(c) Substitute for the term \"this act,\" where necessary, the term \"section,\" \"part,\" \"code,\" \"chapter,\" or \"title,\" or reference to specific section or chapter numbers, as the case may require.</div><div style=\"text-indent:0.5in;\">(d) Substitute for reference to a section of an \"act,\" the proper code section number reference.</div><div style=\"text-indent:0.5in;\">(e) Substitute for \"as provided in the preceding section\" and other phrases of similar import, the proper code section number references.</div><div style=\"text-indent:0.5in;\">(f) Substitute the proper calendar date for \"effective date of this act,\" \"date of passage of this act,\" and other phrases of similar import.</div><div style=\"text-indent:0.5in;\">(g) Strike out figures where merely a repetition of written words, and substitute, where deemed advisable for uniformity, written words for figures.</div><div style=\"text-indent:0.5in;\">(h) Rearrange any misplaced statutory material, incorporate any omitted statutory material as well as correct manifest errors in spelling, and manifest clerical or typographical errors, or errors by way of additions or omissions.</div><div style=\"text-indent:0.5in;\">(i) Correct manifest errors in references, by chapter or section number, to other laws.</div><div style=\"text-indent:0.5in;\">(j) Correct manifest errors or omissions in numbering or renumbering sections of the revised code.</div><div style=\"text-indent:0.5in;\">(k) Rearrange the order of sections to conform to such logical arrangement of subject matter as may most generally be followed in the revised code, and alphabetize definition sections, when to do so will not change the meaning or effect of such sections.</div><div style=\"text-indent:0.5in;\">(l) Change the wording of section captions, if any, and provide captions to new chapters and sections.</div><div style=\"text-indent:0.5in;\">(m) Strike provisions manifestly obsolete.</div><div style=\"text-indent:0.5in;\">(3) Create new code titles, chapters, and sections of the Revised Code of Washington, or otherwise revise the title, chapter and sectional organization of the code, all as may be required from time to time, to effectuate the orderly and logical arrangement of the statutes. Such new titles, chapters, and sections, and organizational revisions, shall have the same force and effect as the ninety-one titles originally enacted and designated as the \"Revised Code of Washington\" pursuant to the code adoption acts codified in chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.04\">1.04</a> RCW.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/House/1058.SL.pdf?cite=2009 c 186 s 1\">2009 c 186 s 1</a>; (2011 c 74 s 801 repealed by 2012 c 214 s 1601);  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1961c246.pdf?cite=1961 c 246 s 1\">1961 c 246 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 4\">1953 c 257 s 4</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 7\">1951 c 157 s 7</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.016",
+          "caption": "Code correction—Committee orders.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee may at any time by order correct any section or portion of the code in any of the respects enumerated in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.08.015\">1.08.015</a>. Orders shall be numbered consecutively and signed by the committee chair and each order shall be followed by an explanatory note reciting the reason therefor.</div><div style=\"text-indent:0.5in;\">Unless otherwise prescribed in the orders, each shall become effective ninety days after:</div><div style=\"text-indent:0.5in;\">(1) Signing of the order; and</div><div style=\"text-indent:0.5in;\">(2) Filing a summary thereof with the board of governors of the state bar association; and</div><div style=\"text-indent:0.5in;\">(3) The filing thereof with the secretary of state.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 2\">2011 c 336 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 5\">1953 c 257 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.017",
+          "caption": "Code reviser may omit certain provisions of legislative acts from code; may omit annotations after ten years.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The reviser may omit from the code all titles to acts, enacting and repealing clauses, preambles, declarations of emergency, severability, and validity and construction sections unless, in a particular instance, it may be necessary to retain such to preserve the full intent of the law. The omission of validity or construction sections is not intended to, nor shall it change, or be considered as changing, the effect to be given thereto in construing legislation of which such validity and construction sections were a part. Any section so omitted, other than repealing, emergency, severability, or validity provisions, shall be referred to or set forth as an annotation to the applicable sections of the act as codified.</div><div style=\"text-indent:0.5in;\">(2) The reviser may remove annotations that have appeared in the published Revised Code of Washington for more than ten years, unless in a particular instance, it may be necessary to retain such to preserve the full intent of the law. Any annotations removed under this subsection shall be retained and available in the electronic copy of the Revised Code of Washington available on the code reviser website.</div><div style=\"text-indent:0.5in;\">(3) Section captions, part headings, subheadings, tables of contents, and indexes appearing in legislative bills shall not be considered any part of the law, and the reviser may omit such provisions from the Revised Code of Washington and annotations unless, in a particular instance, it may be necessary to retain such to preserve the full intent of the law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/House/1058.SL.pdf?cite=2009 c 186 s 2\">2009 c 186 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 3\">1955 c 235 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 8\">1951 c 157 s 8</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.020",
+          "caption": "Code index.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The reviser, as soon as practicable, shall compile and thereafter maintain a comprehensive index and from time to time prepare for publication supplements thereto.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 7\">1953 c 257 s 7</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.021",
+          "caption": "Historical records.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The reviser shall prepare and maintain full historical records showing the enactment, amendment, revision, supersession, and repeal of the various sections of the revised code.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 9\">1951 c 157 s 9</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.023",
+          "caption": "Annotations.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The reviser may prepare and maintain complete annotations of court decisions construing the statutes of this state.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 10\">1951 c 157 s 10</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.024",
+          "caption": "Inclusion in code of rules of court.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee may provide for inclusion in the published sets of the code the rules of court promulgated by the supreme court.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 8\">1953 c 257 s 8</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.025",
+          "caption": "Improvement of statutes.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee, or the reviser with the approval of the committee, shall from time to time make written recommendations to the legislature concerning deficiencies, conflicts, or obsolete provisions in, and need for reorganization or revision of, the statutes, and shall prepare for submission to the legislature, legislation for the correction or removal of such deficiencies, conflicts or obsolete provisions, or to otherwise improve the form or substance of any portion of the statute law of this state as the public interest or the administration of the subject may require.</div><div style=\"text-indent:0.5in;\">Such or similar projects may also be undertaken at the request of the legislature and legislative interim bodies and if such undertaking will not impede the other functions of the committee.</div><div style=\"text-indent:0.5in;\">All such proposed legislation shall be annotated so as to show the purposes, reasons, and history thereof.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/Senate/5426.SL.pdf?cite=1997 c 41 s 1\">1997 c 41 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1983c52.pdf?cite=1983 c 52 s 2\">1983 c 52 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c95.pdf?cite=1959 c 95 s 3\">1959 c 95 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 11\">1951 c 157 s 11</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.026",
+          "caption": "Examination of code—Hearings—Recommendations to legislature.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee also shall examine the revised code and from time to time submit to the legislature proposals for enactment of the several titles, chapters and sections thereof, to the end that, as expeditiously as possible, the revised code, and each part thereof, shall constitute conclusive, rather than prima facie evidence of the law. Each such proposal shall be accompanied by explanatory matter. The committee may hold hearings concerning any such proposal or concerning recommendations formulated or to be formulated in accordance with RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.08.025\">1.08.025</a>. Proposals or recommendations approved by the committee shall be submitted to the chair of the house or senate judiciary committee at the commencement of the next succeeding session of the legislature.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 3\">2011 c 336 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c95.pdf?cite=1959 c 95 s 4\">1959 c 95 s 4</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 9\">1953 c 257 s 9</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.027",
+          "caption": "Bill drafting service.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The reviser shall be in charge of and shall at all times maintain an expert bill drafting service for the use and benefit of the legislature, its committees and its members. Prior to any session thereof, the legislature shall provide quarters convenient to both houses and shall augment the reviser's staff with such additional legal and clerical assistance as may be needed to carry out the bill drafting functions of the legislature and pay the cost of such additional staff. Such services shall be confidential and nonpartisan and no member of the bill drafting staff shall advocate for or against any legislative measure.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 6\">1953 c 257 s 6</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 12\">1951 c 157 s 12</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.028",
+          "caption": "Opinions as to validity or constitutionality.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Neither the reviser nor any member of his or her staff shall be required to furnish any written opinion as to the validity or constitutionality of any proposed legislation, which he or she may be requested to draft or prepare, nor shall any member of the committee be required to pass upon the constitutionality of any matter submitted to it for consideration.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 4\">2011 c 336 s 4</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 4\">1955 c 235 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.031",
+          "caption": "Information service to legislators.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The reviser shall, to the extent reasonably feasible through available facilities and public sources of information, provide objective and factual information in writing to and upon request of any member of the legislature relative to any matter which is or may be the subject of or involved in, legislation.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 13\">1951 c 157 s 13</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.033",
+          "caption": "Reviser's office location.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The department of public institutions shall provide suitable office and storage space and facilities for the reviser and his or her staff at Olympia, at a location convenient to the legislature and to the state law library.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 5\">2011 c 336 s 5</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 5\">1955 c 235 s 5</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 15\">1951 c 157 s 15</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.037",
+          "caption": "Publication of code—Specifications—Certificate of compliance.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee shall from time to time formulate specifications relative to the format, size and style of type, paper stock, number of volumes, method and quality of binding, contents, indexing, and general scope and character of footnotes, and annotations, if any, for any publication for general use of the revised code and supplements thereto. No such publication or the contents thereof, other than such temporary edition as may expressly be authorized by the legislature, shall be received as evidence of the laws of this state unless it complies with such specifications of the committee as are current at the time of publication, including compliance with the section numbering adopted by the reviser under supervision of the statute law committee. If a publication complies with such specifications, the committee shall furnish a certificate of such compliance, executed on behalf of the committee by its chair, to the publisher, and the certificate shall be reproduced at the beginning of each such volume or supplement.</div><div style=\"text-indent:0.5in;\">Upon request of any publisher in good faith interested in publishing said code, the committee shall furnish a copy of its current specifications and shall not during the process of any bona fide publication of said code or supplements modify any such specifications, if such modification would result in added expense or material inconvenience to the publisher, without written concurrence therein by such publisher.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 6\">2011 c 336 s 6</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 6\">1955 c 235 s 6</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 14\">1953 c 257 s 14</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 14\">1951 c 157 s 14</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.038",
+          "caption": "Publication, sale, and distribution of code and supplements—Reprints.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The statute law committee shall publish, sell and distribute, and arrange for the publication, sale and distribution of the Revised Code of Washington and of supplements thereto and of such other materials as in their discretion may be incorporated in or appended to the code. They may republish, reprint or authorize the republishing or reprinting of the code or any portion thereof.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 7\">1955 c 235 s 7</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 11\">1953 c 257 s 11</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.039",
+          "caption": "Publication, sale, and distribution of code and supplements—Contracts or other arrangements.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee may enter into contracts or otherwise arrange for the publication and/or distribution, provided for in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.08.038\">1.08.038</a>, with or without calling for bids, by the department of enterprise services, upon specifications formulated under the authority of RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.08.037\">1.08.037</a>, and upon such basis as the committee deems to be most expeditious and economical. Any such contract may be upon such terms as the committee deems to be most advantageous to the state and to potential purchasers of such publications. The committee shall fix terms and prices for such publications.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5931-S.SL.pdf?cite=2011 1st sp.s. c 43 s 301\">2011 1st sp.s. c 43 s 301</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 8\">1955 c 235 s 8</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 12\">1953 c 257 s 12</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.0392",
+          "caption": "Publication, sale, and distribution of code and supplements—Statute law committee publications account created—Purpose—Disbursements.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">For the purposes of financing the production and sale of such of its publications as in the judgment of the statute law committee may be advantageously financed by the use of revolving fund moneys, there is hereby created, and the committee is authorized to maintain, a revolving fund to be known as statute law committee publications account. None of the provisions of RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=43.01.050\">43.01.050</a> shall be applicable to said fund nor to any moneys received or collected by the committee for publications financed by said fund.</div><div style=\"text-indent:0.5in;\">All moneys shall be paid from said account by check or voucher in such form and in such manner as shall be prescribed by the committee.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1961c246.pdf?cite=1961 c 246 s 2\">1961 c 246 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.040",
+          "caption": "Certification—Official code—Prima facie evidence.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Revised Code of Washington containing the certificate of the temporary code committee and any supplement or addition thereto or reprint edition thereof, which contains the certificate of the statute law committee referred to in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.08.037\">1.08.037</a>, shall be deemed official, and shall be prima facie evidence of the laws contained therein.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c5.pdf?cite=1955 c 5 s 2\">1955 c 5 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 15\">1953 c 257 s 15</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 16\">1951 c 157 s 16</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1941c149.pdf?cite=1941 c 149 s 3\">1941 c 149 s 3</a>; Rem. Supp. 1941 s 152-38.]"
+        },
+        {
+          "sectionNumber": "1.08.050",
+          "caption": "Amendment, repeal to include code numbers—Assignment of code numbers.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The legislature in amending or repealing laws shall include in such act references to the code numbers of the law affected. The reviser shall assign code numbers to such permanent and general laws as are hereafter enacted at any legislative session.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c95.pdf?cite=1959 c 95 s 5\">1959 c 95 s 5</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c5.pdf?cite=1955 c 5 s 3\">1955 c 5 s 3</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c157.pdf?cite=1951 c 157 s 17\">1951 c 157 s 17</a>. Prior: (i)  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1941c149.pdf?cite=1941 c 149 s 4\">1941 c 149 s 4</a>; Rem. Supp. 1941 s 152-39. (ii)  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1947c282.pdf?cite=1947 c 282 s 1\">1947 c 282 s 1</a>; Rem. Supp. 1947 s 152-40.]"
+        },
+        {
+          "sectionNumber": "1.08.060",
+          "caption": "Loans and exchanges of codes and supplements.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The committee may loan sets of the code and materials supplemental thereto</div><div style=\"text-indent:0.5in;\">(1) for the use of senate committees, a quantity as required by advice from the secretary of the senate, not to exceed twenty-five sets;</div><div style=\"text-indent:0.5in;\">(2) for use of the house committees, a quantity as required by advice from the chief clerk of the house, not to exceed thirty-five sets;</div><div style=\"text-indent:0.5in;\">(3) to the state law library for library use;</div><div style=\"text-indent:0.5in;\">(4) for use of the reviser's office, as required;</div><div style=\"text-indent:0.5in;\">(5) for use of recognized news reporting services maintaining permanent offices at the capitol, three sets.</div><div style=\"text-indent:0.5in;\">The committee may exchange copies of RCW for codes or compilations of other states.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1982ex1c32.pdf?cite=1982 1st ex.s. c 32 s 6\">1982 1st ex.s. c 32 s 6</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c257.pdf?cite=1953 c 257 s 10\">1953 c 257 s 10</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.070",
+          "caption": "Legislators to receive codes and supplements on digital media without charge.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Each member of the legislature may receive one set of the Revised Code of Washington on digital media without charge. All persons receiving codes under this section may receive supplements to the code on digital media free of charge, during their term of office as a member or officer of the legislature.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/House/1479.SL.pdf?cite=2011 c 156 s 2\">2011 c 156 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c235.pdf?cite=1955 c 235 s 9\">1955 c 235 s 9</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.080",
+          "caption": "Statute law committee publications to be permanently available in digital form on legislative websites.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Current digital copies of the Revised Code of Washington, the Washington Administrative Code, the Washington State Register, and the session laws of the Washington state legislature shall be maintained and made freely available for permanent public access on the code reviser or legislative website. All historical digital copies added to the website shall be made freely available for permanent public access.</div><div style=\"text-indent:0.5in;\">The statute law committee shall provide digital authentication for any publication in a digital format that is declared official, if in the discretion of the committee such authentication does not interfere with public access.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/House/1479.SL.pdf?cite=2011 c 156 s 3\">2011 c 156 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.110",
+          "caption": "Publication of Washington State Register—Rule-making authority.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The statute law committee, in addition to the other responsibilities enumerated in this chapter, shall publish the Washington State Register as created in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=34.08.020\">34.08.020</a>. The statute law committee or the code reviser may adopt rules as are necessary for the effective operation of this service. The statute law committee, in its discretion, may publish the Washington State Register exclusively by electronic means on the code reviser website if it determines that public access to the Washington State Register is not substantially diminished. If the statute law committee publishes the Washington State Register exclusively by electronic means on the code reviser website, the electronic copy posted on the code reviser website shall be considered the official copy of the Washington State Register.</div><div style=\"text-indent:0.5in;\">The code reviser shall provide a paper copy of any issue of the register or any register filing upon request. The code reviser may charge a reasonable fee for printing and mailing the paper copy.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1859.SL.pdf?cite=2007 c 456 s 2\">2007 c 456 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1977ex1c240.pdf?cite=1977 ex.s. c 240 s 2\">1977 ex.s. c 240 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.112",
+          "caption": "Report on rule-making activity.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The code reviser shall compile and publish on a quarterly basis a report on state agency rule-making activity. The report shall summarize the following information by agency and by type of activity for new, amended, and repealed rules adopted by state agencies pursuant to chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=34.05\">34.05</a> RCW:</div><div style=\"text-indent:0.5in;\">(a) The number adopted, proposed for adoption, and withdrawn;</div><div style=\"text-indent:0.5in;\">(b) The number adopted as emergency rules;</div><div style=\"text-indent:0.5in;\">(c) The number adopted in order to comply with federal statute, with federal rules or standards, and with recently enacted state statutes;</div><div style=\"text-indent:0.5in;\">(d) The number adopted at the request of a nongovernmental entity;</div><div style=\"text-indent:0.5in;\">(e) The number adopted on an agency's own initiative;</div><div style=\"text-indent:0.5in;\">(f) The number adopted in order to clarify, streamline, or reform agency procedures;</div><div style=\"text-indent:0.5in;\">(g) The number of petitions for review of rules received by agencies;</div><div style=\"text-indent:0.5in;\">(h) The number of rules appealed to superior court; and</div><div style=\"text-indent:0.5in;\">(i) The number adopted using negotiated rule making, pilot rule making, or other alternative rule-making mechanisms.</div><div style=\"text-indent:0.5in;\">(2) For purposes of the report required by this section, each Washington State Register filing section shall be considered as a separate rule. The code reviser may adopt rules necessary to implement this section. To the maximum extent practicable, the code reviser shall use information supplied on forms provided by state agencies pursuant to chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=34.05\">34.05</a> RCW to prepare the report required by this section.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1995-96/Pdf/Bills/Session Laws/House/1010-S.SL.pdf?cite=1995 c 403 s 704\">1995 c 403 s 704</a>.]"
+        },
+        {
+          "sectionNumber": "1.08.120",
+          "caption": "Substitution of words designating department or secretary of transportation.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">For purposes of harmonizing and clarifying the provisions of the statute sections published in the revised code of Washington, the code reviser may substitute words designating the department of transportation or the secretary of transportation, as appropriate, whenever necessary to effect the changes in meaning provided for in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=47.68.015\">47.68.015</a> and  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=47.04.015\">47.04.015</a> or any other act of the 1977 legislature.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1977ex1c151.pdf?cite=1977 ex.s. c 151 s 24\">1977 ex.s. c 151 s 24</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.12",
+      "chapterTitle": "RULES OF CONSTRUCTION",
+      "sections": [
+        {
+          "sectionNumber": "1.12.010",
+          "caption": "Code to be liberally construed.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The provisions of this code shall be liberally construed, and shall not be limited by any rule of strict construction.</div>",
+          "history": "[1891 c 23 s 1, part; Code 1881 ss 758, 1686;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1877 p 153 s 763\">1877 p 153 s 763</a>;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1854 p 221 s 504\">1854 p 221 s 504</a>; RRS s 144.]"
+        },
+        {
+          "sectionNumber": "1.12.020",
+          "caption": "Statutes continued, when.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The provisions of a statute, so far as they are substantially the same as those of a statute existing at the time of their enactment, must be construed as continuations thereof.</div>",
+          "history": "[1891 c 23 s 1, part; Code 1881 ss 761, 1292, 1681; RRS s 145.]"
+        },
+        {
+          "sectionNumber": "1.12.025",
+          "caption": "Construction of multiple amendments to statutes—Publication—Decodification of repealed sections.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) If at any session of the legislature there are enacted two or more acts amending the same section of the session laws or of the official code, each amendment without reference to the others, each act shall be given effect to the extent that the amendments do not conflict in purpose, otherwise the act last filed in the office of the secretary of state in point of time, shall control: PROVIDED, That if one or more special sessions of the same legislature shall follow any regular session, this rule of construction shall apply to the laws enacted at either, both, any, or all of such sessions.</div><div style=\"text-indent:0.5in;\">(2) If a section of the session laws or of the official code is amended without reference to another amendment of the same section, the code reviser, in consultation with the statute law committee, may publish the section in the official code with all amendments incorporated therein. The publication of the section under this subsection shall occur only if the statute law committee determines that the amendments do not conflict in purpose or effect. Sections so published constitute prima facie evidence of the law but shall not be construed as changing the meaning of any such law.</div><div style=\"text-indent:0.5in;\">The code reviser, in consultation with the statute law committee, may decodify a section of the official code which was repealed without reference to an amendment to the section. The decodification of the section shall occur only if the statute law committee determines that the decodification does not conflict with the purpose of the amendment. Any decision of the code reviser, in consultation with the statute law committee, to incorporate amendments in the same section or to decodify a section which was both repealed and amended in the same session shall be clearly noted in the revised code of Washington.</div><div style=\"text-indent:0.5in;\">If any conflict arises in the interpretation of a section published or decodified under this subsection, the session law sections shall control.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1983c244.pdf?cite=1983 c 244 s 1\">1983 c 244 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1980c87.pdf?cite=1980 c 87 s 2\">1980 c 87 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1974ex1c87.pdf?cite=1974 ex.s. c 87 s 1\">1974 ex.s. c 87 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1969ex1c240.pdf?cite=1969 ex.s. c 240 s 1\">1969 ex.s. c 240 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c162.pdf?cite=1955 c 162 s 1\">1955 c 162 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.12.026",
+          "caption": "Construction of statutes—Retrospective application.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The provisions of RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.12.025\">1.12.025</a> as now or hereafter amended shall apply retrospectively as well as prospectively.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1969ex1c240.pdf?cite=1969 ex.s. c 240 s 2\">1969 ex.s. c 240 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.12.028",
+          "caption": "Construction of statutes—Internal references as including amendments thereto.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">If a statute refers to another statute of this state, the reference includes any amendments to the referenced statute unless a contrary intent is clearly expressed.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1982c16.pdf?cite=1982 c 16 s 1\">1982 c 16 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.12.040",
+          "caption": "Computation of time.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The time within which an act is to be done, as herein provided, shall be computed by excluding the first day, and including the last, unless the last day is a holiday, Saturday, or Sunday, and then it is also excluded.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/House/1314-S.SL.pdf?cite=1997 c 125 s 1\">1997 c 125 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1887 c 20 s 1\">1887 c 20 s 1</a>; Code 1881 s 743;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1854 p 219 s 486\">1854 p 219 s 486</a>; RRS s 150.]"
+        },
+        {
+          "sectionNumber": "1.12.050",
+          "caption": "Number and gender.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Words importing the singular number may also be applied to the plural of persons and things; words importing the plural may be applied to the singular; and words importing the masculine gender may be extended to females also.</div>",
+          "history": "[1891 c 23 s 1, part; Code 1881 ss 756, 965, 1920;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1877 p 153 s 761\">1877 p 153 s 761</a>;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1857 p 45 s 1\">1857 p 45 s 1</a>; 1854 p 99 s 135 and p 221 s 502; RRS s 148.]"
+        },
+        {
+          "sectionNumber": "1.12.060",
+          "caption": "Certified mail—Use—Electronic return receipts authorized.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Whenever the use of \"registered\" mail is authorized by this code, \"certified\" mail, with return receipt requested, may be used.</div><div style=\"text-indent:0.5in;\">(2) Whenever the use of \"certified mail with a return receipt requested\" is authorized or required by this code, electronic return receipt delivery confirmation provided by the United States postal service may be used.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/House/1426.SL.pdf?cite=2009 c 251 s 1\">2009 c 251 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1961c204.pdf?cite=1961 c 204 s 1\">1961 c 204 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.12.070",
+          "caption": "Reports, claims, tax returns, remittances, etc.—Filing.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Except as otherwise specifically provided by law hereafter:</div><div style=\"text-indent:0.5in;\">(1) Any report, claim, tax return, statement or other document required to be filed with, or any payment made to the state or to any political subdivision thereof, which is (a) transmitted through the United States mail or private third-party delivery service, shall be deemed filed and received by the state or political subdivision on the date shown by the post office or private third-party delivery service cancellation mark or shipping date stamped or affixed upon the envelope or other appropriate wrapper containing it; or (b) mailed via United States mail or sent by a private third-party delivery service but not received by the state or political subdivision, or where received and the cancellation mark or shipping date is illegible, erroneous, or omitted, shall be deemed filed and received on the date it was mailed if the sender establishes by competent evidence that the report, claim, tax return, statement, remittance, or other document was deposited with a private third-party delivery service or in the United States mail on or before the date due for filing; and in cases of such nonreceipt of a report, tax return, statement, remittance, or other document required by law to be filed, the sender files with the state or political subdivision a duplicate within ten days after written notification is given to the sender by the state or political subdivision of its nonreceipt of such report, tax return, statement, remittance, or other document.</div><div style=\"text-indent:0.5in;\">(2)(a) If any report, claim, tax return, statement, remittance, or other document is sent by United States registered mail, certified mail or certificate of mailing, a record authenticated by the United States post office of such registration, certification or certificate shall be considered competent evidence that the report, claim, tax return, statement, remittance or other document was delivered to the addressee, and the date of registration, certification or certificate shall be deemed the postmarked date.</div><div style=\"text-indent:0.5in;\">(b) If any report, claim, tax return, statement, remittance, or other document is sent via private third-party delivery service, a record authenticated by the private third-party delivery service shall be considered competent evidence that the report, claim, tax return, statement, remittance, or other document was delivered to the addressee, and the date of deposit with the private third-party delivery service shall be deemed the shipping date.</div><div style=\"text-indent:0.5in;\">(3) If the date for filing any report, claim, tax return, statement, remittance, or other document falls upon a Saturday, Sunday or legal holiday, the filing shall be considered timely if performed on the next business day.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1158-S.SL.pdf?cite=2005 c 502 s 1\">2005 c 502 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1967c222.pdf?cite=1967 c 222 s 1\">1967 c 222 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.12.080",
+          "caption": "Construction of statutes—Domestic relations—Exceptions.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">For the purposes of this code and any legislation hereafter enacted by the legislature or by the people, with the exception of chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=26.04\">26.04</a> RCW, the terms spouse, marriage, marital, husband, wife, widow, widower, next of kin, and family shall be interpreted as applying equally to state registered domestic partnerships or individuals in state registered domestic partnerships as well as to marital relationships and married persons, and references to dissolution of marriage shall apply equally to state registered domestic partnerships that have been terminated, dissolved, or invalidated, unless the legislation expressly states otherwise and to the extent that such interpretation does not conflict with federal law. Where necessary to implement chapter 521, Laws of 2009 and chapter 3, Laws of 2012, gender-specific terms such as husband and wife used in any statute, rule, or other law shall be construed to be gender neutral, and applicable to individuals in state registered domestic partnerships and spouses of the same sex.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/6239-S.SL.pdf?cite=2012 c 3 s 13\">2012 c 3 s 13</a> (Referendum Measure No. 74, approved November 6, 2012);  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/House/1649.SL.pdf?cite=2011 c 9 s 2\">2011 c 9 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/Senate/5688-S2.SL.pdf?cite=2009 c 521 s 3\">2009 c 521 s 3</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.16",
+      "chapterTitle": "GENERAL DEFINITIONS",
+      "sections": [
+        {
+          "sectionNumber": "1.16.020",
+          "caption": "\"Fiscal biennium.\"",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The fiscal biennium of the state shall commence on the first day of July in each odd-numbered year and end on the thirtieth day of June of the next succeeding odd-numbered year. The fiscal biennium of those cities and towns which utilize a biennial budget shall commence on the first day of January in each odd-numbered year and end on the thirty-first day of December of the next succeeding even-numbered year.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1985c175.pdf?cite=1985 c 175 s 2\">1985 c 175 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c184.pdf?cite=1953 c 184 s 2\">1953 c 184 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1923c86.pdf?cite=1923 c 86 s 1\">1923 c 86 s 1</a>; RRS s 10927.]"
+        },
+        {
+          "sectionNumber": "1.16.030",
+          "caption": "\"Fiscal year\"—School districts and other taxing districts.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">August 31st shall end the fiscal year of school districts and December 31st of all other taxing districts.</div>",
+          "history": "[1975-'76 2nd ex.s. c 118 s 21;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1909c76.pdf?cite=1909 c 76 s 13\">1909 c 76 s 13</a>; RRS s 9963.]"
+        },
+        {
+          "sectionNumber": "1.16.040",
+          "caption": "\"Folio.\"",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The term \"folio\" when used as a measure for computing fees or compensation, shall be construed to mean one hundred words, counting every two figures necessarily used as a word. Any portion of a folio, when in the whole draft or paper there should not be a complete folio, and when there shall be an excess over the last folio exceeding a quarter, it shall be computed as a folio. The filing of a paper shall be construed to include the certificate of the same.</div>",
+          "history": "[Code 1881 s 2093;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1869 p 373 s 15\">1869 p 373 s 15</a>; RRS s 500.]"
+        },
+        {
+          "sectionNumber": "1.16.050",
+          "caption": "\"Legal holidays\" and \"legislatively recognized days\"—Unpaid holidays for employees with appointments or contracts of less than 12 consecutive months.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The following are state legal holidays:</div><div style=\"text-indent:0.5in;\">(a) Sunday;</div><div style=\"text-indent:0.5in;\">(b) The first day of January, commonly called New Year's Day;</div><div style=\"text-indent:0.5in;\">(c) The third Monday of January, celebrated as the anniversary of the birth of Martin Luther King, Jr.;</div><div style=\"text-indent:0.5in;\">(d) The third Monday of February, to be known as Presidents' Day and celebrated as the anniversary of the births of Abraham Lincoln and George Washington;</div><div style=\"text-indent:0.5in;\">(e) The last Monday of May, commonly known as Memorial Day;</div><div style=\"text-indent:0.5in;\">(f) The nineteenth day of June, recognized as Juneteenth, a day of remembrance for the day the African slaves learned of their freedom;</div><div style=\"text-indent:0.5in;\">(g) The fourth day of July, the anniversary of the Declaration of Independence;</div><div style=\"text-indent:0.5in;\">(h) The first Monday in September, to be known as Labor Day;</div><div style=\"text-indent:0.5in;\">(i) The eleventh day of November, to be known as Veterans Day;</div><div style=\"text-indent:0.5in;\">(j) The fourth Thursday in November, to be known as Thanksgiving Day;</div><div style=\"text-indent:0.5in;\">(k) The Friday immediately following the fourth Thursday in November, to be known as Native American Heritage Day; and</div><div style=\"text-indent:0.5in;\">(l) The twenty-fifth day of December, commonly called Christmas Day.</div><div style=\"text-indent:0.5in;\">(2) Employees of the state and its political subdivisions, except employees of school districts and except those nonclassified employees of institutions of higher education who hold appointments or are employed under contracts to perform services for periods of less than twelve consecutive months, are entitled to one paid holiday per calendar year in addition to those specified in this section. Each employee of the state or its political subdivisions may select the day on which the employee desires to take the additional holiday provided for in this section after consultation with the employer pursuant to guidelines to be promulgated by rule of the appropriate personnel authority, or in the case of local government by ordinance or resolution of the legislative authority.</div><div style=\"text-indent:0.5in;\">(3) Employees of the state and its political subdivisions, including employees of school districts and those nonclassified employees of institutions of higher education who hold appointments or are employed under contracts to perform services for periods of less than twelve consecutive months, are entitled to two unpaid holidays per calendar year for a reason of faith or conscience or an organized activity conducted under the auspices of a religious denomination, church, or religious organization. This includes employees of public institutions of higher education, including community colleges, technical colleges, and workforce training programs. The employee may select the days on which the employee desires to take the two unpaid holidays after consultation with the employer pursuant to guidelines to be promulgated by rule of the appropriate personnel authority, or in the case of local government by ordinance or resolution of the legislative authority. If an employee prefers to take the two unpaid holidays on specific days for a reason of faith or conscience, or an organized activity conducted under the auspices of a religious denomination, church, or religious organization, the employer must allow the employee to do so unless the employee's absence would impose an undue hardship on the employer or the employee is necessary to maintain public safety. Undue hardship shall have the meaning established in rule by the office of financial management under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=43.41.109\">43.41.109</a>.</div><div style=\"text-indent:0.5in;\">(4) If any of the state legal holidays specified in this section are also federal legal holidays but observed on different dates, only the state legal holidays are recognized as a paid legal holiday for employees of the state and its political subdivisions. However, for port districts and the law enforcement and public transit employees of municipal corporations, either the federal or the state legal holiday is recognized as a paid legal holiday, but in no case may both holidays be recognized as a paid legal holiday for employees.</div><div style=\"text-indent:0.5in;\">(5) Whenever any state legal holiday:</div><div style=\"text-indent:0.5in;\">(a) Other than Sunday, falls upon a Sunday, the following Monday is the legal holiday; or</div><div style=\"text-indent:0.5in;\">(b) Falls upon a Saturday, the preceding Friday is the legal holiday.</div><div style=\"text-indent:0.5in;\">(6) Nothing in this section may be construed to have the effect of adding or deleting the number of paid holidays provided for in an agreement between employees and employers of political subdivisions of the state or as established by ordinance or resolution of the local government legislative authority.</div><div style=\"text-indent:0.5in;\">(7) The legislature declares that the following days are recognized as provided in this subsection, but may not be considered legal holidays for any purpose:</div><div style=\"text-indent:0.5in;\">(a) The eleventh day of January, recognized as human trafficking awareness day;</div><div style=\"text-indent:0.5in;\">(b) The thirteenth day of January, recognized as Korean American day;</div><div style=\"text-indent:0.5in;\">(c) The date corresponding with the second new moon following the winter solstice, or the third new moon following the winter solstice should an intercalary month intervene, recognized as the lunar new year;</div><div style=\"text-indent:0.5in;\">(d) The twenty-sixth day of January, recognized as Washington army and air national guard day;</div><div style=\"text-indent:0.5in;\">(e) The nineteenth day of February, recognized as civil liberties day of remembrance;</div><div style=\"text-indent:0.5in;\">(f) The ninth day of March, recognized as Billy Frank Jr. day;</div><div style=\"text-indent:0.5in;\">(g) The thirtieth day of March, recognized as welcome home Vietnam veterans day;</div><div style=\"text-indent:0.5in;\">(h) The thirty-first day of March, recognized as Cesar Chavez day;</div><div style=\"text-indent:0.5in;\">(i) The ninth day of April, recognized as former prisoner of war recognition day;</div><div style=\"text-indent:0.5in;\">(j) The tenth day of April, recognized as Dolores Huerta day;</div><div style=\"text-indent:0.5in;\">(k) The sixteenth day of April, recognized as Mother Joseph day;</div><div style=\"text-indent:0.5in;\">(l) The fifteenth day of May, recognized as water safety day;</div><div style=\"text-indent:0.5in;\">(m) The twenty-seventh day of July, recognized as national Korean war veterans armistice day;</div><div style=\"text-indent:0.5in;\">(n) The seventh day of August, recognized as purple heart recipient recognition day;</div><div style=\"text-indent:0.5in;\">(o) The fourth day of September, recognized as Marcus Whitman day;</div><div style=\"text-indent:0.5in;\">(p) The fourth Saturday of September, recognized as public lands day;</div><div style=\"text-indent:0.5in;\">(q) The second Sunday in October, recognized as Washington state children's day;</div><div style=\"text-indent:0.5in;\">(r) The twelfth day of October, recognized as Columbus day;</div><div style=\"text-indent:0.5in;\">(s) The seventh day of December, recognized as Pearl Harbor remembrance day;</div><div style=\"text-indent:0.5in;\">(t) The eighteenth day of December, recognized as blood donor day;</div><div style=\"text-indent:0.5in;\">(u) The first day of the tenth month of the Islamic calendar, which is lunar-cycle based and shifts by approximately 10 to 11 days each year, commonly called Eid al-Fitr; and</div><div style=\"text-indent:0.5in;\">(v) The tenth day of the twelfth month of the Islamic calendar, which is lunar-cycle based and shifts by approximately 10 to 11 days each year, commonly called Eid al-Adha.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Session Laws/House/1281-S.SL.pdf?cite=2025 c 58 s 1001\">2025 c 58 s 1001</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Session Laws/Senate/5106-S.SL.pdf?cite=2025 c 30 s 1\">2025 c 30 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/2209.SL.pdf?cite=2024 c 76 s 3\">2024 c 76 s 3</a>. Prior:  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/1639-S2.SL.pdf?cite=2023 c 387 s 3\">2023 c 387 s 3</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/1750.SL.pdf?cite=2023 c 181 s 2\">2023 c 181 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2021-22/Pdf/Bills/Session Laws/House/1016-S.SL.pdf?cite=2021 c 295 s 2\">2021 c 295 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6567.SL.pdf?cite=2020 c 74 s 2\">2020 c 74 s 2</a>; prior:  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/House/1449.SL.pdf?cite=2019 c 224 s 2\">2019 c 224 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/House/1906.SL.pdf?cite=2019 c 10 s 1\">2019 c 10 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/House/1939.SL.pdf?cite=2018 c 307 s 1\">2018 c 307 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/6376.SL.pdf?cite=2016 c 9 s 2\">2016 c 9 s 2</a>; prior:  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/Senate/6078-S.SL.pdf?cite=2014 c 177 s 2\">2014 c 177 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/Senate/5173-S.SL.pdf?cite=2014 c 168 s 1\">2014 c 168 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/House/1319.SL.pdf?cite=2013 c 5 s 1\">2013 c 5 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/House/2138.SL.pdf?cite=2012 c 11 s 1\">2012 c 11 s 1</a>; prior:  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1870.SL.pdf?cite=2007 c 61 s 2\">2007 c 61 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/Senate/5166.SL.pdf?cite=2007 c 19 s 2\">2007 c 19 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2003-04/Pdf/Bills/Session Laws/House/1460.SL.pdf?cite=2003 c 68 s 2\">2003 c 68 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/6285.SL.pdf?cite=2000 c 60 s 1\">2000 c 60 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5734.SL.pdf?cite=1999 c 26 s 1\">1999 c 26 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1993-94/Pdf/Bills/Session Laws/Senate/5479-S.SL.pdf?cite=1993 c 129 s 2\">1993 c 129 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1991-92/Pdf/Bills/Session Laws/Senate/5718.SL.pdf?cite=1991 sp.s. c 20 s 1\">1991 sp.s. c 20 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1991-92/Pdf/Bills/Session Laws/Senate/5678.SL.pdf?cite=1991 c 57 s 2\">1991 c 57 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1989c128.pdf?cite=1989 c 128 s 1\">1989 c 128 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1985c189.pdf?cite=1985 c 189 s 1\">1985 c 189 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1979c77.pdf?cite=1979 c 77 s 1\">1979 c 77 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1977ex1c111.pdf?cite=1977 ex.s. c 111 s 1\">1977 ex.s. c 111 s 1</a>; 1975-'76 2nd ex.s. c 24 s 1;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1975ex1c194.pdf?cite=1975 1st ex.s. c 194 s 1\">1975 1st ex.s. c 194 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1973ex2c1.pdf?cite=1973 2nd ex.s. c 1 s 1\">1973 2nd ex.s. c 1 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1969c11.pdf?cite=1969 c 11 s 1\">1969 c 11 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c20.pdf?cite=1955 c 20 s 1\">1955 c 20 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1927c51.pdf?cite=1927 c 51 s 1\">1927 c 51 s 1</a>; RRS s 61; prior:  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1895c3.pdf?cite=1895 c 3 s 1\">1895 c 3 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1891c41.pdf?cite=1891 c 41 s 1\">1891 c 41 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1888 p 107 s 1\">1888 p 107 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.16.060",
+          "caption": "\"Month\" or \"months.\"",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The word \"month\" or \"months,\" whenever the same occurs in the statutes of this state now in force, or in statutes hereinafter enacted, or in any contract made in this state, shall be taken and construed to mean \"calendar months.\"</div>",
+          "history": "[1891 c 23 s 1, part; Code 1881 s 759;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1877 p 333 s 1\">1877 p 333 s 1</a>; RRS s 149.]"
+        },
+        {
+          "sectionNumber": "1.16.065",
+          "caption": "\"Officer.\"",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Whenever any term indicating an officer is used it shall be construed, when required, to mean any person authorized by law to discharge the duties of such officer.</div>",
+          "history": "[Code 1881 s 755;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1854 p 221 s 501\">1854 p 221 s 501</a>; RRS s 147.]"
+        },
+        {
+          "sectionNumber": "1.16.080",
+          "caption": "\"Person\"—Construction of \"association,\" \"unincorporated association,\" and \"person, firm, or corporation\" to include a limited liability company.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The term \"person\" may be construed to include the United States, this state, or any state or territory, or any public or private corporation or limited liability company, as well as an individual.</div><div style=\"text-indent:0.5in;\">(2) Unless the context clearly indicates otherwise, the terms \"association,\" \"unincorporated association,\" and \"person, firm, or corporation\" or substantially identical terms shall, without limiting the application of any term to any other type of legal entity, be construed to include a limited liability company.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1995-96/Pdf/Bills/Session Laws/Senate/6168-S.SL.pdf?cite=1996 c 231 s 1\">1996 c 231 s 1</a>; 1891 c 23 s 1, part; Code 1881 s 964;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1857 p 46 s 1\">1857 p 46 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/Pages/session_laws.aspx?cite=1854 p 99 s 134\">1854 p 99 s 134</a>; RRS s 146.]"
+        },
+        {
+          "sectionNumber": "1.16.090",
+          "caption": "Legislative declaration for civil liberties day of remembrance.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The legislature recognizes that on February 19, 1942, the President of the United States issued Executive Order 9066 which authorized military rule over civilian law and lives; that Executive Order 9066 led to the World War II evacuation and internment of more than one hundred twenty thousand Japanese Americans, most of whom were United States citizens by birth; that Japanese Americans lost their homes and livelihoods and suffered physical and psychological damage; and that, despite widespread hostility and discrimination, Japanese Americans served with distinction in the United States military effort as members of the Military Intelligence Service and in the segregated 100th Infantry Battalion and the 442nd Regimental Combat Team. The legislature further recognizes that in the name of \"military necessity,\" Japanese Americans were deprived of their fundamental constitutional rights and civil liberties; and that the Japanese American experience during World War II tragically illuminates the fragile nature of our most cherished national beliefs and values.</div><div style=\"text-indent:0.5in;\">The legislature declares that an annual day of recognition be observed in remembrance of Japanese Americans interned during World War II as a reminder that, regardless of the provocation, individual rights and freedoms must never be denied.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2003-04/Pdf/Bills/Session Laws/House/1460.SL.pdf?cite=2003 c 68 s 1\">2003 c 68 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.16.100",
+          "caption": "Domestic relations terms—Exceptions.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">For the purposes of this code, with the exception of chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=26.04\">26.04</a> RCW, the terms spouse, marriage, marital, husband, wife, widow, widower, next of kin, and family shall be interpreted as applying equally to state registered domestic partnerships or individuals in state registered domestic partnerships as well as to marital relationships and married persons, and references to dissolution of marriage shall apply equally to state registered domestic partnerships that have been terminated, dissolved, or invalidated, to the extent that such interpretation does not conflict with federal law. Where necessary to implement chapter 521, Laws of 2009, gender-specific terms such as husband and wife used in any statute, rule, or other law shall be construed to be gender neutral, and applicable to individuals in state registered domestic partnerships.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/Senate/5688-S2.SL.pdf?cite=2009 c 521 s 4\">2009 c 521 s 4</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.20",
+      "chapterTitle": "GENERAL PROVISIONS",
+      "sections": [
+        {
+          "sectionNumber": "1.20.010",
+          "caption": "State flag.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The official flag of the state of Washington shall be of dark green silk or bunting and shall bear in its center a reproduction of the seal of the state of Washington embroidered, printed, painted or stamped thereon. The edges of the flag may, or may not, be fringed. If a fringe is used the same shall be of gold or yellow color of the same shade as the seal. The dimensions of the flag may vary.</div><div style=\"text-indent:0.5in;\">The secretary of state is authorized to provide the state flag to units of the armed forces, without charge therefor, as in his or her discretion he or she deems entitled thereto. The secretary of state is further authorized to sell the state flag to any citizen at a price to be determined by the secretary of state.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/Senate/5045.SL.pdf?cite=2011 c 336 s 7\">2011 c 336 s 7</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1967ex1c65.pdf?cite=1967 ex.s. c 65 s 2\">1967 ex.s. c 65 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1925ex1c85.pdf?cite=1925 ex.s. c 85 s 1\">1925 ex.s. c 85 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1923c174.pdf?cite=1923 c 174 s 1\">1923 c 174 s 1</a>; RRS s 10964-1, RRS vol. 11, p. 399.]"
+        },
+        {
+          "sectionNumber": "1.20.015",
+          "caption": "Display of national and state flags.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The flag of the United States and the flag of the state shall be prominently installed, displayed and maintained in schools, court rooms and state buildings.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1955c88.pdf?cite=1955 c 88 s 1\">1955 c 88 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.017",
+          "caption": "Display of national league of families' POW/MIA flag.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Each public entity must display the national league of families' POW/MIA flag along with the flag of the United States and the flag of the state upon or near the principal building of the public entity on the following days: (a) Former Prisoners of War Recognition Day on April 9th; (b) Welcome Home Vietnam Veterans Day on March 30; (c) Armed Forces Day on the third Saturday in May; (d) Memorial Day on the last Monday in May; (e) Flag Day on June 14; (f) Independence Day on July 4; (g) National Korean War Veterans Armistice Day on July 27; (h) National POW/MIA Recognition Day on the third Friday in September; (i) Veterans Day on November 11th; and (j) Pearl Harbor Remembrance Day on December 7th. If the designated day falls on a Saturday or Sunday, then the POW/MIA flag must be displayed on the preceding Friday.</div><div style=\"text-indent:0.5in;\">(2) The governor's veterans affairs advisory committee must provide information to public entities regarding the purchase and display of the POW/MIA flag upon request.</div><div style=\"text-indent:0.5in;\">(3) As used in this section, \"public entity\" means every state agency, including each institution of higher education, and every county, city, and town.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/House/1204.SL.pdf?cite=2017 c 79 s 1\">2017 c 79 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/House/1319.SL.pdf?cite=2013 c 5 s 2\">2013 c 5 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2011-12/Pdf/Bills/Session Laws/House/2138.SL.pdf?cite=2012 c 11 s 2\">2012 c 11 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2001-02/Pdf/Bills/Session Laws/Senate/5097-S.SL.pdf?cite=2002 c 293 s 1\">2002 c 293 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.020",
+          "caption": "State tree.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">That certain evergreen tree known and described as the western hemlock (<span style=\"font-style:italic;\">Tsuga heterophylla</span>) is hereby designated as the official tree of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1947c191.pdf?cite=1947 c 191 s 1\">1947 c 191 s 1</a>; Rem. Supp. 1947 s 10964-120.]"
+        },
+        {
+          "sectionNumber": "1.20.025",
+          "caption": "State grass.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\"><span style=\"font-style:italic;\">Agropyron spicatum</span>, the species of natural grass commonly called \"bluebunch wheatgrass,\" is hereby designated as the official grass of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1989c354.pdf?cite=1989 c 354 s 62\">1989 c 354 s 62</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.030",
+          "caption": "State flower.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The native species, <span style=\"font-style:italic;\">Rhododendron macrophyllum</span>, is hereby designated as the official flower of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c29.pdf?cite=1959 c 29 s 1\">1959 c 29 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1949c18.pdf?cite=1949 c 18 s 1\">1949 c 18 s 1</a>; Rem. Supp. 1949 s 10964-200.]"
+        },
+        {
+          "sectionNumber": "1.20.035",
+          "caption": "State fruit.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The official fruit of the state of Washington is the apple.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1989c354.pdf?cite=1989 c 354 s 63\">1989 c 354 s 63</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.037",
+          "caption": "State marine mammal.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The orca, <span style=\"font-style:italic;\">Orcinus orca</span>, is hereby designated as the official marine mammal of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2005-06/Pdf/Bills/Session Laws/House/1759.SL.pdf?cite=2005 c 51 s 2\">2005 c 51 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.038",
+          "caption": "State endemic mammal.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Olympic marmot, <span style=\"font-style:italic;\">Marmota olympus</span>, is hereby designated as the official endemic mammal of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2009-10/Pdf/Bills/Session Laws/Senate/5071.SL.pdf?cite=2009 c 464 s 2\">2009 c 464 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.040",
+          "caption": "State bird.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The willow goldfinch is hereby designated as the official bird of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1951c249.pdf?cite=1951 c 249 s 1\">1951 c 249 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.041",
+          "caption": "State dinosaur.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Suciasaurus rex is hereby designated as the official dinosaur of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/1020.SL.pdf?cite=2023 c 330 s 2\">2023 c 330 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.042",
+          "caption": "State fossil.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Columbian mammoth of North America, <span style=\"font-style:italic;\">Mammuthus columbi</span>, is hereby designated as the official fossil of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/House/1088-S.SL.pdf?cite=1998 c 129 s 2\">1998 c 129 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.045",
+          "caption": "State fish.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The species of trout commonly called \"steelhead trout\" (<span style=\"font-style:italic;\">Salmo gairdnerii</span>) is hereby designated as the official fish of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1969c36.pdf?cite=1969 c 36 s 1\">1969 c 36 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.047",
+          "caption": "State insect.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The common green darner dragonfly, <span style=\"font-style:italic;\">Anax junius drury</span>, is hereby designated as the official insect of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/House/1320-S.SL.pdf?cite=1997 c 6 s 2\">1997 c 6 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.050",
+          "caption": "Standard time—Daylight saving time. (Contingent repeal.)",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">No county, city or other political subdivision of this state shall adopt any provision for the observance of daylight saving time, or any time other than standard, except pursuant to a gubernatorial proclamation declaring an emergency during a period of national war and authorizing such adoption, or unless other than standard time is established on a national basis: PROVIDED, That this section shall not apply to orders made by federal authorities in a local area entirely under federal control.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1953c2.pdf?cite=1953 c 2 s 1\">1953 c 2 s 1</a> (Initiative Measure No. 181, approved November 4, 1952).]"
+        },
+        {
+          "sectionNumber": "1.20.051",
+          "caption": "Daylight saving time. (Contingent repeal.)",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">At two o'clock antemeridian Pacific Standard Time of the second Sunday in March each year the time of the state of Washington shall be advanced one hour, and at two o'clock antemeridian Pacific Standard Time of the first Sunday in November in each year the time of the state of Washington shall, by the retarding of one hour, be returned to Pacific Standard Time.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/House/2368.SL.pdf?cite=2018 c 22 s 2\">2018 c 22 s 2</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1963c14.pdf?cite=1963 c 14 s 1\">1963 c 14 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1961c3.pdf?cite=1961 c 3 s 1\">1961 c 3 s 1</a> (Initiative Measure No. 210, approved November 8, 1960).]"
+        },
+        {
+          "sectionNumber": "1.20.052",
+          "caption": "Permanent daylight saving time—Intent. (Contingent repeal.)",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Under federal law as it exists on July 28, 2019, states are not permitted to observe daylight saving time year-round. If the United States congress amends federal law to authorize states to observe daylight saving time year-round, the legislature intends that Washington state make daylight saving time the permanent time of the state and all of its political subdivisions.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/House/1196-S.SL.pdf?cite=2019 c 297 s 1\">2019 c 297 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.055",
+          "caption": "Pacific daylight time. (Contingent effective date.)",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The time of the state of Washington and all of its political subdivisions is Pacific daylight time throughout the calendar year, as determined by reference to coordinated universal time.</div><div style=\"text-indent:0.5in;\">(2) Pacific daylight time within the state is that of the fifth zone designated by federal law as Pacific Standard Time, 15 U.S.C. Secs. 261 and 263, advanced by one hour.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/House/1196-S.SL.pdf?cite=2019 c 297 s 2\">2019 c 297 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.060",
+          "caption": "Arbor day.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The second Wednesday in April of each year is designated as Arbor day.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1957c220.pdf?cite=1957 c 220 s 1\">1957 c 220 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.070",
+          "caption": "State song.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The song, music and lyrics, \"Washington My Home\", composed by Helen Davis, is hereby designated as the official song of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c281.pdf?cite=1959 c 281 s 1\">1959 c 281 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.071",
+          "caption": "State song—Proceeds from sale.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">All proceeds from the sale of the official song of the state as designated in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.20.070\">1.20.070</a> shall be placed in the general fund.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1973ex1c59.pdf?cite=1973 1st ex.s. c 59 s 1\">1973 1st ex.s. c 59 s 1</a>;  <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1959c281.pdf?cite=1959 c 281 s 2\">1959 c 281 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.073",
+          "caption": "State folk song.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The legislature recognizes that winter recreational activities are part of the folk tradition of the state of Washington. Winter recreational activities serve to turn the darkness of a northwest winter into the dawn of renewed vitality. As the winter snows dissolve into the torrents of spring, the Columbia river is nourished. The Columbia river is the pride of the northwest and the unifying geographic element of the state. In order to celebrate the river which ties the winter recreation playground of snowcapped mountains and the Yakima, Snake, and the Klickitat rivers to the ocean so blue, the legislature declares that the official state folk song is \"Roll On Columbia, Roll On,\" composed by Woody Guthrie.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1987c526.pdf?cite=1987 c 526 s 4\">1987 c 526 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.075",
+          "caption": "State dance.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The square dance is designated as the official dance of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1979ex1c10.pdf?cite=1979 ex.s. c 10 s 1\">1979 ex.s. c 10 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.080",
+          "caption": "State seal.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The seal of the state of Washington shall be, a seal encircled with the words: \"The Seal of the State of Washington,\" with the vignette of General George Washington as the central figure, and beneath the vignette the figures \"1889\" and shall be composed as appears in the illustration below:</div><div style=\"margin-left:1.725in;margin-right:1.725in;\"><table style=\"width:243pt;border-collapse:collapse;margin:0px auto;\"><colgroup><col style=\"width:243pt;\"></colgroup><tbody><tr><td style=\"vertical-align:top;\"><div style=\"text-align:center;padding-left:6pt;padding-right:6pt;\"><picture><!--[if IE 9]><video style=\"display: none;\"><![endif]--><source media=\"(min-width: 1024px)\" srcset=\"https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png, https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png 2x\"><source media=\"(min-width: 600px)\" srcset=\"https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png?maxwidth=640, https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png?maxwidth=640 2x\"><source srcset=\"https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png?maxwidth=320, https://app.leg.wa.gov/RCW/remote/lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png?maxwidth=320 2x\"><!--[if IE 9]></video><![endif]--><img srcset=\"http://lawfilesext.leg.wa.gov/law/rcw/images/20140710d7f42e6558aa4e098791a160964ea4ef.png\" style=\"width:240px;\"></picture></div></td></tr></tbody></table></div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1967ex1c65.pdf?cite=1967 ex.s. c 65 s 1\">1967 ex.s. c 65 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.090",
+          "caption": "State gem.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Petrified wood is hereby designated as the official gem of the state of Washington.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1975c8.pdf?cite=1975 c 8 s 1\">1975 c 8 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.100",
+          "caption": "Diverse cultures and languages encouraged—State policy.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The legislature finds that:</div><div style=\"text-indent:0.5in;\">(1) Diverse ethnic and linguistic communities have contributed to the social and economic prosperity of Washington state;</div><div style=\"text-indent:0.5in;\">(2) It is the welcomed responsibility and opportunity of this state to respect and facilitate the efforts of all cultural, ethnic, and linguistic segments of the population to become full participants in Washington communities;</div><div style=\"text-indent:0.5in;\">(3) This state's economic well-being depends heavily on foreign trade and international exchange and more than one out of six jobs is directly linked to foreign trade and international exchange;</div><div style=\"text-indent:0.5in;\">(4) If Washington is to prosper in foreign trade and international exchange, it must have citizens that are multilingual and multicultural;</div><div style=\"text-indent:0.5in;\">(5) While recognizing the value of a multilingual background, the state also encourages all citizens to become proficient in English to facilitate full participation of all groups into society and to promote cross-communication between multilingual groups; and</div><div style=\"text-indent:0.5in;\">(6) The multilingual nature of communication that currently exists in this state should be promoted to build trust and understanding among all of its citizens.</div><div style=\"text-indent:0.5in;\">Therefore, it shall be the policy of the state of Washington to welcome and encourage the presence of diverse cultures and the use of diverse languages in business, government, and private affairs in this state.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1989c236.pdf?cite=1989 c 236 s 1\">1989 c 236 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.110",
+          "caption": "State tartan.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Washington state tartan is hereby designated. The tartan shall have a pattern of colors, called a sett, that is made up of a green background with stripes of blue, white, yellow, red, and black. The secretary of state shall register the tartan with the Scottish Register of Tartans.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/House/1091-S.SL.pdf?cite=2019 c 64 s 2\">2019 c 64 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1991-92/Pdf/Bills/Session Laws/Senate/5047.SL.pdf?cite=1991 c 62 s 1\">1991 c 62 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.120",
+          "caption": "State arboretum.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Washington park arboretum is hereby designated as an official arboretum of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1995-96/Pdf/Bills/Session Laws/Senate/5410-S.SL.pdf?cite=1995 c 82 s 2\">1995 c 82 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.130",
+          "caption": "Preferred terminology in government documents.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) All state and local government statutes, codes, rules, regulations, and other official documents enacted after July 1, 2002, are required to use the term \"Asian\" when referring to persons of Asian descent. The use of the term \"Oriental\" is prohibited.</div><div style=\"text-indent:0.5in;\">(2) The legislature urges all state and local entities to review their statutes, codes, rules, regulations, and other official documents and revise them to omit the use of the term \"Oriental\" when referring to persons of Asian descent.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2001-02/Pdf/Bills/Session Laws/Senate/5954.SL.pdf?cite=2002 c 307 s 2\">2002 c 307 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.140",
+          "caption": "State vegetable.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Walla Walla sweet onion is designated as the official vegetable of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1556.SL.pdf?cite=2007 c 137 s 1\">2007 c 137 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.150",
+          "caption": "State amphibian.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Pacific chorus frog, <span style=\"font-style:italic;\">Pseudacris regilla,</span> is hereby designated as the official amphibian of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1069.SL.pdf?cite=2007 c 224 s 1\">2007 c 224 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.160",
+          "caption": "State ship.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Lady Washington is hereby designated as the official ship of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1084.SL.pdf?cite=2007 c 351 s 1\">2007 c 351 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.170",
+          "caption": "State waterfall.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Palouse falls is hereby designated as the official waterfall of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/House/2119.SL.pdf?cite=2014 c 41 s 2\">2014 c 41 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.180",
+          "caption": "State oyster.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The <span style=\"font-style:italic;\">Ostrea lurida</span> is hereby designated the official oyster of the state of Washington. This native oyster species plays an important role in the history and culture that surrounds shellfish in Washington state and along the west coast of the United States. Some of the common and historic names used for this species are Native, Western, Shoalwater, and Olympia.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2013-14/Pdf/Bills/Session Laws/Senate/6145-S.SL.pdf?cite=2014 c 146 s 2\">2014 c 146 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.190",
+          "caption": "Purple heart state.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Washington state is designated a purple heart state that honors people who have received the purple heart award.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2021-22/Pdf/Bills/Session Laws/House/1250-S.SL.pdf?cite=2021 c 213 s 2\">2021 c 213 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.200",
+          "caption": "State sport.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The sport of pickleball is hereby designated as the official sport of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2021-22/Pdf/Bills/Session Laws/Senate/5615.SL.pdf?cite=2022 c 188 s 2\">2022 c 188 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.210",
+          "caption": "Water safety day.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">On the day recognized as water safety day under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.16.050\">1.16.050</a>, individuals who work directly with children, from infants to age 18, in their profession are encouraged to provide training, educational materials, and other resources to the children and their families around water safety, water rescue, and drowning prevention, including a list of locations where caregivers can access swimming lessons for their children.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/1750.SL.pdf?cite=2023 c 181 s 3\">2023 c 181 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.20.220",
+          "caption": "State marine forest.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Bull kelp (<span style=\"font-style:italic;\">Nereocystis luetkeana</span>) forests are hereby designated to be the official marine forest of the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Session Laws/House/1631.SL.pdf?cite=2025 c 45 s 2\">2025 c 45 s 2</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.40",
+      "chapterTitle": "STATE MEDAL OF MERIT",
+      "sections": [
+        {
+          "sectionNumber": "1.40.010",
+          "caption": "State medal of merit established.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">There is established a decoration of the state medal of merit with accompanying ribbons and appurtenances for award by the governor, in the name of the state, to any person who has been distinguished by exceptionally meritorious conduct in performing outstanding services to the people and state of Washington, upon the nomination of the governor's state medal of merit committee.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 1\">1986 c 92 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.40.020",
+          "caption": "Nominating committee created—Composition—Meeting—Rules.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">There is created the state medal of merit committee for nominating candidates for the award of the state medal of merit. The committee membership consists of the governor, president of the senate, speaker of the house of representatives, and the chief justice of the supreme court, or their designees. The secretary of state shall serve as a nonvoting ex officio member, and shall serve as secretary to the committee. The committee shall meet annually to consider candidates for nomination. The committee shall adopt rules establishing the qualifications for the state medal of merit, the protocol governing the decoration, and the appurtenances necessary to the implementation of this chapter.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 2\">1986 c 92 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.40.030",
+          "caption": "Delegation of authority to make award.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The governor may delegate the awarding of the state medal of merit to the president of the senate, speaker of the house of representatives, or the chief justice of the supreme court.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 3\">1986 c 92 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.40.040",
+          "caption": "Posthumous award.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The state medal of merit may be awarded posthumously to be presented to such representative of the deceased as may be deemed appropriate by the governor or the designees specified in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.40.030\">1.40.030</a>.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 4\">1986 c 92 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.40.050",
+          "caption": "Certain persons prohibited from receiving award.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The state medal of merit shall not be awarded to any elected official while in office or to any candidate for an elected office.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 5\">1986 c 92 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.40.060",
+          "caption": "Appearance of medal—Inscription.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The decoration of the state medal of merit shall be of bronze and shall consist of the seal of the state of Washington, surrounded by a raised laurel wreath and suspended from a ring attached by a dark green ribbon. The reverse of the decoration within the raised laurel wreath shall be inscribed with the words: \"For exceptionally meritorious conduct in performing outstanding services to the people and state of Washington.\"</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/1986c92.pdf?cite=1986 c 92 s 6\">1986 c 92 s 6</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.50",
+      "chapterTitle": "WASHINGTON GIFT OF LIFE AWARD",
+      "sections": [
+        {
+          "sectionNumber": "1.50.005",
+          "caption": "Findings—Intent.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The legislature finds that persons who donate organs help save the lives and promote the well-being of others in a manner that demonstrates the noblest side of human nature. Many families and friends of both the donors and the donees may want to remember the special act of donation in a way that honors the memory of the donor and encourages donation by others in the future.</div><div style=\"text-indent:0.5in;\">To recognize the special kindness of those who donate their organs, the legislature establishes the Washington gift of life award.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5828-S.SL.pdf?cite=1999 c 264 s 1\">1999 c 264 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/Senate/6667-S.SL.pdf?cite=1998 c 59 s 1\">1998 c 59 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.50.006",
+          "caption": "Findings—Intent.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The legislature finds that eighty-four people died waiting for an organ transplant in Washington state in 2013. The legislature further finds that more than two thousand six hundred people are currently waiting for a lifesaving organ transplant in Washington state. Forty of those patients waiting are under the age of eighteen and more than two hundred of those patients have been waiting for more than five years for their lifesaving gift. The legislature further finds that organ donation is a very rare and precious gift. Less than one percent of all people who die are eligible to donate their organs due to the unique circumstances needed at death to donate organs. Every donor is a critical donation to those waiting.</div><div style=\"text-indent:0.5in;\">(2) Therefore, the legislature intends to update the gift of life award to recognize all Washington citizens who have donated critical lifesaving organs.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5532.SL.pdf?cite=2015 c 8 s 1\">2015 c 8 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.50.010",
+          "caption": "Definitions.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Unless the context clearly requires otherwise, the definitions in this section apply throughout this chapter.</div><div style=\"text-indent:0.5in;\">(1) \"Organ donor\" means an individual who makes an anatomical gift of an organ under chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=68.64\">68.64</a> RCW.</div><div style=\"text-indent:0.5in;\">(2) \"Organ procurement organization\" has the same meaning as in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=68.64.010\">68.64.010</a>.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5532.SL.pdf?cite=2015 c 8 s 2\">2015 c 8 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2007-08/Pdf/Bills/Session Laws/House/1637-S.SL.pdf?cite=2008 c 139 s 25\">2008 c 139 s 25</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/Senate/6667-S.SL.pdf?cite=1998 c 59 s 2\">1998 c 59 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.50.030",
+          "caption": "Washington gift of life award—Presentation.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The governor's office shall annually present the Washington gift of life award to families of donors who have donated organs in accordance with chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=68.64\">68.64</a> RCW.</div><div style=\"text-indent:0.5in;\">Organ procurement organizations may nominate the individuals eligible under this section to represent all those who have donated organs during the previous calendar year and may submit documentation supporting the eligibility of the individuals to the governor's office. If more than one organ procurement organization is involved, they shall coordinate in harmony to designate by consensus the organ procurement organization among them to have primary administrative responsibility under this chapter.</div><div style=\"text-indent:0.5in;\">(2) The governor's office shall present the awards on an annual basis to each eligible organ donor's family in coordination with the organ procurement organization. Only one award may be presented to the family of an organ donor.</div><div style=\"text-indent:0.5in;\">(3) Organ procurement organizations shall seek permission from the family of organ donors selected to receive the gift of life award to release the name of the organ donor to the governor's office for printing of a gift of life certificate and use at any gift of life ceremonies or events.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5532.SL.pdf?cite=2015 c 8 s 3\">2015 c 8 s 3</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5828-S.SL.pdf?cite=1999 c 264 s 2\">1999 c 264 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/Senate/6667-S.SL.pdf?cite=1998 c 59 s 4\">1998 c 59 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.50.040",
+          "caption": "Appearance of award—Inscription.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The Washington gift of life award shall consist of the seal of the state of Washington and be inscribed with the words: \"For the greatest act of kindness in donating organs to save the lives of others.\"</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5532.SL.pdf?cite=2015 c 8 s 4\">2015 c 8 s 4</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5828-S.SL.pdf?cite=1999 c 264 s 3\">1999 c 264 s 3</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1997-98/Pdf/Bills/Session Laws/Senate/6667-S.SL.pdf?cite=1998 c 59 s 5\">1998 c 59 s 5</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.60",
+      "chapterTitle": "MEDAL OF VALOR",
+      "sections": [
+        {
+          "sectionNumber": "1.60.010",
+          "caption": "Medal of valor.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">There is established a decoration of the state medal of valor with accompanying certificate, ribbons, and appurtenances for award by the governor, in the name of the state, to any person or group of persons who has or have saved, or attempted to save, the life of another at the risk of serious injury or death to himself or herself, upon the selection of the governor's state medal of valor committee.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5035.SL.pdf?cite=2015 c 4 s 1\">2015 c 4 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 1\">2000 c 224 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.60.020",
+          "caption": "Medal of valor committee.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">There is created the state medal of valor committee for selecting honorees for the award of the state medal of valor. The committee membership consists of the governor, president of the senate, speaker of the house of representatives, and the chief justice of the supreme court, or their designees. The secretary of state shall serve as a nonvoting ex officio member, and shall serve as secretary to the committee. The committee shall meet annually to consider candidates for this award. Any individual may nominate any resident or group of residents of this state for any act of valor covered by this section. The committee shall adopt rules establishing the qualifications for the state medal of valor, the protocol governing the decoration, the certificate, and appurtenances necessary to the implementation of this chapter.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5035.SL.pdf?cite=2015 c 4 s 2\">2015 c 4 s 2</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 2\">2000 c 224 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.60.030",
+          "caption": "Award presentation.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The award will be presented by the governor of the state of Washington to the recipient or recipients.</div><div style=\"text-indent:0.5in;\">(2) If the governor is unable to present the award, the governor may delegate the presenting of the award to the president of the senate, the speaker of the house of representatives, or the chief justice of the supreme court.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/House/1031.SL.pdf?cite=2023 c 131 s 1\">2023 c 131 s 1</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2015-16/Pdf/Bills/Session Laws/Senate/5035.SL.pdf?cite=2015 c 4 s 3\">2015 c 4 s 3</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 3\">2000 c 224 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.60.040",
+          "caption": "Posthumous award.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The state medal of valor may be awarded posthumously to be presented to such representative of the deceased as may be deemed appropriate by the committee.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 4\">2000 c 224 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.60.050",
+          "caption": "Hazardous professions excluded.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The state medal of valor will not be awarded to any individual who is acting as a result of service given by any branch of law enforcement, firefighting, rescue, or other hazardous profession where the individual is employed by a government entity within the state of Washington.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 5\">2000 c 224 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.60.060",
+          "caption": "Appearance of medal and certificate.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) The decoration of the state medal of valor shall be of .999 pure silver and shall consist of the seal of the state of Washington, surrounded by a raised laurel wreath and suspended from a silver bar device inscribed \"For Valor\" which is suspended from a ring attached by a dark green ribbon, bordered by silver. The reverse of the decoration within the raised laurel wreath shall be inscribed with the recipient's name and the words: \"For exceptionally valorous service, given in the act of saving the life of another.\"</div><div style=\"text-indent:0.5in;\">(2) The certificate accompanying the medal will prominently display: (a) The title, \"Washington State Medal of Valor\"; (b) the recipient's name; and (c) the phrase, \"For exceptionally valorous service, given in the act of saving the life of another.\" A seven-line citation will also be included on the certificate.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/1999-00/Pdf/Bills/Session Laws/Senate/5408-S.SL.pdf?cite=2000 c 224 s 6\">2000 c 224 s 6</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.70",
+      "chapterTitle": "UNIFORM ELECTRONIC LEGAL MATERIAL ACT",
+      "sections": [
+        {
+          "sectionNumber": "1.70.010",
+          "caption": "Definitions.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The definitions in this section apply throughout this chapter unless the context clearly requires otherwise.</div><div style=\"text-indent:0.5in;\">(1) \"Electronic\" means relating to technology having electrical, digital, magnetic, wireless, optical, electromagnetic, or similar capabilities.</div><div style=\"text-indent:0.5in;\">(2) \"Legal material\" means, whether or not in effect:</div><div style=\"text-indent:0.5in;\">(a) The Washington state Constitution;</div><div style=\"text-indent:0.5in;\">(b) The session laws of the state of Washington;</div><div style=\"text-indent:0.5in;\">(c) The Revised Code of Washington;</div><div style=\"text-indent:0.5in;\">(d) A state agency rule that has or had the effect of law;</div><div style=\"text-indent:0.5in;\">(e) The Washington State Register; or</div><div style=\"text-indent:0.5in;\">(f) The Washington Administrative Code.</div><div style=\"text-indent:0.5in;\">(3) \"Official publisher\" means:</div><div style=\"text-indent:0.5in;\">(a) For the Washington state Constitution, the secretary of state;</div><div style=\"text-indent:0.5in;\">(b) For session laws of the state of Washington, the statute law committee;</div><div style=\"text-indent:0.5in;\">(c) For the Revised Code of Washington, the statute law committee;</div><div style=\"text-indent:0.5in;\">(d) For a rule published in the Washington State Register, the statute law committee;</div><div style=\"text-indent:0.5in;\">(e) For a rule not published in the Washington State Register, the state agency adopting the rule;</div><div style=\"text-indent:0.5in;\">(f) For the Washington State Register, the statute law committee; or</div><div style=\"text-indent:0.5in;\">(g) For the Washington Administrative Code, the statute law committee.</div><div style=\"text-indent:0.5in;\">(4) \"Publish\" means to display, present, or release to the public, or cause to be displayed, presented, or released to the public, by the official publisher.</div><div style=\"text-indent:0.5in;\">(5) \"Record\" means information that is inscribed on a tangible medium or that is stored in an electronic or other medium and is retrievable in perceivable form.</div><div style=\"text-indent:0.5in;\">(6) \"State\" means a state of the United States, the District of Columbia, Puerto Rico, the United States Virgin Islands, or any territory or insular possession subject to the jurisdiction of the United States.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 2\">2017 c 106 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.020",
+          "caption": "Applicability.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Except as provided in subsection (2) of this section, this chapter applies to all legal material in an electronic record that is designated as official under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.030\">1.70.030</a> and first published electronically on or after January 1, 2018.</div><div style=\"text-indent:0.5in;\">(2) This chapter applies to issues of the Washington State Register in an official electronic record that were first published on or after May 7, 2008.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 3\">2017 c 106 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.030",
+          "caption": "Legal material in official electronic record.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) If an official publisher publishes legal material only in an electronic record, the publisher shall:</div><div style=\"text-indent:0.5in;\">(a) Designate the electronic record as official; and</div><div style=\"text-indent:0.5in;\">(b) Comply with RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.040\">1.70.040</a>,  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.060\">1.70.060</a>, and  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.070\">1.70.070</a>.</div><div style=\"text-indent:0.5in;\">(2) An official publisher that publishes legal material in an electronic record and also publishes the material in a record other than an electronic record may designate the electronic record as official if the publisher complies with RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.040\">1.70.040</a>,  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.060\">1.70.060</a>, and  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.070\">1.70.070</a>.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 4\">2017 c 106 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.040",
+          "caption": "Authentication of official electronic record.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">An official publisher of legal material in an electronic record that is designated as official under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.030\">1.70.030</a> shall authenticate the record. To authenticate an electronic record, the publisher shall provide a method for a user to determine that the record received by the user from the publisher is unaltered from the official record published by the publisher.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 5\">2017 c 106 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.050",
+          "caption": "Effect of authentication.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Legal material in an electronic record that is authenticated under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.040\">1.70.040</a> is presumed to be an accurate copy of the legal material.</div><div style=\"text-indent:0.5in;\">(2) If another state has adopted a law substantially similar to this chapter, legal material in an electronic record that is designated as official and authenticated by the official publisher in that state is presumed to be an accurate copy of the legal material.</div><div style=\"text-indent:0.5in;\">(3) A party contesting the authentication of legal material in an electronic record authenticated under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.040\">1.70.040</a> has the burden of proving by a preponderance of the evidence that the record is not authentic.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 6\">2017 c 106 s 6</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.060",
+          "caption": "Preservation and security of legal material in official electronic record.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) An official publisher of legal material in an electronic record that is or was designated as official under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.030\">1.70.030</a> shall provide for the preservation and security of the record in an electronic form or a form that is not electronic.</div><div style=\"text-indent:0.5in;\">(2) If legal material is preserved under subsection (1) of this section in an electronic record, the official publisher shall:</div><div style=\"text-indent:0.5in;\">(a) Ensure the integrity of the record;</div><div style=\"text-indent:0.5in;\">(b) Provide for backup and disaster recovery of the record; and</div><div style=\"text-indent:0.5in;\">(c) Ensure the continuing usability of the material.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 7\">2017 c 106 s 7</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.070",
+          "caption": "Public access to legal material in official electronic record.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">An official publisher of legal material in an electronic record that is required to be preserved under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.70.060\">1.70.060</a> shall ensure that the material is reasonably available for use by the public on a permanent basis.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 8\">2017 c 106 s 8</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.080",
+          "caption": "Standards.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">In implementing this chapter, an official publisher of legal material in an electronic record shall consider:</div><div style=\"text-indent:0.5in;\">(1) Standards and practices of other jurisdictions;</div><div style=\"text-indent:0.5in;\">(2) The most recent standards regarding authentication of, preservation and security of, and public access to, legal material in an electronic record and other electronic records, as promulgated by national standard-setting bodies;</div><div style=\"text-indent:0.5in;\">(3) The needs of users of legal material in an electronic record;</div><div style=\"text-indent:0.5in;\">(4) The views of governmental officials and entities and other interested persons; and</div><div style=\"text-indent:0.5in;\">(5) To the extent practicable, methods and technologies for the authentication of, preservation and security of, and public access to, legal material which are compatible with the methods and technologies used by other official publishers in this state and in other states that have adopted a law substantially similar to this chapter.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 9\">2017 c 106 s 9</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.090",
+          "caption": "Courts excluded.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter does not apply to any court or agency of the judicial branch.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 12\">2017 c 106 s 12</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.900",
+          "caption": "Short title.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter may be known and cited as the uniform electronic legal material act.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 1\">2017 c 106 s 1</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.901",
+          "caption": "Uniformity of application and construction.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">In applying and construing this uniform act, consideration must be given to the need to promote uniformity of the law with respect to its subject matter among states that enact it.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 10\">2017 c 106 s 10</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.902",
+          "caption": "Relation to electronic signatures in global and national commerce act.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter modifies, limits, and supersedes the electronic signatures in global and national commerce act, 15 U.S.C. Sec. 7001 et seq., but does not modify, limit, or supersede Section 101(c) of that act, 15 U.S.C. Sec. 7001(c), or authorize electronic delivery of any of the notices described in Section 103(b) of that act, 15 U.S.C. Sec. 7003(b).</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 11\">2017 c 106 s 11</a>.]"
+        },
+        {
+          "sectionNumber": "1.70.903",
+          "caption": "Effective date—2017 c 106.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This act takes effect January 1, 2018.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2017-18/Pdf/Bills/Session Laws/Senate/5039.SL.pdf?cite=2017 c 106 s 13\">2017 c 106 s 13</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.80",
+      "chapterTitle": "UNIFORM ELECTRONIC TRANSACTIONS ACT",
+      "sections": [
+        {
+          "sectionNumber": "1.80.010",
+          "caption": "Definitions.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The definitions in this section apply throughout this chapter unless the context clearly requires otherwise.</div><div style=\"text-indent:0.5in;\">(1) \"Agreement\" means the bargain of the parties in fact, as found in their language or inferred from other circumstances and from rules, regulations, and procedures given the effect of agreements under laws otherwise applicable to a particular transaction.</div><div style=\"text-indent:0.5in;\">(2) \"Automated transaction\" means a transaction conducted or performed, in whole or in part, by electronic means or electronic records, in which the acts or records of one or both parties are not reviewed by an individual in the ordinary course in forming a contract, performing under an existing contract, or fulfilling an obligation required by the transaction.</div><div style=\"text-indent:0.5in;\">(3) \"Blockchain\" means a cryptographically secured, chronological, and decentralized consensus ledger or consensus database maintained via internet, peer-to-peer network, or other similar interaction.</div><div style=\"text-indent:0.5in;\">(4) \"Computer program\" means a set of statements or instructions to be used directly or indirectly in an information processing system in order to bring about a certain result.</div><div style=\"text-indent:0.5in;\">(5) \"Contract\" means the total legal obligation resulting from the parties' agreement as affected by this chapter and other applicable law.</div><div style=\"text-indent:0.5in;\">(6) \"Distributed ledger technology\" means any distributed ledger protocol and supporting infrastructure, including blockchain, that uses a distributed, decentralized, shared, and replicated ledger.</div><div style=\"text-indent:0.5in;\">(7) \"Electronic\" means relating to technology having electrical, digital, magnetic, wireless, optical, electromagnetic, or similar capabilities, including without limitation blockchain and distributed ledger technology.</div><div style=\"text-indent:0.5in;\">(8) \"Electronic agent\" means a computer program or an electronic or other automated means used independently to initiate an action or respond to electronic records or performances in whole or in part, without review or action by an individual.</div><div style=\"text-indent:0.5in;\">(9) \"Electronic record\" means a record created, generated, sent, communicated, received, or stored by electronic means.</div><div style=\"text-indent:0.5in;\">(10) \"Electronic signature\" means an electronic sound, symbol, or process attached to or logically associated with a record and executed or adopted by a person with the intent to sign the record.</div><div style=\"text-indent:0.5in;\">(11) \"Governmental agency\" means an executive, legislative, or judicial agency, department, board, commission, authority, institution, or instrumentality of the federal government or of a state or of a county, municipality, or other political subdivision of a state.</div><div style=\"text-indent:0.5in;\">(12) \"Information\" means data, text, images, sounds, codes, computer programs, software, databases, or the like.</div><div style=\"text-indent:0.5in;\">(13) \"Information processing system\" means an electronic system for creating, generating, sending, receiving, storing, displaying, or processing information.</div><div style=\"text-indent:0.5in;\">(14) \"Person\" means an individual, corporation, business trust, estate, trust, partnership, limited liability company, association, joint venture, governmental agency, public corporation, or any other legal or commercial entity.</div><div style=\"text-indent:0.5in;\">(15) \"Record\" means information that is inscribed on a tangible medium or that is stored in an electronic or other medium and is retrievable in perceivable form.</div><div style=\"text-indent:0.5in;\">(16) \"Security procedure\" means a procedure employed for the purpose of verifying that an electronic signature, record, or performance is that of a specific person or for detecting changes or errors in the information in an electronic record. The term includes a procedure that requires the use of algorithms or other codes, identifying words or numbers, encryption, or callback or other acknowledgment procedures.</div><div style=\"text-indent:0.5in;\">(17) \"State\" means a state of the United States, the District of Columbia, Puerto Rico, the United States Virgin Islands, or any territory or insular possession subject to the jurisdiction of the United States. The term includes an Indian tribe or band, or Alaskan native village, which is recognized by federal law or formally acknowledged by a state.</div><div style=\"text-indent:0.5in;\">(18) \"Transaction\" means an action or set of actions occurring between two or more persons relating to the conduct of business, commercial, or governmental affairs.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 2\">2020 c 57 s 2</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.020",
+          "caption": "Scope.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Except as otherwise provided in subsection (2) of this section, this chapter applies to electronic records and electronic signatures relating to a transaction.</div><div style=\"text-indent:0.5in;\">(2) This chapter does not apply to a transaction to the extent it is governed by:</div><div style=\"text-indent:0.5in;\">(a) A law governing the creation and execution of wills, codicils, or testamentary trusts. However, this chapter applies to nonjudicial settlement agreements under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=11.96A.220\">11.96A.220</a>; and</div><div style=\"text-indent:0.5in;\">(b) Title <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A\">62A</a> RCW other than RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A.1-306\">62A.1-306</a> and chapters 62A.2 and 62A.2A RCW.</div><div style=\"text-indent:0.5in;\">(3) This chapter applies to an electronic record or electronic signature otherwise excluded from the application of this chapter under subsection (2) of this section to the extent it is governed by a law other than those specified in subsection (2) of this section.</div><div style=\"text-indent:0.5in;\">(4) A transaction subject to this chapter is also subject to other applicable substantive law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session Laws/Senate/5787-S.SL.pdf?cite=2024 c 188 s 17\">2024 c 188 s 17</a>;  <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 3\">2020 c 57 s 3</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.030",
+          "caption": "Prospective application.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter applies to any electronic record or electronic signature created, generated, sent, communicated, received, or stored on or after June 11, 2020.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 4\">2020 c 57 s 4</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.040",
+          "caption": "Use of electronic records and electronic signatures—Variation by agreement.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) This chapter does not require a record or signature to be created, generated, sent, communicated, received, stored, or otherwise processed or used by electronic means or in electronic form.</div><div style=\"text-indent:0.5in;\">(2) This chapter applies only to transactions between parties each of which has agreed to conduct transactions by electronic means. Whether the parties agree to conduct a transaction by electronic means is determined from the context and surrounding circumstances, including the parties' conduct.</div><div style=\"text-indent:0.5in;\">(3) A party that agrees to conduct a transaction by electronic means may refuse to conduct other transactions by electronic means. The right granted by this subsection may not be waived by agreement.</div><div style=\"text-indent:0.5in;\">(4) Except as otherwise provided in this chapter, the effect of any of its provisions may be varied by agreement. The presence in certain provisions of this chapter of the words \"unless otherwise agreed,\" or words of similar import, does not imply that the effect of other provisions may not be varied by agreement.</div><div style=\"text-indent:0.5in;\">(5) Whether an electronic record or electronic signature has legal consequences is determined by this chapter and other applicable law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 5\">2020 c 57 s 5</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.050",
+          "caption": "Construction and application.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter must be construed and applied:</div><div style=\"text-indent:0.5in;\">(1) To facilitate electronic transactions consistent with other applicable law;</div><div style=\"text-indent:0.5in;\">(2) To be consistent with reasonable practices concerning electronic transactions and with the continued expansion of those practices; and</div><div style=\"text-indent:0.5in;\">(3) To effectuate its general purpose to make uniform the law with respect to the subject of this chapter among states enacting it.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 6\">2020 c 57 s 6</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.060",
+          "caption": "Legal recognition of electronic records, electronic signatures, and electronic contracts.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) A record or signature may not be denied legal effect or enforceability solely because it is in electronic form.</div><div style=\"text-indent:0.5in;\">(2) A contract may not be denied legal effect or enforceability solely because an electronic record was used in its formation.</div><div style=\"text-indent:0.5in;\">(3) If a law requires a record to be in writing, an electronic record satisfies the law.</div><div style=\"text-indent:0.5in;\">(4) If a law requires a signature, an electronic signature satisfies the law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 7\">2020 c 57 s 7</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.070",
+          "caption": "Provision of information in writing—Presentation of records.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) If parties have agreed to conduct a transaction by electronic means and a law requires a person to provide, send, or deliver information in writing to another person, the requirement is satisfied if the information is provided, sent, or delivered, as the case may be, in an electronic record capable of retention by the recipient at the time of receipt. An electronic record is not capable of retention by the recipient if the sender or its information processing system inhibits the ability of the recipient to print or store the electronic record.</div><div style=\"text-indent:0.5in;\">(2) If a law other than this chapter requires a record (a) to be posted or displayed in a certain manner, (b) to be sent, communicated, or transmitted by a specified method, or (c) to contain information that is formatted in a certain manner, the following rules apply:</div><div style=\"text-indent:0.5in;\">(i) The record must be posted or displayed in the manner specified in the other law.</div><div style=\"text-indent:0.5in;\">(ii) Except as otherwise provided in subsection (4)(b) of this section, the record must be sent, communicated, or transmitted by the method specified in the other law.</div><div style=\"text-indent:0.5in;\">(iii) The record must contain the information formatted in the manner specified in the other law.</div><div style=\"text-indent:0.5in;\">(3) If a sender inhibits the ability of a recipient to store or print an electronic record, the electronic record is not enforceable against the recipient.</div><div style=\"text-indent:0.5in;\">(4) The requirements of this section may not be varied by agreement, but:</div><div style=\"text-indent:0.5in;\">(a) To the extent a law other than this chapter requires information to be provided, sent, or delivered in writing but permits that requirement to be varied by agreement, the requirement under subsection (1) of this section that the information be in the form of an electronic record capable of retention may also be varied by agreement; and</div><div style=\"text-indent:0.5in;\">(b) A requirement under a law other than this chapter to send, communicate, or transmit a record by regular United States mail may be varied by agreement to the extent permitted by the other law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 8\">2020 c 57 s 8</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.080",
+          "caption": "Attribution and effect of electronic record and electronic signature.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) An electronic record or electronic signature is attributable to a person if it was the act of the person. The act of the person may be shown in any manner, including a showing of the efficacy of any security procedure applied to determine the person to which the electronic record or electronic signature was attributable.</div><div style=\"text-indent:0.5in;\">(2) The effect of an electronic record or electronic signature attributed to a person under subsection (1) of this section is determined from the context and surrounding circumstances at the time of its creation, execution, or adoption, including the parties' agreement, if any, and otherwise as provided by law.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 9\">2020 c 57 s 9</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.090",
+          "caption": "Effect of change or error.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">If a change or error in an electronic record occurs in a transmission between parties to a transaction, the following rules apply:</div><div style=\"text-indent:0.5in;\">(1) If the parties have agreed to use a security procedure to detect changes or errors and one party has conformed to the procedure, but the other party has not, and the nonconforming party would have detected the change or error had that party also conformed, the conforming party may avoid the effect of the changed or erroneous electronic record.</div><div style=\"text-indent:0.5in;\">(2) In an automated transaction involving an individual, the individual may avoid the effect of an electronic record that resulted from an error made by the individual in dealing with the electronic agent of another person if the electronic agent did not provide an opportunity for the prevention or correction of the error and, at the time the individual learns of the error, the individual:</div><div style=\"text-indent:0.5in;\">(a) Promptly notifies the other person of the error and that the individual did not intend to be bound by the electronic record received by the other person;</div><div style=\"text-indent:0.5in;\">(b) Takes reasonable steps, including steps that conform to the other person's reasonable instructions, to return to the other person or, if instructed by the other person, to destroy the consideration received, if any, as a result of the erroneous electronic record; and</div><div style=\"text-indent:0.5in;\">(c) Has not used or received any benefit or value from the consideration, if any, received from the other person.</div><div style=\"text-indent:0.5in;\">(3) If neither subsection (1) of this section nor subsection (2) of this section applies, the change or error has the effect provided by other law, including the law of mistake, and the parties' contract, if any.</div><div style=\"text-indent:0.5in;\">(4) Subsections (2) and (3) of this section may not be varied by agreement.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 10\">2020 c 57 s 10</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.100",
+          "caption": "Notarization, acknowledgment, verification, or under oath.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">If a law requires a signature or record to be notarized, acknowledged, verified, or made under oath, the requirement is satisfied if the electronic signature of the person authorized to perform those acts, together with all other information required to be included by other applicable law, is attached to or logically associated with the signature or record.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 11\">2020 c 57 s 11</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.110",
+          "caption": "Retention of electronic records—Originals.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) If a law requires that a record be retained, the requirement is satisfied by retaining an electronic record of the information in the record which:</div><div style=\"text-indent:0.5in;\">(a) Accurately reflects the information set forth in the record after it was first generated in its final form as an electronic record or otherwise; and</div><div style=\"text-indent:0.5in;\">(b) Remains accessible for later reference.</div><div style=\"text-indent:0.5in;\">(2) A requirement to retain a record in accordance with subsection (1) of this section does not apply to any information the sole purpose of which is to enable the record to be sent, communicated, or received.</div><div style=\"text-indent:0.5in;\">(3) A person may satisfy subsection (1) of this section by using the services of another person if the requirements of that subsection are satisfied.</div><div style=\"text-indent:0.5in;\">(4) If a law requires a record to be presented or retained in its original form, or provides consequences if the record is not presented or retained in its original form, that law is satisfied by an electronic record retained in accordance with subsection (1) of this section.</div><div style=\"text-indent:0.5in;\">(5) If a law requires retention of a check, that requirement is satisfied by retention of an electronic record of the information on the front and back of the check in accordance with subsection (1) of this section.</div><div style=\"text-indent:0.5in;\">(6) A record retained as an electronic record in accordance with subsection (1) of this section satisfies a law requiring a person to retain a record for evidentiary, audit, or like purposes, unless a law enacted after June 11, 2020, specifically prohibits the use of an electronic record for the specified purpose.</div><div style=\"text-indent:0.5in;\">(7) This section does not preclude a governmental agency of this state from specifying additional requirements for the retention of a record subject to the agency's jurisdiction.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 12\">2020 c 57 s 12</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.120",
+          "caption": "Admissibility in evidence.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">In a proceeding, evidence of a record or signature may not be excluded solely because it is in electronic form.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 13\">2020 c 57 s 13</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.130",
+          "caption": "Automated transaction.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">In an automated transaction, the following rules apply:</div><div style=\"text-indent:0.5in;\">(1) A contract may be formed by the interaction of electronic agents of the parties, even if no individual was aware of or reviewed the electronic agents' actions or the resulting terms and agreements.</div><div style=\"text-indent:0.5in;\">(2) A contract may be formed by the interaction of an electronic agent and an individual, acting on the individual's own behalf or for another person, including by an interaction in which the individual performs actions that the individual is free to refuse to perform and which the individual knows or has reason to know will cause the electronic agent to complete the transaction or performance.</div><div style=\"text-indent:0.5in;\">(3) The terms of the contract are determined by the substantive law applicable to it.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 14\">2020 c 57 s 14</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.140",
+          "caption": "Time and place of sending and receipt.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Unless otherwise agreed between the sender and the recipient, an electronic record is sent when it:</div><div style=\"text-indent:0.5in;\">(a) Is addressed properly or otherwise directed properly to an information processing system that the recipient has designated or uses for the purpose of receiving electronic records or information of the type sent and from which the recipient is able to retrieve the electronic record;</div><div style=\"text-indent:0.5in;\">(b) Is in a form capable of being processed by that system; and</div><div style=\"text-indent:0.5in;\">(c) Enters an information processing system outside the control of the sender or of a person that sent the electronic record on behalf of the sender or enters a region of the information processing system designated or used by the recipient which is under the control of the recipient.</div><div style=\"text-indent:0.5in;\">(2) Unless otherwise agreed between a sender and the recipient, an electronic record is received when:</div><div style=\"text-indent:0.5in;\">(a) It enters an information processing system that the recipient has designated or uses for the purpose of receiving electronic records or information of the type sent and from which the recipient is able to retrieve the electronic record; and</div><div style=\"text-indent:0.5in;\">(b) It is in a form capable of being processed by that system.</div><div style=\"text-indent:0.5in;\">(3) Subsection (2) of this section applies even if the place the information processing system is located is different from the place the electronic record is deemed to be received under subsection (4) of this section.</div><div style=\"text-indent:0.5in;\">(4) Unless otherwise expressly provided in the electronic record or agreed between the sender and the recipient, an electronic record is deemed to be sent from the sender's place of business and to be received at the recipient's place of business. For purposes of this subsection, the following rules apply:</div><div style=\"text-indent:0.5in;\">(a) If the sender or recipient has more than one place of business, the place of business of that person is the place having the closest relationship to the underlying transaction.</div><div style=\"text-indent:0.5in;\">(b) If the sender or the recipient does not have a place of business, the place of business is the sender's or recipient's residence, as the case may be.</div><div style=\"text-indent:0.5in;\">(5) An electronic record is received under subsection (2) of this section even if no individual is aware of its receipt.</div><div style=\"text-indent:0.5in;\">(6) Receipt of an electronic acknowledgment from an information processing system described in subsection (2) of this section establishes that a record was received but, by itself, does not establish that the content sent corresponds to the content received.</div><div style=\"text-indent:0.5in;\">(7) If a person is aware that an electronic record purportedly sent under subsection (1) of this section, or purportedly received under subsection (2) of this section, was not actually sent or received, the legal effect of the sending or receipt is determined by other applicable law. Except to the extent permitted by the other law, the requirements of this subsection may not be varied by agreement.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 15\">2020 c 57 s 15</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.150",
+          "caption": "Transferable records.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) In this section, \"transferable record\" means an electronic record that:</div><div style=\"text-indent:0.5in;\">(a) Would be a note under chapter 62A.3 RCW or a document under chapter 62A.7 RCW if the electronic record were in writing; and</div><div style=\"text-indent:0.5in;\">(b) The issuer of the electronic record expressly has agreed is a transferable record.</div><div style=\"text-indent:0.5in;\">(2) A person has control of a transferable record if a system employed for evidencing the transfer of interests in the transferable record reliably establishes that person as the person to which the transferable record was issued or transferred.</div><div style=\"text-indent:0.5in;\">(3) A system satisfies subsection (2) of this section, and a person is deemed to have control of a transferable record, if the transferable record is created, stored, and assigned in such a manner that:</div><div style=\"text-indent:0.5in;\">(a) A single authoritative copy of the transferable record exists which is unique, identifiable, and, except as otherwise provided in (d), (e), and (f) of this subsection, unalterable;</div><div style=\"text-indent:0.5in;\">(b) The authoritative copy identifies the person asserting control as:</div><div style=\"text-indent:0.5in;\">(i) The person to which the transferable record was issued; or</div><div style=\"text-indent:0.5in;\">(ii) If the authoritative copy indicates that the transferable record has been transferred, the person to which the transferable record was most recently transferred;</div><div style=\"text-indent:0.5in;\">(c) The authoritative copy is communicated to and maintained by the person asserting control or its designated custodian;</div><div style=\"text-indent:0.5in;\">(d) Copies or revisions that add or change an identified assignee of the authoritative copy can be made only with the consent of the person asserting control;</div><div style=\"text-indent:0.5in;\">(e) Each copy of the authoritative copy and any copy of a copy is readily identifiable as a copy that is not the authoritative copy; and</div><div style=\"text-indent:0.5in;\">(f) Any revision of the authoritative copy is readily identifiable as authorized or unauthorized.</div><div style=\"text-indent:0.5in;\">(4) Except as otherwise agreed, a person having control of a transferable record is the holder, as defined in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A.1-201\">62A.1-201</a>(b)(21), of the transferable record and has the same rights and defenses as a holder of an equivalent record or writing under the uniform commercial code including, if the applicable statutory requirements under RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A.3-302\">62A.3-302</a>(a),  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A.7-501\">62A.7-501</a>, or  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=62A.9A-330\">62A.9A-330</a> are satisfied, the rights and defenses of a holder in due course, a holder to which a negotiable document of title has been duly negotiated, or a purchaser, respectively. Delivery, possession, and endorsement are not required to obtain or exercise any of the rights under this subsection.</div><div style=\"text-indent:0.5in;\">(5) Except as otherwise agreed, an obligor under a transferable record has the same rights and defenses as an equivalent obligor under equivalent records or writings under the uniform commercial code.</div><div style=\"text-indent:0.5in;\">(6) If requested by a person against which enforcement is sought, the person seeking to enforce the transferable record shall provide reasonable proof that the person is in control of the transferable record. Proof may include access to the authoritative copy of the transferable record and related business records sufficient to review the terms of the transferable record and to establish the identity of the person having control of the transferable record.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 16\">2020 c 57 s 16</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.160",
+          "caption": "Creation and retention of electronic records and conversion of written records by governmental agencies.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Each governmental agency of this state shall determine whether, and the extent to which, a governmental agency will create and retain electronic records and convert written records to electronic records.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 17\">2020 c 57 s 17</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.170",
+          "caption": "Acceptance and distribution of electronic records by governmental agencies.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">(1) Except as otherwise provided in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.80.110\">1.80.110</a>(6), each governmental agency of this state shall determine whether, and the extent to which, a governmental agency will send and accept electronic records and electronic signatures to and from other persons and otherwise create, generate, communicate, store, process, use, and rely upon electronic records and electronic signatures.</div><div style=\"text-indent:0.5in;\">(2) To the extent that a governmental agency uses electronic records and electronic signatures under subsection (1) of this section, the governmental agency, giving due consideration to security, may specify:</div><div style=\"text-indent:0.5in;\">(a) The manner and format in which the electronic records must be created, generated, sent, communicated, received, and stored and the systems established for those purposes;</div><div style=\"text-indent:0.5in;\">(b) If electronic records must be signed by electronic means, the type of electronic signature required, the manner and format in which the electronic signature must be affixed to the electronic record, and the identity of, or criteria that must be met by, any third party used by a person filing a document to facilitate the process;</div><div style=\"text-indent:0.5in;\">(c) Control processes and procedures as appropriate to ensure adequate preservation, disposition, integrity, security, confidentiality, and auditability of electronic records; and</div><div style=\"text-indent:0.5in;\">(d) Any other required attributes for electronic records which are specified for corresponding nonelectronic records or reasonably necessary under the circumstances.</div><div style=\"text-indent:0.5in;\">(3) Except as otherwise provided in RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.80.110\">1.80.110</a>(6), this chapter does not require a governmental agency of this state to use or permit the use of electronic records or electronic signatures.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 18\">2020 c 57 s 18</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.180",
+          "caption": "Consistency and interoperability.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">The governmental agency of this state which adopts standards pursuant to RCW  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=1.80.170\">1.80.170</a> may encourage and promote consistency and interoperability with similar requirements adopted by other governmental agencies of this and other states and the federal government and nongovernmental persons interacting with governmental agencies of this state. If appropriate, those standards may specify differing levels of standards from which governmental agencies of this state may choose in implementing the most appropriate standard for a particular application.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 19\">2020 c 57 s 19</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.190",
+          "caption": "Relation to electronic signatures in global and national commerce act.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter modifies, limits, and supersedes the electronic signatures in global and national commerce act, 15 U.S.C. Sec. 7001 et seq., but does not modify, limit, or supersede section 101(c) of that act, 15 U.S.C. Sec. 7001(c), or authorize electronic delivery of any of the notices described in section 103(b) of that act, 15 U.S.C. Sec. 7003(b).</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 20\">2020 c 57 s 20</a>.]"
+        },
+        {
+          "sectionNumber": "1.80.900",
+          "caption": "Short title.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">This chapter may be known and cited as the uniform electronic transactions act.</div>",
+          "history": "[ <a href=\"https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session Laws/Senate/6028-S.SL.pdf?cite=2020 c 57 s 1\">2020 c 57 s 1</a>.]"
+        }
+      ]
+    },
+    {
+      "chapterNumber": "1.90",
+      "chapterTitle": "PERSONAL INCOME TAX PROHIBITION",
+      "sections": [
+        {
+          "sectionNumber": "1.90.100",
+          "caption": "Personal income tax prohibition.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">Neither the state nor any county, city, or other local jurisdiction in the state of Washington may tax any individual person on any form of personal income. For the purposes of this chapter, \"income\" has the same meaning as \"gross income\" in 26 U.S.C. Sec. 61.</div>",
+          "history": "[ <a href=\"https://leg.wa.gov/CodeReviser/documents/sessionlaw/2024pam1.pdf?cite=2024 c 5 s 1\">2024 c 5 s 1</a> (Initiative Measure No. 2111).]"
+        }
+      ]
+    }
+  ]
+}

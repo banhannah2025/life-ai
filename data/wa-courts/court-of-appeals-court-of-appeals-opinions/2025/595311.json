@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59531-1",
+  "docketNumberNormalized": "595311",
+  "caseTitle": "State Of Washington, Respondent V. David Lee Anderson, Appellant",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=595311MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059531-1-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/595311-state-of-washington-respondent-v-david-lee-anderson-appellan.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:50.051Z",
+  "detail": {
+    "Docket Number": "59531-1",
+    "Title of Case": "State Of Washington, Respondent V. David Lee Anderson, Appellant",
+    "File Date": "10/28/2025",
+    "Docket No": "21-1-00433-5",
+    "Date filed": "10/17/2022",
+    "Judge signing": "Honorable James W Lawler",
+    "Authored by": "Bradley Maxa",
+    "Concurring": "Bernard Veljacic"
+  }
+}

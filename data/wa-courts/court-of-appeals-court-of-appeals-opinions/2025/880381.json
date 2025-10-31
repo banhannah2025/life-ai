@@ -1,0 +1,25 @@
+{
+  "docketNumber": "88038-1",
+  "docketNumberNormalized": "880381",
+  "caseTitle": "Personal Restraint Petition Of: Shane Ammel Lynn",
+  "fileDate": "2025-10-20",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=880381MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/880381.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/880381-personal-restraint-petition-of-shane-ammel-lynn.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:10.114Z",
+  "detail": {
+    "Docket Number": "88038-1",
+    "Title of Case": "Personal Restraint Petition Of: Shane Ammel Lynn",
+    "File Date": "10/20/2025",
+    "Docket No": "19-1-00259-0",
+    "Date filed": "05/02/2022",
+    "Judge signing": "Honorable Daniel L Goodell",
+    "Authored by": "Cecily Hazelrigg",
+    "Concurring": "Lori Smith"
+  }
+}

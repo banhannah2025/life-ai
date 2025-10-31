@@ -1,0 +1,25 @@
+{
+  "docketNumber": "86647-8",
+  "docketNumberNormalized": "866478",
+  "caseTitle": "Jan Henrie, Respondent V. Wendy Poulton Et Al, Appellants",
+  "fileDate": "2025-10-27",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=866478MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/866478.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/866478-jan-henrie-respondent-v-wendy-poulton-et-al-appellants.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:57.086Z",
+  "detail": {
+    "Docket Number": "86647-8",
+    "Title of Case": "Jan Henrie, Respondent V. Wendy Poulton Et Al, Appellants",
+    "File Date": "10/27/2025",
+    "Docket No": "23-2-00221-3",
+    "Date filed": "03/29/2024",
+    "Judge signing": "Honorable Laura M Riquelme",
+    "Authored by": "Michael Diaz",
+    "Concurring": "Lori Smith"
+  }
+}

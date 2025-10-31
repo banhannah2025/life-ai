@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59104-9",
+  "docketNumberNormalized": "591049",
+  "caseTitle": "State Of Washington, Respondent V. Joshua Eric Dickinson, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=591049MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059104-9-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/591049-state-of-washington-respondent-v-joshua-eric-dickinson-appel.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:05.145Z",
+  "detail": {
+    "Docket Number": "59104-9",
+    "Title of Case": "State Of Washington, Respondent V. Joshua Eric Dickinson, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "22-1-00322-6",
+    "Date filed": "12/06/2023",
+    "Judge signing": "Honorable Lauren M Erickson",
+    "Authored by": "Bradley Maxa",
+    "Concurring": "Bernard Veljacic"
+  }
+}

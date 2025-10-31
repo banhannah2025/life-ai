@@ -1,0 +1,25 @@
+{
+  "docketNumber": "39675-4",
+  "docketNumberNormalized": "396754",
+  "caseTitle": "State of Washington v. Robert Alexander Clark",
+  "fileDate": "2025-10-21",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=396754MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/396754_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/396754-state-of-washington-v-robert-alexander-clark.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:07.843Z",
+  "detail": {
+    "Docket Number": "39675-4",
+    "Title of Case": "State of Washington v. Robert Alexander Clark",
+    "File Date": "10/21/2025",
+    "Docket No": "21-1-00021-3",
+    "Date filed": "04/20/2023",
+    "Judge signing": "Honorable Brooke Jennifer Burns",
+    "Authored by": "John Cooney",
+    "Concurring": "George Fearing"
+  }
+}

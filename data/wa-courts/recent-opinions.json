@@ -1,0 +1,30 @@
+{
+  "fetchedAt": "2025-10-30T19:22:20.922Z",
+  "source": "https://www.courts.wa.gov/opinions/?fa=opinions.recent",
+  "sections": [
+    {
+      "court": "Supreme Court",
+      "category": "Supreme Court Opinions",
+      "slug": "supreme-court-supreme-court-opinions",
+      "opinionCount": 2
+    },
+    {
+      "court": "Court of Appeals",
+      "category": "Court of Appeals Opinions",
+      "slug": "court-of-appeals-court-of-appeals-opinions",
+      "opinionCount": 1
+    },
+    {
+      "court": "Court of Appeals",
+      "category": "Court of Appeals Opinions",
+      "slug": "court-of-appeals-court-of-appeals-opinions",
+      "opinionCount": 5
+    },
+    {
+      "court": "Court of Appeals",
+      "category": "Court of Appeals Opinions",
+      "slug": "court-of-appeals-court-of-appeals-opinions",
+      "opinionCount": 65
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59649-1",
+  "docketNumberNormalized": "596491",
+  "caseTitle": "Guardianship Of R.b.",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=596491MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059649-1-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/596491-guardianship-of-r-b.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:44.546Z",
+  "detail": {
+    "Docket Number": "59649-1",
+    "Title of Case": "Guardianship Of R.b.",
+    "File Date": "10/28/2025",
+    "Docket No": "24-4-00023-6",
+    "Date filed": "04/29/2024",
+    "Judge signing": "Honorable Jean A Cotton",
+    "Authored by": "Anne Cruser",
+    "Concurring": "Meng Li Che"
+  }
+}

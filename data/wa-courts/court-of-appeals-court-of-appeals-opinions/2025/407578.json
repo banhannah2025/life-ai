@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40757-8",
+  "docketNumberNormalized": "407578",
+  "caseTitle": "Erin L. Brant, et al v. James S. Shaw, et ux, et al",
+  "fileDate": "2025-10-21",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=407578MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/407578_pub.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/407578-erin-l-brant-et-al-v-james-s-shaw-et-ux-et-al.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:38.350Z",
+  "detail": {
+    "Docket Number": "40757-8",
+    "Title of Case": "Erin L. Brant, et al v. James S. Shaw, et ux, et al",
+    "File Date": "10/21/2025",
+    "Docket No": "23-2-04077-0",
+    "Date filed": "09/12/2024",
+    "Judge signing": "Honorable Rachelle E. Anderson",
+    "Authored by": "John Cooney",
+    "Concurring": "Tracy Staab"
+  }
+}

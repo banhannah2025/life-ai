@@ -1,0 +1,33 @@
+{
+  "docketNumber": "103,251-0",
+  "docketNumberNormalized": "1032510",
+  "caseTitle": "State v. Luna",
+  "fileDate": "2025-10-30",
+  "division": null,
+  "fileContains": "Maj., and Con. Opinions",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1032510MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1032510.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/supreme-court-supreme-court-opinions/2025/1032510-state-v-luna.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:35.097Z",
+  "detail": {
+    "Docket Number": "103,251-0",
+    "Title of Case": "State v. Luna",
+    "File Date": "10/30/2025",
+    "Oral Argument Date": "05/29/2025",
+    "Docket No": "21-1-00094-18",
+    "Date filed": "01/30/2023",
+    "Judge signing": "Honorable William C. Houser",
+    "Debra L. Stephens": "Majority Author",
+    "Charles W. Johnson": "Signed Majority",
+    "Barbara A. Madsen": "Signed Majority",
+    "Steven C. González": "Concurrence Author",
+    "Sheryl Gordon McCloud": "Signed Concurrence",
+    "Mary I. Yu": "Signed Majority",
+    "Raquel Montoya-Lewis": "Signed Concurrence",
+    "G. Helen Whitener": "Signed Majority",
+    "Salvador A. Mungia": "Signed Concurrence"
+  }
+}

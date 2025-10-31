@@ -1,0 +1,25 @@
+{
+  "docketNumber": "60040-4",
+  "docketNumberNormalized": "600404",
+  "caseTitle": "State Of Washington, Respondent V. Terrance Allen Phillips, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=600404MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2060040-4-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/600404-state-of-washington-respondent-v-terrance-allen-phillips-app.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:05.679Z",
+  "detail": {
+    "Docket Number": "60040-4",
+    "Title of Case": "State Of Washington, Respondent V. Terrance Allen Phillips, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "21-1-02149-9",
+    "Date filed": "01/30/2024",
+    "Judge signing": "Honorable Robert A Lewis",
+    "Authored by": "Linda Lee",
+    "Concurring": "Rebecca Glasgow"
+  }
+}

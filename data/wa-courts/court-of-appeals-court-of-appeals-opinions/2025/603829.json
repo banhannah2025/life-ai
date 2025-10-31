@@ -1,0 +1,25 @@
+{
+  "docketNumber": "60382-9",
+  "docketNumberNormalized": "603829",
+  "caseTitle": "Cristina P. Anderson, Appellant V. Farmers Insurance Company Of Washington Et Al., Respondents",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=603829MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2060382-9-II%20Published%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/603829-cristina-p-anderson-appellant-v-farmers-insurance-company-of.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:37.146Z",
+  "detail": {
+    "Docket Number": "60382-9",
+    "Title of Case": "Cristina P. Anderson, Appellant V. Farmers Insurance Company Of Washington Et Al., Respondents",
+    "File Date": "10/21/2025",
+    "Docket No": "21-2-08670-7",
+    "Date filed": "08/09/2024",
+    "Judge signing": "Honorable Gretchen M Leanderson",
+    "Authored by": "Anne Cruser",
+    "Concurring": "Linda Lee"
+  }
+}

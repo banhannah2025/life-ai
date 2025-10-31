@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40217-7",
+  "docketNumberNormalized": "402177",
+  "caseTitle": "State of Washington v. Juan Gabriel Zamora",
+  "fileDate": "2025-10-16",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=402177MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/402177_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/402177-state-of-washington-v-juan-gabriel-zamora.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:20.657Z",
+  "detail": {
+    "Docket Number": "40217-7",
+    "Title of Case": "State of Washington v. Juan Gabriel Zamora",
+    "File Date": "10/16/2025",
+    "Docket No": "19-1-00711-0",
+    "Date filed": "02/05/2024",
+    "Judge signing": "Honorable Anna L. Gigliotti",
+    "Authored by": "John Cooney",
+    "Concurring": "Megan Murphy"
+  }
+}

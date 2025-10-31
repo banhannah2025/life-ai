@@ -1,0 +1,25 @@
+{
+  "docketNumber": "87045-9",
+  "docketNumberNormalized": "870459",
+  "caseTitle": "In Re The Marriage Of: Thomas Espinosa, Respondent V. Kari Espinosa, Appellant",
+  "fileDate": "2025-10-27",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=870459MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/870459.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/870459-in-re-the-marriage-of-thomas-espinosa-respondent-v-kari-espi.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:56.560Z",
+  "detail": {
+    "Docket Number": "87045-9",
+    "Title of Case": "In Re The Marriage Of: Thomas Espinosa, Respondent V. Kari Espinosa, Appellant",
+    "File Date": "10/27/2025",
+    "Docket No": "16-3-01698-9",
+    "Date filed": "07/22/2024",
+    "Judge signing": "Honorable Marybeth Dingledy",
+    "Authored by": "Lori Smith",
+    "Concurring": "Leonard Feldman"
+  }
+}

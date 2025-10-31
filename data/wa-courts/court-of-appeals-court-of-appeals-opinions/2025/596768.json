@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59676-8",
+  "docketNumberNormalized": "596768",
+  "caseTitle": "State Of Washington, Respondent V. Jeffrey Scott Nelson, Appellant",
+  "fileDate": "2025-10-16",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=596768MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059676-8-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/596768-state-of-washington-respondent-v-jeffrey-scott-nelson-appell.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:18.167Z",
+  "detail": {
+    "Docket Number": "59676-8",
+    "Title of Case": "State Of Washington, Respondent V. Jeffrey Scott Nelson, Appellant",
+    "File Date": "10/07/2025",
+    "Docket No": "23-1-00201-8",
+    "Date filed": "05/10/2024",
+    "Judge signing": "Honorable Alicia Burton",
+    "Authored by": "Bernard Veljacic",
+    "Concurring": "Linda Lee"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59392-1",
+  "docketNumberNormalized": "593921",
+  "caseTitle": "State Of Washington, Respondent V Phylece M. Wooddell, Appellant",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=593921MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059392-1-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/593921-state-of-washington-respondent-v-phylece-m-wooddell-appellan.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:48.782Z",
+  "detail": {
+    "Docket Number": "59392-1",
+    "Title of Case": "State Of Washington, Respondent V Phylece M. Wooddell, Appellant",
+    "File Date": "10/28/2025",
+    "Docket No": "23-1-01971-9",
+    "Date filed": "03/15/2024",
+    "Judge signing": "Honorable Michael E. Schwartz",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Bernard Veljacic"
+  }
+}

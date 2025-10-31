@@ -1,0 +1,25 @@
+{
+  "docketNumber": "85555-7",
+  "docketNumberNormalized": "855557",
+  "caseTitle": "State Of Washington, Respondent V. Jeremy Michael Park, Appellant",
+  "fileDate": "2025-10-27",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=855557MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/855557.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/855557-state-of-washington-respondent-v-jeremy-michael-park-appella.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:59.700Z",
+  "detail": {
+    "Docket Number": "85555-7",
+    "Title of Case": "State Of Washington, Respondent V. Jeremy Michael Park, Appellant",
+    "File Date": "10/27/2025",
+    "Docket No": "18-1-01431-2",
+    "Date filed": "07/10/2023",
+    "Judge signing": "Honorable Lee P Grochmal",
+    "Authored by": "Janet Chung",
+    "Concurring": "Michael Diaz"
+  }
+}

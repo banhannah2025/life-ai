@@ -1,0 +1,22 @@
+{
+  "titleNumber": "55",
+  "titleName": "SANITARY DISTRICTS",
+  "chapters": [
+    {
+      "chapterNumber": "55.04",
+      "chapterTitle": "FORMATION AND DISSOLUTION",
+      "sections": [
+        {
+          "sectionNumber": "55.04.050",
+          "caption": "Dissolution.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">See port districts, chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=53.48\">53.48</a> RCW.</div>"
+        },
+        {
+          "sectionNumber": "55.04.060",
+          "caption": "Disincorporation of district located in county with a population of two hundred ten thousand or more and inactive for five years.",
+          "bodyHtml": "<div style=\"text-indent:0.5in;\">See chapter  <a href=\"http://app.leg.wa.gov/RCW/default.aspx?cite=57.90\">57.90</a> RCW.</div>"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "docketNumber": "86060-7",
+  "docketNumberNormalized": "860607",
+  "caseTitle": "Daniel Kaplan Kirkland, Respondent V. Alison Amber Knudson, Appellant",
+  "fileDate": "2025-10-27",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=860607MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/860607.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/860607-daniel-kaplan-kirkland-respondent-v-alison-amber-knudson-app.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:54.790Z",
+  "detail": {
+    "Docket Number": "86060-7",
+    "Title of Case": "Daniel Kaplan Kirkland, Respondent V. Alison Amber Knudson, Appellant",
+    "File Date": "10/27/2025",
+    "Date filed": "11/03/2023",
+    "Judge signing": "Honorable Hillary Madsen",
+    "Authored by": "Bill Bowman",
+    "Concurring": "Janet Chung"
+  }
+}

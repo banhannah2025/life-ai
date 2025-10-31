@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59861-2",
+  "docketNumberNormalized": "598612",
+  "caseTitle": "Personal Restraint Petition Of Shane Daniel Brewer",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=598612MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059861-2-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/598612-personal-restraint-petition-of-shane-daniel-brewer.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:03.436Z",
+  "detail": {
+    "Docket Number": "59861-2",
+    "Title of Case": "Personal Restraint Petition Of Shane Daniel Brewer",
+    "File Date": "10/21/2025",
+    "Docket No": "18-1-02311-8",
+    "Date filed": "05/17/2021",
+    "Judge signing": "Honorable James J Dixon",
+    "Authored by": "Meng Li Che",
+    "Concurring": "Bradley Maxa"
+  }
+}

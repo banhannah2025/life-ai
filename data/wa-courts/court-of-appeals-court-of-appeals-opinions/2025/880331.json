@@ -1,0 +1,25 @@
+{
+  "docketNumber": "88033-1",
+  "docketNumberNormalized": "880331",
+  "caseTitle": "Robert Scales, Appellant, V. State Attorney General, Respondent",
+  "fileDate": "2025-10-20",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=880331MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/880331.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/880331-robert-scales-appellant-v-state-attorney-general-respondent.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:10.666Z",
+  "detail": {
+    "Docket Number": "88033-1",
+    "Title of Case": "Robert Scales, Appellant, V. State Attorney General, Respondent",
+    "File Date": "10/20/2025",
+    "Docket No": "23-2-03502-7",
+    "Date filed": "04/01/2024",
+    "Judge signing": "Honorable Christopher Lanese",
+    "Authored by": "Leonard Feldman",
+    "Concurring": "Linda Coburn"
+  }
+}

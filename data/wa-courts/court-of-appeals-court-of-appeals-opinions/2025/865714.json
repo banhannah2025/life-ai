@@ -1,0 +1,25 @@
+{
+  "docketNumber": "86571-4",
+  "docketNumberNormalized": "865714",
+  "caseTitle": "Heather A. Hudon, Obo H.p And S.p., Appellants V. Nicolai Piffath, Respondent",
+  "fileDate": "2025-10-20",
+  "division": "I",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=865714MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/865714.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/865714-heather-a-hudon-obo-h-p-and-s-p-appellants-v-nicolai-piffath.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:38.906Z",
+  "detail": {
+    "Docket Number": "86571-4",
+    "Title of Case": "Heather A. Hudon, Obo H.p And S.p., Appellants V. Nicolai Piffath, Respondent",
+    "File Date": "10/20/2025",
+    "Docket No": "21-2-05980-0",
+    "Date filed": "03/14/2024",
+    "Judge signing": "Honorable Lisa Marie Micheli",
+    "Authored by": "Bill Bowman",
+    "Concurring": "David Mann"
+  }
+}

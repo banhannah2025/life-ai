@@ -1,0 +1,25 @@
+{
+  "docketNumber": "85842-4",
+  "docketNumberNormalized": "858424",
+  "caseTitle": "State Of Washington, Respondent V. Rachel Caldwell, Appellant",
+  "fileDate": "2025-10-20",
+  "division": "I",
+  "fileContains": "Maj., and Con. Opinions",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=858424MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/858424.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/858424-state-of-washington-respondent-v-rachel-caldwell-appellant.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:11.930Z",
+  "detail": {
+    "Docket Number": "85842-4",
+    "Title of Case": "State Of Washington, Respondent V. Rachel Caldwell, Appellant",
+    "File Date": "10/20/2025",
+    "Docket No": "21-1-01183-6",
+    "Date filed": "09/12/2023",
+    "Judge signing": "Honorable Lee P Grochmal",
+    "Authored by": "Leonard Feldman",
+    "Concurring": "Cecily Hazelrigg"
+  }
+}

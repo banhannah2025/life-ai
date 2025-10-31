@@ -1,0 +1,26 @@
+{
+  "docketNumber": "59830-2",
+  "docketNumberNormalized": "598302",
+  "caseTitle": "State Of Washington, Respondent V. Jethro Nichlos Welter, Appellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Maj., and Dis. Opinions",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=598302MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059830-2-II%20Published%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/598302-state-of-washington-respondent-v-jethro-nichlos-welter-appel.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:35.812Z",
+  "detail": {
+    "Docket Number": "59830-2",
+    "Title of Case": "State Of Washington, Respondent V. Jethro Nichlos Welter, Appellant",
+    "File Date": "10/21/2025",
+    "Docket No": "22-1-01178-2",
+    "Date filed": "12/04/2023",
+    "Judge signing": "Honorable Marilyn K Haan",
+    "Authored by": "Bernard Veljacic",
+    "Concurring": "Bradley Maxa",
+    "Dissenting": "Linda Lee"
+  }
+}

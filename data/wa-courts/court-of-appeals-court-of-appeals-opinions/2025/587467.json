@@ -1,0 +1,25 @@
+{
+  "docketNumber": "58746-7",
+  "docketNumberNormalized": "587467",
+  "caseTitle": "State Of Washington, Respondent V. Margie Cruz, Appellant",
+  "fileDate": "2025-10-28",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=587467MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2058746-7-II%20Unpublished%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/587467-state-of-washington-respondent-v-margie-cruz-appellant.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:50.698Z",
+  "detail": {
+    "Docket Number": "58746-7",
+    "Title of Case": "State Of Washington, Respondent V. Margie Cruz, Appellant",
+    "File Date": "10/28/2025",
+    "Docket No": "20-1-00286-1",
+    "Date filed": "09/29/2023",
+    "Judge signing": "Honorable Monty D Cobb",
+    "Authored by": "Rebecca Glasgow",
+    "Concurring": "Erik Price"
+  }
+}

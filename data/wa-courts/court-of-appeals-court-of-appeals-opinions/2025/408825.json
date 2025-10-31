@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40882-5",
+  "docketNumberNormalized": "408825",
+  "caseTitle": "Joint Apprenticeship & Training Committee of Local No. 55 v. Aaron Johnson",
+  "fileDate": "2025-10-16",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=408825MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/408825_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/408825-joint-apprenticeship-training-committee-of-local-no-55-v-aar.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:19.379Z",
+  "detail": {
+    "Docket Number": "40882-5",
+    "Title of Case": "Joint Apprenticeship & Training Committee of Local No. 55 v. Aaron Johnson",
+    "File Date": "10/16/2025",
+    "Docket No": "23-2-51169-0",
+    "Date filed": "12/02/2024",
+    "Judge signing": "Honorable Joseph M. Burrowes",
+    "Authored by": "John Cooney",
+    "Concurring": "Megan Murphy"
+  }
+}

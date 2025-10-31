@@ -1,0 +1,25 @@
+{
+  "docketNumber": "40542-7",
+  "docketNumberNormalized": "405427",
+  "caseTitle": "State of Washington v. Adam Thomas Everett",
+  "fileDate": "2025-10-21",
+  "division": "III",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=405427MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/405427_unp.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/405427-state-of-washington-v-adam-thomas-everett.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:22:07.369Z",
+  "detail": {
+    "Docket Number": "40542-7",
+    "Title of Case": "State of Washington v. Adam Thomas Everett",
+    "File Date": "10/21/2025",
+    "Docket No": "24-1-00014-1",
+    "Date filed": "06/11/2024",
+    "Judge signing": "Honorable Jeffrey Barkdull",
+    "Authored by": "John Cooney",
+    "Concurring": "Megan Murphy"
+  }
+}

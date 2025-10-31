@@ -1,0 +1,25 @@
+{
+  "docketNumber": "59449-8",
+  "docketNumberNormalized": "594498",
+  "caseTitle": "Jerry Ross, Et Al, Respondents V. Arcpe 1, Llc,a Ppellant",
+  "fileDate": "2025-10-21",
+  "division": "II",
+  "fileContains": "Majority Opinion",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=594498MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/D2%2059449-8-II%20Published%20Opinion.pdf",
+  "pdfPath": "/home/user/development/life-ai/data/wa-courts/court-of-appeals-court-of-appeals-opinions/2025/594498-jerry-ross-et-al-respondents-v-arcpe-1-llc-a-ppellant.pdf",
+  "isSuperseded": false,
+  "isOpinion": true,
+  "isPublished": true,
+  "fetchedAt": "2025-10-30T19:21:37.741Z",
+  "detail": {
+    "Docket Number": "59449-8",
+    "Title of Case": "Jerry Ross, Et Al, Respondents V. Arcpe 1, Llc,a Ppellant",
+    "File Date": "10/21/2025",
+    "Docket No": "23-2-00855-5",
+    "Date filed": "03/11/2024",
+    "Judge signing": "Honorable William C Houser",
+    "Authored by": "Erik Price",
+    "Concurring": "Anne Cruser"
+  }
+}

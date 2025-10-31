@@ -127,7 +127,7 @@ export type LibraryDatasetSearchResults = {
 
 const RCW_ROOT = path.join(process.cwd(), "public", "rcw");
 const USCODE_ROOT = path.join(process.cwd(), "data", "uscode");
-const WA_COURTS_ROOT = path.join(process.cwd(), "data", "wa-courts");
+const WA_OPINIONS_INDEX_PATH = path.join(process.cwd(), "data", "library-indices", "wa-opinions-index.json");
 const WA_COURT_RULES_ROOT = path.join(process.cwd(), "data", "wa-court-rules");
 
 let rcwSectionIndexCache: RcwSectionIndexEntry[] | null = null;
@@ -342,102 +342,78 @@ function ensureWaOpinionIndex(): WashingtonOpinionIndexEntry[] {
     return waOpinionIndexCache;
   }
 
-  const entries: WashingtonOpinionIndexEntry[] = [];
-  let sectionDirs: string[] = [];
+  let raw: unknown;
   try {
-    sectionDirs = fs.readdirSync(WA_COURTS_ROOT);
-  } catch {
+    raw = JSON.parse(fs.readFileSync(WA_OPINIONS_INDEX_PATH, "utf-8"));
+  } catch (error) {
+    console.error("[LibrarySearch] Failed to read WA opinions index", error);
+    waOpinionIndexCache = [];
+    return waOpinionIndexCache;
+  }
+  if (!raw || typeof raw !== "object" || !Array.isArray((raw as { entries?: unknown }).entries)) {
     waOpinionIndexCache = [];
     return waOpinionIndexCache;
   }
 
-  for (const sectionDir of sectionDirs) {
-    const sectionPath = path.join(WA_COURTS_ROOT, sectionDir);
-    const stat = fs.statSync(sectionPath);
-    if (!stat.isDirectory()) {
-      continue;
-    }
-    const courtLabel = sectionDir
-      .replace(/-/g, " ")
-      .replace(/\s+/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
+  const { entries } = raw as {
+    entries: Array<{
+      sourceSection?: string;
+      docketNumber?: string;
+      docketNumberNormalized?: string;
+      caseTitle?: string;
+      courtLabel?: string;
+      division?: string | null;
+      fileDate?: string | null;
+      fileContains?: string;
+      detailUrl?: string | null;
+      pdfUrl?: string | null;
+      summarySource?: string;
+    }>;
+  };
 
-    let yearDirs: string[] = [];
-    try {
-      yearDirs = fs.readdirSync(sectionPath);
-    } catch {
-      continue;
-    }
-    for (const yearDir of yearDirs) {
-      const yearPath = path.join(sectionPath, yearDir);
-      let files: string[] = [];
-      try {
-        files = fs.readdirSync(yearPath);
-      } catch {
-        continue;
+  const normalized = entries
+    .map((entry) => {
+      const docketNumber = typeof entry.docketNumber === "string" ? entry.docketNumber : null;
+      const caseTitle = typeof entry.caseTitle === "string" ? entry.caseTitle : null;
+      if (!docketNumber || !caseTitle) {
+        return null;
       }
-      for (const file of files) {
-        if (!file.endsWith(".json")) {
-          continue;
-        }
-        const filePath = path.join(yearPath, file);
-        let raw: unknown;
-        try {
-          raw = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-        } catch (error) {
-          console.error(`[LibrarySearch] Failed to parse WA court opinion ${filePath}`, error);
-          continue;
-        }
-        if (!raw || typeof raw !== "object") {
-          continue;
-        }
-        const record = raw as {
-          docketNumber?: string;
-          docketNumberNormalized?: string;
-          caseTitle?: string;
-          fileDate?: string;
-          division?: string | null;
-          fileContains?: string;
-          detailUrl?: string;
-          pdfUrl?: string;
-          pdfPath?: string;
-          isSuperseded?: boolean;
-          detail?: Record<string, string>;
-        };
-        const docketNumber = typeof record.docketNumber === "string" ? record.docketNumber : null;
-        const docketNumberNormalized =
-          typeof record.docketNumberNormalized === "string" ? record.docketNumberNormalized : docketNumber ?? "";
-        const caseTitle = typeof record.caseTitle === "string" ? record.caseTitle : null;
-        if (!docketNumber || !caseTitle) {
-          continue;
-        }
-        const detailStrings = record.detail ? Object.values(record.detail) : [];
-        const summarySource = [record.fileContains ?? "", ...detailStrings].join(" ").trim();
-        const summary = truncateText(summarySource || caseTitle, 220);
-        const searchText = [caseTitle, docketNumber, record.fileContains ?? "", summarySource, courtLabel]
-          .join(" ")
-          .toLowerCase();
-        entries.push({
-          id: `${docketNumberNormalized}-${sectionDir}`,
-          docketNumber,
-          docketNumberNormalized,
-          caseTitle,
-          courtLabel,
-          division: typeof record.division === "string" ? record.division : null,
-          fileDate: typeof record.fileDate === "string" ? record.fileDate : null,
-          fileContains: typeof record.fileContains === "string" ? record.fileContains : "",
-          detailUrl: typeof record.detailUrl === "string" ? record.detailUrl : null,
-          pdfUrl: typeof record.pdfUrl === "string" ? record.pdfUrl : null,
-          pdfPath: typeof record.pdfPath === "string" ? record.pdfPath : null,
-          summary,
-          searchText,
-        });
-      }
-    }
-  }
+      const sourceSection = typeof entry.sourceSection === "string" ? entry.sourceSection : "unknown";
+      const courtLabel =
+        typeof entry.courtLabel === "string"
+          ? entry.courtLabel
+          : sourceSection
+              .replace(/-/g, " ")
+              .replace(/\s+/g, " ")
+              .replace(/\b\w/g, (char) => char.toUpperCase());
+      const summarySource = typeof entry.summarySource === "string" ? entry.summarySource : "";
+      const fileContains = typeof entry.fileContains === "string" ? entry.fileContains : "";
+      const summary = truncateText(summarySource || fileContains || caseTitle, 220);
+      const docketNumberNormalized =
+        typeof entry.docketNumberNormalized === "string" ? entry.docketNumberNormalized : docketNumber;
+      const searchText = [caseTitle, docketNumber, docketNumberNormalized, fileContains, summarySource, courtLabel]
+        .join(" ")
+        .toLowerCase();
+      return {
+        id: `${docketNumberNormalized}-${sourceSection}`,
+        docketNumber,
+        docketNumberNormalized,
+        caseTitle,
+        courtLabel,
+        division: typeof entry.division === "string" ? entry.division : null,
+        fileDate: typeof entry.fileDate === "string" ? entry.fileDate : null,
+        fileContains,
+        detailUrl: typeof entry.detailUrl === "string" ? entry.detailUrl : null,
+        pdfUrl: typeof entry.pdfUrl === "string" ? entry.pdfUrl : null,
+        pdfPath: null,
+        summary,
+        searchText,
+      } as WashingtonOpinionIndexEntry;
+    })
+    .filter((entry): entry is WashingtonOpinionIndexEntry => entry !== null);
 
-  waOpinionIndexCache = entries;
-  return entries;
+  waOpinionIndexCache = normalized;
+  return normalized;
 }
 
 function ensureWaCourtRuleIndex(): WaCourtRuleIndexEntry[] {

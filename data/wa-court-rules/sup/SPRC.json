@@ -1,0 +1,67 @@
+{
+  "fetchedAt": "2025-10-31T04:00:25.317Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "SPRC",
+  "setAbbreviation": "SPRC",
+  "setName": "Washington State Court Rules: Superior Court Special Proceedings Rules -- Criminal",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=SPRC",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Superior Court Special Proceedings Rules -- Criminal 1 Scope of Rules 2 Appointment of Counsel 3 Court Reporters; Filing of Notes 4 Discovery - Special Sentencing Proceeding 5 Mental Examination of Defendant 6 Proportionality Questionnaires 7 Destruction of Records, Exhibits, and Stenographic Notes",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Scope of Rules",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Appointment of Counsel",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Court Reporters; Filing of Notes",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Discovery - Special Sentencing Proceeding",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Mental Examination of Defendant",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Proportionality Questionnaires",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Destruction of Records, Exhibits, and Stenographic Notes",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPRC/SUP_SPRC_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPRC/SUP_SPRC_07_00_00.pdf"
+    }
+  ]
+}

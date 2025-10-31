@@ -1,0 +1,74 @@
+{
+  "fetchedAt": "2025-10-31T03:59:43.367Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "SPR",
+  "setAbbreviation": "SPR",
+  "setName": "Washington State Court Rules: Superior Court Special Proceedings",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=SPR",
+  "rules": [
+    {
+      "ruleNumber": "90.04W",
+      "title": "Attachments--Duties of the Sheriff",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_90_04W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_90_04W_00.pdf"
+    },
+    {
+      "ruleNumber": "91.04W",
+      "title": "Garnishments--Service, Objections, etc. (Rescinded)",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_91_04W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_91_04W_00.pdf"
+    },
+    {
+      "ruleNumber": "93.04W",
+      "title": "Disposition of Reports--Adoptions",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_93_04W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_93_04W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.08W",
+      "title": "Estates--Settlement of Claims by Guardian, Receiver, or Personal Representative",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_08W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_08W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.10W",
+      "title": "Estates--Receivership--Reports",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_10W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_10W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.12W",
+      "title": "Estates Generally--Fees",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_12W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_12W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.16W",
+      "title": "Estates--Guardianship--Settlement of Claims of Minors and Incapacitated Persons",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_16W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_16W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.20W",
+      "title": "Estates--Guardianships--Authorization of Expenditures (Rescinded)",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_20W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_20W_00.pdf"
+    },
+    {
+      "ruleNumber": "98.24W",
+      "title": "Unlawful Detainers--Appointment of Attorney",
+      "category": "Explanation",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SPR/SUP_SPR_98_24W_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SPR/SUP_SPR_98_24W_00.pdf"
+    }
+  ]
+}

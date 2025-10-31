@@ -1,0 +1,585 @@
+{
+  "fetchedAt": "2025-10-31T03:54:11.226Z",
+  "groupCode": "clj",
+  "groupName": "Rules for Courts of Limited Jurisdiction",
+  "setCode": "CRLJ",
+  "setAbbreviation": "CRLJ",
+  "setName": "Washington State Court Rules: Civil Rules for Courts of Limited Jurisdiction",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=clj&set=CRLJ",
+  "rules": [
+    {
+      "ruleNumber": "1",
+      "title": "Scope of Rules",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "One Form of Action",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2A",
+      "title": "Stipulations",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_2A_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_2A_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Commencement of Action",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Process",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Process - Limited Representation",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Service and Filing of Pleadings and Other Papers",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Time",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Pleadings Allowed: Form of Motions",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "General Rules of Pleading",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Pleading Special Matters",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Form of Pleadings",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Signing and Drafting of Pleadings, Motions, and Legal Memoranda: Sanctions",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Defenses and Objections",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Counterclaim and Cross Claim",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13.04",
+      "title": "Setoffs Against Assignees (Rescinded)",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_13_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_13_04_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Third Party Practice",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14A",
+      "title": "Removal to Superior Court",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_14A_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_14A_00_00.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Amended and Supplemental Pleadings",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_15_00_00.pdf"
+    },
+    {
+      "ruleNumber": "16",
+      "title": "Reserved",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_16_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_16_00_00.pdf"
+    },
+    {
+      "ruleNumber": "17",
+      "title": "Parties Plaintiff and Defendant; Capacity",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_17_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_17_00_00.pdf"
+    },
+    {
+      "ruleNumber": "18",
+      "title": "Joinder of Claims and Remedies",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_18_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_18_00_00.pdf"
+    },
+    {
+      "ruleNumber": "19",
+      "title": "Joinder of Persons Needed for Just Adjudication",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_19_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_19_00_00.pdf"
+    },
+    {
+      "ruleNumber": "20",
+      "title": "Permissive Joinder of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_20_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_20_00_00.pdf"
+    },
+    {
+      "ruleNumber": "21",
+      "title": "Misjoinder and Nonjoinder of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_21_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_21_00_00.pdf"
+    },
+    {
+      "ruleNumber": "22",
+      "title": "Interpleader",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_22_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_22_00_00.pdf"
+    },
+    {
+      "ruleNumber": "23",
+      "title": "Reserved",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_23_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_23_00_00.pdf"
+    },
+    {
+      "ruleNumber": "24",
+      "title": "Intervention",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_24_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_24_00_00.pdf"
+    },
+    {
+      "ruleNumber": "25",
+      "title": "Substitution of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_25_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_25_00_00.pdf"
+    },
+    {
+      "ruleNumber": "26",
+      "title": "Discovery",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_26_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_26_00_00.pdf"
+    },
+    {
+      "ruleNumber": "27-37",
+      "title": "Reserved",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_27-37.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_27-37.pdf"
+    },
+    {
+      "ruleNumber": "38",
+      "title": "Jury Trial",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_38_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_38_00_00.pdf"
+    },
+    {
+      "ruleNumber": "39",
+      "title": "Reserved",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_39_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_39_00_00.pdf"
+    },
+    {
+      "ruleNumber": "40",
+      "title": "Assignment of Cases",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_40_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_40_00_00.pdf"
+    },
+    {
+      "ruleNumber": "41",
+      "title": "Dismissal of Actions",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_41_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_41_00_00.pdf"
+    },
+    {
+      "ruleNumber": "42",
+      "title": "Consolidation; Separate Trials",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_42_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_42_00_00.pdf"
+    },
+    {
+      "ruleNumber": "43",
+      "title": "Taking of Testimony",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_43_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_43_00_00.pdf"
+    },
+    {
+      "ruleNumber": "44",
+      "title": "Proof of Official Record",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_44_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_44_00_00.pdf"
+    },
+    {
+      "ruleNumber": "44.1",
+      "title": "Determination of Foreign Law",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_44_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_44_01_00.pdf"
+    },
+    {
+      "ruleNumber": "45",
+      "title": "Subpoena",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_45_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_45_00_00.pdf"
+    },
+    {
+      "ruleNumber": "46",
+      "title": "Exceptions Unnecessary",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_46_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_46_00_00.pdf"
+    },
+    {
+      "ruleNumber": "47",
+      "title": "Jurors",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_47_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_47_00_00.pdf"
+    },
+    {
+      "ruleNumber": "48",
+      "title": "Juries of Fewer Than Six (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_48_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_48_00_00.pdf"
+    },
+    {
+      "ruleNumber": "49",
+      "title": "Verdicts",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_49_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_49_00_00.pdf"
+    },
+    {
+      "ruleNumber": "50",
+      "title": "Judgment as a Matter of Law in Jury Trials; Alternative Motion for New Trial; Conditional Rulings",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_50_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_50_00_00.pdf"
+    },
+    {
+      "ruleNumber": "51",
+      "title": "Instructions to Jury and Deliberation",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_51_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_51_00_00.pdf"
+    },
+    {
+      "ruleNumber": "52",
+      "title": "Findings by the Court (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_52_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_52_00_00.pdf"
+    },
+    {
+      "ruleNumber": "53",
+      "title": "Masters (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_53_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_53_00_00.pdf"
+    },
+    {
+      "ruleNumber": "53.1",
+      "title": "Referees (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_53_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_53_01_00.pdf"
+    },
+    {
+      "ruleNumber": "53.2",
+      "title": "Court Commissioners (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_53_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_53_02_00.pdf"
+    },
+    {
+      "ruleNumber": "54",
+      "title": "Judgments; Costs",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_54_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_54_00_00.pdf"
+    },
+    {
+      "ruleNumber": "55",
+      "title": "Default",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_55_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_55_00_00.pdf"
+    },
+    {
+      "ruleNumber": "56",
+      "title": "Summary Judgment",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_56_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_56_00_00.pdf"
+    },
+    {
+      "ruleNumber": "57",
+      "title": "Reserved",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_57_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_57_00_00.pdf"
+    },
+    {
+      "ruleNumber": "58",
+      "title": "Entry of Judgment",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_58_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_58_00_00.pdf"
+    },
+    {
+      "ruleNumber": "59",
+      "title": "New Trial, Reconsideration, and Amendment of Judgments",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_59_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_59_00_00.pdf"
+    },
+    {
+      "ruleNumber": "60",
+      "title": "Relief From Judgment or Order",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_60_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_60_00_00.pdf"
+    },
+    {
+      "ruleNumber": "61",
+      "title": "Harmless Error (Reserved)",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_61_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_61_00_00.pdf"
+    },
+    {
+      "ruleNumber": "62",
+      "title": "Stay of Proceedings To Enforce a Judgment",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_62_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_62_00_00.pdf"
+    },
+    {
+      "ruleNumber": "63",
+      "title": "Judges--Disability",
+      "category": "7 Judgments",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_63_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_63_00_00.pdf"
+    },
+    {
+      "ruleNumber": "64",
+      "title": "Garnishment (Rescinded)",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_64_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_64_00_00.pdf"
+    },
+    {
+      "ruleNumber": "65-67",
+      "title": "Reserved",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_65-67.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_65-67.pdf"
+    },
+    {
+      "ruleNumber": "68",
+      "title": "Offer of Judgment",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_68_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_68_00_00.pdf"
+    },
+    {
+      "ruleNumber": "69-70",
+      "title": "Reserved",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_69-70.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_69-70.pdf"
+    },
+    {
+      "ruleNumber": "70.1",
+      "title": "Appearance by Attorney",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_70_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_70_01_00.pdf"
+    },
+    {
+      "ruleNumber": "71",
+      "title": "Withdrawal by Attorney",
+      "category": "8 Provisional and Final Remedies and Special Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_71_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_71_00_00.pdf"
+    },
+    {
+      "ruleNumber": "72",
+      "title": "Appeal to Superior Court",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_72_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_72_00_00.pdf"
+    },
+    {
+      "ruleNumber": "73",
+      "title": "Trial de Novo",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_73_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_73_00_00.pdf"
+    },
+    {
+      "ruleNumber": "74",
+      "title": "Reserved",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_74_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_74_00_00.pdf"
+    },
+    {
+      "ruleNumber": "75",
+      "title": "Record on Trial de Novo",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_75_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_75_00_00.pdf"
+    },
+    {
+      "ruleNumber": "75 A",
+      "title": "Electronic Recording of Small Claims Proceedings",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_75A_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_75A_00_00.pdf"
+    },
+    {
+      "ruleNumber": "76",
+      "title": "Reserved",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_76_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_76_00_00.pdf"
+    },
+    {
+      "ruleNumber": "77",
+      "title": "Reserved",
+      "category": "10 Court and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_77_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_77_00_00.pdf"
+    },
+    {
+      "ruleNumber": "77.04",
+      "title": "Administration of Oath",
+      "category": "10 Court and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_77_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_77_04_00.pdf"
+    },
+    {
+      "ruleNumber": "78-80",
+      "title": "Reserved",
+      "category": "10 Court and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_78-80.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_78-80.pdf"
+    },
+    {
+      "ruleNumber": "81",
+      "title": "Applicability in General",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_81_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_81_00_00.pdf"
+    },
+    {
+      "ruleNumber": "82",
+      "title": "Jurisdiction and Venue--Unaffected",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_82_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_82_00_00.pdf"
+    },
+    {
+      "ruleNumber": "83",
+      "title": "Local Rules",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_83_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_83_00_00.pdf"
+    },
+    {
+      "ruleNumber": "84",
+      "title": "Reserved",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_84_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_84_00_00.pdf"
+    },
+    {
+      "ruleNumber": "85",
+      "title": "Title",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_85_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_85_00_00.pdf"
+    },
+    {
+      "ruleNumber": "86",
+      "title": "Effective Date",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_86_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_86_00_00.pdf"
+    },
+    {
+      "ruleNumber": "86.04--99.04",
+      "title": "Reserved",
+      "category": "12 Miscellaneous Proceedings Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CRLJ/CLJ_CRLJ_86.04-99.04.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/CRLJ/CLJ_CRLJ_86.04-99.04.pdf"
+    }
+  ]
+}

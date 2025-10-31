@@ -1,0 +1,130 @@
+{
+  "fetchedAt": "2025-10-31T03:53:19.338Z",
+  "groupCode": "clj",
+  "groupName": "Rules for Courts of Limited Jurisdiction",
+  "setCode": "ARLJ",
+  "setAbbreviation": "ARLJ",
+  "setName": "Washington State Court Rules: Administrative Rules for Courts of Limited Jurisdiction",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=clj&set=ARLJ",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Administrative Rules for Courts of Limited Jurisdiction 1 Rescinded 2 Scope of Rules 3 Definition of Terms 4 Code of Judicial Conduct 5 Presiding Judge, Multiple Judge Court District, Multiple District Counties - Rescinded 6 Records: Separate Dockets--Contents 7 Reserved 8 Reporting of Criminal Cases 9 Reserved 10 Case Information Cover Sheet 11 Misdemeanant Probation Department 12 Registration by Courts of Limited Jurisdiction 13 Limited Jurisdiction Courts are required to Record all Proceedings Electronically 14 Mandatory Continuing Court Administrator Education 14_Stds Washington State District and Municipal Court Administrator Mandatory Continuing Education Standards 15 Appearances by Participants",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Rescinded",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Scope of Rules",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Definition of Terms",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Code of Judicial Conduct",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Presiding Judge, Multiple Judge Court District, Multiple District Counties - Rescinded",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Records: Separate Dockets--Contents",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "Reporting of Criminal Cases",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Case Information Cover Sheet",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Misdemeanant Probation Department",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Registration by Courts of Limited Jurisdiction",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Limited Jurisdiction Courts are required to Record all Proceedings Electronically",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Mandatory Continuing Court Administrator Education",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14_Stds",
+      "title": "Washington State District and Municipal Court Administrator Mandatory Continuing Education Standards",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_14_Standards.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_14_Standards.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Appearances by Participants",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ARLJ/CLJ_ARLJ_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/ARLJ/CLJ_ARLJ_15_00_00.pdf"
+    }
+  ]
+}

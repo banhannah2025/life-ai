@@ -1,0 +1,396 @@
+{
+  "fetchedAt": "2025-10-31T03:56:00.814Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "APR",
+  "setAbbreviation": "APR",
+  "setName": "Washington State Court Rules: Admission and Practice Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=APR",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Admission and Practice Rules 1 In General; Supreme Court; Prerequisites to the Practice of Law; Communications to the Bar; Confidentiality; Definitions 2 Board of Governors 3 Applicants for Admission to Practice Law 4 Examinations for Admission; Notification of Results 5 Preadmission Requirements; Oath: Recommendation for Admission; Order Admitting to Practice Law 6 Law Clerk Program 7 Reserved 8 Nonmember Lawyer Licenses to Practice Law 9 Licensed Legal Interns 10 Reserved 11 Mandatory Continuing Legal Education (MCLE) Regs Regulations of the Washington State Continuing Legal Education Board - Deleted 12 Limited Practice Rule for Limited Practice Officers LP_REGS Regulations of the APR 12 Limited Practice Board (RESERVED) LP_DIS_REGS Disciplinary Regulations Applicable to ELPOC Title 15 (DELETED) 13 Signing of Pleadings and Other Papers; Address of Record; Electronic Mail Address; Notice of Change of Address, Telephone Number, or Name 14 Limited Practice Rule for Foreign Law Consultants 15 Client Protection Fund 15P Client Protection Fund (APR 15) Procedural Regulations 16 Reserved 17 Administrative Suspension from Practice 18 Reserved 19 Lawyer, LLLT, and LPO Services 20 Definitions Relating to Character and Fitness Determinations Determinations 20.1 Application of Rules 20.2 Meetings (DELETED) 20.3 Bar Counsel (DELETED) 20.4 Clerk (DELETED) 20.5 Service (DELETED) 21 Factors Considered when Determining character and Fitness 22 Character and Fitness Review of Applications for Admission: Applicant Duties and Rights 22.1 Review of Applications 22.2 Applicant Duties and Rights 23 Character and Fitness Board 23.1 Authority of Character and Fitness Board 23.2 Meetings 23.3 Clerk 23.4 Service 24 Character and Fitness Board Hearings 24.1 Hearing Procedure 24.2 Decision and Recommendation 24.3 Action on Supreme Court's Determination 24.4 Decision and Recommendation (DELETED) 24.5 Action on Supreme Court's Determination (DELETED) 25 Petitions for Reinstatement after Disbarment 25.1 Restrictions on Reinstatement 25.2 Reversal of Conviction 25.3 Petitions and Investigations 25.4 Hearing Before Character and Fitness Board 25.5 Action by Character and Fitness Board 25.6 Action on Supreme Court's Determination 26 Insurance Disclosure 27 Provision of Legal Services Following Determination of Major Disaster 28 Limited Practice Rule for Limited License Legal Technicians",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "In General; Supreme Court; Prerequisites to the Practice of Law; Communications to the Bar; Confidentiality; Definitions",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Board of Governors",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Applicants for Admission to Practice Law",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Examinations for Admission; Notification of Results",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Preadmission Requirements; Oath: Recommendation for Admission; Order Admitting to Practice Law",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Law Clerk Program",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "Nonmember Lawyer Licenses to Practice Law",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Licensed Legal Interns",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Mandatory Continuing Legal Education (MCLE)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "Regs",
+      "title": "Regulations of the Washington State Continuing Legal Education Board - Deleted",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_11_REGS%20101-112.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_11_REGS%20101-112.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Limited Practice Rule for Limited Practice Officers",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "LP_REGS",
+      "title": "Regulations of the APR 12 Limited Practice Board (RESERVED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_12%20RegulationsLPO.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_12%20RegulationsLPO.pdf"
+    },
+    {
+      "ruleNumber": "LP_DIS_REGS",
+      "title": "Disciplinary Regulations Applicable to ELPOC Title 15 (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_12_%20Applicable%20Disciplinary%20Regulations.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_12_%20Applicable%20Disciplinary%20Regulations.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Signing of Pleadings and Other Papers; Address of Record; Electronic Mail Address; Notice of Change of Address, Telephone Number, or Name",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Limited Practice Rule for Foreign Law Consultants",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Client Protection Fund",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_15_00_00.pdf"
+    },
+    {
+      "ruleNumber": "15P",
+      "title": "Client Protection Fund (APR 15) Procedural Regulations",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_15_Client%20Protection%20Fund%20Procedural%20Regulations.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_15_Client%20Protection%20Fund%20Procedural%20Regulations.pdf"
+    },
+    {
+      "ruleNumber": "16",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_16_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_16_00_00.pdf"
+    },
+    {
+      "ruleNumber": "17",
+      "title": "Administrative Suspension from Practice",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_17_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_17_00_00.pdf"
+    },
+    {
+      "ruleNumber": "18",
+      "title": "Reserved",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_18_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_18_00_00.pdf"
+    },
+    {
+      "ruleNumber": "19",
+      "title": "Lawyer, LLLT, and LPO Services",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_19_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_19_00_00.pdf"
+    },
+    {
+      "ruleNumber": "20",
+      "title": "Definitions Relating to Character and Fitness Determinations Determinations",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_00_00.pdf"
+    },
+    {
+      "ruleNumber": "20.1",
+      "title": "Application of Rules",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_01_00.pdf"
+    },
+    {
+      "ruleNumber": "20.2",
+      "title": "Meetings (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_02_00.pdf"
+    },
+    {
+      "ruleNumber": "20.3",
+      "title": "Bar Counsel (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_03_00.pdf"
+    },
+    {
+      "ruleNumber": "20.4",
+      "title": "Clerk (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_04_00.pdf"
+    },
+    {
+      "ruleNumber": "20.5",
+      "title": "Service (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_20_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_20_05_00.pdf"
+    },
+    {
+      "ruleNumber": "21",
+      "title": "Factors Considered when Determining character and Fitness",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_21_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_21_00_00.pdf"
+    },
+    {
+      "ruleNumber": "22",
+      "title": "Character and Fitness Review of Applications for Admission: Applicant Duties and Rights",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_22_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_22_00_00.pdf"
+    },
+    {
+      "ruleNumber": "22.1",
+      "title": "Review of Applications",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_22_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_22_01_00.pdf"
+    },
+    {
+      "ruleNumber": "22.2",
+      "title": "Applicant Duties and Rights",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_22_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_22_02_00.pdf"
+    },
+    {
+      "ruleNumber": "23",
+      "title": "Character and Fitness Board",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_23_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_23_00_00.pdf"
+    },
+    {
+      "ruleNumber": "23.1",
+      "title": "Authority of Character and Fitness Board",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_23_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_23_01_00.pdf"
+    },
+    {
+      "ruleNumber": "23.2",
+      "title": "Meetings",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_23_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_23_02_00.pdf"
+    },
+    {
+      "ruleNumber": "23.3",
+      "title": "Clerk",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_23_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_23_03_00.pdf"
+    },
+    {
+      "ruleNumber": "23.4",
+      "title": "Service",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_23_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_23_04_00.pdf"
+    },
+    {
+      "ruleNumber": "24",
+      "title": "Character and Fitness Board Hearings",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_00_00.pdf"
+    },
+    {
+      "ruleNumber": "24.1",
+      "title": "Hearing Procedure",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_01_00.pdf"
+    },
+    {
+      "ruleNumber": "24.2",
+      "title": "Decision and Recommendation",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_02_00.pdf"
+    },
+    {
+      "ruleNumber": "24.3",
+      "title": "Action on Supreme Court's Determination",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_03_00.pdf"
+    },
+    {
+      "ruleNumber": "24.4",
+      "title": "Decision and Recommendation (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_04_00.pdf"
+    },
+    {
+      "ruleNumber": "24.5",
+      "title": "Action on Supreme Court's Determination (DELETED)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_24_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_24_05_00.pdf"
+    },
+    {
+      "ruleNumber": "25",
+      "title": "Petitions for Reinstatement after Disbarment",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_00_00.pdf"
+    },
+    {
+      "ruleNumber": "25.1",
+      "title": "Restrictions on Reinstatement",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_01_00.pdf"
+    },
+    {
+      "ruleNumber": "25.2",
+      "title": "Reversal of Conviction",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_02_00.pdf"
+    },
+    {
+      "ruleNumber": "25.3",
+      "title": "Petitions and Investigations",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_03_00.pdf"
+    },
+    {
+      "ruleNumber": "25.4",
+      "title": "Hearing Before Character and Fitness Board",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_04_00.pdf"
+    },
+    {
+      "ruleNumber": "25.5",
+      "title": "Action by Character and Fitness Board",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_05_00.pdf"
+    },
+    {
+      "ruleNumber": "25.6",
+      "title": "Action on Supreme Court's Determination",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_25_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_25_06_00.pdf"
+    },
+    {
+      "ruleNumber": "26",
+      "title": "Insurance Disclosure",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_26_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_26_00_00.pdf"
+    },
+    {
+      "ruleNumber": "27",
+      "title": "Provision of Legal Services Following Determination of Major Disaster",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_27_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_27_00_00.pdf"
+    },
+    {
+      "ruleNumber": "28",
+      "title": "Limited Practice Rule for Limited License Legal Technicians",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/APR/GA_APR_28_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/APR/GA_APR_28_00_00.pdf"
+    }
+  ]
+}

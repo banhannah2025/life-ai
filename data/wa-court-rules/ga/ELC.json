@@ -1,0 +1,942 @@
+{
+  "fetchedAt": "2025-10-31T03:57:42.718Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "ELC",
+  "setAbbreviation": "ELC",
+  "setName": "Washington State Court Rules: Rules for Enforcement of Lawyer Conduct",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=ELC",
+  "rules": [
+    {
+      "ruleNumber": "1.1",
+      "title": "Scope of Rules",
+      "category": "Title 1 – Scope, Jurisdiction, and Definitions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_01_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_01_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1.2",
+      "title": "Disciplinary Authority",
+      "category": "Title 1 – Scope, Jurisdiction, and Definitions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_01_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_01_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1.3",
+      "title": "Definitions",
+      "category": "Title 1 – Scope, Jurisdiction, and Definitions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_01_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_01_03_00.pdf"
+    },
+    {
+      "ruleNumber": "1.4",
+      "title": "No Statute of Limitation",
+      "category": "Title 1 – Scope, Jurisdiction, and Definitions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_01_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_01_04_00.pdf"
+    },
+    {
+      "ruleNumber": "1.5",
+      "title": "Violation of Duties Imposed by These Rules",
+      "category": "Title 1 – Scope, Jurisdiction, and Definitions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_01_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_01_05_00.pdf"
+    },
+    {
+      "ruleNumber": "2.1",
+      "title": "Supreme Court",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_01_00.pdf"
+    },
+    {
+      "ruleNumber": "2.2",
+      "title": "Board of Governors; Disciplinary Selection Panel",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_02_00.pdf"
+    },
+    {
+      "ruleNumber": "2.3",
+      "title": "Disciplinary Board",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_03_00.pdf"
+    },
+    {
+      "ruleNumber": "2.4",
+      "title": "Review Committees",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_04_00.pdf"
+    },
+    {
+      "ruleNumber": "2.5",
+      "title": "Hearing Officers",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_05_00.pdf"
+    },
+    {
+      "ruleNumber": "2.6",
+      "title": "Hearing Officer Conduct",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_06_00.pdf"
+    },
+    {
+      "ruleNumber": "2.7",
+      "title": "Conflicts Review Officer",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_07_00.pdf"
+    },
+    {
+      "ruleNumber": "2.8",
+      "title": "Disciplinary Counsel; Special Disciplinary Counsel",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_08_00.pdf"
+    },
+    {
+      "ruleNumber": "2.9",
+      "title": "Adjunct Disciplinary Counsel",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_09_00.pdf"
+    },
+    {
+      "ruleNumber": "2.10",
+      "title": "Removal of Appointees",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_10_00.pdf"
+    },
+    {
+      "ruleNumber": "2.11",
+      "title": "Compensation and Expenses",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_11_00.pdf"
+    },
+    {
+      "ruleNumber": "2.12",
+      "title": "Communications to the Association Privileged",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_12_00.pdf"
+    },
+    {
+      "ruleNumber": "2.13",
+      "title": "Respondent Lawyer",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_13_00.pdf"
+    },
+    {
+      "ruleNumber": "2.14",
+      "title": "Restrictions on Representing or Advising Respondents or Grievants",
+      "category": "Title 2 – Organization and Structure",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_02_14_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_02_14_00.pdf"
+    },
+    {
+      "ruleNumber": "3.1",
+      "title": "Open Meetings and Public Disciplinary Information",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "3.2",
+      "title": "Confidential Disciplinary Information",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_02_00.pdf"
+    },
+    {
+      "ruleNumber": "3.3",
+      "title": "Application to Stipulations, Disability Proceedings, Custodianships, and Diversion Contracts",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_03_00.pdf"
+    },
+    {
+      "ruleNumber": "3.4",
+      "title": "Release or Disclosure of Otherwise Confidential Information",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_04_00.pdf"
+    },
+    {
+      "ruleNumber": "3.5",
+      "title": "Notice of Disciplinary Action, Interim Suspension, or Transfer to Disability Inactive Status",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_05_00.pdf"
+    },
+    {
+      "ruleNumber": "3.6",
+      "title": "Maintenance of Records",
+      "category": "Title 3 – Access and Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_03_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_03_06_00.pdf"
+    },
+    {
+      "ruleNumber": "4.1",
+      "title": "Service of Papers",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Filing; Orders",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "4.3",
+      "title": "Papers",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_03_00.pdf"
+    },
+    {
+      "ruleNumber": "4.4",
+      "title": "Computation of Time",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_04_00.pdf"
+    },
+    {
+      "ruleNumber": "4.5",
+      "title": "Stipulation to Extension or Reduction of Time",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_05_00.pdf"
+    },
+    {
+      "ruleNumber": "4.6",
+      "title": "Subpoena Under the Law of Another Jurisdiction",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_06_00.pdf"
+    },
+    {
+      "ruleNumber": "4.7",
+      "title": "Enforcement of Subpoenas",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_07_00.pdf"
+    },
+    {
+      "ruleNumber": "4.8",
+      "title": "Declarations in Lieu of Affidavits",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_08_00.pdf"
+    },
+    {
+      "ruleNumber": "4.9",
+      "title": "Service and Filing by an Incarcerated Person",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_09_00.pdf"
+    },
+    {
+      "ruleNumber": "4.10",
+      "title": "Redaction or Omission of Confidential Identifiers",
+      "category": "Title 4 – General Procedural Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_04_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_04_10_00.pdf"
+    },
+    {
+      "ruleNumber": "5.1",
+      "title": "Grievants",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_01_00.pdf"
+    },
+    {
+      "ruleNumber": "5.2",
+      "title": "Confidential Sources",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5.3",
+      "title": "Investigation of Grievance",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5.4",
+      "title": "Privileges",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_04_00.pdf"
+    },
+    {
+      "ruleNumber": "5.5",
+      "title": "Investigatory Subpoenas",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_05_00.pdf"
+    },
+    {
+      "ruleNumber": "5.6",
+      "title": "Review of Objections to Inquiries and Motions to Disclose",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_06_00.pdf"
+    },
+    {
+      "ruleNumber": "5.7",
+      "title": "Disposition of Grievance",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_07_00.pdf"
+    },
+    {
+      "ruleNumber": "5.8",
+      "title": "Advisory Letter",
+      "category": "Title 5 – Grievance Investigations and Disposition",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_05_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_05_08_00.pdf"
+    },
+    {
+      "ruleNumber": "6.1",
+      "title": "Referral to Diversion",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_01_00.pdf"
+    },
+    {
+      "ruleNumber": "6.2",
+      "title": "Less Serious Misconduct",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_02_00.pdf"
+    },
+    {
+      "ruleNumber": "6.3",
+      "title": "Factors for Diversion",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_03_00.pdf"
+    },
+    {
+      "ruleNumber": "6.4",
+      "title": "Notice to Grievant",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_04_00.pdf"
+    },
+    {
+      "ruleNumber": "6.5",
+      "title": "Diversion Contract",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_05_00.pdf"
+    },
+    {
+      "ruleNumber": "6.6",
+      "title": "Affidavit Supporting Diversion",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_06_00.pdf"
+    },
+    {
+      "ruleNumber": "6.7",
+      "title": "Effect of Non-Participation in Diversion",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_07_00.pdf"
+    },
+    {
+      "ruleNumber": "6.8",
+      "title": "Status of Grievance",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_08_00.pdf"
+    },
+    {
+      "ruleNumber": "6.9",
+      "title": "Termination of Diversion",
+      "category": "Title 6 – Diversion",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_06_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_06_09_00.pdf"
+    },
+    {
+      "ruleNumber": "7.1",
+      "title": "Interim Suspension for Conviction of A Crime",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_01_00.pdf"
+    },
+    {
+      "ruleNumber": "7.2",
+      "title": "Interim Suspension in Other Circumstances",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_02_00.pdf"
+    },
+    {
+      "ruleNumber": "7.3",
+      "title": "Automatic Suspension When Respondent Asserting Incapacity",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_03_00.pdf"
+    },
+    {
+      "ruleNumber": "7.4",
+      "title": "Stipulation to Interim Suspension",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_04_00.pdf"
+    },
+    {
+      "ruleNumber": "7.5",
+      "title": "Interim Suspensions Expedited",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_05_00.pdf"
+    },
+    {
+      "ruleNumber": "7.6",
+      "title": "Effective Date of Interim Suspensions",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_06_00.pdf"
+    },
+    {
+      "ruleNumber": "7.7",
+      "title": "Appointment of Custodian to Protect Clients' Interests",
+      "category": "Title 7 – Interim Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_07_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_07_07_00.pdf"
+    },
+    {
+      "ruleNumber": "8.1",
+      "title": "Action on Adjudication of Incompetency or Incapacity",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_01_00.pdf"
+    },
+    {
+      "ruleNumber": "8.2",
+      "title": "Determination of Incapacity to Practice Law",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_02_00.pdf"
+    },
+    {
+      "ruleNumber": "8.3",
+      "title": "Disability Proceedings During the Course of Disciplinary Proceedings",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_03_00.pdf"
+    },
+    {
+      "ruleNumber": "8.4",
+      "title": "Appeal of Disability Determinations",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_04_00.pdf"
+    },
+    {
+      "ruleNumber": "8.5",
+      "title": "Stipulated Transfer to Disability Inactive Status",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_05_00.pdf"
+    },
+    {
+      "ruleNumber": "8.6",
+      "title": "Costs in Disability Proceedings",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_06_00.pdf"
+    },
+    {
+      "ruleNumber": "8.7",
+      "title": "Burden and Standard of Proof",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_07_00.pdf"
+    },
+    {
+      "ruleNumber": "8.8",
+      "title": "Reinstatement to Active Status",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_08_00.pdf"
+    },
+    {
+      "ruleNumber": "8.9",
+      "title": "Petition for Limited Guardianship",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_09_00.pdf"
+    },
+    {
+      "ruleNumber": "8.10",
+      "title": "Appointment of Counsel for Respondent",
+      "category": "Title 8 – Disability Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_08_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_08_10_00.pdf"
+    },
+    {
+      "ruleNumber": "9.1",
+      "title": "Stipulations",
+      "category": "Title 9 – Resolutions Without Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_09_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_09_01_00.pdf"
+    },
+    {
+      "ruleNumber": "9.2",
+      "title": "Reciprocal Discipline and Disability Inactive Status; Duty to Self-Report",
+      "category": "Title 9 – Resolutions Without Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_09_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_09_02_00.pdf"
+    },
+    {
+      "ruleNumber": "9.3",
+      "title": "Resignation in Lieu of Discipline",
+      "category": "Title 9 – Resolutions Without Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_09_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_09_03_00.pdf"
+    },
+    {
+      "ruleNumber": "9.4",
+      "title": "Reciprocal Resignation in Lieu of Discipline",
+      "category": "Title 9 – Resolutions Without Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_09_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_09_04_00.pdf"
+    },
+    {
+      "ruleNumber": "10.1",
+      "title": "General Procedure",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_01_00.pdf"
+    },
+    {
+      "ruleNumber": "10.2",
+      "title": "Hearing Officer Assignment",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_02_00.pdf"
+    },
+    {
+      "ruleNumber": "10.3",
+      "title": "Commencement of Proceedings",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_03_00.pdf"
+    },
+    {
+      "ruleNumber": "10.4",
+      "title": "Notice to Answer",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_04_00.pdf"
+    },
+    {
+      "ruleNumber": "10.5",
+      "title": "Answer",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_05_00.pdf"
+    },
+    {
+      "ruleNumber": "10.6",
+      "title": "Default Proceedings",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_06_00.pdf"
+    },
+    {
+      "ruleNumber": "10.7",
+      "title": "Amendment of Formal Complaint",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_07_00.pdf"
+    },
+    {
+      "ruleNumber": "10.8",
+      "title": "Motions",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_08_00.pdf"
+    },
+    {
+      "ruleNumber": "10.9",
+      "title": "Interim Review",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_09_00.pdf"
+    },
+    {
+      "ruleNumber": "10.10",
+      "title": "Prehearing Dispositive Motions",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_10_00.pdf"
+    },
+    {
+      "ruleNumber": "10.11",
+      "title": "Discovery and Prehearing Procedures",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_11_00.pdf"
+    },
+    {
+      "ruleNumber": "10.12",
+      "title": "Scheduling Hearing",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_12_00.pdf"
+    },
+    {
+      "ruleNumber": "10.13",
+      "title": "Disciplinary Hearing",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_13_00.pdf"
+    },
+    {
+      "ruleNumber": "10.14",
+      "title": "Evidence and Burden of Proof",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_14_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_14_00.pdf"
+    },
+    {
+      "ruleNumber": "10.15",
+      "title": "Bifurcated Hearings",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_15_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_15_00.pdf"
+    },
+    {
+      "ruleNumber": "10.16",
+      "title": "Decision of Hearing Officer",
+      "category": "Title 10 – Hearing Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_10_16_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_10_16_00.pdf"
+    },
+    {
+      "ruleNumber": "11.1",
+      "title": "Scope of Title",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_01_00.pdf"
+    },
+    {
+      "ruleNumber": "11.2",
+      "title": "Decisions Subject to Board Review",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_02_00.pdf"
+    },
+    {
+      "ruleNumber": "11.3",
+      "title": "Sua Sponte Review",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_03_00.pdf"
+    },
+    {
+      "ruleNumber": "11.4",
+      "title": "Transcript of Hearing",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_04_00.pdf"
+    },
+    {
+      "ruleNumber": "11.5",
+      "title": "Record on Review",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_05_00.pdf"
+    },
+    {
+      "ruleNumber": "11.6",
+      "title": "Designation of Bar File Documents and Exhibits",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_06_00.pdf"
+    },
+    {
+      "ruleNumber": "11.7",
+      "title": "Preparation of Bar File Documents and Exhibits",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_07_00.pdf"
+    },
+    {
+      "ruleNumber": "11.8",
+      "title": "Deleted",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_08_00.pdf"
+    },
+    {
+      "ruleNumber": "11.9",
+      "title": "Briefs",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_09_00.pdf"
+    },
+    {
+      "ruleNumber": "11.10",
+      "title": "Supplementing Record on Review",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_10_00.pdf"
+    },
+    {
+      "ruleNumber": "11.11",
+      "title": "Request for Additional Proceedings",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_11_00.pdf"
+    },
+    {
+      "ruleNumber": "11.12",
+      "title": "Decision of Board",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_12_00.pdf"
+    },
+    {
+      "ruleNumber": "11.13",
+      "title": "Chair May Modify Requirements",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_13_00.pdf"
+    },
+    {
+      "ruleNumber": "11.14",
+      "title": "Motions",
+      "category": "Title 11 – Review by Board",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_11_14_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_11_14_00.pdf"
+    },
+    {
+      "ruleNumber": "12.1",
+      "title": "Applicability of Rules of Appellate Procedure",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_01_00.pdf"
+    },
+    {
+      "ruleNumber": "12.2",
+      "title": "Methods of Seeking Review",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_02_00.pdf"
+    },
+    {
+      "ruleNumber": "12.3",
+      "title": "Appeal",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_03_00.pdf"
+    },
+    {
+      "ruleNumber": "12.4",
+      "title": "Discretionary Review",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_04_00.pdf"
+    },
+    {
+      "ruleNumber": "12.5",
+      "title": "Record to Supreme Court",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_05_00.pdf"
+    },
+    {
+      "ruleNumber": "12.6",
+      "title": "Briefs",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_06_00.pdf"
+    },
+    {
+      "ruleNumber": "12.7",
+      "title": "Argument",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_07_00.pdf"
+    },
+    {
+      "ruleNumber": "12.8",
+      "title": "Motion for Reconsideration",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_08_00.pdf"
+    },
+    {
+      "ruleNumber": "12.9",
+      "title": "Violation of Rules",
+      "category": "Title 12 – Review by Supreme Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_12_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_12_09_00.pdf"
+    },
+    {
+      "ruleNumber": "13.1",
+      "title": "Sanctions and Remedies",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_01_00.pdf"
+    },
+    {
+      "ruleNumber": "13.2",
+      "title": "Effective Date of Suspensions and Disbarments",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_02_00.pdf"
+    },
+    {
+      "ruleNumber": "13.3",
+      "title": "Suspension",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_03_00.pdf"
+    },
+    {
+      "ruleNumber": "13.4",
+      "title": "Reprimand",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_04_00.pdf"
+    },
+    {
+      "ruleNumber": "13.5",
+      "title": "Admonition",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_05_00.pdf"
+    },
+    {
+      "ruleNumber": "13.6",
+      "title": "Discipline for Cumulative Admonitions",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_06_00.pdf"
+    },
+    {
+      "ruleNumber": "13.7",
+      "title": "Restitution",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_07_00.pdf"
+    },
+    {
+      "ruleNumber": "13.8",
+      "title": "Probation",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_08_00.pdf"
+    },
+    {
+      "ruleNumber": "13.9",
+      "title": "Costs and Expenses",
+      "category": "Title 13 – Sanctions and Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_13_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_13_09_00.pdf"
+    },
+    {
+      "ruleNumber": "14.1",
+      "title": "Notice to Clients and Others; Providing Client Property",
+      "category": "Title 14 – Duties on Suspension or Disbarment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_14_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_14_01_00.pdf"
+    },
+    {
+      "ruleNumber": "14.2",
+      "title": "Lawyer to Discontinue Practice",
+      "category": "Title 14 – Duties on Suspension or Disbarment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_14_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_14_02_00.pdf"
+    },
+    {
+      "ruleNumber": "14.3",
+      "title": "Affidavit of Compliance",
+      "category": "Title 14 – Duties on Suspension or Disbarment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_14_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_14_03_00.pdf"
+    },
+    {
+      "ruleNumber": "14.4",
+      "title": "Lawyer to Keep Records of Compliance",
+      "category": "Title 14 – Duties on Suspension or Disbarment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_14_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_14_04_00.pdf"
+    },
+    {
+      "ruleNumber": "15.1",
+      "title": "Random Examination of Books and Records",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_01_00.pdf"
+    },
+    {
+      "ruleNumber": "15.2",
+      "title": "Cooperation of Lawyer and Law Firm",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_02_00.pdf"
+    },
+    {
+      "ruleNumber": "15.3",
+      "title": "Confidentiality",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_03_00.pdf"
+    },
+    {
+      "ruleNumber": "15.4",
+      "title": "Trust Account Overdraft Notification",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_04_00.pdf"
+    },
+    {
+      "ruleNumber": "15.5",
+      "title": "Declaration",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_05_00.pdf"
+    },
+    {
+      "ruleNumber": "15.6",
+      "title": "Reserved",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_06_00.pdf"
+    },
+    {
+      "ruleNumber": "15.7",
+      "title": "Trust Accounts and the Legal Foundation of Washington",
+      "category": "Title 15 – Trust Account Examinations, Overdraft Notification, and IOLTA",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_15_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_15_07_00.pdf"
+    },
+    {
+      "ruleNumber": "16.1",
+      "title": "Effect on Pending Proceedings",
+      "category": "Title 16 – Effect of These Rules On Pending Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELC/GA_ELC_16_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELC/GA_ELC_16_01_00.pdf"
+    }
+  ]
+}

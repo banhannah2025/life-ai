@@ -1,0 +1,144 @@
+{
+  "fetchedAt": "2025-10-31T03:57:55.550Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "JISCR",
+  "setAbbreviation": "JISCR",
+  "setName": "Washington State Court Rules: Judicial Information System Committee Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=JISCR",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Judicial Information System Committee Rules 1 Judicial Information Systems 2 Composition 3 Staff 4 Budgets 5 Standard Data Elements 6 Reports 7 Codes and Case Numbers 8 Retention 9 Communications Link With Other Systems 10 Attorney Identification Numbers 11 Security, Privacy, and Confidentiality 12 Dissemination of Court Information 13 Local Court Systems 14 Control of Data Processing Equipment 15 Data Dissemination of Computer-Based Court Information 16 Record and Dissemination Data Processing 17 Effective Date 18 Adding Records to the Judicial Information System",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Judicial Information Systems",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Composition",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Staff",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Budgets",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Standard Data Elements",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Reports",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Codes and Case Numbers",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "Retention",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Communications Link With Other Systems",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Attorney Identification Numbers",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Security, Privacy, and Confidentiality",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Dissemination of Court Information",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Local Court Systems",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Control of Data Processing Equipment",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Data Dissemination of Computer-Based Court Information",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_15_00_00.pdf"
+    },
+    {
+      "ruleNumber": "16",
+      "title": "Record and Dissemination Data Processing",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_16_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_16_00_00.pdf"
+    },
+    {
+      "ruleNumber": "17",
+      "title": "Effective Date",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_17_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_17_00_00.pdf"
+    },
+    {
+      "ruleNumber": "18",
+      "title": "Adding Records to the Judicial Information System",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JISCR/GA_JISCR_18_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/JISCR/GA_JISCR_18_00_00.pdf"
+    }
+  ]
+}

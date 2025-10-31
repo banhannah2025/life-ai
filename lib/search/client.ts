@@ -7,6 +7,7 @@ import type { LibraryResource } from "@/lib/library/types";
 import type {
   RcwSectionSearchResult,
   UsCodeDownloadSearchResult,
+  WaCourtRuleSearchResult,
   WashingtonCourtOpinionSearchResult,
 } from "@/lib/library/datasets";
 import type { OpenStatesBill } from "@/lib/openstates/types";
@@ -75,6 +76,7 @@ export type SearchResponse = {
   waOpinions: WashingtonCourtOpinionSearchResult[];
   rcwSections: RcwSectionSearchResult[];
   uscodeTitles: UsCodeDownloadSearchResult[];
+  waCourtRules: WaCourtRuleSearchResult[];
   localDocuments: LibraryResource[];
 };
 
@@ -99,6 +101,7 @@ export async function searchDirectory(
     | "waopinions"
     | "rcw"
     | "uscode"
+    | "courtrules"
     | "govinfo"
     | "loc"
     | "federalregister"

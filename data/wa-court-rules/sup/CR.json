@@ -1,0 +1,683 @@
+{
+  "fetchedAt": "2025-10-31T03:59:26.824Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "CR",
+  "setAbbreviation": "CR",
+  "setName": "Washington State Court Rules: Superior Court Civil Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=CR",
+  "rules": [
+    {
+      "ruleNumber": "1",
+      "title": "Scope of Rules",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "One Form of Action",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2A",
+      "title": "Stipulations",
+      "category": "1 Introductory",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_2A_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_2A_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Commencement of Action",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Process",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4.1",
+      "title": "Process--Domestic Relations Actions",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Process - Limited Representation",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Service and Filing of Pleadings and Other Papers",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Time",
+      "category": "2 Commencement of Action",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Pleadings Allowed; Form of Motions",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "General Rules of Pleading",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Pleading Special Matters",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Form of Pleadings and Other Papers",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Signing and Drafting of Pleadings, Motions, and Legal Memoranda: Sanctions",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Defenses and Objections",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Counterclaim and Cross Claim",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Third Party Practice",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Amended and Supplemental Pleadings",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_15_00_00.pdf"
+    },
+    {
+      "ruleNumber": "16",
+      "title": "Pretrial Procedure and Formulating Issues",
+      "category": "3 Pleadings and Motions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_16_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_16_00_00.pdf"
+    },
+    {
+      "ruleNumber": "17",
+      "title": "Parties Plaintiff and Defendant; Capacity",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_17_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_17_00_00.pdf"
+    },
+    {
+      "ruleNumber": "18",
+      "title": "Joinder of Claims and Remedies",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_18_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_18_00_00.pdf"
+    },
+    {
+      "ruleNumber": "19",
+      "title": "Joinder of Persons Needed for Just Adjudication",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_19_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_19_00_00.pdf"
+    },
+    {
+      "ruleNumber": "20",
+      "title": "Permissive Joinder of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_20_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_20_00_00.pdf"
+    },
+    {
+      "ruleNumber": "21",
+      "title": "Misjoinder and Nonjoinder of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_21_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_21_00_00.pdf"
+    },
+    {
+      "ruleNumber": "22",
+      "title": "Interpleader",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_22_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_22_00_00.pdf"
+    },
+    {
+      "ruleNumber": "23",
+      "title": "Class Actions",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_23_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_23_00_00.pdf"
+    },
+    {
+      "ruleNumber": "23.1",
+      "title": "Derivative Actions by Shareholders",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_23_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_23_01_00.pdf"
+    },
+    {
+      "ruleNumber": "23.2",
+      "title": "Actions Relating to Unincorporated Associations",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_23_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_23_02_00.pdf"
+    },
+    {
+      "ruleNumber": "24",
+      "title": "Intervention",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_24_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_24_00_00.pdf"
+    },
+    {
+      "ruleNumber": "25",
+      "title": "Substitution of Parties",
+      "category": "4 Parties",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_25_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_25_00_00.pdf"
+    },
+    {
+      "ruleNumber": "26",
+      "title": "General Provisions Governing Discovery",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_26_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_26_00_00.pdf"
+    },
+    {
+      "ruleNumber": "27",
+      "title": "Perpetuation of Testimony",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_27_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_27_00_00.pdf"
+    },
+    {
+      "ruleNumber": "28",
+      "title": "Persons Before Whom Depositions May Be Taken",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_28_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_28_00_00.pdf"
+    },
+    {
+      "ruleNumber": "29",
+      "title": "Stipulations Regarding Discovery Procedure",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_29_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_29_00_00.pdf"
+    },
+    {
+      "ruleNumber": "30",
+      "title": "Depositions Upon Oral Examination",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_30_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_30_00_00.pdf"
+    },
+    {
+      "ruleNumber": "31",
+      "title": "Depositions Upon Written Questions",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_31_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_31_00_00.pdf"
+    },
+    {
+      "ruleNumber": "32",
+      "title": "Use of Depositions in Court Proceedings",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_32_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_32_00_00.pdf"
+    },
+    {
+      "ruleNumber": "33",
+      "title": "Interrogatories to Parties",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_33_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_33_00_00.pdf"
+    },
+    {
+      "ruleNumber": "34",
+      "title": "Producing Documents, Electronically Stored Information, and Things or Entry onto Land for Inspection and Other Purposes",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_34_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_34_00_00.pdf"
+    },
+    {
+      "ruleNumber": "35",
+      "title": "Physical and Mental Examination of Persons",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_35_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_35_00_00.pdf"
+    },
+    {
+      "ruleNumber": "36",
+      "title": "Requests for Admission",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_36_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_36_00_00.pdf"
+    },
+    {
+      "ruleNumber": "37",
+      "title": "Failure To Make Discovery: Sanctions",
+      "category": "5 Depositions and Discovery",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_37_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_37_00_00.pdf"
+    },
+    {
+      "ruleNumber": "38",
+      "title": "Jury Trial of Right",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_38_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_38_00_00.pdf"
+    },
+    {
+      "ruleNumber": "39",
+      "title": "Trial by Jury or by the Court",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_39_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_39_00_00.pdf"
+    },
+    {
+      "ruleNumber": "40",
+      "title": "Assignment of Cases",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_40_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_40_00_00.pdf"
+    },
+    {
+      "ruleNumber": "41",
+      "title": "Dismissal of Actions",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_41_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_41_00_00.pdf"
+    },
+    {
+      "ruleNumber": "42",
+      "title": "Consolidation; Separate Trials",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_42_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_42_00_00.pdf"
+    },
+    {
+      "ruleNumber": "43",
+      "title": "Taking of Testimony",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_43_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_43_00_00.pdf"
+    },
+    {
+      "ruleNumber": "44",
+      "title": "Proof of Official Record",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_44_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_44_00_00.pdf"
+    },
+    {
+      "ruleNumber": "44.1",
+      "title": "Determination of Foreign Law",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_44_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_44_01_00.pdf"
+    },
+    {
+      "ruleNumber": "45",
+      "title": "Subpoena Includes Form - Subpoena in a Civil Case",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_45_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_45_00_00.pdf"
+    },
+    {
+      "ruleNumber": "46",
+      "title": "Exceptions Unnecessary",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_46_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_46_00_00.pdf"
+    },
+    {
+      "ruleNumber": "47",
+      "title": "Jurors",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_47_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_47_00_00.pdf"
+    },
+    {
+      "ruleNumber": "48",
+      "title": "Juries of Less Than Twelve",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_48_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_48_00_00.pdf"
+    },
+    {
+      "ruleNumber": "49",
+      "title": "Verdicts",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_49_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_49_00_00.pdf"
+    },
+    {
+      "ruleNumber": "50",
+      "title": "Judgment as a Matter of Law in Jury Trials; Alternative Motion for New Trial; Conditional Rulings",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_50_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_50_00_00.pdf"
+    },
+    {
+      "ruleNumber": "51",
+      "title": "Instructions to Jury and Deliberation",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_51_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_51_00_00.pdf"
+    },
+    {
+      "ruleNumber": "52",
+      "title": "Decisions, Findings and Conclusions",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_52_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_52_00_00.pdf"
+    },
+    {
+      "ruleNumber": "53",
+      "title": "Masters (Reserved)",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_53_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_53_00_00.pdf"
+    },
+    {
+      "ruleNumber": "53.1",
+      "title": "Referees",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_53_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_53_01_00.pdf"
+    },
+    {
+      "ruleNumber": "53.2",
+      "title": "Court Commissioners",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_53_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_53_02_00.pdf"
+    },
+    {
+      "ruleNumber": "53.3",
+      "title": "Appointment of Masters in Discovery Matters",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_53_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_53_03_00.pdf"
+    },
+    {
+      "ruleNumber": "53.4",
+      "title": "Procedures for Mandatory Mediation of Health Care Claims",
+      "category": "6 Trials",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_53_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_53_04_00.pdf"
+    },
+    {
+      "ruleNumber": "54",
+      "title": "Judgments and Costs",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_54_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_54_00_00.pdf"
+    },
+    {
+      "ruleNumber": "55",
+      "title": "Default and Judgment",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_55_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_55_00_00.pdf"
+    },
+    {
+      "ruleNumber": "56",
+      "title": "Summary Judgment",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_56_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_56_00_00.pdf"
+    },
+    {
+      "ruleNumber": "57",
+      "title": "Declaratory Judgments",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_57_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_57_00_00.pdf"
+    },
+    {
+      "ruleNumber": "58",
+      "title": "Entry of Judgment",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_58_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_58_00_00.pdf"
+    },
+    {
+      "ruleNumber": "59",
+      "title": "New Trial, Reconsideration, and Amendment of Judgments",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_59_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_59_00_00.pdf"
+    },
+    {
+      "ruleNumber": "60",
+      "title": "Relief From Judgment or Order",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_60_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_60_00_00.pdf"
+    },
+    {
+      "ruleNumber": "61",
+      "title": "Harmless Error Reserved",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_61_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_61_00_00.pdf"
+    },
+    {
+      "ruleNumber": "62",
+      "title": "Stay of Proceedings To Enforce a Judgment",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_62_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_62_00_00.pdf"
+    },
+    {
+      "ruleNumber": "63",
+      "title": "Judges",
+      "category": "7 Judgment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_63_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_63_00_00.pdf"
+    },
+    {
+      "ruleNumber": "64",
+      "title": "Seizure of Person or Property",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_64_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_64_00_00.pdf"
+    },
+    {
+      "ruleNumber": "65",
+      "title": "Injunctions",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_65_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_65_00_00.pdf"
+    },
+    {
+      "ruleNumber": "65.1",
+      "title": "Security--Proceedings Against Sureties",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_65_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_65_01_00.pdf"
+    },
+    {
+      "ruleNumber": "66",
+      "title": "Receivership Proceedings",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_66_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_66_00_00.pdf"
+    },
+    {
+      "ruleNumber": "67",
+      "title": "Deposit in Court",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_67_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_67_00_00.pdf"
+    },
+    {
+      "ruleNumber": "68",
+      "title": "Offer of Judgment",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_68_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_68_00_00.pdf"
+    },
+    {
+      "ruleNumber": "69",
+      "title": "Execution",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_69_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_69_00_00.pdf"
+    },
+    {
+      "ruleNumber": "70",
+      "title": "Judgment for Specific Acts; Vesting Title",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_70_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_70_00_00.pdf"
+    },
+    {
+      "ruleNumber": "70.1",
+      "title": "Appearance by Attorney",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_70_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_70_01_00.pdf"
+    },
+    {
+      "ruleNumber": "71",
+      "title": "Withdrawal by Attorney",
+      "category": "8 Provisional and Final Remedies",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_71_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_71_00_00.pdf"
+    },
+    {
+      "ruleNumber": "72-76",
+      "title": "Reserved",
+      "category": "9 Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_72-76.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_72-76.pdf"
+    },
+    {
+      "ruleNumber": "77",
+      "title": "Superior Courts and Judicial Officers",
+      "category": "10 Superior Courts and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_77_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_77_00_00.pdf"
+    },
+    {
+      "ruleNumber": "78",
+      "title": "Clerks",
+      "category": "10 Superior Courts and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_78_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_78_00_00.pdf"
+    },
+    {
+      "ruleNumber": "79",
+      "title": "Books and Records Kept by the Clerk",
+      "category": "10 Superior Courts and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_79_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_79_00_00.pdf"
+    },
+    {
+      "ruleNumber": "80",
+      "title": "Court Reporters",
+      "category": "10 Superior Courts and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_80_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_80_00_00.pdf"
+    },
+    {
+      "ruleNumber": "80.1",
+      "title": "Electronic Recording Log",
+      "category": "10 Superior Courts and Clerks",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_80_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_80_01_00.pdf"
+    },
+    {
+      "ruleNumber": "81",
+      "title": "Applicability in General",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_81_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_81_00_00.pdf"
+    },
+    {
+      "ruleNumber": "82",
+      "title": "Venue",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_82_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_82_00_00.pdf"
+    },
+    {
+      "ruleNumber": "82.5",
+      "title": "Tribal Court Jurisdiction",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_82_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_82_05_00.pdf"
+    },
+    {
+      "ruleNumber": "83",
+      "title": "Local Rules of Court",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_83_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_83_00_00.pdf"
+    },
+    {
+      "ruleNumber": "84",
+      "title": "Forms (Reserved)",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_84_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_84_00_00.pdf"
+    },
+    {
+      "ruleNumber": "85",
+      "title": "Title of Rules",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_85_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_85_00_00.pdf"
+    },
+    {
+      "ruleNumber": "86",
+      "title": "Effective Dates",
+      "category": "11 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CR/SUP_CR_86_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/CR/SUP_CR_86_00_00.pdf"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "fetchedAt": "2025-10-31T03:58:24.418Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "AR",
+  "setAbbreviation": "AR",
+  "setName": "Washington State Court Rules: Superior Court Administrative Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=AR",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Superior Court Administrative Rules 1 Reporting of Criminal Cases 2 Case Information Cover Sheet 3 One Defendant Per Case 4 Presiding Judge, More Than One Judge in Superior Court District - Repealed 5 Offender Financial Information 6 Elected Judges Pro Tempore",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Reporting of Criminal Cases",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Case Information Cover Sheet",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "One Defendant Per Case",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Presiding Judge, More Than One Judge in Superior Court District - Repealed",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Offender Financial Information",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Elected Judges Pro Tempore",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/AR/SUP_AR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/AR/SUP_AR_06_00_00.pdf"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "fetchedAt": "2025-10-31T03:55:25.526Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "CJC",
+  "setAbbreviation": "CJC",
+  "setName": "Washington State Court Rules: Code of Judicial Conduct",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=CJC",
+  "rules": [
+    {
+      "ruleNumber": "Canon 1",
+      "title": "A Judge Shall Uphold and Promote the Independence, Integrity, and Impartiality of the Judiciary, and Shall Avoid Impropriety and the Appearance of Impropriety",
+      "category": "Terminology",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CJC/GA_CJC_canon1.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/CJC/GA_CJC_canon1.pdf"
+    },
+    {
+      "ruleNumber": "Canon 2",
+      "title": "A Judge Should Perform the Duties of Judicial Office Impartially, Competently, and Diligently",
+      "category": "Terminology",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CJC/GA_CJC_canon2.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/CJC/GA_CJC_canon2.pdf"
+    },
+    {
+      "ruleNumber": "Canon 3",
+      "title": "A Judge Shall Conduct the Judge's Personal and Extrajudicial Activities to Minimize the Risk of Conflict with the Obligations of Judicial Office",
+      "category": "Terminology",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CJC/GA_CJC_canon3.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/CJC/GA_CJC_canon3.pdf"
+    },
+    {
+      "ruleNumber": "Canon 4",
+      "title": "A Judge or Candidate for Judicial Office Shall not Engage in Political or Campaign Activity that is Inconsistent with the Independence, Integrity, or Impartiality of the Judiciary",
+      "category": "Terminology",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/CJC/GA_CJC_canon4.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/CJC/GA_CJC_canon4.pdf"
+    }
+  ]
+}

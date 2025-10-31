@@ -1,0 +1,17 @@
+{
+  "docketNumber": "39680-1",
+  "docketNumberNormalized": "396801",
+  "caseTitle": "State of Washington v. Tim McManis",
+  "fileDate": "2025-03-11",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": null,
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=396801MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/396801_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=396801MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2025/396801_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:02:54.137Z",
+  "division": "III"
+}

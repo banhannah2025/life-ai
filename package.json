@@ -9,6 +9,8 @@
     "lint": "eslint",
     "scrape:rcw": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' lib/library/scrape-rcw.ts",
     "scrape:wa-opinions": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/scrape-wa-opinions.ts",
+    "scrape:wa-slip-opinions": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/scrape-wa-slip-opinions.ts",
+    "scrape:wa-court-rules": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/scrape-wa-court-rules.ts",
     "fetch:uscode": "ts-node --transpile-only --compiler-options '{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' scripts/fetch-uscode.ts"
   },
   "dependencies": {

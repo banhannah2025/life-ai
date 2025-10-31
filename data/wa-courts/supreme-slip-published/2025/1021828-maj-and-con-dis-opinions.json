@@ -1,0 +1,17 @@
+{
+  "docketNumber": "102,182-8",
+  "docketNumberNormalized": "1021828",
+  "caseTitle": "John Does 1, 2, 4, & 5 v. Seattle Police Dep't",
+  "fileDate": "2025-02-13",
+  "fileContains": "Maj., and Con/Dis Opinions",
+  "fileMonthSection": null,
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1021828MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1021828.opn.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1021828MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2025/1021828.opn.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:01:35.726Z",
+  "division": null
+}

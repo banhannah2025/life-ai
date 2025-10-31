@@ -1,0 +1,480 @@
+{
+  "fetchedAt": "2025-10-31T03:58:21.226Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "ER",
+  "setAbbreviation": "ER",
+  "setName": "Washington State Court Rules: Rules of Evidence",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=ER",
+  "rules": [
+    {
+      "ruleNumber": "101",
+      "title": "Scope",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_01_00.pdf"
+    },
+    {
+      "ruleNumber": "102",
+      "title": "Purpose and Construction",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_02_00.pdf"
+    },
+    {
+      "ruleNumber": "103",
+      "title": "Rulings on Evidence",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_03_00.pdf"
+    },
+    {
+      "ruleNumber": "104",
+      "title": "Preliminary Questions",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_04_00.pdf"
+    },
+    {
+      "ruleNumber": "105",
+      "title": "Limited Admissibility",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_05_00.pdf"
+    },
+    {
+      "ruleNumber": "106",
+      "title": "Remainder of or Related Writings or Recorded Statements",
+      "category": "Title 1 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_01_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_01_06_00.pdf"
+    },
+    {
+      "ruleNumber": "201",
+      "title": "Judicial Notice of Adjudicative Facts",
+      "category": "Title 2 Judicial Notice",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_02_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_02_01_00.pdf"
+    },
+    {
+      "ruleNumber": "301",
+      "title": "Presumptions in General in Civil Actions and Proceedings (Reserved)",
+      "category": "Title 3 Presumptions in Civil Actions and Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "302",
+      "title": "Applicability of State Law in Civil Actions and Proceedings (Reserved)",
+      "category": "Title 3 Presumptions in Civil Actions and Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_03_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_03_02_00.pdf"
+    },
+    {
+      "ruleNumber": "401",
+      "title": "Definition of \"Relevant Evidence\"",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "402",
+      "title": "Relevant Evidence Generally Admissible; Irrelevant Evidence Inadmissible",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "403",
+      "title": "Exclusion of Relevant Evidence on Grounds of Prejudice, Confusion, or Waste of Time",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_03_00.pdf"
+    },
+    {
+      "ruleNumber": "404",
+      "title": "Character Evidence Not Admissible To Prove Conduct; Exceptions; Other Crimes",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_04_00.pdf"
+    },
+    {
+      "ruleNumber": "405",
+      "title": "Methods of Proving Character",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_05_00.pdf"
+    },
+    {
+      "ruleNumber": "406",
+      "title": "Habit; Routine Practice",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_06_00.pdf"
+    },
+    {
+      "ruleNumber": "407",
+      "title": "Subsequent Remedial Measures",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_07_00.pdf"
+    },
+    {
+      "ruleNumber": "408",
+      "title": "Compromise and Offers To Compromise",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_08_00.pdf"
+    },
+    {
+      "ruleNumber": "409",
+      "title": "Payment of Medical and Similar Expenses",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_09_00.pdf"
+    },
+    {
+      "ruleNumber": "410",
+      "title": "Inadmissibility of Pleas, Offers of Pleas, and Related Statements",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_10_00.pdf"
+    },
+    {
+      "ruleNumber": "411",
+      "title": "Liability Insurance",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_11_00.pdf"
+    },
+    {
+      "ruleNumber": "412",
+      "title": "Sexual Offenses--Victim's Past Behavior",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_12_00.pdf"
+    },
+    {
+      "ruleNumber": "413",
+      "title": "Immigration Status",
+      "category": "Title 4 Relevancy and Its Limits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_04_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_04_13_00.pdf"
+    },
+    {
+      "ruleNumber": "501",
+      "title": "General Rule",
+      "category": "Title 5 Privileges",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_05_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_05_01_00.pdf"
+    },
+    {
+      "ruleNumber": "502",
+      "title": "Attorney-Client Privilege and Work Product; Limitations on Waiver",
+      "category": "Title 5 Privileges",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_05_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_05_02_00.pdf"
+    },
+    {
+      "ruleNumber": "601",
+      "title": "General Rule of Competency",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_01_00.pdf"
+    },
+    {
+      "ruleNumber": "602",
+      "title": "Lack of Personal Knowledge",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_02_00.pdf"
+    },
+    {
+      "ruleNumber": "603",
+      "title": "Oath or Affirmation",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_03_00.pdf"
+    },
+    {
+      "ruleNumber": "604",
+      "title": "Interpreters",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_04_00.pdf"
+    },
+    {
+      "ruleNumber": "605",
+      "title": "Competency of Judge as Witness",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_05_00.pdf"
+    },
+    {
+      "ruleNumber": "606",
+      "title": "Competency of Juror as Witness",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_06_00.pdf"
+    },
+    {
+      "ruleNumber": "607",
+      "title": "Who May Impeach",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_07_00.pdf"
+    },
+    {
+      "ruleNumber": "608",
+      "title": "Evidence of Character and Conduct of Witness",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_08_00.pdf"
+    },
+    {
+      "ruleNumber": "609",
+      "title": "Impeachment by Evidence of Conviction of Crime",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_09_00.pdf"
+    },
+    {
+      "ruleNumber": "610",
+      "title": "Religious Beliefs or Opinions",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_10_00.pdf"
+    },
+    {
+      "ruleNumber": "611",
+      "title": "Mode and Order of Interrogation and Presentation",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_11_00.pdf"
+    },
+    {
+      "ruleNumber": "612",
+      "title": "Writing Used To Refresh Memory",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_12_00.pdf"
+    },
+    {
+      "ruleNumber": "613",
+      "title": "Prior Statements of Witnesses",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_13_00.pdf"
+    },
+    {
+      "ruleNumber": "614",
+      "title": "Calling and Interrogation of Witnesses by Court",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_14_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_14_00.pdf"
+    },
+    {
+      "ruleNumber": "615",
+      "title": "Exclusion of Witnesses",
+      "category": "Title 6 Witnesses",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_06_15_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_06_15_00.pdf"
+    },
+    {
+      "ruleNumber": "701",
+      "title": "Opinion Testimony by Lay Witnesses",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_01_00.pdf"
+    },
+    {
+      "ruleNumber": "702",
+      "title": "Testimony by Experts",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_02_00.pdf"
+    },
+    {
+      "ruleNumber": "703",
+      "title": "Bases of Opinion Testimony by Experts",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_03_00.pdf"
+    },
+    {
+      "ruleNumber": "704",
+      "title": "Opinion on Ultimate Issue",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_04_00.pdf"
+    },
+    {
+      "ruleNumber": "705",
+      "title": "Disclosure of Facts or Data Underlying Expert Opinion",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_05_00.pdf"
+    },
+    {
+      "ruleNumber": "706",
+      "title": "Court Appointed Experts",
+      "category": "Title 7 Opinions and Expert Testimony",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_07_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_07_06_00.pdf"
+    },
+    {
+      "ruleNumber": "801",
+      "title": "Definitions",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_01_00.pdf"
+    },
+    {
+      "ruleNumber": "802",
+      "title": "Hearsay Rule",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_02_00.pdf"
+    },
+    {
+      "ruleNumber": "803",
+      "title": "Hearsay Exceptions; Availability of Declarant Immaterial",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_03_00.pdf"
+    },
+    {
+      "ruleNumber": "804",
+      "title": "Hearsay Exceptions; Declarant Unavailable",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_04_00.pdf"
+    },
+    {
+      "ruleNumber": "805",
+      "title": "Hearsay Within Hearsay",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_05_00.pdf"
+    },
+    {
+      "ruleNumber": "806",
+      "title": "Attacking and Supporting Credibility of Declarant",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_06_00.pdf"
+    },
+    {
+      "ruleNumber": "807",
+      "title": "Child Victims or Witnesses (Reserved)",
+      "category": "Title 8 Hearsay",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_08_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_08_07_00.pdf"
+    },
+    {
+      "ruleNumber": "901",
+      "title": "Requirement of Authentication or Identification",
+      "category": "Title 9 Authentication, Identification and Admission of Exhibits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_09_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_09_01_00.pdf"
+    },
+    {
+      "ruleNumber": "902",
+      "title": "Self-Authentication",
+      "category": "Title 9 Authentication, Identification and Admission of Exhibits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_09_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_09_02_00.pdf"
+    },
+    {
+      "ruleNumber": "903",
+      "title": "Subscribing Witness' Testimony Unnecessary",
+      "category": "Title 9 Authentication, Identification and Admission of Exhibits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_09_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_09_03_00.pdf"
+    },
+    {
+      "ruleNumber": "904",
+      "title": "Admissibility of Documents",
+      "category": "Title 9 Authentication, Identification and Admission of Exhibits",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_09_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_09_04_00.pdf"
+    },
+    {
+      "ruleNumber": "1001",
+      "title": "Definitions",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1002",
+      "title": "Requirement of Original",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1003",
+      "title": "Admissibility of Duplicates",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_03_00.pdf"
+    },
+    {
+      "ruleNumber": "1004",
+      "title": "Admissibility of Other Evidence of Contents",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_04_00.pdf"
+    },
+    {
+      "ruleNumber": "1005",
+      "title": "Public Records",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_05_00.pdf"
+    },
+    {
+      "ruleNumber": "1006",
+      "title": "Summaries",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_06_00.pdf"
+    },
+    {
+      "ruleNumber": "1007",
+      "title": "Testimony or Written Admission of Party",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_07_00.pdf"
+    },
+    {
+      "ruleNumber": "1008",
+      "title": "Functions of Court and Jury",
+      "category": "Title 10 Contents of Writings, Recordings, and Photographs",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_10_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_10_08_00.pdf"
+    },
+    {
+      "ruleNumber": "1101",
+      "title": "Applicability of Rules",
+      "category": "Title 11 Miscellaneous Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_11_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_11_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1102",
+      "title": "Amendments (Reserved)",
+      "category": "Title 11 Miscellaneous Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_11_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_11_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1103",
+      "title": "Title",
+      "category": "Title 11 Miscellaneous Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ER/GA_ER_11_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ER/GA_ER_11_03_00.pdf"
+    }
+  ]
+}

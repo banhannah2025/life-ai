@@ -27,6 +27,7 @@ import type { FriendRelationshipStatus } from "@/components/social/PostList";
 import type {
   RcwSectionSearchResult,
   UsCodeDownloadSearchResult,
+  WaCourtRuleSearchResult,
   WashingtonCourtOpinionSearchResult,
 } from "@/lib/library/datasets";
 
@@ -45,6 +46,7 @@ type SearchResultsState = {
   waOpinions: WashingtonCourtOpinionSearchResult[];
   rcwSections: RcwSectionSearchResult[];
   uscodeTitles: UsCodeDownloadSearchResult[];
+  waCourtRules: WaCourtRuleSearchResult[];
 };
 
 const initialResults: SearchResultsState = {
@@ -62,6 +64,7 @@ const initialResults: SearchResultsState = {
   waOpinions: [],
   rcwSections: [],
   uscodeTitles: [],
+  waCourtRules: [],
 };
 
 type SearchViewProps = {
@@ -75,6 +78,7 @@ type SearchViewProps = {
     | "waopinions"
     | "rcw"
     | "uscode"
+    | "courtrules"
     | "govinfo"
     | "loc"
     | "federalregister"
@@ -387,6 +391,40 @@ function RcwSectionResultCard({ section }: RcwSectionResultCardProps) {
             </a>
           </Button>
         </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+type WaCourtRuleResultCardProps = {
+  rule: WaCourtRuleSearchResult;
+};
+
+function WaCourtRuleResultCard({ rule }: WaCourtRuleResultCardProps) {
+  return (
+    <Card className="border border-slate-200 bg-white shadow-sm">
+      <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex items-start gap-3">
+          <ScrollText className="mt-1 h-4 w-4 flex-shrink-0 text-slate-500" aria-hidden />
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-slate-900">
+              {rule.ruleNumber} – {rule.title}
+            </h3>
+            <div className="text-sm text-slate-600">
+              {rule.setAbbreviation}
+              {rule.setAbbreviation !== rule.setName ? ` • ${rule.setName}` : ""} • {rule.groupName}
+            </div>
+            {rule.category ? <div className="text-xs text-slate-500">{rule.category}</div> : null}
+          </div>
+        </div>
+        {rule.pdfUrl ? (
+          <Button variant="outline" size="sm" asChild>
+            <a href={rule.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              View PDF
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </a>
+          </Button>
+        ) : null}
       </CardContent>
     </Card>
   );
@@ -745,6 +783,7 @@ export function SearchView({
       const includeOpenStates = mode === "all" || mode === "openstates";
       const includeRcw = mode === "all" || mode === "rcw";
       const includeUsCode = mode === "all" || mode === "uscode";
+      const includeCourtRules = mode === "all" || mode === "courtrules";
 
       setResults({
         profiles: includeProfiles ? response.profiles : [],
@@ -761,6 +800,7 @@ export function SearchView({
         openStatesBills: includeOpenStates ? response.openStatesBills : [],
         rcwSections: includeRcw ? response.rcwSections : [],
         uscodeTitles: includeUsCode ? response.uscodeTitles : [],
+        waCourtRules: includeCourtRules ? response.waCourtRules : [],
       });
     } catch (searchError) {
       console.error(searchError);
@@ -833,7 +873,8 @@ export function SearchView({
     results.openStatesBills.length > 0 ||
     results.waOpinions.length > 0 ||
     results.rcwSections.length > 0 ||
-    results.uscodeTitles.length > 0;
+    results.uscodeTitles.length > 0 ||
+    results.waCourtRules.length > 0;
 
   const resultsContent = (
     <>
@@ -1046,6 +1087,22 @@ export function SearchView({
           <div className="space-y-3">
             {results.uscodeTitles.map((item) => (
               <UsCodeDownloadResultCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(mode === "all" || mode === "courtrules") && results.waCourtRules.length > 0 ? (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">Washington court rules</h2>
+            <span className="text-sm text-slate-500">
+              {results.waCourtRules.length} result{results.waCourtRules.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {results.waCourtRules.map((rule) => (
+              <WaCourtRuleResultCard key={rule.id} rule={rule} />
             ))}
           </div>
         </section>

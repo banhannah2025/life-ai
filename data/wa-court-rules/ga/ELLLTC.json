@@ -1,0 +1,25 @@
+{
+  "fetchedAt": "2025-10-31T03:57:46.403Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "ELLLTC",
+  "setAbbreviation": "ELLLTC",
+  "setName": "Washington State Court Rules: Rules for Enforcement of Limited License Legal Technician Conduct",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=ELLLTC",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Rules for Enforcement of Limited License Legal Technician Conduct ELLLTC Rules for Enforcement of Limited License Legal Technician Conduct",
+      "title": "ELLLTC",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELLLTC/GA_ELLLTC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELLLTC/GA_ELLLTC.pdf"
+    },
+    {
+      "ruleNumber": "ELLLTC",
+      "title": "Rules for Enforcement of Limited License Legal Technician Conduct",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELLLTC/GA_ELLLTC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELLLTC/GA_ELLLTC.pdf"
+    }
+  ]
+}

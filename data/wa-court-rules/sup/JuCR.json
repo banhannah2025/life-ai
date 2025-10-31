@@ -1,0 +1,585 @@
+{
+  "fetchedAt": "2025-10-31T04:00:57.742Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "JuCR",
+  "setAbbreviation": "JuCR",
+  "setName": "Washington State Court Rules: Juvenile Court Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=JuCR",
+  "rules": [
+    {
+      "ruleNumber": "1.1",
+      "title": "Scope of Rules",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1.2",
+      "title": "Jurisdiction of Juvenile Court",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1.3",
+      "title": "Definitions",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_03_00.pdf"
+    },
+    {
+      "ruleNumber": "1.4",
+      "title": "Applicability of Other Rules",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_04_00.pdf"
+    },
+    {
+      "ruleNumber": "1.5",
+      "title": "Continuation of Actions",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_05_00.pdf"
+    },
+    {
+      "ruleNumber": "1.6",
+      "title": "Physical Restraints in the Courtroom",
+      "category": "Title 1 - Scope and Application of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_01_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_01_06_00.pdf"
+    },
+    {
+      "ruleNumber": "2.1",
+      "title": "Placement of Juvenile in Shelter Care Generally",
+      "category": "Title 2 - Shelter Care Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_02_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_02_01_00.pdf"
+    },
+    {
+      "ruleNumber": "2.2",
+      "title": "Release of Juvenile From Shelter Care Without Hearing",
+      "category": "Title 2 - Shelter Care Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_02_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_02_02_00.pdf"
+    },
+    {
+      "ruleNumber": "2.3",
+      "title": "Right to and Notice of Shelter Care Hearing",
+      "category": "Title 2 - Shelter Care Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_02_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_02_03_00.pdf"
+    },
+    {
+      "ruleNumber": "2.4",
+      "title": "Procedure at Shelter Care Hearing",
+      "category": "Title 2 - Shelter Care Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_02_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_02_04_00.pdf"
+    },
+    {
+      "ruleNumber": "2.5",
+      "title": "Amendment of Shelter Care Order",
+      "category": "Title 2 - Shelter Care Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_02_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_02_05_00.pdf"
+    },
+    {
+      "ruleNumber": "3.1",
+      "title": "Invoking Jurisdiction of Juvenile Court",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "3.2",
+      "title": "Who May File Petition--Venue",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_02_00.pdf"
+    },
+    {
+      "ruleNumber": "3.3",
+      "title": "Content of Dependency Petition",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_03_00.pdf"
+    },
+    {
+      "ruleNumber": "3.4",
+      "title": "Notice and Summons--Scheduling of Factfinding Hearing",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_04_00.pdf"
+    },
+    {
+      "ruleNumber": "3.5",
+      "title": "Amendment of Petition",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_05_00.pdf"
+    },
+    {
+      "ruleNumber": "3.6",
+      "title": "Answer to Petition",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_06_00.pdf"
+    },
+    {
+      "ruleNumber": "3.7",
+      "title": "Factfinding Hearing",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_07_00.pdf"
+    },
+    {
+      "ruleNumber": "3.8",
+      "title": "Disposition Hearing",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_08_00.pdf"
+    },
+    {
+      "ruleNumber": "3.9",
+      "title": "Review Hearing",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_09_00.pdf"
+    },
+    {
+      "ruleNumber": "3.10",
+      "title": "Modification of Order",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_10_00.pdf"
+    },
+    {
+      "ruleNumber": "3.11",
+      "title": "Guardianship in Juvenile Court",
+      "category": "Title 3 - Dependency Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_03_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_03_11_00.pdf"
+    },
+    {
+      "ruleNumber": "4.1",
+      "title": "Invoking Jurisdiction of Juvenile Court",
+      "category": "Title 4 - Proceedings to Terminate Parent-Child Relationship",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Pleadings",
+      "category": "Title 4 - Proceedings to Terminate Parent-Child Relationship",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "4.3",
+      "title": "Notice of Termination Hearing",
+      "category": "Title 4 - Proceedings to Terminate Parent-Child Relationship",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_04_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_04_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5.1",
+      "title": "Invoking Jurisdiction of Juvenile Court",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_01_00.pdf"
+    },
+    {
+      "ruleNumber": "5.2",
+      "title": "Pleadings",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5.3",
+      "title": "Scheduling of Factfinding Hearing",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5.4",
+      "title": "Notice of Factfinding Hearing",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_04_00.pdf"
+    },
+    {
+      "ruleNumber": "5.5",
+      "title": "Procedure at Factfinding Hearing",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_05_00.pdf"
+    },
+    {
+      "ruleNumber": "5.6",
+      "title": "Disposition Hearing",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_06_00.pdf"
+    },
+    {
+      "ruleNumber": "5.7",
+      "title": "Review Hearing",
+      "category": "Title 5 - Proceedings For Alternative Residential Placement",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05_07_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.1",
+      "title": "Invoking Jurisdiction of Juvenile Court",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_01_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.2",
+      "title": "Scheduling of Fact-Finding Hearing",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.3",
+      "title": "Notice of Fact-Finding Hearing",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.4",
+      "title": "Procedure at Fact-Finding Hearing",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_04_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.5",
+      "title": "Disposition Hearing",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_05_00.pdf"
+    },
+    {
+      "ruleNumber": "5A.6",
+      "title": "Review Hearing",
+      "category": "Title 5A Proceedings For At-Risk Youth",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_05A_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_05A_06_00.pdf"
+    },
+    {
+      "ruleNumber": "6.1",
+      "title": "Eligibility for Diversion",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_01_00.pdf"
+    },
+    {
+      "ruleNumber": "6.2",
+      "title": "Right To Consult With a Lawyer",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_02_00.pdf"
+    },
+    {
+      "ruleNumber": "6.3",
+      "title": "Waiver of Right to Lawyer",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_03_00.pdf"
+    },
+    {
+      "ruleNumber": "6.4",
+      "title": "Advice About Diversion Process",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_04_00.pdf"
+    },
+    {
+      "ruleNumber": "6.5",
+      "title": "Rescinded",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_05_00.pdf"
+    },
+    {
+      "ruleNumber": "6.6",
+      "title": "Termination of Diversion Agreement",
+      "category": "Title 6 - Juvenile Offense Proceedings--Diversion Agreements",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_06_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_06_06_00.pdf"
+    },
+    {
+      "ruleNumber": "7.1",
+      "title": "Invoking Juvenile Court Jurisdiction",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_01_00.pdf"
+    },
+    {
+      "ruleNumber": "7.2",
+      "title": "Information",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_02_00.pdf"
+    },
+    {
+      "ruleNumber": "7.3",
+      "title": "Detention and Release",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_03_00.pdf"
+    },
+    {
+      "ruleNumber": "7.4",
+      "title": "Detention Hearing",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_04_00.pdf"
+    },
+    {
+      "ruleNumber": "7.5",
+      "title": "Issuance of Summons or Warrant",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_05_00.pdf"
+    },
+    {
+      "ruleNumber": "7.6",
+      "title": "Arraignment and Pleas",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_06_00.pdf"
+    },
+    {
+      "ruleNumber": "7.7",
+      "title": "Statement of Juvenile on Plea of Guilty",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JuCR_07_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JuCR_07_07_00.pdf"
+    },
+    {
+      "ruleNumber": "7.8",
+      "title": "Time for Adjudicatory Hearing",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_08_00.pdf"
+    },
+    {
+      "ruleNumber": "7.9",
+      "title": "Joinder of Offenses and Consolidation of Adjudicatory Hearings",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_09_00.pdf"
+    },
+    {
+      "ruleNumber": "7.10",
+      "title": "Severance of Offenses and Consolidated Hearings",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_10_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_10_00.pdf"
+    },
+    {
+      "ruleNumber": "7.11",
+      "title": "Adjudicatory Hearing",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_11_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_11_00.pdf"
+    },
+    {
+      "ruleNumber": "7.12",
+      "title": "Disposition Hearing",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_12_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_12_00.pdf"
+    },
+    {
+      "ruleNumber": "7.13",
+      "title": "Release Pending Appellate Review",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_13_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_13_00.pdf"
+    },
+    {
+      "ruleNumber": "7.14",
+      "title": "Modification of Disposition Order",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_14_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_14_00.pdf"
+    },
+    {
+      "ruleNumber": "7.15",
+      "title": "Waiver of Right to Counsel",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_07_15_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_07_15_00.pdf"
+    },
+    {
+      "ruleNumber": "7.16",
+      "title": "Quashing and Issuing Warrants",
+      "category": "Title 7 - Juvenile Offense Proceedings in Juvenile Court",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JuCR_7_16_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JuCR_7_16_00.pdf"
+    },
+    {
+      "ruleNumber": "8.1",
+      "title": "Time for Decline Hearing",
+      "category": "Title 8 - Declining Juvenile Court Jurisdiction Over An Alleged Juvenile Offender",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_08_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_08_01_00.pdf"
+    },
+    {
+      "ruleNumber": "8.2",
+      "title": "Procedure at Decline Hearing",
+      "category": "Title 8 - Declining Juvenile Court Jurisdiction Over An Alleged Juvenile Offender",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_08_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_08_02_00.pdf"
+    },
+    {
+      "ruleNumber": "9.1",
+      "title": "Child in Need of Services and at Risk Youth Petition-Mandatory Appointment of Layer",
+      "category": "Title 9 - Right to Lawyer and Experts in All Juvenile Court Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_09_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_09_01_00.pdf"
+    },
+    {
+      "ruleNumber": "9.2",
+      "title": "Additional Right to Representation by Lawyer",
+      "category": "Title 9 - Right to Lawyer and Experts in All Juvenile Court Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JuCR_09_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JuCR_09_02_00.pdf"
+    },
+    {
+      "ruleNumber": "9.2 Stds",
+      "title": "Standards for Indigent Defense",
+      "category": "Title 9 - Right to Lawyer and Experts in All Juvenile Court Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JuCR_09_02_Standards.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JuCR_09_02_Standards.pdf"
+    },
+    {
+      "ruleNumber": "9.3",
+      "title": "Right to Appointment of Experts in Juvenile Offense Proceedings and Assignment of Lawyer",
+      "category": "Title 9 - Right to Lawyer and Experts in All Juvenile Court Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_09_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_09_03_00.pdf"
+    },
+    {
+      "ruleNumber": "10.1",
+      "title": "Scope of Title 10",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_01_00.pdf"
+    },
+    {
+      "ruleNumber": "10.2",
+      "title": "Recording Juvenile Court Proceedings",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_02_00.pdf"
+    },
+    {
+      "ruleNumber": "10.3",
+      "title": "Access of Parent to Records (Rescinded)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_03_00.pdf"
+    },
+    {
+      "ruleNumber": "10.4",
+      "title": "Motions Concerning Juvenile Records (Rescinded)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_04_00.pdf"
+    },
+    {
+      "ruleNumber": "10.5",
+      "title": "Access to Official Juvenile Court Files (Reserved)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_05_00.pdf"
+    },
+    {
+      "ruleNumber": "10.6",
+      "title": "Challenging Juvenile Court Records (Reserved)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_06_00.pdf"
+    },
+    {
+      "ruleNumber": "10.7",
+      "title": "Sealing Juvenile Court Records (Reserved)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_07_00.pdf"
+    },
+    {
+      "ruleNumber": "10.8",
+      "title": "Destruction of Juvenile Court Records (Reserved)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_08_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_08_00.pdf"
+    },
+    {
+      "ruleNumber": "10.9",
+      "title": "Only Complete Information Released (Reserved)",
+      "category": "Title 10 - Juvenile Court Records",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_10_09_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_10_09_00.pdf"
+    },
+    {
+      "ruleNumber": "11.1",
+      "title": "Computing Time",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_01_00.pdf"
+    },
+    {
+      "ruleNumber": "11.2",
+      "title": "Notice of Proceeding",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_02_00.pdf"
+    },
+    {
+      "ruleNumber": "11.3",
+      "title": "Notice to Foster Parents, Preadoptive Parents, Nonrelative Caregivers, or Relative Caregivers",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_03_00.pdf"
+    },
+    {
+      "ruleNumber": "11.21",
+      "title": "Title and Citation of Rules",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_21_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_21_00.pdf"
+    },
+    {
+      "ruleNumber": "11.22",
+      "title": "Rules Superseded",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_22_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_22_00.pdf"
+    },
+    {
+      "ruleNumber": "11.23",
+      "title": "Proceedings Using Remote Technology Authorized",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11_23_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11_23_00.pdf"
+    },
+    {
+      "ruleNumber": "11.4-11.20",
+      "title": "Reserved",
+      "category": "Title 11 - Supplemental Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/JuCR/SUP_JUCR_11.4-11.20.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/JuCR/SUP_JUCR_11.4-11.20.pdf"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fetchedAt": "2025-10-31T03:55:35.790Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "BJAR",
+  "setAbbreviation": "BJAR",
+  "setName": "Washington State Court Rules: Board for Judicial Administration Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=BJAR",
+  "rules": [
+    {
+      "ruleNumber": "1",
+      "title": "Board for Judicial Administration",
+      "category": "Preamble",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/BJAR/GA_BJAR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/BJAR/GA_BJAR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Composition",
+      "category": "Preamble",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/BJAR/GA_BJAR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/BJAR/GA_BJAR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Structure",
+      "category": "Preamble",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/BJAR/GA_BJAR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/BJAR/GA_BJAR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Staff",
+      "category": "Preamble",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/BJAR/GA_BJAR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/BJAR/GA_BJAR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Bylaws",
+      "category": "Preamble",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/BJAR/GA_BJAR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/BJAR/GA_BJAR_05_00_00.pdf"
+    }
+  ]
+}

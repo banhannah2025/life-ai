@@ -1,0 +1,116 @@
+{
+  "fetchedAt": "2025-10-31T03:55:33.563Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "DRJ",
+  "setAbbreviation": "DRJ",
+  "setName": "Washington State Court Rules: Discipline Rules for Judges",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=DRJ",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Discipline Rules for Judges 1 Scope of Rules; Parties 2 Initiating Supreme Court Consideration 3 Contesting Commission Decision 4 Record on Review 5 Briefs 6 Hearing 7 Additional Evidence or Findings--Remand 8 Motion 9 Decision and Reconsideration 10 Effect of Discipline 11 Reinstatement of Eligibility to Hold Judicial Office 12 Stipulated Resolutions by Commission 13 Substitute Panel 14 Supplemental Provisions",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Scope of Rules; Parties",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Initiating Supreme Court Consideration",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Contesting Commission Decision",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Record on Review",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Briefs",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Hearing",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Additional Evidence or Findings--Remand",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "Motion",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Decision and Reconsideration",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Effect of Discipline",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Reinstatement of Eligibility to Hold Judicial Office",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Stipulated Resolutions by Commission",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Substitute Panel",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Supplemental Provisions",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/DRJ/GA_DRJ_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/DRJ/GA_DRJ_14_00_00.pdf"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "fetchedAt": "2025-10-31T03:59:37.435Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "SCCAR",
+  "setAbbreviation": "SCCAR",
+  "setName": "Washington State Court Rules: Superior Court Civil Arbitration Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=SCCAR",
+  "rules": [
+    {
+      "ruleNumber": "1.1",
+      "title": "Application of Rules",
+      "category": "1 Scope and Purpose of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_01_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_01_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1.2",
+      "title": "Matters Subject to Arbitration",
+      "category": "1 Scope and Purpose of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_01_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_01_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1.3",
+      "title": "Relationship to Superior Court Jurisdiction and Other Rules",
+      "category": "1 Scope and Purpose of Rules",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_01_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_01_03_00.pdf"
+    },
+    {
+      "ruleNumber": "2.1",
+      "title": "Transfer to Arbitration",
+      "category": "2 Transfer to Arbitration and Assignment of Arbitrator",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_02_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_02_01_00.pdf"
+    },
+    {
+      "ruleNumber": "2.2",
+      "title": "Court May Determine Arbitrability",
+      "category": "2 Transfer to Arbitration and Assignment of Arbitrator",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_02_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_02_02_00.pdf"
+    },
+    {
+      "ruleNumber": "2.3",
+      "title": "Assignment to Arbitrator",
+      "category": "2 Transfer to Arbitration and Assignment of Arbitrator",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_02_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_02_03_00.pdf"
+    },
+    {
+      "ruleNumber": "3.1",
+      "title": "Qualifications",
+      "category": "3 Arbitrators",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "3.2",
+      "title": "Authority of Arbitrators",
+      "category": "3 Arbitrators",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_03_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_03_02_00.pdf"
+    },
+    {
+      "ruleNumber": "4.1",
+      "title": "Restrictions on Communication Between Arbitrator and Parties",
+      "category": "4 Procedures After Assignment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Discovery",
+      "category": "4 Procedures After Assignment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "4.3",
+      "title": "Subpoena",
+      "category": "4 Procedures After Assignment",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_04_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_04_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5.1",
+      "title": "Notice of Hearing",
+      "category": "5 Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_05_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_05_01_00.pdf"
+    },
+    {
+      "ruleNumber": "5.2",
+      "title": "Prehearing Statement of Proof",
+      "category": "5 Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_05_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_05_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5.3",
+      "title": "Conduct of Hearing--Witnesses--Rules of Evidence",
+      "category": "5 Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_05_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_05_03_00.pdf"
+    },
+    {
+      "ruleNumber": "5.4",
+      "title": "Absence of Party at Hearing",
+      "category": "5 Hearing",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_05_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_05_04_00.pdf"
+    },
+    {
+      "ruleNumber": "6.1",
+      "title": "Form and Content of Award",
+      "category": "6 Award",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_06_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_06_01_00.pdf"
+    },
+    {
+      "ruleNumber": "6.2",
+      "title": "Filing of Award",
+      "category": "6 Award",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_06_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_06_02_00.pdf"
+    },
+    {
+      "ruleNumber": "6.3",
+      "title": "Judgment on Award",
+      "category": "6 Award",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_06_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_06_03_00.pdf"
+    },
+    {
+      "ruleNumber": "6.4",
+      "title": "Costs and Attorney Fees",
+      "category": "6 Award",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_06_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_06_04_00.pdf"
+    },
+    {
+      "ruleNumber": "7.1",
+      "title": "Request for Trial de Novo",
+      "category": "7 Trial De Novo",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_07_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_07_01_00.pdf"
+    },
+    {
+      "ruleNumber": "7.2",
+      "title": "Procedure After Request for Trial de Novo",
+      "category": "7 Trial De Novo",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_07_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_07_02_00.pdf"
+    },
+    {
+      "ruleNumber": "7.3",
+      "title": "Costs and Attorney Fees",
+      "category": "7 Trial De Novo",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_07_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_07_03_00.pdf"
+    },
+    {
+      "ruleNumber": "8.1",
+      "title": "Stipulations",
+      "category": "8 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_08_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_08_01_00.pdf"
+    },
+    {
+      "ruleNumber": "8.2",
+      "title": "Local Rules",
+      "category": "8 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_08_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_08_02_00.pdf"
+    },
+    {
+      "ruleNumber": "8.3",
+      "title": "Effective Date",
+      "category": "8 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_08_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_08_03_00.pdf"
+    },
+    {
+      "ruleNumber": "8.4",
+      "title": "Title and Citation",
+      "category": "8 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_08_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_08_04_00.pdf"
+    },
+    {
+      "ruleNumber": "8.5",
+      "title": "Status of Comments",
+      "category": "8 General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/SCCAR/SUP_SCCAR_08_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/SCCAR/SUP_SCCAR_08_05_00.pdf"
+    }
+  ]
+}

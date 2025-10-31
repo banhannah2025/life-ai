@@ -1,0 +1,424 @@
+{
+  "fetchedAt": "2025-10-31T03:55:22.967Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "GR",
+  "setAbbreviation": "GR",
+  "setName": "Washington State Court Rules: General Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=GR",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: General Rules 1 Classification System for Court Rules 2 Holidays 3 Filings and Hearings--Time Extended 3.1 Service and Filing by an Incarcerated Person 4 Law Librarian 5 Audits 6 Sessions of Courts 7 Local Rules--Filing and Effective Date 8 Reserved, Chapter 136, Laws 2002 9 Supreme Court Rulemaking Procedure 10 Ethics Advisory Committee Regarding Advisory Opinions on Judicial Conduct 11 Court Interpreters 11.1 Purpose and Scope of Interpreter Commission 11.2 Code of Conduct for Court Interpreters 11.3 Remote Interpretation 11.4 Team Interpretation 12 Regulation of the Practice of Law 12.1 Regulatory Objectives 12.2 Washington State Bar Association: Purposes, Authorized Activities, and Prohibited Activities 12.3 Washington State Bar Association Administration of Supreme Court-Created Boards and Committees 12.4 Washington State Bar Association Access to Records 12.5 Immunity 13 Use of Unsworn Statement in Lieu of Affidavit 14 Format for Pleadings and Other Papers 14_Appx GR 14 - Appendix 1 - Office of Reporter of Decisions Style Sheet 14.1 Citation to Unpublished Opinions 15 Destruction, Sealing, and Redaction of Court Records 16 Courtroom Photography and Recording by the News Media 17 Facsimile Transmission 18 Jury Source List 19 Video Conference Proceedings 20 Security in Handling Court Exhibits 21 Emergency Court Closure 22 Access to Family Law, Protection Order, Guardianship, and Therapeutic Court Records 23 Rule for Certifying Professional Guardians and Conservators 24 Definition of the Practice of Law 25 Practice of Law Board 25_Appx Practice of Law Board - Regulations 26 Mandatory Continuing Judicial Education 26_Stds Washington State Judicial Education Mandatory Continuing Judicial Education Standards 27 Courthouse Facilitators 28 Jury Service Postponement, Excusal, and Disqualification 29 Presiding Judge in Superior Court District and Limited Jurisdiction Court District 30 Electronic Filing and Service 31 Access to Court Records 31.1 Access to Administrative Records 32 Court Performance Audits 33 Requests for Accommodation by Persons with Disabilities 34 Waiver of Court and Clerk's Fees and Charges in Civil Matters on the Basis of Indigency 35 Official Certified Superior Court Transcripts 36 Trial Court Security 37 Jury Selection 38 Open Access to Courts 39 Legal Financial Obligations 40 Informal Family Law Trials (IFLT) 41 Jury Selection by Using Remote Technology 42 Independence of Public Defense Services 43 Personal Pronouns",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Classification System for Court Rules",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "Holidays",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Filings and Hearings--Time Extended",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3.1",
+      "title": "Service and Filing by an Incarcerated Person",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Law Librarian",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Audits",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Sessions of Courts",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Local Rules--Filing and Effective Date",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_07_00_00.pdf"
+    },
+    {
+      "ruleNumber": "8",
+      "title": "Reserved, Chapter 136, Laws 2002",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_08_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_08_00_00.pdf"
+    },
+    {
+      "ruleNumber": "9",
+      "title": "Supreme Court Rulemaking Procedure",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_09_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_09_00_00.pdf"
+    },
+    {
+      "ruleNumber": "10",
+      "title": "Ethics Advisory Committee Regarding Advisory Opinions on Judicial Conduct",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_10_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_10_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11",
+      "title": "Court Interpreters",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_11_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_11_00_00.pdf"
+    },
+    {
+      "ruleNumber": "11.1",
+      "title": "Purpose and Scope of Interpreter Commission",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_11_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_11_01_00.pdf"
+    },
+    {
+      "ruleNumber": "11.2",
+      "title": "Code of Conduct for Court Interpreters",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_11_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_11_02_00.pdf"
+    },
+    {
+      "ruleNumber": "11.3",
+      "title": "Remote Interpretation",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_11_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_11_03_00.pdf"
+    },
+    {
+      "ruleNumber": "11.4",
+      "title": "Team Interpretation",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_11_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_11_04_00.pdf"
+    },
+    {
+      "ruleNumber": "12",
+      "title": "Regulation of the Practice of Law",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_00_00.pdf"
+    },
+    {
+      "ruleNumber": "12.1",
+      "title": "Regulatory Objectives",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_01_00.pdf"
+    },
+    {
+      "ruleNumber": "12.2",
+      "title": "Washington State Bar Association: Purposes, Authorized Activities, and Prohibited Activities",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_02_00.pdf"
+    },
+    {
+      "ruleNumber": "12.3",
+      "title": "Washington State Bar Association Administration of Supreme Court-Created Boards and Committees",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_03_00.pdf"
+    },
+    {
+      "ruleNumber": "12.4",
+      "title": "Washington State Bar Association Access to Records",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_04_00.pdf"
+    },
+    {
+      "ruleNumber": "12.5",
+      "title": "Immunity",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_12_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_12_05_00.pdf"
+    },
+    {
+      "ruleNumber": "13",
+      "title": "Use of Unsworn Statement in Lieu of Affidavit",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_13_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_13_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14",
+      "title": "Format for Pleadings and Other Papers",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_14_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_14_00_00.pdf"
+    },
+    {
+      "ruleNumber": "14_Appx",
+      "title": "GR 14 - Appendix 1 - Office of Reporter of Decisions Style Sheet",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_14_Appendix.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_14_Appendix.pdf"
+    },
+    {
+      "ruleNumber": "14.1",
+      "title": "Citation to Unpublished Opinions",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_14_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_14_01_00.pdf"
+    },
+    {
+      "ruleNumber": "15",
+      "title": "Destruction, Sealing, and Redaction of Court Records",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_15_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_15_00_00.pdf"
+    },
+    {
+      "ruleNumber": "16",
+      "title": "Courtroom Photography and Recording by the News Media",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_16_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_16_00_00.pdf"
+    },
+    {
+      "ruleNumber": "17",
+      "title": "Facsimile Transmission",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_17_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_17_00_00.pdf"
+    },
+    {
+      "ruleNumber": "18",
+      "title": "Jury Source List",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_18_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_18_00_00.pdf"
+    },
+    {
+      "ruleNumber": "19",
+      "title": "Video Conference Proceedings",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_19_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_19_00_00.pdf"
+    },
+    {
+      "ruleNumber": "20",
+      "title": "Security in Handling Court Exhibits",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_20_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_20_00_00.pdf"
+    },
+    {
+      "ruleNumber": "21",
+      "title": "Emergency Court Closure",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_21_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_21_00_00.pdf"
+    },
+    {
+      "ruleNumber": "22",
+      "title": "Access to Family Law, Protection Order, Guardianship, and Therapeutic Court Records",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_22_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_22_00_00.pdf"
+    },
+    {
+      "ruleNumber": "23",
+      "title": "Rule for Certifying Professional Guardians and Conservators",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_23_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_23_00_00.pdf"
+    },
+    {
+      "ruleNumber": "24",
+      "title": "Definition of the Practice of Law",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_24_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_24_00_00.pdf"
+    },
+    {
+      "ruleNumber": "25",
+      "title": "Practice of Law Board",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_25_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_25_00_00.pdf"
+    },
+    {
+      "ruleNumber": "25_Appx",
+      "title": "Practice of Law Board - Regulations",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_25_Appendix.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_25_Appendix.pdf"
+    },
+    {
+      "ruleNumber": "26",
+      "title": "Mandatory Continuing Judicial Education",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_26_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_26_00_00.pdf"
+    },
+    {
+      "ruleNumber": "26_Stds",
+      "title": "Washington State Judicial Education Mandatory Continuing Judicial Education Standards",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_26_Standards.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_26_Standards.pdf"
+    },
+    {
+      "ruleNumber": "27",
+      "title": "Courthouse Facilitators",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_27_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_27_00_00.pdf"
+    },
+    {
+      "ruleNumber": "28",
+      "title": "Jury Service Postponement, Excusal, and Disqualification",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_28_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_28_00_00.pdf"
+    },
+    {
+      "ruleNumber": "29",
+      "title": "Presiding Judge in Superior Court District and Limited Jurisdiction Court District",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_29_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_29_00_00.pdf"
+    },
+    {
+      "ruleNumber": "30",
+      "title": "Electronic Filing and Service",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_30_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_30_00_00.pdf"
+    },
+    {
+      "ruleNumber": "31",
+      "title": "Access to Court Records",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_31_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_31_00_00.pdf"
+    },
+    {
+      "ruleNumber": "31.1",
+      "title": "Access to Administrative Records",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_31_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_31_01_00.pdf"
+    },
+    {
+      "ruleNumber": "32",
+      "title": "Court Performance Audits",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_32_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_32_00_00.pdf"
+    },
+    {
+      "ruleNumber": "33",
+      "title": "Requests for Accommodation by Persons with Disabilities",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_33_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_33_00_00.pdf"
+    },
+    {
+      "ruleNumber": "34",
+      "title": "Waiver of Court and Clerk's Fees and Charges in Civil Matters on the Basis of Indigency",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_34_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_34_00_00.pdf"
+    },
+    {
+      "ruleNumber": "35",
+      "title": "Official Certified Superior Court Transcripts",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_35_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_35_00_00.pdf"
+    },
+    {
+      "ruleNumber": "36",
+      "title": "Trial Court Security",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_36_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_36_00_00.pdf"
+    },
+    {
+      "ruleNumber": "37",
+      "title": "Jury Selection",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_37_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_37_00_00.pdf"
+    },
+    {
+      "ruleNumber": "38",
+      "title": "Open Access to Courts",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_38_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_38_00_00.pdf"
+    },
+    {
+      "ruleNumber": "39",
+      "title": "Legal Financial Obligations",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_39_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_39_00_00.pdf"
+    },
+    {
+      "ruleNumber": "40",
+      "title": "Informal Family Law Trials (IFLT)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_40_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_40_00_00.pdf"
+    },
+    {
+      "ruleNumber": "41",
+      "title": "Jury Selection by Using Remote Technology",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_41_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_41_00_00.pdf"
+    },
+    {
+      "ruleNumber": "42",
+      "title": "Independence of Public Defense Services",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_42_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_42_00_00.pdf"
+    },
+    {
+      "ruleNumber": "43",
+      "title": "Personal Pronouns",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GR/GA_GR_43_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/GR/GA_GR_43_00_00.pdf"
+    }
+  ]
+}

@@ -47,6 +47,23 @@ type WashingtonOpinionIndexEntry = {
   searchText: string;
 };
 
+type WaCourtRuleIndexEntry = {
+  id: string;
+  groupCode: string;
+  groupName: string;
+  setCode: string;
+  setAbbreviation: string;
+  setName: string;
+  sourceUrl: string;
+  rules: Array<{
+    ruleNumber: string;
+    title: string;
+    category: string | null;
+    pdfUrl: string;
+    pdfPath: string | null;
+  }>;
+};
+
 export type RcwSectionSearchResult = {
   id: string;
   titleNumber: string;
@@ -87,19 +104,36 @@ export type WashingtonCourtOpinionSearchResult = {
   summary: string;
 };
 
+export type WaCourtRuleSearchResult = {
+  id: string;
+  groupCode: string;
+  groupName: string;
+  setCode: string;
+  setAbbreviation: string;
+  setName: string;
+  ruleNumber: string;
+  title: string;
+  category: string | null;
+  pdfUrl: string;
+  pdfPath: string | null;
+};
+
 export type LibraryDatasetSearchResults = {
   rcwSections: RcwSectionSearchResult[];
   uscodeTitles: UsCodeDownloadSearchResult[];
   waOpinions: WashingtonCourtOpinionSearchResult[];
+  waCourtRules: WaCourtRuleSearchResult[];
 };
 
 const RCW_ROOT = path.join(process.cwd(), "public", "rcw");
 const USCODE_ROOT = path.join(process.cwd(), "data", "uscode");
 const WA_COURTS_ROOT = path.join(process.cwd(), "data", "wa-courts");
+const WA_COURT_RULES_ROOT = path.join(process.cwd(), "data", "wa-court-rules");
 
 let rcwSectionIndexCache: RcwSectionIndexEntry[] | null = null;
 let usCodeIndexCache: UsCodeDownloadIndexEntry[] | null = null;
 let waOpinionIndexCache: WashingtonOpinionIndexEntry[] | null = null;
+let waCourtRuleIndexCache: WaCourtRuleIndexEntry[] | null = null;
 
 function stripHtml(input: string | null | undefined): string {
   if (!input) {
@@ -406,6 +440,96 @@ function ensureWaOpinionIndex(): WashingtonOpinionIndexEntry[] {
   return entries;
 }
 
+function ensureWaCourtRuleIndex(): WaCourtRuleIndexEntry[] {
+  if (waCourtRuleIndexCache) {
+    return waCourtRuleIndexCache;
+  }
+
+  let groupDirs: string[] = [];
+  try {
+    groupDirs = fs.readdirSync(WA_COURT_RULES_ROOT);
+  } catch {
+    waCourtRuleIndexCache = [];
+    return waCourtRuleIndexCache;
+  }
+
+  const entries: WaCourtRuleIndexEntry[] = [];
+
+  for (const dir of groupDirs) {
+    if (dir === "pdf" || dir.endsWith(".json")) {
+      continue;
+    }
+    const dirPath = path.join(WA_COURT_RULES_ROOT, dir);
+    let stat;
+    try {
+      stat = fs.statSync(dirPath);
+    } catch {
+      continue;
+    }
+    if (!stat.isDirectory()) {
+      continue;
+    }
+    const files = fs.readdirSync(dirPath);
+    for (const file of files) {
+      if (!file.endsWith(".json")) {
+        continue;
+      }
+      const filePath = path.join(dirPath, file);
+      try {
+        const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Partial<WaCourtRuleIndexEntry> & {
+          rules?: Array<Partial<WaCourtRuleIndexEntry["rules"][number]>>;
+        };
+        if (!raw || typeof raw !== "object") {
+          continue;
+        }
+        const groupCode = typeof raw.groupCode === "string" ? raw.groupCode : dir;
+        const setCode = typeof raw.setCode === "string" ? raw.setCode : file.replace(/\.json$/i, "");
+        const groupName = typeof raw.groupName === "string" ? raw.groupName : groupCode;
+        const setName = typeof raw.setName === "string" ? raw.setName : setCode;
+        const setAbbreviation =
+          typeof raw.setAbbreviation === "string" && raw.setAbbreviation.trim()
+            ? raw.setAbbreviation.trim()
+            : setCode;
+        const rules = Array.isArray(raw.rules)
+          ? raw.rules
+              .map((rule) => {
+                const ruleNumber = typeof rule?.ruleNumber === "string" ? rule.ruleNumber : null;
+                const title = typeof rule?.title === "string" ? rule.title : null;
+                const pdfUrl = typeof rule?.pdfUrl === "string" ? rule.pdfUrl : null;
+                if (!ruleNumber || !title || !pdfUrl) {
+                  return null;
+                }
+                return {
+                  ruleNumber,
+                  title,
+                  category: typeof rule?.category === "string" ? rule.category : null,
+                  pdfUrl,
+                  pdfPath: typeof rule?.pdfPath === "string" ? rule.pdfPath : null,
+                };
+              })
+              .filter((rule): rule is WaCourtRuleIndexEntry["rules"][number] => Boolean(rule))
+          : [];
+
+        entries.push({
+          id: `${groupCode}-${setCode}`,
+          groupCode,
+          groupName,
+          setCode,
+          setAbbreviation,
+          setName,
+          sourceUrl: typeof raw.sourceUrl === "string" ? raw.sourceUrl : "",
+          rules,
+        });
+      } catch (error) {
+        console.error(`[LibrarySearch] Failed to parse WA court rule file ${filePath}`, error);
+      }
+    }
+  }
+
+  waCourtRuleIndexCache = entries;
+  return entries;
+}
+
 function computeScore(searchText: string, tokens: string[], exactNeedle: string): number {
   let score = 0;
   for (const token of tokens) {
@@ -530,13 +654,73 @@ export function searchWashingtonOpinions(query: string, limit = 6): WashingtonCo
   }));
 }
 
+export function searchWaCourtRules(query: string, limit = 6): WaCourtRuleSearchResult[] {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) {
+    return [];
+  }
+  const tokens = extractSearchTokens(normalized);
+  if (!tokens.length) {
+    tokens.push(normalized);
+  }
+  const index = ensureWaCourtRuleIndex();
+  const ranked = index
+    .flatMap((set) =>
+      set.rules.map((rule) => {
+        const searchText = [
+          rule.ruleNumber,
+          rule.title,
+          rule.category ?? "",
+          set.setName,
+          set.groupName,
+        ]
+          .join(" ")
+          .toLowerCase();
+        let score = computeScore(searchText, tokens, normalized);
+        if (rule.ruleNumber.toLowerCase() === normalized) {
+          score += 6;
+        }
+        if (set.setAbbreviation.toLowerCase() === normalized) {
+          score += 4;
+        }
+        return {
+          entry: {
+            id: `${set.id}-${rule.ruleNumber}`,
+            groupCode: set.groupCode,
+            groupName: set.groupName,
+            setCode: set.setCode,
+            setAbbreviation: set.setAbbreviation,
+            setName: set.setName,
+            ruleNumber: rule.ruleNumber,
+            title: rule.title,
+            category: rule.category,
+            pdfUrl: rule.pdfUrl,
+            pdfPath: rule.pdfPath,
+          },
+          score,
+        };
+      })
+    )
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+
+  return ranked.map(({ entry }) => entry);
+}
+
 export function searchLibraryDatasets(
   query: string,
-  options: { rcwLimit?: number; uscodeLimit?: number; waOpinionsLimit?: number } = {}
+  options: {
+    rcwLimit?: number;
+    uscodeLimit?: number;
+    waOpinionsLimit?: number;
+    waCourtRulesLimit?: number;
+  } = {}
 ): LibraryDatasetSearchResults {
   return {
     rcwSections: searchRcwSections(query, options.rcwLimit ?? 6),
     uscodeTitles: searchUsCodeDownloads(query, options.uscodeLimit ?? 5),
     waOpinions: searchWashingtonOpinions(query, options.waOpinionsLimit ?? 6),
+    waCourtRules: searchWaCourtRules(query, options.waCourtRulesLimit ?? 6),
   };
 }

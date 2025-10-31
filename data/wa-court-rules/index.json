@@ -1,0 +1,68 @@
+{
+  "fetchedAt": "2025-10-31T04:00:57.998Z",
+  "groups": {
+    "aca": {
+      "groupName": "Rules for Appellate Court Administration",
+      "sets": [
+        "SCAR"
+      ]
+    },
+    "am": {
+      "groupName": "Additional Matter",
+      "sets": [
+        "ATJ",
+        "BBP",
+        "BJA",
+        "Table"
+      ]
+    },
+    "app": {
+      "groupName": "Rules on Appeal",
+      "sets": [
+        "RAP"
+      ]
+    },
+    "clj": {
+      "groupName": "Rules for Courts of Limited Jurisdiction",
+      "sets": [
+        "ARLJ",
+        "RALJ",
+        "CRLJ",
+        "CrRLJ",
+        "IRLJ"
+      ]
+    },
+    "ga": {
+      "groupName": "Rules of General Application",
+      "sets": [
+        "GR",
+        "CJC",
+        "DRJ",
+        "BJAR",
+        "APR",
+        "RPC",
+        "LPORPC",
+        "LLLT RPC",
+        "ELC",
+        "ELPOC",
+        "ELLLTC",
+        "JISCR",
+        "ER"
+      ]
+    },
+    "sup": {
+      "groupName": "Rules for Superior Court",
+      "sets": [
+        "AR",
+        "CCR",
+        "CR",
+        "SCCAR",
+        "SPR",
+        "GALR",
+        "CrR",
+        "SPRC",
+        "JuCR"
+      ]
+    }
+  }
+}

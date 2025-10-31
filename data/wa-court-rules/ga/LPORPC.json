@@ -1,0 +1,25 @@
+{
+  "fetchedAt": "2025-10-31T03:56:35.997Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "LPORPC",
+  "setAbbreviation": "LPORPC",
+  "setName": "Washington State Court Rules: Limited Practice Officer Rules of Professional Conduct (LPORPC)",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=LPORPC",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Limited Practice Officer Rules of Professional Conduct (LPORPC) LPORPC Limited Practice Officer Rules of Professional Conduct (LPORPC)",
+      "title": "LPORPC",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/LPORPC/GA_LPORPC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/LPORPC/GA_LPORPC.pdf"
+    },
+    {
+      "ruleNumber": "LPORPC",
+      "title": "Limited Practice Officer Rules of Professional Conduct (LPORPC)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/LPORPC/GA_LPORPC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/LPORPC/GA_LPORPC.pdf"
+    }
+  ]
+}

@@ -172,6 +172,7 @@ const BASE_WEIGHTS: Record<string, number> = {
     channel: 0.5,
     opinion: 0.78,
     waOpinion: 0.77,
+    waCourtRule: 0.75,
     recap: 0.8,
     govDocument: 0.82,
     libraryItem: 0.85,
@@ -187,15 +188,16 @@ const BASE_WEIGHTS: Record<string, number> = {
 const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
     courtlistener: 0,
     waopinions: 1,
-    rcw: 2,
-    uscode: 3,
-    recap: 4,
-    govinfo: 5,
-    ecfr: 6,
-    regulations: 7,
-    federalregister: 8,
-    openstates: 9,
-    knowledge: 10,
+    courtrules: 2,
+    rcw: 3,
+    uscode: 4,
+    recap: 5,
+    govinfo: 6,
+    ecfr: 7,
+    regulations: 8,
+    federalregister: 9,
+    openstates: 10,
+    knowledge: 11,
 };
 
 const LEGAL_RESOURCE_PAGE_SIZE = 5;
@@ -362,6 +364,7 @@ function aggregateSearchResults(
     const includeOpinions = isLegal || researchType === "ai";
     const includeRecap = isLegal || researchType === "ai";
     const includeWaOpinions = isLegal || researchType === "ai";
+    const includeCourtRules = isLegal || researchType === "ai";
     const includeGovDocuments = isLegal || isAcademic || researchType === "ai";
     const includeLibraryItems = isAcademic || researchType === "ai";
     const includeFederalRegister = isLegal || researchType === "ai";
@@ -574,6 +577,29 @@ function aggregateSearchResults(
                 sourceLabel: "Washington Courts",
                 resourceKey: "waopinions",
                 resourceLabel: "Washington Courts",
+                stateCode: "WA",
+            });
+        }
+    }
+
+    if (includeCourtRules) {
+        for (const rule of data.waCourtRules ?? []) {
+            const text = `${rule.ruleNumber} ${rule.title} ${rule.setName} ${rule.groupName}`;
+            const snippet = rule.category || `${rule.setAbbreviation} • ${rule.setName}`;
+            pushIfAllowed({
+                id: `courtrule-${rule.id}`,
+                title: `${rule.ruleNumber} – ${rule.title}`,
+                snippet,
+                snippetHtml: null,
+                type: `${rule.setAbbreviation} (${rule.groupName})`,
+                href: rule.pdfUrl ?? "#",
+                external: true,
+                score: computeScore(query, BASE_WEIGHTS.waCourtRule, text),
+                collection: "primary-law",
+                jurisdiction: "state",
+                sourceLabel: "Washington Court Rules",
+                resourceKey: "courtrules",
+                resourceLabel: "Washington Court Rules",
                 stateCode: "WA",
             });
         }

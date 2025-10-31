@@ -1,0 +1,67 @@
+{
+  "fetchedAt": "2025-10-31T03:59:48.227Z",
+  "groupCode": "sup",
+  "groupName": "Rules for Superior Court",
+  "setCode": "GALR",
+  "setAbbreviation": "GALR",
+  "setName": "Washington State Court Rules: Superior Court Guardian ad Litem Rules",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=sup&set=GALR",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Superior Court Guardian ad Litem Rules 1 Scope and Definitions 2 General Responsibilities of Guardian ad Litem 3 Roles and Responsibilities of Guardian ad Litem in Title 13 RCW Juvenile Court Proceedings 4 Authority of Guardian ad Litem 5 Appointments of Guardian ad Litem 6 Limited Appointments 7 Grievance Procedures",
+      "title": "1",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "1",
+      "title": "Scope and Definitions",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_01_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_01_00_00.pdf"
+    },
+    {
+      "ruleNumber": "2",
+      "title": "General Responsibilities of Guardian ad Litem",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_02_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_02_00_00.pdf"
+    },
+    {
+      "ruleNumber": "3",
+      "title": "Roles and Responsibilities of Guardian ad Litem in Title 13 RCW Juvenile Court Proceedings",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_03_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_03_00_00.pdf"
+    },
+    {
+      "ruleNumber": "4",
+      "title": "Authority of Guardian ad Litem",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_04_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_04_00_00.pdf"
+    },
+    {
+      "ruleNumber": "5",
+      "title": "Appointments of Guardian ad Litem",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_05_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_05_00_00.pdf"
+    },
+    {
+      "ruleNumber": "6",
+      "title": "Limited Appointments",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_06_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_06_00_00.pdf"
+    },
+    {
+      "ruleNumber": "7",
+      "title": "Grievance Procedures",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/GALR/SUP_GALR_07_00_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/sup/GALR/SUP_GALR_07_00_00.pdf"
+    }
+  ]
+}

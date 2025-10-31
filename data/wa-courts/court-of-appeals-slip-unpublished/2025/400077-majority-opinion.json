@@ -1,0 +1,17 @@
+{
+  "docketNumber": "40007-7",
+  "docketNumberNormalized": "400077",
+  "caseTitle": "State of Washington v. E.J.O.",
+  "fileDate": "2025-02-27",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "February 2025",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=400077MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/400077_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=400077MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2025/400077_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:05:15.591Z",
+  "division": "III"
+}

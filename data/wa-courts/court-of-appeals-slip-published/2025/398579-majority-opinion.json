@@ -1,0 +1,17 @@
+{
+  "docketNumber": "39857-9",
+  "docketNumberNormalized": "398579",
+  "caseTitle": "State of Washington v. Earl Phillips, III",
+  "fileDate": "2025-01-30",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": null,
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=398579MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/398579_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=398579MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2025/398579_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:02:54.115Z",
+  "division": "III"
+}

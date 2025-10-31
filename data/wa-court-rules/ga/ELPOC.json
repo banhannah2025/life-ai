@@ -1,0 +1,25 @@
+{
+  "fetchedAt": "2025-10-31T03:57:44.678Z",
+  "groupCode": "ga",
+  "groupName": "Rules of General Application",
+  "setCode": "ELPOC",
+  "setAbbreviation": "ELPOC",
+  "setName": "Washington State Court Rules: Rules for Enforcement of Limited Practice Officer Conduct (ELPOC)",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=ga&set=ELPOC",
+  "rules": [
+    {
+      "ruleNumber": "Washington State Court Rules: Rules for Enforcement of Limited Practice Officer Conduct (ELPOC) ELPOC Rules for Enforcement of Limited Practice Officer Conduct (ELPOC)",
+      "title": "ELPOC",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELPOC/GA_ELPOC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELPOC/GA_ELPOC.pdf"
+    },
+    {
+      "ruleNumber": "ELPOC",
+      "title": "Rules for Enforcement of Limited Practice Officer Conduct (ELPOC)",
+      "category": null,
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/ELPOC/GA_ELPOC.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/ga/ELPOC/GA_ELPOC.pdf"
+    }
+  ]
+}

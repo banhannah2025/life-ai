@@ -1,0 +1,193 @@
+{
+  "fetchedAt": "2025-10-31T03:54:52.941Z",
+  "groupCode": "clj",
+  "groupName": "Rules for Courts of Limited Jurisdiction",
+  "setCode": "IRLJ",
+  "setAbbreviation": "IRLJ",
+  "setName": "Washington State Court Rules: Infraction Rules for Courts of Limited Jurisdiction",
+  "sourceUrl": "https://www.courts.wa.gov/court_rules/?fa=court_rules.list&group=clj&set=IRLJ",
+  "rules": [
+    {
+      "ruleNumber": "1.1",
+      "title": "Scope and Purpose of Rules",
+      "category": "Title 1 - General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_01_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_01_01_00.pdf"
+    },
+    {
+      "ruleNumber": "1.2",
+      "title": "Definitions",
+      "category": "Title 1 - General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_01_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_01_02_00.pdf"
+    },
+    {
+      "ruleNumber": "1.3",
+      "title": "Local Court Rules",
+      "category": "Title 1 - General Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_01_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_01_03_00.pdf"
+    },
+    {
+      "ruleNumber": "2.1",
+      "title": "Notice of Infraction",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_01_00.pdf"
+    },
+    {
+      "ruleNumber": "2.2",
+      "title": "Initiation of Infraction Cases",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_02_00.pdf"
+    },
+    {
+      "ruleNumber": "2.3",
+      "title": "Venue",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_03_00.pdf"
+    },
+    {
+      "ruleNumber": "2.4",
+      "title": "Response to Notice",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_04_00.pdf"
+    },
+    {
+      "ruleNumber": "2.5",
+      "title": "Failure To Respond",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_05_00.pdf"
+    },
+    {
+      "ruleNumber": "2.6",
+      "title": "Scheduling of Hearings",
+      "category": "Title 2 - Preliminary Proceedings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_02_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_02_06_00.pdf"
+    },
+    {
+      "ruleNumber": "3.1",
+      "title": "Contested Hearings--Preliminary Proceedings",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_01_00.pdf"
+    },
+    {
+      "ruleNumber": "3.2",
+      "title": "Failure To Appear",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_02_00.pdf"
+    },
+    {
+      "ruleNumber": "3.3",
+      "title": "Procedure at Contested Hearing",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_03_00.pdf"
+    },
+    {
+      "ruleNumber": "3.4",
+      "title": "Hearing on Mitigating Circumstances",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_04_00.pdf"
+    },
+    {
+      "ruleNumber": "3.5",
+      "title": "Local Rule Options",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_05_00.pdf"
+    },
+    {
+      "ruleNumber": "3.6",
+      "title": "Payment Plans",
+      "category": "Title 3 - Procedure at Hearings",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_03_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_03_06_00.pdf"
+    },
+    {
+      "ruleNumber": "4.1",
+      "title": "Notification to Department of Licensing of Traffic Infraction",
+      "category": "Title 4 - Disposition Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_04_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_04_01_00.pdf"
+    },
+    {
+      "ruleNumber": "4.2",
+      "title": "Failure to Pay or Complete Community Restitution for Traffic Infraction",
+      "category": "Title 4 - Disposition Procedures",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_04_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_04_02_00.pdf"
+    },
+    {
+      "ruleNumber": "5.1",
+      "title": "What Orders May Be Appealed",
+      "category": "Title 5 - Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_05_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_05_01_00.pdf"
+    },
+    {
+      "ruleNumber": "5.2",
+      "title": "Appeal to Superior Court",
+      "category": "Title 5 - Appeals",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_05_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_05_02_00.pdf"
+    },
+    {
+      "ruleNumber": "6.1",
+      "title": "Time",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_01_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_01_00.pdf"
+    },
+    {
+      "ruleNumber": "6.2",
+      "title": "Monetary Penalty Schedule for Infractions",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_02_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_02_00.pdf"
+    },
+    {
+      "ruleNumber": "6.3",
+      "title": "Title and Citation of Rules",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_03_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_03_00.pdf"
+    },
+    {
+      "ruleNumber": "6.4",
+      "title": "Effective Date",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_04_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_04_00.pdf"
+    },
+    {
+      "ruleNumber": "6.5",
+      "title": "Rules Superseded",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_05_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_05_00.pdf"
+    },
+    {
+      "ruleNumber": "6.6",
+      "title": "Speed and Weight Measuring Device: Design and Construction Certification",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_06_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_06_00.pdf"
+    },
+    {
+      "ruleNumber": "6.7",
+      "title": "Identity Challenges and Relief from Judgment",
+      "category": "Title 6 - Miscellaneous Provisions",
+      "pdfUrl": "https://www.courts.wa.gov/court_rules/pdf/IRLJ/CLJ_IRLJ_06_07_00.pdf",
+      "pdfPath": "data/wa-court-rules/pdf/clj/IRLJ/CLJ_IRLJ_06_07_00.pdf"
+    }
+  ]
+}

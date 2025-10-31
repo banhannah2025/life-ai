@@ -68,6 +68,7 @@ export async function GET(request: Request) {
       waOpinions: [],
       rcwSections: [],
       uscodeTitles: [],
+      waCourtRules: [],
       localDocuments: [],
     });
   }
@@ -104,6 +105,8 @@ export async function GET(request: Request) {
     (searchAll || searchLegal || type === "rcw") && canAccessPrimaryLaw && includeState;
   const shouldSearchUsCode =
     (searchAll || searchLegal || type === "uscode") && canAccessPrimaryLaw && includeFederal;
+  const shouldSearchCourtRules =
+    (searchAll || searchLegal || type === "courtrules") && canAccessPrimaryLaw && includeState;
   const shouldSearchRecap =
     (searchAll || searchLegal || type === "recap") &&
     (canAccessLitigation || canAccessPrimaryLaw) &&
@@ -165,17 +168,19 @@ export async function GET(request: Request) {
   ]);
 
   const datasetResults =
-    shouldSearchRcw || shouldSearchUsCode || shouldSearchWaLocalOpinions
+    shouldSearchRcw || shouldSearchUsCode || shouldSearchWaLocalOpinions || shouldSearchCourtRules
       ? searchLibraryDatasets(query, {
           rcwLimit: limit,
           uscodeLimit: limit,
           waOpinionsLimit: limit,
+          waCourtRulesLimit: limit,
         })
-      : { rcwSections: [], uscodeTitles: [], waOpinions: [] };
+      : { rcwSections: [], uscodeTitles: [], waOpinions: [], waCourtRules: [] };
 
   const rcwMatches = shouldSearchRcw ? datasetResults.rcwSections : [];
   const uscodeMatches = shouldSearchUsCode ? datasetResults.uscodeTitles : [];
   const waLocalOpinionMatches = shouldSearchWaLocalOpinions ? datasetResults.waOpinions : [];
+  const courtRuleMatches = shouldSearchCourtRules ? datasetResults.waCourtRules : [];
 
   return NextResponse.json({
     profiles: profileMatches.map(toProfileResult),
@@ -192,6 +197,7 @@ export async function GET(request: Request) {
     waOpinions: waLocalOpinionMatches,
     rcwSections: rcwMatches,
     uscodeTitles: uscodeMatches,
+    waCourtRules: courtRuleMatches,
     localDocuments: localResourceMatches,
   });
 }

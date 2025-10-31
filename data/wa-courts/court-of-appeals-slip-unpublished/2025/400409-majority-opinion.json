@@ -1,0 +1,17 @@
+{
+  "docketNumber": "40040-9",
+  "docketNumberNormalized": "400409",
+  "caseTitle": "State of Washington v. Gordon Lee McVay",
+  "fileDate": "2025-08-05",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2025",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=400409MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/400409_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=400409MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2025/400409_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:05:16.190Z",
+  "division": "III"
+}

@@ -266,10 +266,50 @@ function extractCourtIdFromResource(resource: string | null): string | null {
   }
 }
 
+const SEARCH_STOPWORDS = new Set([
+  "the",
+  "and",
+  "for",
+  "with",
+  "from",
+  "that",
+  "this",
+  "have",
+  "has",
+  "shall",
+  "must",
+  "should",
+  "would",
+  "could",
+  "will",
+  "are",
+  "was",
+  "were",
+  "been",
+  "being",
+  "what",
+  "when",
+  "where",
+  "why",
+  "which",
+  "whose",
+  "whom",
+  "into",
+  "onto",
+  "about",
+  "under",
+  "over",
+  "upon",
+  "between",
+  "within",
+  "without",
+  "among",
+]);
+
 function normalizeTokenSet(query: string): string[] {
   const tokens = extractSearchTokens(query)
     .map((token) => token.trim())
-    .filter((token) => token.length >= 3);
+    .filter((token) => token.length >= 3 && !SEARCH_STOPWORDS.has(token));
   return Array.from(new Set(tokens));
 }
 
@@ -304,10 +344,13 @@ export async function searchCourtListenerOpinions(
   }
 
   const tokenSet = normalizeTokenSet(query);
-  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 3;
-  const minimumTokenMatches = requireAllTokens
-    ? tokenSet.length
-    : Math.max(1, Math.ceil(tokenSet.length * 0.6));
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 2;
+  const minimumTokenMatches =
+    tokenSet.length === 0
+      ? 0
+      : requireAllTokens
+        ? tokenSet.length
+        : Math.min(4, Math.max(1, Math.ceil(tokenSet.length * 0.5)));
   const allowFederal = options.includeFederal !== false;
   const allowState = options.includeState !== false;
   const allowAgency = options.includeAgency !== false;
@@ -487,10 +530,13 @@ export async function searchCourtListenerRecapDockets(
   }
 
   const tokenSet = normalizeTokenSet(query);
-  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 3;
-  const minimumTokenMatches = requireAllTokens
-    ? tokenSet.length
-    : Math.max(1, Math.ceil(tokenSet.length * 0.6));
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 2;
+  const minimumTokenMatches =
+    tokenSet.length === 0
+      ? 0
+      : requireAllTokens
+        ? tokenSet.length
+        : Math.min(4, Math.max(1, Math.ceil(tokenSet.length * 0.5)));
   const allowFederal = options.includeFederal !== false;
   const allowState = options.includeState !== false;
   const allowAgency = options.includeAgency !== false;

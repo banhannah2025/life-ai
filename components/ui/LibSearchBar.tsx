@@ -355,6 +355,46 @@ function getPriority(result: AggregatedResult, researchType: ResearchType): numb
     return 5;
 }
 
+const SEARCH_STOPWORDS = new Set([
+    "the",
+    "and",
+    "for",
+    "with",
+    "from",
+    "that",
+    "this",
+    "have",
+    "has",
+    "shall",
+    "must",
+    "should",
+    "would",
+    "could",
+    "will",
+    "are",
+    "was",
+    "were",
+    "been",
+    "being",
+    "what",
+    "when",
+    "where",
+    "why",
+    "which",
+    "whose",
+    "whom",
+    "into",
+    "onto",
+    "about",
+    "under",
+    "over",
+    "upon",
+    "between",
+    "within",
+    "without",
+    "among",
+]);
+
 function meetsTokenThreshold(text: string, tokens: string[], minimumMatches: number): boolean {
     if (!tokens.length || minimumMatches <= 0) {
         return true;
@@ -407,14 +447,22 @@ function aggregateSearchResults(
     const phrase = filters?.phraseBoost?.trim().toLowerCase() ?? "";
     const dateRange = filters?.dateRange ?? "any";
     const stateFilter = filters?.state && filters.state !== "ALL" ? filters.state : null;
-    const requiredTokens =
-        isLegal ? Array.from(new Set(extractSearchTokens(query).filter((token) => token.length >= 3))) : [];
+    const meaningfulTokens =
+        isLegal
+            ? Array.from(
+                  new Set(
+                      extractSearchTokens(query)
+                          .map((token) => token.trim())
+                          .filter((token) => token.length >= 3 && !SEARCH_STOPWORDS.has(token))
+                  )
+              )
+            : [];
     const minimumTokenMatches =
-        !isLegal || requiredTokens.length === 0
+        !isLegal || meaningfulTokens.length === 0
             ? 0
-            : requiredTokens.length <= 3
-                ? requiredTokens.length
-                : Math.max(1, Math.ceil(requiredTokens.length * 0.6));
+            : meaningfulTokens.length <= 2
+                ? meaningfulTokens.length
+                : Math.min(4, Math.max(1, Math.ceil(meaningfulTokens.length * 0.5)));
 
     const shouldIncludeCollection = (collection: AggregatedResult["collection"]) =>
         !isLegal || activeCollections.has(collection);
@@ -457,7 +505,7 @@ function aggregateSearchResults(
         }
         if (minimumTokenMatches > 0) {
             const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`;
-            if (!meetsTokenThreshold(haystack, requiredTokens, minimumTokenMatches)) {
+            if (!meetsTokenThreshold(haystack, meaningfulTokens, minimumTokenMatches)) {
                 return;
             }
         }

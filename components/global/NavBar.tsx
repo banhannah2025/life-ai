@@ -17,7 +17,7 @@ const baseNavLinks = [
     { href: "/", label: "Home" },
     { href: "/library", label: "Library" },
     { href: "/social", label: "Social" },
-   // { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice" },
+    { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice" },
 ];
 
 export function NavBar() {

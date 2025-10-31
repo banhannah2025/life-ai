@@ -72,10 +72,20 @@ export async function requestAiSearchAnswer(
   });
 
   if (!response.ok) {
-    const message = await response
+    const body = await response
       .json()
-      .then((body) => (typeof body?.error === "string" ? body.error : "AI answer request failed."))
-      .catch(() => "AI answer request failed.");
+      .catch(() => null) as { error?: string; details?: { fieldErrors?: Record<string, string[]> } } | null;
+    let message = body?.error && typeof body.error === "string" ? body.error : "AI answer request failed.";
+    if (body?.details && typeof body.details === "object") {
+      const fieldErrors = body.details.fieldErrors;
+      if (fieldErrors && typeof fieldErrors === "object") {
+        const formatted = Object.entries(fieldErrors)
+          .flatMap(([field, errors]) => (Array.isArray(errors) ? errors.map((entry) => `${field}: ${entry}`) : []));
+        if (formatted.length) {
+          message = `${message} (${formatted.join("; ")})`;
+        }
+      }
+    }
     throw new Error(message);
   }
 

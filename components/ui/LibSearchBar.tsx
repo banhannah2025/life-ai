@@ -62,7 +62,7 @@ type AggregatedResult = {
     year?: string | null;
     stateCode?: string | null;
     sourceLabel?: string;
-    collection: "primary-law" | "secondary" | "litigation" | "knowledge";
+    collection: "primary-law" | "secondary" | "litigation" | "knowledge" | "internet";
     jurisdiction: "federal" | "state" | "agency" | "mixed";
     resourceKey: string;
     resourceLabel: string;
@@ -142,6 +142,7 @@ const legalCollections = [
     { value: "secondary", label: "Secondary Sources & Treatises", defaultChecked: true },
     { value: "litigation", label: "Litigation Analytics & Dockets" },
     { value: "knowledge", label: "Firm Knowledge Base" },
+    { value: "internet", label: "Live Web Sources", defaultChecked: true },
 ];
 
 const academicDisciplines = [
@@ -189,6 +190,7 @@ const BASE_WEIGHTS: Record<string, number> = {
     localDoc: 0.88,
     rcw: 0.73,
     uscode: 0.72,
+    websearch: 0.68,
 };
 
 const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
@@ -203,7 +205,8 @@ const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
     regulations: 8,
     federalregister: 9,
     openstates: 10,
-    knowledge: 11,
+    websearch: 11,
+    knowledge: 12,
 };
 
 const LEGAL_RESOURCE_PAGE_SIZE = 5;
@@ -213,6 +216,7 @@ const COLLECTION_LABELS: Record<AggregatedResult["collection"], string> = {
     secondary: "Secondary Sources",
     litigation: "Litigation & Dockets",
     knowledge: "Knowledge Base",
+    internet: "Live Web",
 };
 
 const JURISDICTION_LABELS: Record<AggregatedResult["jurisdiction"], string> = {
@@ -395,6 +399,18 @@ const SEARCH_STOPWORDS = new Set([
     "among",
 ]);
 
+function isValidHttpUrl(input: string | null | undefined): input is string {
+    if (!input) {
+        return false;
+    }
+    try {
+        const url = new URL(input);
+        return url.protocol === "http:" || url.protocol === "https:";
+    } catch {
+        return false;
+    }
+}
+
 function meetsTokenThreshold(text: string, tokens: string[], minimumMatches: number): boolean {
     if (!tokens.length || minimumMatches <= 0) {
         return true;
@@ -416,7 +432,8 @@ function aggregateSearchResults(
     query: string,
     data: SearchResponse,
     researchType: ResearchType,
-    filters?: LegalFilters
+    filters?: LegalFilters,
+    webResults?: AiSearchAssistWebResult[] | null
 ): AggregatedResult[] {
     const results: AggregatedResult[] = [];
     const isLegal = researchType === "legal";
@@ -489,6 +506,13 @@ function aggregateSearchResults(
         if (!item.resourceLabel) {
             item.resourceLabel = item.sourceLabel ?? item.type;
         }
+        if (item.external) {
+            if (!isValidHttpUrl(item.href)) {
+                return;
+            }
+        } else if (!item.href || item.href === "#") {
+            return;
+        }
         if (isLegal && !shouldIncludeCollection(item.collection)) {
             return;
         }
@@ -509,7 +533,10 @@ function aggregateSearchResults(
                 return;
             }
         }
-        item.sourceLabel = item.sourceLabel ?? item.resourceLabel ?? item.type;
+        const normalizedResourceLabel = (item.resourceLabel ?? item.sourceLabel ?? item.type).slice(0, 160);
+        const normalizedSourceLabel = (item.sourceLabel ?? normalizedResourceLabel).slice(0, 120);
+        item.resourceLabel = normalizedResourceLabel;
+        item.sourceLabel = normalizedSourceLabel;
         maybeBoostScore(item);
         results.push(item);
     };
@@ -874,6 +901,9 @@ function aggregateSearchResults(
 
     if (includeLocalDocuments) {
         for (const doc of localDocs) {
+            if (!doc.url) {
+                continue;
+            }
             const text = `${doc.title} ${doc.summary ?? ""} ${doc.body ?? ""}`;
             const lowerSource = doc.source.toLowerCase();
             const isGuidance = lowerSource.includes("guide") || lowerSource.includes("analysis") || lowerSource.includes("knowledge");
@@ -900,6 +930,37 @@ function aggregateSearchResults(
                 stateCode: null,
             });
         }
+    }
+
+    if (webResults && webResults.length > 0 && researchType !== "academic") {
+        webResults.forEach((result, index) => {
+            if (!result?.title) {
+                return;
+            }
+            if (!isValidHttpUrl(result.url)) {
+                return;
+            }
+            const snippet = result.snippet ? truncateText(result.snippet, 260) : "Web search result";
+            const label = result.source?.trim() ? result.source.trim().slice(0, 120) : "Live web";
+            pushIfAllowed({
+                id: `web-${index}-${result.title.slice(0, 32)}`,
+                title: truncateText(result.title, 180),
+                snippet,
+                snippetHtml: null,
+                type: label,
+                href: result.url!,
+                external: true,
+                score: computeScore(query, BASE_WEIGHTS.websearch, `${result.title} ${snippet}`),
+                collection: "internet",
+                jurisdiction: "mixed",
+                sourceLabel: label,
+                resourceKey: "websearch",
+                resourceLabel: "Live Web",
+                stateCode: null,
+                date: null,
+                year: null,
+            });
+        });
     }
 
     const maxResults = researchType === "legal" ? 60 : 10;
@@ -1339,7 +1400,33 @@ export function LibSearchBar() {
                         assist.summary?.trim() || "AI assist refined your query for better matching.",
                     );
                     setAiAssistQuery(effectiveQuery);
-                    assistWebResults = assist.webResults && assist.webResults.length ? assist.webResults : null;
+                    const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
+                    const seenUrls = new Set<string>();
+                    const sanitizedWebResults = rawWebResults
+                        .filter(
+                            (result): result is AiSearchAssistWebResult =>
+                                Boolean(result) &&
+                                typeof result.title === "string" &&
+                                result.title.trim().length > 0 &&
+                                isValidHttpUrl(result.url ?? undefined)
+                        )
+                        .map((result) => {
+                            const trimmedTitle = result.title.trim();
+                            const trimmedUrl = result.url!.trim();
+                            if (seenUrls.has(trimmedUrl)) {
+                                return null;
+                            }
+                            seenUrls.add(trimmedUrl);
+                            return {
+                                ...result,
+                                title: trimmedTitle,
+                                url: trimmedUrl,
+                                snippet: result.snippet?.trim() ?? null,
+                                source: result.source?.trim() ?? null,
+                            };
+                        })
+                        .filter((entry): entry is AiSearchAssistWebResult => entry !== null);
+                    assistWebResults = sanitizedWebResults.length ? sanitizedWebResults : null;
                     setAiAssistSources(assistWebResults);
                 } catch (assistError) {
                     console.error(assistError);
@@ -1382,30 +1469,31 @@ export function LibSearchBar() {
 
             const perSourceLimit = researchType === "legal" ? 25 : 10;
             const response = await searchDirectory(effectiveQuery, searchMode, perSourceLimit, requestFilters);
-            const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters);
+            const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters, assistWebResults);
             setResults(aggregated);
             setLastQuery(effectiveQuery);
             let answerContext: AiSearchAnswerResultInput[] = [];
             if (aiAssistEnabled) {
-                if (aggregated.length > 0) {
-                    answerContext = aggregated.slice(0, 8).map((item, index) => ({
-                        title: item.title,
-                        snippet: item.snippet,
-                        url:
-                            item.external || (item.href && /^https?:\/\//i.test(item.href))
-                                ? item.href
-                                : null,
-                        source: item.resourceLabel ?? item.type ?? `Result ${index + 1}`,
+                const eligibleAggregated = aggregated.filter((item) => item.external && isValidHttpUrl(item.href));
+                if (eligibleAggregated.length > 0) {
+                    answerContext = eligibleAggregated.slice(0, 8).map((item, index) => ({
+                        title: item.title.slice(0, 400),
+                        snippet: item.snippet?.slice(0, 1600) ?? null,
+                        url: item.href,
+                        source: (item.sourceLabel ?? item.resourceLabel ?? item.type ?? `Result ${index + 1}`).slice(0, 120),
                         date: item.date ?? item.year ?? null,
                     }));
                 } else if (assistWebResults && assistWebResults.length > 0) {
-                    answerContext = assistWebResults.slice(0, 6).map((source) => ({
-                        title: source.title,
-                        snippet: source.snippet ?? null,
-                        url: source.url ?? null,
-                        source: source.source ?? "Web",
-                        date: null,
-                    }));
+                    answerContext = assistWebResults
+                        .filter((source) => isValidHttpUrl(source.url))
+                        .slice(0, 6)
+                        .map((source, index) => ({
+                            title: source.title.slice(0, 400),
+                            snippet: source.snippet?.slice(0, 1600) ?? null,
+                            url: source.url ?? null,
+                            source: (source.source ?? `Web ${index + 1}`).slice(0, 120),
+                            date: null,
+                        }));
                 }
             }
 

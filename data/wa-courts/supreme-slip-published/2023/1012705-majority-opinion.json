@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,270-5",
+  "docketNumberNormalized": "1012705",
+  "caseTitle": "In re Dependency of A.M.F.",
+  "fileDate": "2023-03-30",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "March 2023",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1012705MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1012705.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1012705MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2023/1012705.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:34:11.110Z",
+  "division": null
+}

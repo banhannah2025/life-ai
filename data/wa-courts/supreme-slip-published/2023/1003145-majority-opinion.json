@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,314-5",
+  "docketNumberNormalized": "1003145",
+  "caseTitle": "New York Life Ins. Co. v. Mitchell",
+  "fileDate": "2023-05-11",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "May 2023",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1003145MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1003145.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1003145MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2023/1003145.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:34:11.150Z",
+  "division": null
+}

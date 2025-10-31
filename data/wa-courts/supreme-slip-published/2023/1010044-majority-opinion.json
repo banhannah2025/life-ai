@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,004-4",
+  "docketNumberNormalized": "1010044",
+  "caseTitle": "State v. Hubbard",
+  "fileDate": "2023-04-27",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "April 2023",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1010044MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1010044.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1010044MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2023/1010044.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:34:11.119Z",
+  "division": null
+}

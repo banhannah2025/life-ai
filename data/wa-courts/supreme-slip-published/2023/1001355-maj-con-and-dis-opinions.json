@@ -1,0 +1,17 @@
+{
+  "docketNumber": "100,135-5",
+  "docketNumberNormalized": "1001355",
+  "caseTitle": "State v. Meredith",
+  "fileDate": "2023-03-16",
+  "fileContains": "Maj., Con., and Dis. Opinions",
+  "fileMonthSection": "March 2023",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001355MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1001355.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1001355MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2023/1001355.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:34:11.091Z",
+  "division": null
+}

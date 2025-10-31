@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,444-9",
+  "docketNumberNormalized": "1014449",
+  "caseTitle": "Nelson v. P.S.C., Inc.",
+  "fileDate": "2023-09-21",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "September 2023",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1014449MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1014449.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1014449MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2023/1014449.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:34:11.271Z",
+  "division": null
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "35515-2",
+  "docketNumberNormalized": "355152",
+  "caseTitle": "State of Washington v. Andrew Thomas Dewey",
+  "fileDate": "2019-01-22",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2019",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=355152MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/355152_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=355152MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2019/355152_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T13:01:38.728Z",
+  "division": "III"
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "36010-5",
+  "docketNumberNormalized": "360105",
+  "caseTitle": "State of Washington v. Mikhail S. Barbarosh",
+  "fileDate": "2019-08-29",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "August 2019",
+  "courtLevel": "C",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=360105MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/360105_pub.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=360105MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-published/2019/360105_pub.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T12:58:11.316Z",
+  "division": "III"
+}

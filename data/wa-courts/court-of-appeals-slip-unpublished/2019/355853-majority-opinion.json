@@ -1,0 +1,17 @@
+{
+  "docketNumber": "35585-3",
+  "docketNumberNormalized": "355853",
+  "caseTitle": "State of Washington v. D.D.",
+  "fileDate": "2019-03-05",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "March 2019",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=355853MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/355853_unp.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=355853MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2019/355853_unp.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T13:01:39.261Z",
+  "division": "III"
+}

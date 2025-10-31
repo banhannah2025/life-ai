@@ -1,0 +1,17 @@
+{
+  "docketNumber": "84351-6",
+  "docketNumberNormalized": "843516",
+  "caseTitle": "Robert Smith, Appellant V. City Of Seattle, Respondent",
+  "fileDate": "2023-12-04",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "December 2023",
+  "courtLevel": "C",
+  "publicationStatus": "UNP",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=843516MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/843516.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=843516MAJ",
+  "pdfPath": "data/wa-courts/court-of-appeals-slip-unpublished/2023/843516.pdf",
+  "isRevised": false,
+  "fetchedAt": "2025-10-31T04:38:37.532Z",
+  "division": "I"
+}

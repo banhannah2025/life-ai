@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,205-5",
+  "docketNumberNormalized": "1012055",
+  "caseTitle": "State v. City of Sunnyside",
+  "fileDate": "2024-06-20",
+  "fileContains": "Maj., Con., and Con/Dis Opinions",
+  "fileMonthSection": "June 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1012055MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1012055.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1012055MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1012055.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.134Z",
+  "division": null
+}

@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,124-5",
+  "docketNumberNormalized": "1011245",
+  "caseTitle": "State v. Martinez",
+  "fileDate": "2024-01-18",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1011245MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1011245.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1011245MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1011245.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.073Z",
+  "division": null
+}

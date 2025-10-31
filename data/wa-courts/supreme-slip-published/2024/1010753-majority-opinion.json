@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,075-3",
+  "docketNumberNormalized": "1010753",
+  "caseTitle": "King County v. Abernathy",
+  "fileDate": "2024-01-25",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "January 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1010753MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1010753.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1010753MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1010753.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.075Z",
+  "division": null
+}

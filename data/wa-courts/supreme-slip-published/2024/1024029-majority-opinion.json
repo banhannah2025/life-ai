@@ -1,0 +1,17 @@
+{
+  "docketNumber": "102,402-9",
+  "docketNumberNormalized": "1024029",
+  "caseTitle": "State v. Smith",
+  "fileDate": "2024-09-12",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "September 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1024029MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1024029.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1024029MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1024029.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.258Z",
+  "division": null
+}

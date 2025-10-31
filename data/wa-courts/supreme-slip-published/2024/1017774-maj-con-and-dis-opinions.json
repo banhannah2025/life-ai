@@ -1,0 +1,17 @@
+{
+  "docketNumber": "101,777-4",
+  "docketNumberNormalized": "1017774",
+  "caseTitle": "State v. Carter",
+  "fileDate": "2024-05-23",
+  "fileContains": "Maj., Con., and Dis. Opinions",
+  "fileMonthSection": "May 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1017774MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1017774.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1017774MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1017774.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.124Z",
+  "division": null
+}

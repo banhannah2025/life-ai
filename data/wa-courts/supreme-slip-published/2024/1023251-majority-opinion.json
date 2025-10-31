@@ -1,0 +1,17 @@
+{
+  "docketNumber": "102,325-1",
+  "docketNumberNormalized": "1023251",
+  "caseTitle": "State v. Willyard",
+  "fileDate": "2024-09-12",
+  "fileContains": "Majority Opinion",
+  "fileMonthSection": "September 2024",
+  "courtLevel": "S",
+  "publicationStatus": "PUB",
+  "detailUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1023251MAJ",
+  "pdfUrl": "https://www.courts.wa.gov/opinions/pdf/1023251.pdf",
+  "htmlUrl": "https://www.courts.wa.gov/opinions/index.cfm?fa=opinions.showOpinion&filename=1023251MAJ",
+  "pdfPath": "data/wa-courts/supreme-slip-published/2024/1023251.pdf",
+  "isRevised": true,
+  "fetchedAt": "2025-10-31T04:16:08.262Z",
+  "division": null
+}

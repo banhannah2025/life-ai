@@ -273,12 +273,24 @@ function normalizeTokenSet(query: string): string[] {
   return Array.from(new Set(tokens));
 }
 
-function matchesAllTokens(text: string, tokens: string[]): boolean {
-  if (!tokens.length) {
+function matchesTokenThreshold(text: string, tokens: string[], minimumMatches: number): boolean {
+  if (!tokens.length || minimumMatches <= 0) {
     return true;
   }
+
   const haystack = text.toLowerCase();
-  return tokens.every((token) => haystack.includes(token));
+  let matches = 0;
+
+  for (const token of tokens) {
+    if (haystack.includes(token)) {
+      matches += 1;
+      if (matches >= minimumMatches) {
+        return true;
+      }
+    }
+  }
+
+  return matches >= minimumMatches;
 }
 
 export async function searchCourtListenerOpinions(
@@ -292,7 +304,10 @@ export async function searchCourtListenerOpinions(
   }
 
   const tokenSet = normalizeTokenSet(query);
-  const requireAllTokens = options.requireAllTokens ?? tokenSet.length > 1;
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 3;
+  const minimumTokenMatches = requireAllTokens
+    ? tokenSet.length
+    : Math.max(1, Math.ceil(tokenSet.length * 0.6));
   const allowFederal = options.includeFederal !== false;
   const allowState = options.includeState !== false;
   const allowAgency = options.includeAgency !== false;
@@ -430,7 +445,7 @@ export async function searchCourtListenerOpinions(
       result.docketNumber ?? "",
     ].join(" ");
 
-    if (requireAllTokens && !matchesAllTokens(searchableText, tokenSet)) {
+    if (tokenSet.length && !matchesTokenThreshold(searchableText, tokenSet, minimumTokenMatches)) {
       continue;
     }
 
@@ -472,7 +487,10 @@ export async function searchCourtListenerRecapDockets(
   }
 
   const tokenSet = normalizeTokenSet(query);
-  const requireAllTokens = options.requireAllTokens ?? tokenSet.length > 1;
+  const requireAllTokens = options.requireAllTokens ?? tokenSet.length <= 3;
+  const minimumTokenMatches = requireAllTokens
+    ? tokenSet.length
+    : Math.max(1, Math.ceil(tokenSet.length * 0.6));
   const allowFederal = options.includeFederal !== false;
   const allowState = options.includeState !== false;
   const allowAgency = options.includeAgency !== false;
@@ -579,7 +597,7 @@ export async function searchCourtListenerRecapDockets(
       metadata?.shortName ?? "",
     ].join(" ");
 
-    if (requireAllTokens && !matchesAllTokens(searchableText, tokenSet)) {
+    if (tokenSet.length && !matchesTokenThreshold(searchableText, tokenSet, minimumTokenMatches)) {
       continue;
     }
 

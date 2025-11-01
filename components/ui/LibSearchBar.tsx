@@ -418,6 +418,28 @@ function isValidHttpUrl(input: string | null | undefined): input is string {
     }
 }
 
+function normalizeTextValue(value: unknown, fallback = ""): string {
+    if (typeof value === "string") {
+        const trimmed = value.trim();
+        return trimmed || fallback;
+    }
+    if (Array.isArray(value)) {
+        const combined = value
+            .map((entry) => (typeof entry === "string" ? entry.trim() : ""))
+            .filter(Boolean)
+            .join(" ")
+            .trim();
+        return combined || fallback;
+    }
+    if (value === null || value === undefined) {
+        return fallback;
+    }
+    if (typeof value === "number" || typeof value === "boolean") {
+        return String(value);
+    }
+    return fallback;
+}
+
 function meetsTokenThreshold(text: string, tokens: string[], minimumMatches: number): boolean {
     if (!tokens.length || minimumMatches <= 0) {
         return true;
@@ -1483,24 +1505,40 @@ export function LibSearchBar() {
             if (aiAssistEnabled) {
                 const eligibleAggregated = aggregated.filter((item) => item.external && isValidHttpUrl(item.href));
                 if (eligibleAggregated.length > 0) {
-                    answerContext = eligibleAggregated.slice(0, 8).map((item, index) => ({
-                        title: item.title.slice(0, 400),
-                        snippet: item.snippet?.slice(0, 1600) ?? null,
-                        url: item.href,
-                        source: (item.sourceLabel ?? item.resourceLabel ?? item.type ?? `Result ${index + 1}`).slice(0, 120),
-                        date: item.date ?? item.year ?? null,
-                    }));
+                    answerContext = eligibleAggregated.slice(0, 8).map((item, index) => {
+                        const fallbackTitle = `Result ${index + 1}`;
+                        const rawTitle = normalizeTextValue(item.title, fallbackTitle);
+                        const rawSnippet = normalizeTextValue(item.snippet, "");
+                        const rawSource = normalizeTextValue(
+                            item.sourceLabel ?? item.resourceLabel ?? item.type,
+                            fallbackTitle
+                        );
+                        const rawDate = normalizeTextValue(item.date ?? item.year ?? null, "");
+                        return {
+                            title: (rawTitle || fallbackTitle).slice(0, 400),
+                            snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
+                            url: item.href,
+                            source: rawSource ? rawSource.slice(0, 120) : null,
+                            date: rawDate ? rawDate.slice(0, 120) : null,
+                        };
+                    });
                 } else if (assistWebResults && assistWebResults.length > 0) {
                     answerContext = assistWebResults
                         .filter((source) => isValidHttpUrl(source.url))
                         .slice(0, 6)
-                        .map((source, index) => ({
-                            title: source.title.slice(0, 400),
-                            snippet: source.snippet?.slice(0, 1600) ?? null,
-                            url: source.url ?? null,
-                            source: (source.source ?? `Web ${index + 1}`).slice(0, 120),
-                            date: null,
-                        }));
+                        .map((source, index) => {
+                            const fallbackTitle = `Web ${index + 1}`;
+                            const rawTitle = normalizeTextValue(source.title, fallbackTitle);
+                            const rawSnippet = normalizeTextValue(source.snippet ?? null, "");
+                            const rawSource = normalizeTextValue(source.source ?? null, fallbackTitle);
+                            return {
+                                title: (rawTitle || fallbackTitle).slice(0, 400),
+                                snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
+                                url: source.url ?? null,
+                                source: rawSource ? rawSource.slice(0, 120) : null,
+                                date: null,
+                            };
+                        });
                 }
             }
 

@@ -12,14 +12,6 @@ export function CaseOverview() {
     <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-12">
       <p className="text-2xl font-semibold uppercase tracking-wide text-slate-700">Case management</p>
       <Card className="w-full border border-slate-200 bg-white/80 shadow-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="text-base font-semibold uppercase tracking-wide text-slate-800">
-            Case management
-          </CardTitle>
-          <CardDescription className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-            Admin · Attorney · Law firm
-          </CardDescription>
-        </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2">
           {CASE_MANAGEMENT_NAV_ITEMS.map(({ href, label, description, icon: Icon }) => (
             <Link

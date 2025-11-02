@@ -1204,9 +1204,13 @@ export function AppSidebar() {
     const isCasesRoute = normalizedPathname.startsWith("/case-management") || normalizedPathname.startsWith("/cases");
     const isLibraryRoute = normalizedPathname.startsWith("/library");
     const isOugmRestorativeJusticeRoute = normalizedPathname.startsWith("/ougm-restorative-justice");
+    const socialRoutePrefixes = ["/social", "/people", "/profile", "/message-center"];
+    const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
     const shouldShowCaseManagementSection =
         canAccessCaseManagement && (isCasesRoute || isLibraryRoute || isOugmRestorativeJusticeRoute);
     const shouldShowFileAndDocumentSections = isCasesRoute || isLibraryRoute;
+    const shouldShowSocialProfileSection = isSocialRoute;
+    const shouldShowMessageCenterSection = isSocialRoute;
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;
 
     return (
@@ -1216,110 +1220,113 @@ export function AppSidebar() {
                 <p className="text-xs text-white/80">Quick access to your research tools</p>
             </SidebarHeader>
             <SidebarContent className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
-                <div className="flex flex-col items-center gap-3">
-                    <div className="relative">
-                        <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
-                            {avatarUrl ? (
-                                <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
-                            ) : null}
-                            <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
-                        </Avatar>
-                        <input
-                            ref={avatarInputRef}
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleAvatarChange}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => avatarInputRef.current?.click()}
-                            disabled={!user || isAvatarUploading}
-                            className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
-                        >
-                            {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-                        </button>
-                    </div>
-                </div>
-
-                <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
-                    <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                        <h4>Message center</h4>
-                        <div className="flex items-center gap-2">
-                            {connectionsLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
-                            <Link
-                                href="/message-center"
-                                className="text-xs font-medium text-slate-500 transition hover:text-slate-700"
+                {shouldShowSocialProfileSection ? (
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="relative">
+                            <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
+                                {avatarUrl ? (
+                                    <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                                ) : null}
+                                <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
+                            </Avatar>
+                            <input
+                                ref={avatarInputRef}
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={handleAvatarChange}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => avatarInputRef.current?.click()}
+                                disabled={!user || isAvatarUploading}
+                                className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
                             >
-                                View inbox
-                            </Link>
+                                {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+                            </button>
                         </div>
-                    </header>
-                    {!isLoaded ? (
-                        <p className="text-sm text-slate-500">Preparing your messaging workspace…</p>
-                    ) : !canSendMessages ? (
-                        <p className="text-sm text-slate-500">Sign in to send direct messages.</p>
-                    ) : connectionsError ? (
-                        <p className="text-sm text-rose-500">{connectionsError}</p>
-                    ) : connections.length ? (
-                        <form className="space-y-3" onSubmit={handleSendDirectMessage}>
-                            <div className="space-y-2">
-                                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-400">
-                                    <span>Send to</span>
-                                    <span className="text-[11px] font-medium normal-case text-slate-400">{connections.length} connections</span>
+                    </div>
+                ) : null}
+                {shouldShowMessageCenterSection ? (
+                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                        <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                            <h4>Message center</h4>
+                            <div className="flex items-center gap-2">
+                                {connectionsLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
+                                <Link
+                                    href="/message-center"
+                                    className="text-xs font-medium text-slate-500 transition hover:text-slate-700"
+                                >
+                                    View inbox
+                                </Link>
+                            </div>
+                        </header>
+                        {!isLoaded ? (
+                            <p className="text-sm text-slate-500">Preparing your messaging workspace…</p>
+                        ) : !canSendMessages ? (
+                            <p className="text-sm text-slate-500">Sign in to send direct messages.</p>
+                        ) : connectionsError ? (
+                            <p className="text-sm text-rose-500">{connectionsError}</p>
+                        ) : connections.length ? (
+                            <form className="space-y-3" onSubmit={handleSendDirectMessage}>
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-400">
+                                        <span>Send to</span>
+                                        <span className="text-[11px] font-medium normal-case text-slate-400">{connections.length} connections</span>
+                                    </div>
+                                    <Select
+                                        disabled={isSendingMessage || !connections.length}
+                                        value={selectedRecipientId || undefined}
+                                        onValueChange={setSelectedRecipientId}
+                                    >
+                                        <SelectTrigger className="w-full justify-between" disabled={isSendingMessage || !connections.length}>
+                                            <SelectValue placeholder="Select a person" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {connections.map((person) => (
+                                                <SelectItem key={person.id} value={person.id}>
+                                                    {person.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                 </div>
-                                <Select
-                                    disabled={isSendingMessage || !connections.length}
-                                    value={selectedRecipientId || undefined}
-                                    onValueChange={setSelectedRecipientId}
-                                >
-                                    <SelectTrigger className="w-full justify-between" disabled={isSendingMessage || !connections.length}>
-                                        <SelectValue placeholder="Select a person" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {connections.map((person) => (
-                                            <SelectItem key={person.id} value={person.id}>
-                                                {person.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div className="space-y-2">
-                                <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">Message</span>
-                                <Textarea
-                                    value={messageBody}
-                                    onChange={(event) => setMessageBody(event.target.value)}
-                                    rows={4}
-                                    maxLength={1000}
-                                    placeholder="Share a quick update or question…"
-                                    className="resize-none text-sm"
-                                />
-                            </div>
-                            <div className="flex flex-wrap items-center justify-between gap-3">
-                                <Button
-                                    type="submit"
-                                    disabled={!canSubmitMessage || isSendingMessage}
-                                    className="inline-flex items-center gap-2"
-                                >
-                                    {isSendingMessage ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                                    Send
-                                </Button>
-                                <p className="text-xs text-slate-400">Messages are private between you and your connection.</p>
-                            </div>
-                        </form>
-                    ) : connectionsLoading ? (
-                        <p className="text-sm text-slate-500">Loading your connections…</p>
-                    ) : (
-                        <p className="text-sm text-slate-500">
-                            You have no direct connections yet. Visit the{" "}
-                            <Link href="/social" className="font-medium text-slate-600 underline-offset-4 hover:underline">
-                                community feed
-                            </Link>{" "}
-                            to follow colleagues and start messaging.
-                        </p>
-                    )}
-                </section>
+                                <div className="space-y-2">
+                                    <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">Message</span>
+                                    <Textarea
+                                        value={messageBody}
+                                        onChange={(event) => setMessageBody(event.target.value)}
+                                        rows={4}
+                                        maxLength={1000}
+                                        placeholder="Share a quick update or question…"
+                                        className="resize-none text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-wrap items-center justify-between gap-3">
+                                    <Button
+                                        type="submit"
+                                        disabled={!canSubmitMessage || isSendingMessage}
+                                        className="inline-flex items-center gap-2"
+                                    >
+                                        {isSendingMessage ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                                        Send
+                                    </Button>
+                                    <p className="text-xs text-slate-400">Messages are private between you and your connection.</p>
+                                </div>
+                            </form>
+                        ) : connectionsLoading ? (
+                            <p className="text-sm text-slate-500">Loading your connections…</p>
+                        ) : (
+                            <p className="text-sm text-slate-500">
+                                You have no direct connections yet. Visit the{" "}
+                                <Link href="/social" className="font-medium text-slate-600 underline-offset-4 hover:underline">
+                                    community feed
+                                </Link>{" "}
+                                to follow colleagues and start messaging.
+                            </p>
+                        )}
+                    </section>
+                ) : null}
 
                 {!isLoaded && shouldShowFileAndDocumentSections ? (
                     <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-6 shadow-sm">

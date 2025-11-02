@@ -1202,13 +1202,14 @@ export function AppSidebar() {
     );
     const normalizedPathname = pathname ?? "";
     const isCasesRoute = normalizedPathname.startsWith("/case-management") || normalizedPathname.startsWith("/cases");
+    const isLegalAnalyticsRoute = normalizedPathname.startsWith("/legal-analytics");
     const isLibraryRoute = normalizedPathname.startsWith("/library");
     const isOugmRestorativeJusticeRoute = normalizedPathname.startsWith("/ougm-restorative-justice");
     const socialRoutePrefixes = ["/social", "/people", "/profile", "/message-center"];
     const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
     const shouldShowCaseManagementSection =
-        canAccessCaseManagement && (isCasesRoute || isLibraryRoute || isOugmRestorativeJusticeRoute);
-    const shouldShowFileAndDocumentSections = isCasesRoute || isLibraryRoute;
+        canAccessCaseManagement && (isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute || isOugmRestorativeJusticeRoute);
+    const shouldShowFileAndDocumentSections = isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute;
     const shouldShowSocialProfileSection = isSocialRoute;
     const shouldShowMessageCenterSection = isSocialRoute;
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;
@@ -1358,6 +1359,15 @@ export function AppSidebar() {
                                         <span className="sr-only">Toggle case management section</span>
                                     </button>
                                 </header>
+                                <div className="flex">
+                                    <Button
+                                        asChild
+                                        variant="secondary"
+                                        className="w-full justify-center"
+                                    >
+                                        <Link href="/legal-analytics">Legal analytics</Link>
+                                    </Button>
+                                </div>
                                 {isCaseManagementOpen ? (
                                     <div className="space-y-3">
                                         {caseManagementNavItems.map(({ href, label, description, icon: Icon }) => {

@@ -68,6 +68,7 @@ type CreateOption = {
 type AppSidebarProps = {
     side?: "left" | "right";
     mirror?: boolean;
+    hideContent?: boolean;
 };
 
 const coreOptions: CreateOption[] = [
@@ -454,7 +455,7 @@ const FileTree = ({
     );
 };
 
-export function AppSidebar({ side = "left", mirror = false }: AppSidebarProps = {}) {
+export function AppSidebar({ side = "left", mirror = false, hideContent = false }: AppSidebarProps = {}) {
     const router = useRouter();
     const pathname = usePathname();
     const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
@@ -1213,6 +1214,24 @@ export function AppSidebar({ side = "left", mirror = false }: AppSidebarProps = 
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;
     const contentWrapperDir = mirror ? "ltr" : undefined;
     const fileUploadInputId = mirror ? "sidebar-file-upload-mirror" : "sidebar-file-upload";
+    if (hideContent) {
+        return (
+            <Sidebar
+                side={side}
+                className={cn(
+                    "flex h-[calc(100vh-4rem)] flex-col bg-white/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60 md:top-16 md:bottom-0 md:h-[calc(100vh-4rem)]",
+                    side === "right" ? "border-l border-slate-200" : "border-r border-slate-200"
+                )}
+            >
+                <SidebarHeader className="space-y-1 border-b border-slate-200 bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-6 text-left">
+                    <div className="text-base font-semibold text-white">{greeting}</div>
+                    <p className="text-xs text-white/80">Quick access to your research tools</p>
+                </SidebarHeader>
+                <SidebarContent className={cn("px-6 py-6", mirror && "[direction:rtl]")} />
+            </Sidebar>
+        );
+    }
+
     return (
         <Sidebar
             side={side}

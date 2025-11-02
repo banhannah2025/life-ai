@@ -20,6 +20,7 @@ import {
 import { Briefcase, Camera, Clock, FileText, FolderPlus, Gavel, Lightbulb, Loader2, Minus, Pencil, Plus, Trash, Users } from "lucide-react";
 import { upload } from "@vercel/blob/client";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import {
@@ -62,6 +63,11 @@ type CreateOption = {
     description: string;
     icon: ComponentType<SVGProps<SVGSVGElement>>;
     accent: string;
+};
+
+type AppSidebarProps = {
+    side?: "left" | "right";
+    mirror?: boolean;
 };
 
 const coreOptions: CreateOption[] = [
@@ -122,7 +128,7 @@ type CaseManagementNavItem = {
     icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
-const caseManagementNavItems: CaseManagementNavItem[] = [
+export const CASE_MANAGEMENT_NAV_ITEMS: CaseManagementNavItem[] = [
     {
         href: "/case-management",
         label: "Case dashboard",
@@ -448,13 +454,12 @@ const FileTree = ({
     );
 };
 
-export function AppSidebar() {
+export function AppSidebar({ side = "left", mirror = false }: AppSidebarProps = {}) {
     const router = useRouter();
     const pathname = usePathname();
     const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
     const [isFilesOpen, setIsFilesOpen] = useState(false);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
-    const [isCaseManagementOpen, setIsCaseManagementOpen] = useState(false);
     const { isLoaded, isSignedIn, user } = useUser();
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
@@ -585,12 +590,6 @@ export function AppSidebar() {
             ignore = true;
         };
     }, [isLoaded, isSignedIn, user?.id]);
-
-    useEffect(() => {
-        if (pathname && pathname.startsWith("/case-management")) {
-            setIsCaseManagementOpen(true);
-        }
-    }, [pathname]);
 
     const canAccessCaseManagement = useMemo(
         () => isAdminUser || hasCaseManagementAccess(userRole),
@@ -1207,356 +1206,303 @@ export function AppSidebar() {
     const isOugmRestorativeJusticeRoute = normalizedPathname.startsWith("/ougm-restorative-justice");
     const socialRoutePrefixes = ["/social", "/people", "/profile", "/message-center"];
     const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
-    const shouldShowCaseManagementSection =
-        canAccessCaseManagement && (isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute || isOugmRestorativeJusticeRoute);
     const shouldShowFileAndDocumentSections = isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute;
+    const shouldShowLegalAnalyticsButton = canAccessCaseManagement && (isCasesRoute || isLegalAnalyticsRoute);
     const shouldShowSocialProfileSection = isSocialRoute;
     const shouldShowMessageCenterSection = isSocialRoute;
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;
-
+    const contentWrapperDir = mirror ? "ltr" : undefined;
+    const fileUploadInputId = mirror ? "sidebar-file-upload-mirror" : "sidebar-file-upload";
     return (
-        <Sidebar className="flex h-[calc(100vh-4rem)] flex-col border-r border-slate-200 bg-white/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60 md:top-16 md:bottom-0 md:h-[calc(100vh-4rem)]">
+        <Sidebar
+            side={side}
+            className={cn(
+                "flex h-[calc(100vh-4rem)] flex-col bg-white/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/60 md:top-16 md:bottom-0 md:h-[calc(100vh-4rem)]",
+                side === "right" ? "border-l border-slate-200" : "border-r border-slate-200"
+            )}
+        >
             <SidebarHeader className="space-y-1 border-b border-slate-200 bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-6 text-left">
                 <div className="text-base font-semibold text-white">{greeting}</div>
                 <p className="text-xs text-white/80">Quick access to your research tools</p>
             </SidebarHeader>
-            <SidebarContent className="flex flex-1 flex-col gap-6 overflow-y-auto px-6 py-6">
-                {shouldShowSocialProfileSection ? (
-                    <div className="flex flex-col items-center gap-3">
-                        <div className="relative">
-                            <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
-                                {avatarUrl ? (
-                                    <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
-                                ) : null}
-                                <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
-                            </Avatar>
-                            <input
-                                ref={avatarInputRef}
-                                type="file"
-                                accept="image/*"
-                                className="hidden"
-                                onChange={handleAvatarChange}
-                            />
-                            <button
-                                type="button"
-                                onClick={() => avatarInputRef.current?.click()}
-                                disabled={!user || isAvatarUploading}
-                                className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
-                            >
-                                {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-                            </button>
-                        </div>
-                    </div>
-                ) : null}
-                {shouldShowMessageCenterSection ? (
-                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
-                        <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                            <h4>Message center</h4>
-                            <div className="flex items-center gap-2">
-                                {connectionsLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
-                                <Link
-                                    href="/message-center"
-                                    className="text-xs font-medium text-slate-500 transition hover:text-slate-700"
+            <SidebarContent className={cn("px-6 py-6", mirror && "[direction:rtl]")}>
+                <div className="flex flex-col gap-6" dir={contentWrapperDir}>
+                    {shouldShowLegalAnalyticsButton ? (
+                        <Button asChild variant="secondary" className="self-center px-6">
+                            <Link href="/legal-analytics">Legal analytics</Link>
+                        </Button>
+                    ) : null}
+                    {shouldShowSocialProfileSection ? (
+                        <div className="flex flex-col items-center gap-3">
+                            <div className="relative">
+                                <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
+                                    {avatarUrl ? (
+                                        <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                                    ) : null}
+                                    <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
+                                </Avatar>
+                                <input
+                                    ref={avatarInputRef}
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={handleAvatarChange}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => avatarInputRef.current?.click()}
+                                    disabled={!user || isAvatarUploading}
+                                    className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
                                 >
-                                    View inbox
-                                </Link>
+                                    {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+                                </button>
                             </div>
-                        </header>
-                        {!isLoaded ? (
-                            <p className="text-sm text-slate-500">Preparing your messaging workspace…</p>
-                        ) : !canSendMessages ? (
-                            <p className="text-sm text-slate-500">Sign in to send direct messages.</p>
-                        ) : connectionsError ? (
-                            <p className="text-sm text-rose-500">{connectionsError}</p>
-                        ) : connections.length ? (
-                            <form className="space-y-3" onSubmit={handleSendDirectMessage}>
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-400">
-                                        <span>Send to</span>
-                                        <span className="text-[11px] font-medium normal-case text-slate-400">{connections.length} connections</span>
-                                    </div>
-                                    <Select
-                                        disabled={isSendingMessage || !connections.length}
-                                        value={selectedRecipientId || undefined}
-                                        onValueChange={setSelectedRecipientId}
-                                    >
-                                        <SelectTrigger className="w-full justify-between" disabled={isSendingMessage || !connections.length}>
-                                            <SelectValue placeholder="Select a person" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {connections.map((person) => (
-                                                <SelectItem key={person.id} value={person.id}>
-                                                    {person.name}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-2">
-                                    <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">Message</span>
-                                    <Textarea
-                                        value={messageBody}
-                                        onChange={(event) => setMessageBody(event.target.value)}
-                                        rows={4}
-                                        maxLength={1000}
-                                        placeholder="Share a quick update or question…"
-                                        className="resize-none text-sm"
-                                    />
-                                </div>
-                                <div className="flex flex-wrap items-center justify-between gap-3">
-                                    <Button
-                                        type="submit"
-                                        disabled={!canSubmitMessage || isSendingMessage}
-                                        className="inline-flex items-center gap-2"
-                                    >
-                                        {isSendingMessage ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                                        Send
-                                    </Button>
-                                    <p className="text-xs text-slate-400">Messages are private between you and your connection.</p>
-                                </div>
-                            </form>
-                        ) : connectionsLoading ? (
-                            <p className="text-sm text-slate-500">Loading your connections…</p>
-                        ) : (
-                            <p className="text-sm text-slate-500">
-                                You have no direct connections yet. Visit the{" "}
-                                <Link href="/social" className="font-medium text-slate-600 underline-offset-4 hover:underline">
-                                    community feed
-                                </Link>{" "}
-                                to follow colleagues and start messaging.
-                            </p>
-                        )}
-                    </section>
-                ) : null}
-
-                {!isLoaded && shouldShowFileAndDocumentSections ? (
-                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-6 shadow-sm">
-                        <div className="flex items-center gap-3 text-sm font-medium text-slate-600">
-                            <Loader2 className="h-4 w-4 animate-spin text-slate-400" />
-                            Preparing your workspace…
                         </div>
-                    </section>
-                ) : null}
-
-                {isLoaded ? (
-                    <>
-                        {shouldShowCaseManagementSection ? (
-                            <section className="space-y-4 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
-                                <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                                    <div className="flex flex-col gap-1 text-left">
-                                        <h4>Case management</h4>
-                                        <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-                                            Admin · Attorney · Law firm
-                                        </span>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => setIsCaseManagementOpen((prev) => !prev)}
-                                        aria-expanded={isCaseManagementOpen}
-                                        className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                    ) : null}
+                    {shouldShowMessageCenterSection ? (
+                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                <h4>Message center</h4>
+                                <div className="flex items-center gap-2">
+                                    {connectionsLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
+                                    <Link
+                                        href="/message-center"
+                                        className="text-xs font-medium text-slate-500 transition hover:text-slate-700"
                                     >
-                                        {isCaseManagementOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-                                        <span className="sr-only">Toggle case management section</span>
-                                    </button>
-                                </header>
-                                <div className="flex">
-                                    <Button
-                                        asChild
-                                        variant="secondary"
-                                        className="w-full justify-center"
-                                    >
-                                        <Link href="/legal-analytics">Legal analytics</Link>
-                                    </Button>
+                                        View inbox
+                                    </Link>
                                 </div>
-                                {isCaseManagementOpen ? (
-                                    <div className="space-y-3">
-                                        {caseManagementNavItems.map(({ href, label, description, icon: Icon }) => {
-                                            const isActive =
-                                                pathname === href ||
-                                                (pathname && pathname.startsWith(`${href}/`));
-                                            return (
-                                                <Link
-                                                    key={href}
-                                                    href={href}
-                                                    aria-current={isActive ? "page" : undefined}
-                                                    className={`group flex items-start gap-3 rounded-lg border border-slate-100 bg-white/80 p-3 text-left shadow-sm transition hover:border-slate-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 ${isActive ? "border-slate-300 bg-white shadow-md ring-1 ring-slate-200" : ""}`}
-                                                >
-                                                    <span className={`mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-slate-700 transition group-hover:bg-slate-900/10 ${isActive ? "bg-slate-900/10 text-slate-800" : ""}`}>
-                                                        <Icon className="h-4 w-4" />
-                                                    </span>
-                                                    <span className="space-y-1">
-                                                        <span className="block text-sm font-semibold text-slate-800">{label}</span>
-                                                        <span className="block text-xs text-slate-500">{description}</span>
-                                                    </span>
-                                                </Link>
-                                            );
-                                        })}
+                            </header>
+                            {!isLoaded ? (
+                                <p className="text-sm text-slate-500">Preparing your messaging workspace…</p>
+                            ) : !canSendMessages ? (
+                                <p className="text-sm text-slate-500">Sign in to send direct messages.</p>
+                            ) : connectionsError ? (
+                                <p className="text-sm text-rose-500">{connectionsError}</p>
+                            ) : connections.length ? (
+                                <form className="space-y-3" onSubmit={handleSendDirectMessage}>
+                                    <div className="space-y-2">
+                                        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-400">
+                                            <span>Send to</span>
+                                            <span className="text-[11px] font-medium normal-case text-slate-400">{connections.length} connections</span>
+                                        </div>
+                                        <Select
+                                            disabled={isSendingMessage || !connections.length}
+                                            value={selectedRecipientId || undefined}
+                                            onValueChange={setSelectedRecipientId}
+                                        >
+                                            <SelectTrigger className="w-full justify-between" disabled={isSendingMessage || !connections.length}>
+                                                <SelectValue placeholder="Select a person" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {connections.map((person) => (
+                                                    <SelectItem key={person.id} value={person.id}>
+                                                        {person.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
                                     </div>
-                                ) : null}
-                            </section>
-                        ) : null}
-
-                        {shouldShowFileAndDocumentSections ? (
-                            canManageFiles ? (
-                                <>
-                                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
-                                        <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                                            <div className="flex items-center gap-2">
-                                                <h4>Manage files</h4>
-                                                {filesBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
-                                            </div>
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsFilesOpen((prev) => !prev)}
-                                                aria-expanded={isFilesOpen}
-                                                className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
-                                            >
-                                                {isFilesOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-                                                <span className="sr-only">Toggle manage files</span>
-                                            </button>
-                                        </header>
-                                        {isFilesOpen ? (
-                                            <div className="rounded-lg border border-dashed border-slate-200 bg-white/60 p-3">
-                                                <div className="mb-3 flex justify-end">
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleCreateFolder("")}
-                                                        disabled={filesBusy}
-                                                        className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
-                                                    >
-                                                        <FolderPlus className="h-3.5 w-3.5" />
-                                                        Add folder
-                                                    </button>
-                                                </div>
-                                                {filesError ? (
-                                                    <p className="text-xs text-rose-500">{filesError}</p>
-                                                ) : isFilesLoading && !fileNodes.length ? (
-                                                    <p className="text-xs text-slate-500">Loading files…</p>
-                                                ) : fileNodes.length ? (
-                                                    <FileTree
-                                                        nodes={fileNodes}
-                                                        expanded={expandedNodes}
-                                                        onToggle={handleToggle}
-                                                        onAddFolder={(node) => handleCreateFolder(node.relativePath)}
-                                                        onRename={handleRenameNode}
-                                                        onDelete={handleDeleteNode}
-                                                        onOpen={handleOpenNode}
-                                                        disabled={filesBusy}
-                                                    />
-                                                ) : (
-                                                    <p className="text-xs text-slate-500">No files yet. Upload to get started.</p>
-                                                )}
-                                            </div>
-                                        ) : null}
-                                    </section>
-
-                                    <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
-                                        <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
-                                            <h4>Create documents</h4>
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsCreateOpen((prev) => !prev)}
-                                                aria-expanded={isCreateOpen}
-                                                className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
-                                            >
-                                                {isCreateOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-                                                <span className="sr-only">Toggle create documents</span>
-                                            </button>
-                                        </header>
-                                        {isCreateOpen ? (
-                                            <TooltipProvider delayDuration={100}>
-                                                <div className="space-y-4">
-                                                    <div className="space-y-2">
-                                                        <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Core</h5>
-                                                        <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
-                                                            {coreOptions.map(({ id, name, description, icon: Icon, accent }) => {
-                                                                const isUploadOption = id === "upload";
-                                                                const isProcessing = isUploadOption ? !!uploadingFile : creatingDocId === id;
-                                                                const tooltipDescription = isProcessing
-                                                                    ? isUploadOption
-                                                                        ? `Uploading ${uploadingFile} (${uploadProgress}%)`
-                                                                        : "Creating document…"
-                                                                    : description;
-
-                                                                const handleClick = () => {
-                                                                    if (isUploadOption) {
-                                                                        handleUploadClick();
-                                                                        return;
-                                                                    }
-
-                                                                    void handleCreateDocument(id);
-                                                                };
-
-                                                                const disabled = isUploadOption
-                                                                    ? isProcessing
-                                                                    : isProcessing || filesBusy || !defaultFolder;
-
-                                                                return (
-                                                                    <Tooltip key={id}>
-                                                                        <TooltipTrigger asChild>
-                                                                            <button
-                                                                                type="button"
-                                                                                aria-label={name}
-                                                                                onClick={handleClick}
-                                                                                aria-disabled={disabled}
-                                                                                disabled={disabled}
-                                                                                className="flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 bg-white/90 shadow-sm transition hover:border-slate-300 hover:shadow-md disabled:cursor-not-allowed"
-                                                                            >
-                                                                                <span className={`flex h-10 w-10 items-center justify-center rounded-full ${accent}`}>
-                                                                                    <Icon className="h-5 w-5" />
-                                                                                </span>
-                                                                            </button>
-                                                                        </TooltipTrigger>
-                                                                        <TooltipContent
-                                                                            side="bottom"
-                                                                            className="max-w-[220px] rounded-md border border-white bg-slate-200 px-3 py-2 text-xs text-slate-900 shadow-lg"
-                                                                        >
-                                                                            <p className="font-semibold">{name}</p>
-                                                                            <p>{tooltipDescription}</p>
-                                                                        </TooltipContent>
-                                                                    </Tooltip>
-                                                                );
-                                                            })}
-                                                        </div>
-                                                    </div>
-                                                    <div className="space-y-2">
-                                                        <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Coming soon</h5>
-                                                        <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
-                                                            {comingSoonOptions.map(({ id, icon: Icon, accent, badge }) => (
-                                                                <div
-                                                                    key={id}
-                                                                    className="flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-full border border-dashed border-slate-200 bg-white/60 text-slate-400"
-                                                                >
-                                                                    <span className={`flex h-10 w-10 items-center justify-center rounded-full ${accent} opacity-60`}>
-                                                                        <Icon className="h-5 w-5" />
-                                                                    </span>
-                                                                    <span className="text-[10px] font-semibold uppercase">{badge}</span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </TooltipProvider>
-                                        ) : null}
-                                    </section>
-
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        onChange={handleFileChange}
-                                        className="hidden"
-                                    />
-                                </>
+                                    <div className="space-y-2">
+                                        <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">Message</span>
+                                        <Textarea
+                                            value={messageBody}
+                                            onChange={(event) => setMessageBody(event.target.value)}
+                                            rows={4}
+                                            maxLength={1000}
+                                            placeholder="Share a quick update or question…"
+                                            className="resize-none text-sm"
+                                        />
+                                    </div>
+                                    <div className="flex flex-wrap items-center justify-between gap-3">
+                                        <Button
+                                            type="submit"
+                                            disabled={!canSubmitMessage || isSendingMessage}
+                                            className="inline-flex items-center gap-2"
+                                        >
+                                            {isSendingMessage ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                                            Send
+                                        </Button>
+                                        <p className="text-xs text-slate-400">Messages are private between you and your connection.</p>
+                                    </div>
+                                </form>
+                            ) : connectionsLoading ? (
+                                <p className="text-sm text-slate-500">Loading your connections…</p>
                             ) : (
-                                <section className="rounded-xl border border-slate-100 bg-white/70 p-4 text-sm text-slate-600 shadow-sm">
-                                    Sign in to manage and create documents.
-                                </section>
-                            )
-                        ) : null}
-                    </>
-                ) : null}
+                                <p className="text-sm text-slate-500">
+                                    You have no direct connections yet. Visit the{" "}
+                                    <Link href="/social" className="font-medium text-slate-600 underline-offset-4 hover:underline">
+                                        community feed
+                                    </Link>{" "}
+                                    to follow colleagues and start messaging.
+                                </p>
+                            )}
+                        </section>
+                    ) : null}
+                    {!isLoaded && shouldShowFileAndDocumentSections ? (
+                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-6 shadow-sm">
+                            <div className="flex items-center gap-3 text-sm font-medium text-slate-600">
+                                <Loader2 className="h-4 w-4 animate-spin text-slate-400" />
+                                Preparing your workspace…
+                            </div>
+                        </section>
+                    ) : null}
 
+                    {isLoaded ? (
+                        <>
+                            {shouldShowFileAndDocumentSections ? (
+                                canManageFiles ? (
+                                    <>
+                                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                                <div className="flex items-center gap-2">
+                                                    <h4>Manage files</h4>
+                                                    {filesBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin text-slate-400" /> : null}
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsFilesOpen((prev) => !prev)}
+                                                    aria-expanded={isFilesOpen}
+                                                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                                                >
+                                                    {isFilesOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                                                    <span className="sr-only">Toggle manage files</span>
+                                                </button>
+                                            </header>
+                                            {isFilesOpen ? (
+                                                <div className="rounded-lg border border-dashed border-slate-200 bg-white/60 p-3">
+                                                    <div className="mb-3 flex justify-end gap-2">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleCreateFolder("")}
+                                                            disabled={filesBusy}
+                                                            className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900 disabled:opacity-60"
+                                                        >
+                                                            <FolderPlus className="h-3.5 w-3.5" />
+                                                            New folder
+                                                        </button>
+                                                    </div>
+                                                    {filesError ? (
+                                                        <p className="text-xs text-rose-500">{filesError}</p>
+                                                    ) : isFilesLoading && !fileNodes.length ? (
+                                                        <p className="text-xs text-slate-500">Loading files…</p>
+                                                    ) : fileNodes.length ? (
+                                                        <FileTree
+                                                            nodes={fileNodes}
+                                                            expanded={expandedNodes}
+                                                            onToggle={handleToggle}
+                                                            onAddFolder={(node) => handleCreateFolder(node.relativePath)}
+                                                            onRename={handleRenameNode}
+                                                            onDelete={handleDeleteNode}
+                                                            onOpen={handleOpenNode}
+                                                            disabled={filesBusy}
+                                                        />
+                                                    ) : (
+                                                        <p className="text-xs text-slate-500">No files yet. Upload to get started.</p>
+                                                    )}
+                                                </div>
+                                            ) : null}
+                                        </section>
+
+                                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">
+                                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                                <h4>Create documents</h4>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsCreateOpen((prev) => !prev)}
+                                                    aria-expanded={isCreateOpen}
+                                                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                                                >
+                                                    {isCreateOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                                                    <span className="sr-only">Toggle create options</span>
+                                                </button>
+                                            </header>
+                                            {isCreateOpen ? (
+                                                <div className="space-y-4">
+                                                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                                        {coreOptions.map(({ id, name, description, icon: Icon, accent }) => (
+                                                            <button
+                                                                key={id}
+                                                                type="button"
+                                                                onClick={() => handleCreateDocument(id)}
+                                                                disabled={isMutatingFiles}
+                                                                className="group flex items-center gap-3 rounded-lg border border-slate-100 bg-white/80 p-3 text-left shadow-sm transition hover:border-slate-200 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+                                                            >
+                                                                <span className={`flex h-12 w-12 items-center justify-center rounded-full ${accent}`}>
+                                                                    <Icon className="h-5 w-5" />
+                                                                </span>
+                                                                <span className="space-y-1">
+                                                                    <span className="block text-sm font-semibold text-slate-800">{name}</span>
+                                                                    <span className="block text-xs text-slate-500">{description}</span>
+                                                                </span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                    <div className="space-y-4">
+                                                        <TooltipProvider delayDuration={0}>
+                                                            <div className="space-y-3">
+                                                                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-400">
+                                                                    <span>Upload from your device</span>
+                                                                    {uploadingFile ? (
+                                                                        <span className="flex items-center gap-2 text-slate-500">
+                                                                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                                                                            Uploading…
+                                                                        </span>
+                                                                    ) : null}
+                                                                </div>
+                                                                <label
+                                                                    htmlFor={fileUploadInputId}
+                                                                    className="flex cursor-pointer items-center justify-between rounded-lg border border-dashed border-slate-200 bg-white/80 px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                                                                >
+                                                                    <span>Choose file</span>
+                                                                    <span className="text-xs text-slate-400">PDF, DOCX, or image</span>
+                                                                </label>
+                                                                <input
+                                                                    ref={fileInputRef}
+                                                                    id={fileUploadInputId}
+                                                                    type="file"
+                                                                    onChange={handleFileChange}
+                                                                    className="hidden"
+                                                                />
+                                                                <div className="grid grid-cols-3 gap-4 sm:grid-cols-3">
+                                                                    {comingSoonOptions.map(({ id, icon: Icon, accent, badge }) => (
+                                                                        <div
+                                                                            key={id}
+                                                                            className="flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-full border border-dashed border-slate-200 bg-white/60 text-slate-400"
+                                                                        >
+                                                                            <span className={`flex h-10 w-10 items-center justify-center rounded-full ${accent} opacity-60`}>
+                                                                                <Icon className="h-5 w-5" />
+                                                                            </span>
+                                                                            <span className="text-[10px] font-semibold uppercase">{badge}</span>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        </TooltipProvider>
+                                                    </div>
+                                                </div>
+                                            ) : null}
+                                        </section>
+
+                                        <input
+                                            ref={fileInputRef}
+                                            type="file"
+                                            onChange={handleFileChange}
+                                            className="hidden"
+                                        />
+                                    </>
+                                ) : (
+                                    <section className="rounded-xl border border-slate-100 bg-white/70 p-4 text-sm text-slate-600 shadow-sm">
+                                        Sign in to manage and create documents.
+                                    </section>
+                                )
+                            ) : null}
+                        </>
+                    ) : null}
+                </div>
             </SidebarContent>
+
+
         </Sidebar>
     );
 }

@@ -14,7 +14,6 @@ const LEGAL_ROUTE_PREFIXES = [
   "/cases",
   "/legal-analytics",
   "/library",
-  "/ougm-restorative-justice",
 ];
 
 type WorkspaceShellProps = {

@@ -1162,19 +1162,46 @@ export function LibSearchBar({
         () => resolvedResearchTypes.map((type) => RESEARCH_TYPE_LABELS[type].toLowerCase()),
         [resolvedResearchTypes]
     );
+    const isSidebar = variant === "sidebar";
     const resolvedHeading = heading ?? "Research Console";
     const resolvedDescription =
         description ??
         (researchModeLabels.length
             ? `Switch between ${formatList(researchModeLabels)} modes without losing context. Results appear below the form.`
             : null);
-    const formWrapperClassName = variant === "sidebar" ? "flex w-full" : "flex w-full justify-center";
-    const formClassName =
-        variant === "sidebar"
-            ? "flex w-full flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
-            : "flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg";
+    const formWrapperClassName = isSidebar ? "flex h-full w-full" : "flex w-full justify-center";
+    const formClassName = isSidebar
+        ? "flex h-full w-full flex-col gap-6"
+        : "flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg";
     const effectiveMaxResults = typeof maxResults === "number" ? maxResults : 5;
     const shouldShowHeaderBlock = showHeader && Boolean(resolvedHeading || resolvedDescription);
+    const queryShellClassName = cn(
+        "flex flex-col gap-4",
+        isSidebar ? "" : "rounded-2xl border border-slate-900/10 bg-slate-900 p-6 text-slate-100 shadow-lg"
+    );
+    const textareaClassName = isSidebar
+        ? "min-h-[96px] resize-none rounded-lg border border-slate-200 bg-white/95 p-3 text-base text-slate-900 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-emerald-500"
+        : "min-h-[96px] resize-none border-none bg-white/10 text-base text-white placeholder:text-slate-300 focus-visible:ring-2 focus-visible:ring-emerald-400";
+    const advancedContentClassName = cn(
+        "mt-4 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg",
+        isSidebar && "mt-3 space-y-4 rounded-xl border border-slate-200 bg-white/95 p-4 shadow-sm"
+    );
+    const synthesisContainerClassName = cn(
+        "mt-4 rounded-2xl border border-emerald-200 bg-white p-6 shadow-lg",
+        isSidebar && "rounded-xl border border-emerald-200 bg-white/95 p-4 shadow-sm"
+    );
+    const resultCardClassName = cn(
+        "flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md",
+        isSidebar && "rounded-xl border border-slate-200 bg-white/95 p-4 shadow-sm"
+    );
+    const emptyStateClassName = cn(
+        "rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600",
+        isSidebar && "rounded-xl"
+    );
+    const errorCalloutClassName = cn(
+        "rounded-2xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-700",
+        isSidebar && "rounded-xl"
+    );
 
     const [query, setQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -1582,24 +1609,29 @@ export function LibSearchBar({
                     </div>
                 ) : null}
 
-                <div className="rounded-2xl border border-slate-900/10 bg-slate-900 p-6 text-slate-100 shadow-lg">
-                    <div className="flex items-start gap-4">
-                        <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/90 text-white shadow-md">
-                            <Sparkles className="h-5 w-5" />
-                        </div>
+                <div className={queryShellClassName}>
+                    <div className={cn("flex items-start gap-4", isSidebar && "gap-3") }>
+                        {!isSidebar ? (
+                            <div className="hidden h-12 w-12 items-center justify-center rounded-full bg-emerald-500/90 text-white shadow-md sm:flex">
+                                <Sparkles className="h-5 w-5" />
+                            </div>
+                        ) : null}
                         <div className="flex-1 space-y-4">
                             <Textarea
                                 id="library-keywords"
                                 placeholder='Ask anything across cases, statutes, and knowledge—e.g. "How does Washington define duty of care for transitional housing programs?"'
                                 value={query}
                                 onChange={(event) => setQuery(event.target.value)}
-                                className="min-h-[96px] resize-none border-none bg-white/10 text-base text-white placeholder:text-slate-300 focus-visible:ring-2 focus-visible:ring-emerald-400"
+                                className={textareaClassName}
                             />
                             <div className="flex flex-wrap items-center justify-between gap-3">
                                 <button
                                     type="button"
                                     onClick={() => setIsAdvancedOpen((previous) => !previous)}
-                                    className="inline-flex items-center gap-2 text-xs font-medium text-emerald-100 transition hover:text-white"
+                                    className={cn(
+                                        "inline-flex items-center gap-2 text-xs font-medium transition",
+                                        isSidebar ? "text-emerald-700 hover:text-emerald-900" : "text-emerald-100 hover:text-white"
+                                    )}
                                 >
                                     <ChevronDown
                                         className={cn(
@@ -1610,13 +1642,18 @@ export function LibSearchBar({
                                     {isAdvancedOpen ? "Hide advanced filters" : "Advanced filters"}
                                 </button>
                                 <div className="flex items-center gap-3">
-                                    <span className="hidden text-[11px] uppercase tracking-wide text-emerald-200 sm:inline">
+                                    <span
+                                        className={cn(
+                                            "hidden text-[11px] uppercase tracking-wide sm:inline",
+                                            isSidebar ? "text-emerald-600" : "text-emerald-200"
+                                        )}
+                                    >
                                         Press ⏎ to send
                                     </span>
                                     <Button
                                         type="submit"
                                         size="lg"
-                                        className="bg-emerald-500 text-white hover:bg-emerald-400"
+                                        className={cn("bg-emerald-500 text-white hover:bg-emerald-400", isSidebar && "px-6")}
                                         disabled={isSearching}
                                     >
                                         {isSearching ? (
@@ -1635,7 +1672,7 @@ export function LibSearchBar({
                 </div>
 
                 <Collapsible open={isAdvancedOpen} onOpenChange={setIsAdvancedOpen} className="w-full">
-                    <CollapsibleContent className="mt-4 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+                    <CollapsibleContent className={advancedContentClassName}>
                         <div className="grid gap-6 lg:grid-cols-3">
                             <section className="space-y-4">
                                 <div className="space-y-2">
@@ -1749,14 +1786,17 @@ export function LibSearchBar({
                 </Collapsible>
 
                 {isSearching && !aiAssistAnswer && !aiAssistSummary ? (
-                    <div className="mt-4 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 shadow-sm">
+                    <div className={cn(
+                        "mt-4 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800",
+                        isSidebar && "rounded-xl"
+                    )}>
                         <Loader2 className="h-4 w-4 animate-spin" />
                         <span>Generating a cross-source synthesis…</span>
                     </div>
                 ) : null}
 
                 {(aiAssistAnswer || aiAssistSummary || (aiAssistSources && aiAssistSources.length > 0)) ? (
-                    <div className="mt-4 rounded-2xl border border-emerald-200 bg-white p-6 shadow-lg">
+                    <div className={synthesisContainerClassName}>
                         <div className="flex items-start gap-3">
                             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
                                 <Sparkles className="h-5 w-5" />
@@ -1838,9 +1878,7 @@ export function LibSearchBar({
                         )}
                     </div>
 
-                    {error ? (
-                        <p className="rounded-2xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-700">{error}</p>
-                    ) : null}
+                    {error ? <p className={errorCalloutClassName}>{error}</p> : null}
 
                     {results.length > 0 ? (
                         <div className="space-y-4">
@@ -1850,7 +1888,7 @@ export function LibSearchBar({
                                 return (
                                     <div
                                         key={result.id}
-                                        className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
+                                        className={resultCardClassName}
                                     >
                                         <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                                             <div className="space-y-2">
@@ -1867,7 +1905,7 @@ export function LibSearchBar({
                                                         dangerouslySetInnerHTML={{ __html: result.snippetHtml }}
                                                     />
                                                 ) : (
-                                                    <p className="text-sm text-slate-600">{result.snippet}</p>
+                                                    <p className="text-sm text-slate-600 break-words">{result.snippet}</p>
                                                 )}
                                                 <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wide text-slate-400">
                                                     {formattedDate ? <span>{formattedDate}</span> : null}
@@ -1903,7 +1941,7 @@ export function LibSearchBar({
                             })}
                         </div>
                     ) : lastQuery && !isSearching ? (
-                        <p className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
+                        <p className={emptyStateClassName}>
                             No direct matches found. Try broadening your language or adjusting filters.
                         </p>
                     ) : null}

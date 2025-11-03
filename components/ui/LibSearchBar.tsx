@@ -484,7 +484,7 @@ function aggregateSearchResults(
     webResults?: AiSearchAssistWebResult[] | null,
     maxResultsOverride?: number
 ): AggregatedResult[] {
-    const results: AggregatedResult[] = [];
+    const bucketedResults = new Map<string, AggregatedResult[]>();
     const isLegal = researchType === "legal";
     const isAcademic = researchType === "academic";
     const includeProfiles = !isLegal;
@@ -599,7 +599,16 @@ function aggregateSearchResults(
         item.resourceLabel = normalizedResourceLabel;
         item.sourceLabel = normalizedSourceLabel;
         maybeBoostScore(item);
-        results.push(item);
+
+        const key = (item.resourceKey ?? "misc").toLowerCase();
+        item.resourceKey = key;
+        const bucket = bucketedResults.get(key) ?? [];
+        bucket.push(item);
+        bucket.sort((a, b) => b.score - a.score);
+        if (bucket.length > 5) {
+            bucket.length = 5;
+        }
+        bucketedResults.set(key, bucket);
     };
 
     if (includeProfiles) {
@@ -1031,15 +1040,54 @@ function aggregateSearchResults(
                 ? 60
                 : 5;
 
-    return results
-        .sort((a, b) => {
-            const priorityDiff = getPriority(a, researchType) - getPriority(b, researchType);
-            if (priorityDiff !== 0) {
-                return priorityDiff;
+    const combinedResults: AggregatedResult[] = [];
+    const bucketPriorityOverrides: Record<string, number> = {
+        courtlistener: -200,
+        uscode: -150,
+        rcw: -140,
+    };
+    const bucketKeys = Array.from(bucketedResults.keys());
+    const computeBucketPriority = (key: string): number => {
+        const normalized = key.toLowerCase();
+        if (normalized in bucketPriorityOverrides) {
+            return bucketPriorityOverrides[normalized];
+        }
+        if (isLegal) {
+            if (normalized === "waopinions") {
+                return -120;
             }
-            return b.score - a.score;
-        })
-        .slice(0, maxResults);
+            if (normalized === "courtrules") {
+                return -110;
+            }
+        }
+        return getPriority(
+            {
+                ...bucketedResults.get(key)?.[0],
+                resourceKey: normalized,
+            } as AggregatedResult,
+            researchType
+        );
+    };
+
+    bucketKeys.sort((a, b) => {
+        const priorityDiff = computeBucketPriority(a) - computeBucketPriority(b);
+        if (priorityDiff !== 0) {
+            return priorityDiff;
+        }
+        return a.localeCompare(b);
+    });
+
+    for (const key of bucketKeys) {
+        const bucket = bucketedResults.get(key);
+        if (!bucket) {
+            continue;
+        }
+        const sortedBucket = [...bucket].sort((a, b) => b.score - a.score);
+        combinedResults.push(...sortedBucket);
+    }
+
+    const dynamicLimit = isLegal ? Math.max(maxResults, bucketKeys.length * 5) : maxResults;
+    return combinedResults.slice(0, dynamicLimit);
 }
 
 type JurisdictionMultiSelectProps = {

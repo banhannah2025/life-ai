@@ -1114,8 +1114,9 @@ function aggregateSearchResults(
         deduped.push(entry);
     }
 
-    return deduped;
 }
+
+    return deduped;
 }
 
 type JurisdictionMultiSelectProps = {

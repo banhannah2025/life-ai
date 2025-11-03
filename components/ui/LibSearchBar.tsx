@@ -1629,12 +1629,13 @@ export function LibSearchBar({
             setLastQuery(effectiveQuery);
             let answerContext: AiSearchAnswerResultInput[] = [];
             const buildAnswerUrl = (item: AggregatedResult): string | null => {
-                if (isValidHttpUrl(item.href)) {
-                    return item.href;
+                const href = typeof item.href === "string" ? item.href : null;
+                if (href && isValidHttpUrl(href)) {
+                    return href;
                 }
-                if (!item.external && item.href && item.href.startsWith("/") && typeof window !== "undefined") {
+                if (!item.external && href && href.startsWith("/") && typeof window !== "undefined") {
                     try {
-                        return new URL(item.href, window.location.origin).toString();
+                        return new URL(href, window.location.origin).toString();
                     } catch {
                         return null;
                     }

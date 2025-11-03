@@ -1192,7 +1192,8 @@ export function LibSearchBar({
     const formClassName = isSidebar
         ? "flex h-full w-full flex-col gap-6"
         : "flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg";
-    const effectiveMaxResults = typeof maxResults === "number" ? maxResults : 5;
+    const effectiveMaxResults =
+        typeof maxResults === "number" ? maxResults : isSidebar ? 25 : 5;
     const shouldShowHeaderBlock = showHeader && Boolean(resolvedHeading || resolvedDescription);
     const queryShellClassName = cn(
         "flex flex-col gap-4",
@@ -1228,6 +1229,7 @@ export function LibSearchBar({
         "rounded-2xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-700",
         isSidebar && "rounded-xl"
     );
+    const shouldRenderInlineResults = !isSidebar;
 
     const [query, setQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -1593,7 +1595,7 @@ export function LibSearchBar({
             let answerGenerated = false;
             if (answerContext.length > 0) {
                 try {
-                    const answer = await requestAiSearchAnswer(trimmed, researchType, answerContext);
+                    const answer = await requestAiSearchAnswer(effectiveQuery, researchType, answerContext);
                     answerText = answer.answer;
                     citationsList = answer.citations.length ? answer.citations : null;
                     setAiAssistAnswer(answerText);
@@ -1855,78 +1857,80 @@ export function LibSearchBar({
                     </div>
                 ) : null}
 
-                {(aiAssistAnswer || aiAssistSummary || (aiAssistSources && aiAssistSources.length > 0)) ? (
-                    <div className={synthesisContainerClassName}>
-                        <div className="flex items-start gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
-                                <Sparkles className="h-5 w-5" />
-                            </div>
-                            <div className="space-y-3 text-sm text-slate-700">
-                                {aiAssistAnswer ? (
-                                    <div className="space-y-2">
-                                        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">AI synthesis</p>
-                                        <p className="whitespace-pre-wrap leading-relaxed">{aiAssistAnswer}</p>
-                                        {aiAssistCitations ? (
-                                            <ul className="space-y-1 text-xs text-emerald-700">
-                                                {aiAssistCitations.map((citation) => (
-                                                    <li key={`citation-${citation.ref}`}>
-                                                        [{citation.ref}] {citation.label}
-                                                        {citation.url ? (
-                                                            <>
-                                                                {" "}
-                                                                <Link
-                                                                    href={citation.url}
-                                                                    className="text-emerald-600 underline"
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                >
-                                                                    {citation.url}
-                                                                </Link>
-                                                            </>
-                                                        ) : null}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                {shouldRenderInlineResults ? (
+                    <>
+                        {(aiAssistAnswer || aiAssistSummary || (aiAssistSources && aiAssistSources.length > 0)) ? (
+                            <div className={synthesisContainerClassName}>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
+                                        <Sparkles className="h-5 w-5" />
+                                    </div>
+                                    <div className="space-y-3 text-sm text-slate-700">
+                                        {aiAssistAnswer ? (
+                                            <div className="space-y-2">
+                                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">AI synthesis</p>
+                                                <p className="whitespace-pre-wrap leading-relaxed">{aiAssistAnswer}</p>
+                                                {aiAssistCitations ? (
+                                                    <ul className="space-y-1 text-xs text-emerald-700">
+                                                        {aiAssistCitations.map((citation) => (
+                                                            <li key={`citation-${citation.ref}`}>
+                                                                [{citation.ref}] {citation.label}
+                                                                {citation.url ? (
+                                                                    <>
+                                                                        {" "}
+                                                                        <Link
+                                                                            href={citation.url}
+                                                                            className="text-emerald-600 underline"
+                                                                            target="_blank"
+                                                                            rel="noreferrer"
+                                                                        >
+                                                                            {citation.url}
+                                                                        </Link>
+                                                                    </>
+                                                                ) : null}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                ) : null}
+                                            </div>
+                                        ) : null}
+                                        {aiAssistSummary ? <p className="text-sm leading-relaxed text-slate-600">{aiAssistSummary}</p> : null}
+                                        {aiAssistQuery ? (
+                                            <p className="text-xs text-slate-500">
+                                                Refined query: <span className="font-medium text-slate-700">{aiAssistQuery}</span>
+                                            </p>
+                                        ) : null}
+                                        {aiAssistSources && aiAssistSources.length > 0 ? (
+                                            <div className="rounded-xl border border-emerald-100 bg-emerald-50/80 p-3">
+                                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Source highlights</p>
+                                                <ul className="mt-2 space-y-1 text-xs text-emerald-800">
+                                                    {aiAssistSources.map((source, index) => (
+                                                        <li key={`${source.title}-${index}`}>
+                                                            [{index + 1}] {source.title}
+                                                            {source.url ? (
+                                                                <>
+                                                                    {" "}
+                                                                    <Link
+                                                                        href={source.url}
+                                                                        className="text-emerald-600 underline"
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                    >
+                                                                        {source.url}
+                                                                    </Link>
+                                                                </>
+                                                            ) : null}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
                                         ) : null}
                                     </div>
-                                ) : null}
-                                {aiAssistSummary ? <p className="text-sm leading-relaxed text-slate-600">{aiAssistSummary}</p> : null}
-                                {aiAssistQuery ? (
-                                    <p className="text-xs text-slate-500">
-                                        Refined query: <span className="font-medium text-slate-700">{aiAssistQuery}</span>
-                                    </p>
-                                ) : null}
-                                {aiAssistSources && aiAssistSources.length > 0 ? (
-                                    <div className="rounded-xl border border-emerald-100 bg-emerald-50/80 p-3">
-                                        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Source highlights</p>
-                                        <ul className="mt-2 space-y-1 text-xs text-emerald-800">
-                                            {aiAssistSources.map((source, index) => (
-                                                <li key={`${source.title}-${index}`}>
-                                                    [{index + 1}] {source.title}
-                                                    {source.url ? (
-                                                        <>
-                                                            {" "}
-                                                            <Link
-                                                                href={source.url}
-                                                                className="text-emerald-600 underline"
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                            >
-                                                                {source.url}
-                                                            </Link>
-                                                        </>
-                                                    ) : null}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ) : null}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ) : null}
+                        ) : null}
 
-                <section aria-live="polite" className="mt-6 space-y-4">
+                        <section aria-live="polite" className="mt-6 space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                         <h3 className="text-lg font-semibold text-slate-900">Top matches</h3>
                         {lastQuery ? (
@@ -1992,7 +1996,7 @@ export function LibSearchBar({
                                                     rel={result.external ? "noopener noreferrer" : undefined}
                                                     className="text-sm font-medium text-emerald-700 hover:text-emerald-900 hover:underline"
                                                 >
-                                                    View document
+                                                    View source
                                                 </Link>
                                             </div>
                                         </div>
@@ -2005,7 +2009,22 @@ export function LibSearchBar({
                             No direct matches found. Try broadening your language or adjusting filters.
                         </p>
                     ) : null}
-                </section>
+                        </section>
+                    </>
+                ) : (
+                    <div className="mt-6 space-y-3">
+                        {error ? <p className={errorCalloutClassName}>{error}</p> : null}
+                        {lastQuery ? (
+                            <div className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3 text-sm text-emerald-800">
+                                Delivering AI synthesis and {results.length} blended {results.length === 1 ? "result" : "results"} to the main workspace. Review the center panel for full answers and source breakdowns.
+                            </div>
+                        ) : (
+                            <p className="text-sm text-slate-500">
+                                Submit a query to populate the main workspace with AI synthesis and prioritized legal authorities.
+                            </p>
+                        )}
+                    </div>
+                )}
             </form>
             {caseManagement && (
                 <Dialog

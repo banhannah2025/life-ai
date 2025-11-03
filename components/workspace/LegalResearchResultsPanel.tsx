@@ -19,12 +19,43 @@ type LegalResearchResultsPanelProps = {
     className?: string;
 };
 
-function ResultCard({ result }: { result: AggregatedResult }) {
+const PRIMARY_RESOURCE_KEYS = new Set<string>([
+    "courtlistener",
+    "waopinions",
+    "courtrules",
+    "rcw",
+    "uscode",
+    "recap",
+    "govinfo",
+    "ecfr",
+    "regulations",
+    "federalregister",
+    "openstates",
+]);
+
+function isPrimaryAuthority(result: AggregatedResult): boolean {
+    const key = typeof result.resourceKey === "string" ? result.resourceKey.toLowerCase() : "";
+    if (key && PRIMARY_RESOURCE_KEYS.has(key)) {
+        return true;
+    }
+    return result.collection === "primary-law" || result.collection === "litigation";
+}
+
+type ResultCardProps = {
+    result: AggregatedResult;
+    variant?: "primary" | "secondary";
+};
+
+function ResultCard({ result, variant = "primary" }: ResultCardProps) {
     const formattedDate = formatResultDate(result.date ?? null);
     const matchQuality = Number.isFinite(result.score) ? Math.min(100, Math.round(result.score * 100)) : null;
+    const containerClassName = cn(
+        "flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md md:flex-row md:items-start md:justify-between",
+        variant === "primary" ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200"
+    );
 
     return (
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md md:flex-row md:items-start md:justify-between">
+        <div className={containerClassName}>
             <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-tight text-slate-500">
                     <Badge variant="outline">{result.sourceLabel ?? result.type}</Badge>
@@ -212,7 +243,11 @@ export function LegalResearchResultsPanel({ className }: LegalResearchResultsPan
     const isLoading = status === "loading";
     const isError = status === "error";
     const isReady = status === "ready";
-    const hasResults = isReady && results.length > 0;
+    const primaryResults = isReady ? results.filter(isPrimaryAuthority) : [];
+    const secondaryResults = isReady ? results.filter((result) => !isPrimaryAuthority(result)) : [];
+    const hasPrimaryResults = primaryResults.length > 0;
+    const hasSecondaryResults = secondaryResults.length > 0;
+    const hasAnyResults = hasPrimaryResults || hasSecondaryResults;
 
     return (
         <section className={containerClassName}>
@@ -271,14 +306,31 @@ export function LegalResearchResultsPanel({ className }: LegalResearchResultsPan
                             {infoMessage}
                         </div>
                     ) : null}
-                    {hasResults ? (
-                        <div className="space-y-4">
-                            {results.map((result) => (
-                                <ResultCard key={result.id} result={result} />
-                            ))}
+                    {hasAnyResults ? (
+                        <div className="space-y-6">
+                            {hasPrimaryResults ? (
+                                <div className="space-y-3">
+                                    <h3 className="text-base font-semibold text-slate-900">Primary authorities</h3>
+                                    <div className="space-y-4">
+                                        {primaryResults.map((result) => (
+                                            <ResultCard key={result.id} result={result} variant="primary" />
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : null}
+                            {hasSecondaryResults ? (
+                                <div className="space-y-3">
+                                    <h3 className="text-base font-semibold text-slate-900">Secondary &amp; contextual sources</h3>
+                                    <div className="space-y-4">
+                                        {secondaryResults.map((result) => (
+                                            <ResultCard key={result.id} result={result} variant="secondary" />
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : null}
                         </div>
                     ) : null}
-                    {!hasResults && !infoMessage ? (
+                    {!hasAnyResults && !infoMessage ? (
                         <p className="text-sm text-slate-500">
                             No matching sources were returned. Try broadening your filters or refining the prompt.
                         </p>

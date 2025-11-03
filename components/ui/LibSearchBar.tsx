@@ -485,6 +485,7 @@ function aggregateSearchResults(
     maxResultsOverride?: number
 ): AggregatedResult[] {
     const bucketedResults = new Map<string, AggregatedResult[]>();
+    const fallbackBucketedResults = new Map<string, AggregatedResult[]>();
     const isLegal = researchType === "legal";
     const isAcademic = researchType === "academic";
     const includeProfiles = !isLegal;
@@ -531,7 +532,7 @@ function aggregateSearchResults(
             ? 0
             : meaningfulTokens.length <= 2
                 ? meaningfulTokens.length
-                : Math.min(4, Math.max(1, Math.ceil(meaningfulTokens.length * 0.5)));
+                : Math.min(3, Math.max(1, Math.ceil(meaningfulTokens.length * 0.4)));
 
     const shouldIncludeCollection = (collection: AggregatedResult["collection"]) => {
         if (!isLegal && !enforceCollections) {
@@ -558,6 +559,16 @@ function aggregateSearchResults(
         if (haystack.includes(phrase)) {
             item.score = Math.min(1, item.score + 0.12);
         }
+    };
+
+    const storeInBucket = (map: Map<string, AggregatedResult[]>, key: string, entry: AggregatedResult) => {
+        const bucket = map.get(key) ?? [];
+        bucket.push(entry);
+        bucket.sort((a, b) => b.score - a.score);
+        if (bucket.length > 5) {
+            bucket.length = 5;
+        }
+        map.set(key, bucket);
     };
 
     const pushIfAllowed = (item: AggregatedResult) => {
@@ -588,12 +599,6 @@ function aggregateSearchResults(
                 return;
             }
         }
-        if (minimumTokenMatches > 0) {
-            const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`;
-            if (!meetsTokenThreshold(haystack, meaningfulTokens, minimumTokenMatches)) {
-                return;
-            }
-        }
         const normalizedResourceLabel = (item.resourceLabel ?? item.sourceLabel ?? item.type).slice(0, 160);
         const normalizedSourceLabel = (item.sourceLabel ?? normalizedResourceLabel).slice(0, 120);
         item.resourceLabel = normalizedResourceLabel;
@@ -602,13 +607,11 @@ function aggregateSearchResults(
 
         const key = (item.resourceKey ?? "misc").toLowerCase();
         item.resourceKey = key;
-        const bucket = bucketedResults.get(key) ?? [];
-        bucket.push(item);
-        bucket.sort((a, b) => b.score - a.score);
-        if (bucket.length > 5) {
-            bucket.length = 5;
-        }
-        bucketedResults.set(key, bucket);
+        const haystack = `${item.title} ${item.snippet ?? ""} ${item.snippetHtml ?? ""}`;
+        const passesTokenThreshold =
+            minimumTokenMatches === 0 || meetsTokenThreshold(haystack, meaningfulTokens, minimumTokenMatches);
+        const targetBuckets = passesTokenThreshold ? bucketedResults : fallbackBucketedResults;
+        storeInBucket(targetBuckets, key, item);
     };
 
     if (includeProfiles) {
@@ -1040,14 +1043,12 @@ function aggregateSearchResults(
                 ? 60
                 : 5;
 
-    const combinedResults: AggregatedResult[] = [];
     const bucketPriorityOverrides: Record<string, number> = {
         courtlistener: -200,
         uscode: -150,
         rcw: -140,
     };
-    const bucketKeys = Array.from(bucketedResults.keys());
-    const computeBucketPriority = (key: string): number => {
+    const computeBucketPriority = (map: Map<string, AggregatedResult[]>, key: string): number => {
         const normalized = key.toLowerCase();
         if (normalized in bucketPriorityOverrides) {
             return bucketPriorityOverrides[normalized];
@@ -1060,17 +1061,61 @@ function aggregateSearchResults(
                 return -110;
             }
         }
-        return getPriority(
-            {
-                ...bucketedResults.get(key)?.[0],
-                resourceKey: normalized,
-            } as AggregatedResult,
-            researchType
-        );
+        const sample = map.get(key)?.[0];
+        if (sample) {
+            return getPriority({ ...sample, resourceKey: normalized }, researchType);
+        }
+        return 99;
     };
 
-    bucketKeys.sort((a, b) => {
-        const priorityDiff = computeBucketPriority(a) - computeBucketPriority(b);
+    const collectBuckets = (map: Map<string, AggregatedResult[]>) => {
+        const combined: AggregatedResult[] = [];
+        const keys = Array.from(map.keys());
+        keys.sort((a, b) => {
+            const priorityDiff = computeBucketPriority(map, a) - computeBucketPriority(map, b);
+            if (priorityDiff !== 0) {
+                return priorityDiff;
+            }
+            return a.localeCompare(b);
+        });
+        for (const key of keys) {
+            const bucket = map.get(key);
+            if (!bucket) {
+                continue;
+            }
+            const sortedBucket = [...bucket].sort((a, b) => b.score - a.score);
+            combined.push(...sortedBucket);
+        }
+        return combined;
+    };
+
+    let combinedResults = collectBuckets(bucketedResults);
+
+    const bucketKeys = combinedResults.length
+        ? Array.from(new Set(combinedResults.map((entry) => entry.resourceKey ?? "misc")))
+        : Array.from(fallbackBucketedResults.keys());
+
+    const dynamicLimit = isLegal ? Math.max(maxResults, bucketKeys.length * 5) : maxResults;
+
+    if (combinedResults.length === 0) {
+        return combinedResults;
+    }
+
+    combinedResults = combinedResults.slice(0, dynamicLimit);
+
+    const seen = new Set<string>();
+    const deduped: AggregatedResult[] = [];
+    for (const entry of combinedResults) {
+        const key = `${entry.resourceKey ?? "misc"}::${entry.id}`;
+        if (seen.has(key)) {
+            continue;
+        }
+        seen.add(key);
+        deduped.push(entry);
+    }
+
+    return deduped;
+}
         if (priorityDiff !== 0) {
             return priorityDiff;
         }

@@ -1116,23 +1116,6 @@ function aggregateSearchResults(
 
     return deduped;
 }
-        if (priorityDiff !== 0) {
-            return priorityDiff;
-        }
-        return a.localeCompare(b);
-    });
-
-    for (const key of bucketKeys) {
-        const bucket = bucketedResults.get(key);
-        if (!bucket) {
-            continue;
-        }
-        const sortedBucket = [...bucket].sort((a, b) => b.score - a.score);
-        combinedResults.push(...sortedBucket);
-    }
-
-    const dynamicLimit = isLegal ? Math.max(maxResults, bucketKeys.length * 5) : maxResults;
-    return combinedResults.slice(0, dynamicLimit);
 }
 
 type JurisdictionMultiSelectProps = {

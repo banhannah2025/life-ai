@@ -203,7 +203,7 @@ function AiSynthesisBlock({
 }
 
 export function LegalResearchResultsPanel({ className }: LegalResearchResultsPanelProps) {
-    const { state } = useLegalResearchResults();
+    const { state, reset } = useLegalResearchResults();
     const {
         status,
         originalQuery,
@@ -260,6 +260,11 @@ export function LegalResearchResultsPanel({ className }: LegalResearchResultsPan
                     <p className="text-sm text-slate-500">
                         Latest query: <span className="font-medium text-slate-700">“{activeQuery}”</span>
                     </p>
+                ) : null}
+                {status !== "idle" ? (
+                    <Button variant="ghost" size="sm" onClick={reset} className="self-start sm:self-auto">
+                        Back to workspace
+                    </Button>
                 ) : null}
             </header>
 

@@ -1628,9 +1628,27 @@ export function LibSearchBar({
             setResults(aggregated);
             setLastQuery(effectiveQuery);
             let answerContext: AiSearchAnswerResultInput[] = [];
-            const eligibleAggregated = aggregated.filter((item) => item.external && isValidHttpUrl(item.href));
+            const buildAnswerUrl = (item: AggregatedResult): string | null => {
+                if (isValidHttpUrl(item.href)) {
+                    return item.href;
+                }
+                if (!item.external && item.href && item.href.startsWith("/") && typeof window !== "undefined") {
+                    try {
+                        return new URL(item.href, window.location.origin).toString();
+                    } catch {
+                        return null;
+                    }
+                }
+                return null;
+            };
+            const eligibleAggregated = aggregated
+                .map((item) => {
+                    const url = buildAnswerUrl(item);
+                    return { item, url };
+                })
+                .filter(({ item, url }) => url !== null || item.external);
             if (eligibleAggregated.length > 0) {
-                answerContext = eligibleAggregated.slice(0, 8).map((item, index) => {
+                answerContext = eligibleAggregated.slice(0, 8).map(({ item, url }, index) => {
                     const fallbackTitle = `Result ${index + 1}`;
                     const rawTitle = normalizeTextValue(item.title, fallbackTitle);
                     const rawSnippet = normalizeTextValue(item.snippet, "");
@@ -1642,7 +1660,7 @@ export function LibSearchBar({
                     return {
                         title: (rawTitle || fallbackTitle).slice(0, 400),
                         snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
-                        url: item.href,
+                        url,
                         source: rawSource ? rawSource.slice(0, 120) : null,
                         date: rawDate ? rawDate.slice(0, 120) : null,
                     };

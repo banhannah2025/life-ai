@@ -1186,6 +1186,13 @@ export function LibSearchBar({
         "mt-4 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg",
         isSidebar && "mt-3 space-y-4 rounded-xl border border-slate-200 bg-white/95 p-4 shadow-sm"
     );
+    const advancedLayoutClassName = isSidebar ? "space-y-4" : "grid gap-6 lg:grid-cols-3";
+    const advancedSectionClassName = isSidebar
+        ? "space-y-3 rounded-xl border border-slate-200/80 bg-white/95 p-3 shadow-sm"
+        : "space-y-4";
+    const checkboxRowClassName = isSidebar
+        ? "flex items-center gap-3 rounded-lg bg-white/80 px-2.5 py-1.5 text-sm text-slate-700"
+        : "flex items-center gap-3 text-sm text-slate-700";
     const synthesisContainerClassName = cn(
         "mt-4 rounded-2xl border border-emerald-200 bg-white p-6 shadow-lg",
         isSidebar && "rounded-xl border border-emerald-200 bg-white/95 p-4 shadow-sm"
@@ -1673,8 +1680,8 @@ export function LibSearchBar({
 
                 <Collapsible open={isAdvancedOpen} onOpenChange={setIsAdvancedOpen} className="w-full">
                     <CollapsibleContent className={advancedContentClassName}>
-                        <div className="grid gap-6 lg:grid-cols-3">
-                            <section className="space-y-4">
+                        <div className={advancedLayoutClassName}>
+                            <section className={advancedSectionClassName}>
                                 <div className="space-y-2">
                                     <Label className="text-sm font-semibold text-slate-700">Federal courts</Label>
                                     <JurisdictionMultiSelect
@@ -1697,17 +1704,14 @@ export function LibSearchBar({
                                     />
                                 </div>
                             </section>
-                            <section className="space-y-4">
+                            <section className={advancedSectionClassName}>
                                 <div className="space-y-2">
                                     <Label className="text-sm font-semibold text-slate-700">Collections</Label>
-                                    <div className="grid gap-2">
+                                    <div className="space-y-1.5">
                                         {legalCollections.map((collection) => {
                                             const inputId = `collection-${collection.value}`;
                                             return (
-                                                <label
-                                                    key={collection.value}
-                                                    className="flex items-center gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
-                                                >
+                                                <label key={collection.value} className={checkboxRowClassName}>
                                                     <Checkbox
                                                         id={inputId}
                                                         checked={selectedCollections.has(collection.value)}
@@ -1722,7 +1726,7 @@ export function LibSearchBar({
                                 <div className="space-y-2">
                                     <Label className="text-sm font-semibold text-slate-700">State focus</Label>
                                     <Select value={selectedState} onValueChange={setSelectedState}>
-                                        <SelectTrigger>
+                                        <SelectTrigger className={isSidebar ? "bg-white" : undefined}>
                                             <SelectValue placeholder="All states" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -1755,11 +1759,11 @@ export function LibSearchBar({
                                     </div>
                                 </div>
                             </section>
-                            <section className="space-y-4">
+                            <section className={advancedSectionClassName}>
                                 <div className="space-y-2">
                                     <Label className="text-sm font-semibold text-slate-700">Date range</Label>
                                     <Select value={selectedDateRange} onValueChange={(value) => setSelectedDateRange(value as LegalFilters["dateRange"])}>
-                                        <SelectTrigger>
+                                        <SelectTrigger className={isSidebar ? "bg-white" : undefined}>
                                             <SelectValue placeholder="Any time" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -1778,6 +1782,7 @@ export function LibSearchBar({
                                         placeholder='Use a key phrase we should match, e.g. "foreseeable harm in transitional housing"'
                                         value={phraseBoost}
                                         onChange={(event) => setPhraseBoost(event.target.value)}
+                                        className={isSidebar ? "min-h-[90px] resize-none rounded-lg border border-slate-200 bg-white/95 p-3" : undefined}
                                     />
                                 </div>
                             </section>

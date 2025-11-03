@@ -1616,7 +1616,8 @@ export function LibSearchBar({
             }
 
             const primaryQuery = refinedQuery ?? trimmed;
-            let response = await searchDirectory(primaryQuery, "all", Math.max(5, effectiveMaxResults), requestFilters);
+            const searchLimit = Math.max(25, effectiveMaxResults * 4);
+            let response = await searchDirectory(primaryQuery, "all", searchLimit, requestFilters);
             let aggregated = aggregateSearchResults(
                 primaryQuery,
                 response,
@@ -1629,7 +1630,7 @@ export function LibSearchBar({
 
             if (aggregated.length === 0 && refinedQuery && refinedQuery !== trimmed) {
                 try {
-                    response = await searchDirectory(trimmed, "all", Math.max(5, effectiveMaxResults), requestFilters);
+                    response = await searchDirectory(trimmed, "all", searchLimit, requestFilters);
                     const fallbackAggregated = aggregateSearchResults(
                         trimmed,
                         response,

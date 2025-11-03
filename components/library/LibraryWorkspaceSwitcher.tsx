@@ -8,7 +8,7 @@ import { LibraryBrowser } from "@/components/library/LibraryBrowser";
 import { LibSearchBar } from "@/components/ui/LibSearchBar";
 import { cn } from "@/lib/utils";
 
-type WorkspaceView = "library" | "legal";
+type WorkspaceView = "library" | "academic";
 
 const VIEW_META: Record<
   WorkspaceView,
@@ -21,9 +21,9 @@ const VIEW_META: Record<
     heading: "Interactive library browser",
     description: "Scan curated playbooks, field guides, and datasets with advanced filters.",
   },
-  legal: {
-    heading: "Precision legal research console",
-    description: "Switch to connector-ready legal search with jurisdiction filters and AI assistance.",
+  academic: {
+    heading: "Academic research studio",
+    description: "Interrogate scholarly sources with AI synthesis and curated academic connectors.",
   },
 };
 
@@ -48,7 +48,12 @@ export function LibraryWorkspaceSwitcher() {
                 active={view === "library"}
                 onClick={() => setView("library")}
               />
-              <ModeToggleButton icon={Gavel} label="Legal research" active={view === "legal"} onClick={() => setView("legal")} />
+              <ModeToggleButton
+                icon={Gavel}
+                label="Academic research"
+                active={view === "academic"}
+                onClick={() => setView("academic")}
+              />
             </div>
           </div>
         </div>
@@ -59,13 +64,17 @@ export function LibraryWorkspaceSwitcher() {
       ) : (
         <section className="space-y-4">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">Need laser-precise legal search?</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Synthesize academic intelligence faster</h2>
             <p className="text-sm text-slate-600">
-              Drop into our advanced research console when you need multi-jurisdiction filtering, AI rewriting, or quick attachments
-              to matters.
+              Lead with AI synthesis as your primary agent while reviewing the top five matches from every connected source.
             </p>
           </div>
-          <LibSearchBar />
+          <LibSearchBar
+            heading="Academic Research"
+            description="Blend natural language prompts with academic connectors. AI synthesis surfaces cross-source insights while we list the top five results across disciplines."
+            initialResearchType="ai"
+            enabledResearchTypes={["ai", "academic"]}
+          />
         </section>
       )}
     </div>

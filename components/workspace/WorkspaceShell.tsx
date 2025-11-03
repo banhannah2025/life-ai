@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { NavBar } from "@/components/global/NavBar";
 import { AppSidebar } from "@/components/ui/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { LegalResearchSidebar } from "@/components/workspace/LegalResearchSidebar";
 
 const LEGAL_ROUTE_PREFIXES = [
   "/case-management",
@@ -39,7 +40,7 @@ export function WorkspaceShell({ children }: WorkspaceShellProps) {
         <SidebarInset className="w-full flex-1 bg-gray-50 px-4 py-8 sm:px-6 sm:py-10">
           {children}
         </SidebarInset>
-        {isLegalRoute ? <AppSidebar side="right" mirror hideContent /> : null}
+        {isLegalRoute ? <LegalResearchSidebar /> : null}
       </div>
     </SidebarProvider>
   );

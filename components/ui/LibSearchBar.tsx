@@ -83,6 +83,39 @@ type JurisdictionOption = {
     children?: JurisdictionOption[];
 };
 
+type LibSearchBarProps = {
+    heading?: string;
+    description?: string;
+    showHeader?: boolean;
+    initialResearchType?: ResearchType;
+    enabledResearchTypes?: ResearchType[];
+    maxResults?: number;
+    variant?: "default" | "sidebar";
+};
+
+const DEFAULT_RESEARCH_TYPES: ResearchType[] = ["ai", "legal", "academic"];
+
+const RESEARCH_TYPE_LABELS: Record<ResearchType, string> = {
+    legal: "Legal research",
+    academic: "Academic research",
+    ai: "AI synthesis",
+};
+
+function formatList(items: string[]): string {
+    if (items.length === 0) {
+        return "";
+    }
+    if (items.length === 1) {
+        return items[0];
+    }
+    if (items.length === 2) {
+        return `${items[0]} and ${items[1]}`;
+    }
+    const head = items.slice(0, -1).join(", ");
+    const tail = items[items.length - 1];
+    return `${head}, and ${tail}`;
+}
+
 const FEDERAL_JURISDICTIONS: JurisdictionOption[] = [
     { label: "U.S. Supreme Court", value: "federal:supreme", defaultSelected: true },
     {
@@ -462,7 +495,8 @@ function aggregateSearchResults(
     data: SearchResponse,
     researchType: ResearchType,
     filters?: LegalFilters,
-    webResults?: AiSearchAssistWebResult[] | null
+    webResults?: AiSearchAssistWebResult[] | null,
+    maxResultsOverride?: number
 ): AggregatedResult[] {
     const results: AggregatedResult[] = [];
     const isLegal = researchType === "legal";
@@ -992,7 +1026,12 @@ function aggregateSearchResults(
         });
     }
 
-    const maxResults = researchType === "legal" ? 60 : 10;
+    const maxResults =
+        typeof maxResultsOverride === "number"
+            ? maxResultsOverride
+            : researchType === "legal"
+                ? 60
+                : 5;
 
     return results
         .sort((a, b) => {
@@ -1114,8 +1153,64 @@ function JurisdictionMultiSelect({
     );
 }
 
-export function LibSearchBar() {
-    const [researchType, setResearchType] = useState<ResearchType>("legal");
+export function LibSearchBar({
+    heading,
+    description,
+    showHeader = true,
+    initialResearchType,
+    enabledResearchTypes,
+    maxResults,
+    variant = "default",
+}: LibSearchBarProps = {}) {
+    const resolvedResearchTypes = useMemo<ResearchType[]>(() => {
+        const source = enabledResearchTypes ?? DEFAULT_RESEARCH_TYPES;
+        const unique: ResearchType[] = [];
+        for (const entry of source) {
+            if (!unique.includes(entry)) {
+                unique.push(entry);
+            }
+        }
+        return unique.length > 0 ? unique : DEFAULT_RESEARCH_TYPES;
+    }, [enabledResearchTypes]);
+
+    const defaultResearchType = useMemo<ResearchType>(() => {
+        if (initialResearchType && resolvedResearchTypes.includes(initialResearchType)) {
+            return initialResearchType;
+        }
+        return resolvedResearchTypes[0] ?? "ai";
+    }, [initialResearchType, resolvedResearchTypes]);
+
+    const [researchType, setResearchType] = useState<ResearchType>(defaultResearchType);
+    useEffect(() => {
+        if (!resolvedResearchTypes.includes(researchType)) {
+            setResearchType(defaultResearchType);
+        }
+    }, [defaultResearchType, researchType, resolvedResearchTypes]);
+
+    const researchModeLabels = useMemo(
+        () => resolvedResearchTypes.map((type) => RESEARCH_TYPE_LABELS[type].toLowerCase()),
+        [resolvedResearchTypes]
+    );
+    const resolvedHeading = heading ?? "Research Console";
+    const resolvedDescription =
+        description ??
+        (researchModeLabels.length
+            ? `Switch between ${formatList(researchModeLabels)} modes without losing context. Results appear below the form.`
+            : null);
+    const formWrapperClassName = variant === "sidebar" ? "flex w-full" : "flex w-full justify-center";
+    const formClassName =
+        variant === "sidebar"
+            ? "flex w-full flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
+            : "flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg";
+    const effectiveMaxResults =
+        typeof maxResults === "number"
+            ? maxResults
+            : researchType === "legal"
+                ? 60
+                : 5;
+    const shouldShowHeaderBlock =
+        (showHeader && Boolean(resolvedHeading || resolvedDescription)) || resolvedResearchTypes.length > 1;
+
     const [query, setQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -1165,6 +1260,20 @@ export function LibSearchBar() {
         }
         return STATE_OPTIONS.find((state) => state.code === selectedState)?.name ?? selectedState;
     }, [selectedState]);
+
+    const handleResearchTypeChange = useCallback(
+        (value: string) => {
+            if (value === researchType) {
+                return;
+            }
+            if (value === "legal" || value === "academic" || value === "ai") {
+                if (resolvedResearchTypes.includes(value)) {
+                    setResearchType(value);
+                }
+            }
+        },
+        [researchType, resolvedResearchTypes]
+    );
 
     const toggleJurisdiction = useCallback((value: string) => {
         setSelectedJurisdictions((previous) => {
@@ -1496,9 +1605,16 @@ export function LibSearchBar() {
                 }
             }
 
-            const perSourceLimit = researchType === "legal" ? 25 : 10;
+            const perSourceLimit = researchType === "legal" ? 25 : Math.max(5, effectiveMaxResults);
             const response = await searchDirectory(effectiveQuery, searchMode, perSourceLimit, requestFilters);
-            const aggregated = aggregateSearchResults(effectiveQuery, response, researchType, legalFilters, assistWebResults);
+            const aggregated = aggregateSearchResults(
+                effectiveQuery,
+                response,
+                researchType,
+                legalFilters,
+                assistWebResults,
+                effectiveMaxResults
+            );
             setResults(aggregated);
             setLastQuery(effectiveQuery);
             let answerContext: AiSearchAnswerResultInput[] = [];
@@ -1582,46 +1698,44 @@ export function LibSearchBar() {
     }
 
     return (
-        <div className="flex w-full justify-center">
-            <form
-                className="flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
-                noValidate
-                onSubmit={handleSubmit}
-            >
-                <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div className="space-y-1">
-                        <h2 className="text-2xl font-semibold text-slate-900">Unified Research</h2>
-                        <p className="text-sm text-slate-500">
-                            Switch between legal, academic, and synthesis modes without losing context. Results appear below the form.
-                        </p>
-                    </div>
+        <div className={formWrapperClassName}>
+            <form className={formClassName} noValidate onSubmit={handleSubmit}>
+                {shouldShowHeaderBlock ? (
+                    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                        {showHeader && (resolvedHeading || resolvedDescription) ? (
+                            <div className="space-y-1">
+                                {resolvedHeading ? (
+                                    <h2 className="text-2xl font-semibold text-slate-900">{resolvedHeading}</h2>
+                                ) : null}
+                                {resolvedDescription ? (
+                                    <p className="text-sm text-slate-500">{resolvedDescription}</p>
+                                ) : null}
+                            </div>
+                        ) : null}
 
-                    <RadioGroup
-                        value={researchType}
-                        onValueChange={(value) => setResearchType(value as ResearchType)}
-                        className="flex flex-col gap-2 md:flex-row"
-                        aria-label="Research type"
-                    >
-                        <div className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2">
-                            <RadioGroupItem id="research-type-legal" value="legal" />
-                            <Label htmlFor="research-type-legal" className="text-sm text-slate-700">
-                                Legal research
-                            </Label>
-                        </div>
-                        <div className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2">
-                            <RadioGroupItem id="research-type-academic" value="academic" />
-                            <Label htmlFor="research-type-academic" className="text-sm text-slate-700">
-                                Academic research
-                            </Label>
-                        </div>
-                        <div className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2">
-                            <RadioGroupItem id="research-type-ai" value="ai" />
-                            <Label htmlFor="research-type-ai" className="text-sm text-slate-700">
-                                AI synthesis (beta)
-                            </Label>
-                        </div>
-                    </RadioGroup>
-                </div>
+                        {resolvedResearchTypes.length > 1 ? (
+                            <RadioGroup
+                                value={researchType}
+                                onValueChange={handleResearchTypeChange}
+                                className="flex flex-col gap-2 md:flex-row"
+                                aria-label="Research type"
+                            >
+                                {resolvedResearchTypes.map((type) => {
+                                    const id = `research-type-${type}`;
+                                    return (
+                                        <div key={type} className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2">
+                                            <RadioGroupItem id={id} value={type} />
+                                            <Label htmlFor={id} className="text-sm text-slate-700">
+                                                {RESEARCH_TYPE_LABELS[type]}
+                                                {type === "ai" ? " (beta)" : ""}
+                                            </Label>
+                                        </div>
+                                    );
+                                })}
+                            </RadioGroup>
+                        ) : null}
+                    </div>
+                ) : null}
 
                 <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-4 py-3">
                     <div className="flex flex-wrap items-center gap-2">

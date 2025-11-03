@@ -17,8 +17,6 @@ export function LegalResearchSidebar() {
                 <LibSearchBar
                     showHeader={false}
                     variant="sidebar"
-                    initialResearchType="ai"
-                    enabledResearchTypes={["ai", "legal"]}
                 />
             </SidebarContent>
         </Sidebar>

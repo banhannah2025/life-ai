@@ -6,6 +6,7 @@ import type { CheckedState } from "@radix-ui/react-checkbox";
 
 import { searchDirectory, type SearchResponse, type SearchFilters } from "@/lib/search/client";
 import { formatOpinionTitle } from "@/lib/courtlistener/format";
+import { cn } from "@/lib/utils";
 
 import { Badge } from "./badge";
 import { Button } from "./button";
@@ -18,9 +19,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "./dialog";
-import { Input } from "./input";
 import { Label } from "./label";
-import { RadioGroup, RadioGroupItem } from "./radio-group";
 import { Textarea } from "./textarea";
 import {
     Select,
@@ -29,14 +28,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "./select";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+import { Collapsible, CollapsibleContent } from "./collapsible";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "./command";
 import { toast } from "sonner";
-import { Check, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
+import { Check, ChevronDown, Loader2, Sparkles } from "lucide-react";
 import { useOptionalCaseManagement, type CaseRecord } from "@/components/case-management/CaseManagementProvider";
-import { Switch } from "./switch";
 import {
     requestAiSearchAssist,
     requestAiSearchAnswer,
@@ -93,7 +90,7 @@ type LibSearchBarProps = {
     variant?: "default" | "sidebar";
 };
 
-const DEFAULT_RESEARCH_TYPES: ResearchType[] = ["ai", "legal", "academic"];
+const DEFAULT_RESEARCH_TYPES: ResearchType[] = ["ai"];
 
 const RESEARCH_TYPE_LABELS: Record<ResearchType, string> = {
     legal: "Legal research",
@@ -185,34 +182,6 @@ const legalCollections = [
     { value: "internet", label: "Live Web Sources", defaultChecked: true },
 ];
 
-const academicDisciplines = [
-    { value: "law", label: "Law & Legal Studies" },
-    { value: "business", label: "Business & Management" },
-    { value: "social-sciences", label: "Social Sciences" },
-    { value: "stem", label: "STEM" },
-    { value: "humanities", label: "Humanities" },
-];
-
-const academicSources = [
-    { value: "journals", label: "Peer-reviewed journals", defaultChecked: true },
-    { value: "treatises", label: "Treatises & books" },
-    { value: "news", label: "News & commentary" },
-    { value: "working", label: "Working papers & preprints" },
-];
-
-const aiScopes = [
-    { value: "legal", label: "Legal databases" },
-    { value: "academic", label: "Academic publications" },
-    { value: "news", label: "News & current awareness" },
-    { value: "knowledge", label: "Internal knowledge base" },
-];
-
-const aiOutputStyles = [
-    { value: "brief", label: "Briefing note (concise)" },
-    { value: "memo", label: "Research memo (detailed)" },
-    { value: "strategy", label: "Strategy outline (actionable)" },
-];
-
 const BASE_WEIGHTS: Record<string, number> = {
     profile: 0.55,
     post: 0.6,
@@ -249,7 +218,6 @@ const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
     knowledge: 12,
 };
 
-const LEGAL_RESOURCE_PAGE_SIZE = 5;
 
 const COLLECTION_LABELS: Record<AggregatedResult["collection"], string> = {
     "primary-law": "Primary Law",
@@ -527,6 +495,9 @@ function aggregateSearchResults(
     const phrase = filters?.phraseBoost?.trim().toLowerCase() ?? "";
     const dateRange = filters?.dateRange ?? "any";
     const stateFilter = filters?.state && filters.state !== "ALL" ? filters.state : null;
+    const enforceCollections = filters?.collections ? filters.collections.size > 0 : false;
+    const enforceJurisdictions = filters?.jurisdictions ? filters.jurisdictions.size > 0 : false;
+    const enforceDateRange = filters?.dateRange ? filters.dateRange !== "any" : false;
     const meaningfulTokens =
         isLegal
             ? Array.from(
@@ -544,13 +515,22 @@ function aggregateSearchResults(
                 ? meaningfulTokens.length
                 : Math.min(4, Math.max(1, Math.ceil(meaningfulTokens.length * 0.5)));
 
-    const shouldIncludeCollection = (collection: AggregatedResult["collection"]) =>
-        !isLegal || activeCollections.has(collection);
-    const shouldIncludeJurisdiction = (jurisdiction: AggregatedResult["jurisdiction"]) =>
-        !isLegal ||
-        activeJurisdictions.size === 0 ||
-        activeJurisdictions.has(jurisdiction) ||
-        (jurisdiction === "mixed" && (activeJurisdictions.has("mixed") || activeJurisdictions.size >= 3));
+    const shouldIncludeCollection = (collection: AggregatedResult["collection"]) => {
+        if (!isLegal && !enforceCollections) {
+            return true;
+        }
+        return activeCollections.has(collection);
+    };
+    const shouldIncludeJurisdiction = (jurisdiction: AggregatedResult["jurisdiction"]) => {
+        if (!isLegal && !enforceJurisdictions) {
+            return true;
+        }
+        return (
+            activeJurisdictions.size === 0 ||
+            activeJurisdictions.has(jurisdiction) ||
+            (jurisdiction === "mixed" && (activeJurisdictions.has("mixed") || activeJurisdictions.size >= 3))
+        );
+    };
 
     const maybeBoostScore = (item: AggregatedResult) => {
         if (!phrase) {
@@ -576,13 +556,13 @@ function aggregateSearchResults(
         } else if (!item.href || item.href === "#") {
             return;
         }
-        if (isLegal && !shouldIncludeCollection(item.collection)) {
+        if ((isLegal || enforceCollections) && !shouldIncludeCollection(item.collection)) {
             return;
         }
-        if (isLegal && !shouldIncludeJurisdiction(item.jurisdiction)) {
+        if ((isLegal || enforceJurisdictions) && !shouldIncludeJurisdiction(item.jurisdiction)) {
             return;
         }
-        if (isLegal && !isWithinDateRange(item.date, dateRange)) {
+        if ((isLegal || enforceDateRange) && !isWithinDateRange(item.date, dateRange)) {
             return;
         }
         if (stateFilter && item.jurisdiction === "state") {
@@ -1156,7 +1136,7 @@ function JurisdictionMultiSelect({
 export function LibSearchBar({
     heading,
     description,
-    showHeader = true,
+    showHeader = false,
     initialResearchType,
     enabledResearchTypes,
     maxResults,
@@ -1173,19 +1153,10 @@ export function LibSearchBar({
         return unique.length > 0 ? unique : DEFAULT_RESEARCH_TYPES;
     }, [enabledResearchTypes]);
 
-    const defaultResearchType = useMemo<ResearchType>(() => {
-        if (initialResearchType && resolvedResearchTypes.includes(initialResearchType)) {
-            return initialResearchType;
-        }
-        return resolvedResearchTypes[0] ?? "ai";
-    }, [initialResearchType, resolvedResearchTypes]);
-
-    const [researchType, setResearchType] = useState<ResearchType>(defaultResearchType);
-    useEffect(() => {
-        if (!resolvedResearchTypes.includes(researchType)) {
-            setResearchType(defaultResearchType);
-        }
-    }, [defaultResearchType, researchType, resolvedResearchTypes]);
+    const researchType: ResearchType =
+        initialResearchType && resolvedResearchTypes.includes(initialResearchType)
+            ? initialResearchType
+            : resolvedResearchTypes[0] ?? "ai";
 
     const researchModeLabels = useMemo(
         () => resolvedResearchTypes.map((type) => RESEARCH_TYPE_LABELS[type].toLowerCase()),
@@ -1202,14 +1173,8 @@ export function LibSearchBar({
         variant === "sidebar"
             ? "flex w-full flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
             : "flex w-full max-w-6xl flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-lg";
-    const effectiveMaxResults =
-        typeof maxResults === "number"
-            ? maxResults
-            : researchType === "legal"
-                ? 60
-                : 5;
-    const shouldShowHeaderBlock =
-        (showHeader && Boolean(resolvedHeading || resolvedDescription)) || resolvedResearchTypes.length > 1;
+    const effectiveMaxResults = typeof maxResults === "number" ? maxResults : 5;
+    const shouldShowHeaderBlock = showHeader && Boolean(resolvedHeading || resolvedDescription);
 
     const [query, setQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -1224,8 +1189,6 @@ export function LibSearchBar({
     const [selectedDateRange, setSelectedDateRange] = useState<LegalFilters["dateRange"]>("any");
     const [phraseBoost, setPhraseBoost] = useState("");
     const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
-    const [resourcePages, setResourcePages] = useState<Record<string, number>>({});
-    const [aiAssistEnabled, setAiAssistEnabled] = useState(false);
     const [aiAssistSummary, setAiAssistSummary] = useState<string | null>(null);
     const [aiAssistQuery, setAiAssistQuery] = useState<string | null>(null);
     const [aiAssistSources, setAiAssistSources] = useState<AiSearchAssistWebResult[] | null>(null);
@@ -1260,20 +1223,6 @@ export function LibSearchBar({
         }
         return STATE_OPTIONS.find((state) => state.code === selectedState)?.name ?? selectedState;
     }, [selectedState]);
-
-    const handleResearchTypeChange = useCallback(
-        (value: string) => {
-            if (value === researchType) {
-                return;
-            }
-            if (value === "legal" || value === "academic" || value === "ai") {
-                if (resolvedResearchTypes.includes(value)) {
-                    setResearchType(value);
-                }
-            }
-        },
-        [researchType, resolvedResearchTypes]
-    );
 
     const toggleJurisdiction = useCallback((value: string) => {
         setSelectedJurisdictions((previous) => {
@@ -1434,79 +1383,6 @@ export function LibSearchBar({
         }
     };
 
-    const legalResourceBuckets = useMemo(() => {
-        if (researchType !== "legal") {
-            return [];
-        }
-        const map = new Map<
-            string,
-            {
-                key: string;
-                label: string;
-                results: AggregatedResult[];
-            }
-        >();
-        for (const entry of results) {
-            const key = entry.resourceKey ?? "misc";
-            const existing = map.get(key);
-            if (existing) {
-                existing.results.push(entry);
-            } else {
-                map.set(key, {
-                    key,
-                    label: entry.resourceLabel ?? entry.sourceLabel ?? entry.type,
-                    results: [entry],
-                });
-            }
-        }
-        return Array.from(map.values()).sort((a, b) => {
-            const priorityA = LEGAL_RESOURCE_PRIORITY[a.key] ?? 99;
-            const priorityB = LEGAL_RESOURCE_PRIORITY[b.key] ?? 99;
-            if (priorityA !== priorityB) {
-                return priorityA - priorityB;
-            }
-            return a.label.localeCompare(b.label);
-        });
-    }, [results, researchType]);
-
-    useEffect(() => {
-        setResourcePages({});
-    }, [results, researchType]);
-
-    useEffect(() => {
-        if (researchType !== "legal") {
-            setIsAdvancedOpen(false);
-        }
-    }, [researchType]);
-
-    useEffect(() => {
-        if (!aiAssistEnabled) {
-            setAiAssistSummary(null);
-            setAiAssistQuery(null);
-            setAiAssistSources(null);
-            setAiAssistAnswer(null);
-            setAiAssistCitations(null);
-        }
-    }, [aiAssistEnabled]);
-
-    const handleNextPage = (resourceKey: string, label: string, totalCount: number) => {
-        const current = resourcePages[resourceKey] ?? 0;
-        const currentCount = Math.min((current + 1) * LEGAL_RESOURCE_PAGE_SIZE, totalCount);
-        if (currentCount >= totalCount) {
-            toast.info(`No additional ${label} results available.`);
-            return;
-        }
-        const next = current + 1;
-        const nextCount = Math.min((next + 1) * LEGAL_RESOURCE_PAGE_SIZE, totalCount);
-        setResourcePages((previous) => ({
-            ...previous,
-            [resourceKey]: next,
-        }));
-        toast.info(`Loaded more ${label} results`, {
-            description: `Showing results ${currentCount + 1}–${nextCount} of ${totalCount}.`,
-        });
-    };
-
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const trimmed = query.trim();
@@ -1525,88 +1401,81 @@ export function LibSearchBar({
             setAiAssistSources(null);
             setAiAssistAnswer(null);
             setAiAssistCitations(null);
+
             let effectiveQuery = trimmed;
             let assistWebResults: AiSearchAssistWebResult[] | null = null;
-            if (aiAssistEnabled) {
-                try {
-                    const assist = await requestAiSearchAssist(trimmed, researchType);
-                    const rewritten = assist.searchQuery?.trim();
-                    if (rewritten) {
-                        effectiveQuery = rewritten;
-                    }
-                    setAiAssistSummary(
-                        assist.summary?.trim() || "AI assist refined your query for better matching.",
-                    );
-                    setAiAssistQuery(effectiveQuery);
-                    const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
-                    const seenUrls = new Set<string>();
-                    const sanitizedWebResults: SanitizedWebResult[] = rawWebResults
-                        .map((result): SanitizedWebResult | null => {
-                            if (
-                                !result ||
-                                typeof result.title !== "string" ||
-                                result.title.trim().length === 0 ||
-                                !isValidHttpUrl(result.url)
-                            ) {
-                                return null;
-                            }
-                            const trimmedTitle = result.title.trim();
-                            const trimmedUrl = (result.url ?? "").trim();
-                            if (seenUrls.has(trimmedUrl)) {
-                                return null;
-                            }
-                            seenUrls.add(trimmedUrl);
-                            return {
-                                title: trimmedTitle,
-                                url: trimmedUrl,
-                                snippet: result.snippet?.trim() ?? null,
-                                source: result.source?.trim() ?? null,
-                            };
-                        })
-                        .filter((entry): entry is SanitizedWebResult => entry !== null);
-                    assistWebResults = sanitizedWebResults.length ? sanitizedWebResults : null;
-                    setAiAssistSources(assistWebResults);
-                } catch (assistError) {
-                    console.error(assistError);
-                    toast.error(
-                        assistError instanceof Error ? assistError.message : "AI assist unavailable. Using original query.",
-                    );
-                    setAiAssistSources(null);
-                    assistWebResults = null;
+
+            try {
+                const assist = await requestAiSearchAssist(trimmed, researchType);
+                const rewritten = assist.searchQuery?.trim();
+                if (rewritten) {
+                    effectiveQuery = rewritten;
                 }
+                setAiAssistSummary(
+                    assist.summary?.trim() || "AI assist refined your query for better matching.",
+                );
+                setAiAssistQuery(effectiveQuery);
+                const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
+                const seenUrls = new Set<string>();
+                const sanitizedWebResults: SanitizedWebResult[] = rawWebResults
+                    .map((result): SanitizedWebResult | null => {
+                        if (
+                            !result ||
+                            typeof result.title !== "string" ||
+                            result.title.trim().length === 0 ||
+                            !isValidHttpUrl(result.url)
+                        ) {
+                            return null;
+                        }
+                        const trimmedTitle = result.title.trim();
+                        const trimmedUrl = (result.url ?? "").trim();
+                        if (seenUrls.has(trimmedUrl)) {
+                            return null;
+                        }
+                        seenUrls.add(trimmedUrl);
+                        return {
+                            title: trimmedTitle,
+                            url: trimmedUrl,
+                            snippet: result.snippet?.trim() ?? null,
+                            source: result.source?.trim() ?? null,
+                        };
+                    })
+                    .filter((entry): entry is SanitizedWebResult => entry !== null);
+                assistWebResults = sanitizedWebResults.length ? sanitizedWebResults : null;
+                setAiAssistSources(assistWebResults);
+            } catch (assistError) {
+                console.error(assistError);
+                toast.error(
+                    assistError instanceof Error ? assistError.message : "AI assist unavailable. Using original query.",
+                );
+                setAiAssistSources(null);
+                assistWebResults = null;
             }
 
-            const searchMode = researchType === "legal" ? "legal" : "all";
-            let legalFilters: LegalFilters | undefined;
-            let requestFilters: SearchFilters | undefined;
+            const jurisdictionCategories = deriveJurisdictionCategories(selectedJurisdictions);
+            const collectionsCopy = new Set(selectedCollections);
+            const legalFilters: LegalFilters = {
+                jurisdictions: jurisdictionCategories,
+                collections: collectionsCopy,
+                dateRange: selectedDateRange,
+                phraseBoost,
+                state: selectedState,
+            };
 
-            if (researchType === "legal") {
-                const jurisdictionCategories = deriveJurisdictionCategories(selectedJurisdictions);
-                const collectionsCopy = new Set(selectedCollections);
-                legalFilters = {
-                    jurisdictions: jurisdictionCategories,
-                    collections: collectionsCopy,
-                    dateRange: selectedDateRange,
-                    phraseBoost,
-                    state: selectedState,
-                };
-
-                const trimmedPhrase = phraseBoost.trim();
-                requestFilters = {
-                    jurisdictions: Array.from(jurisdictionCategories),
-                    collections: Array.from(collectionsCopy),
-                    dateRange: selectedDateRange,
-                };
-                if (trimmedPhrase) {
-                    requestFilters.phraseBoost = trimmedPhrase;
-                }
-                if (selectedState !== "ALL") {
-                    requestFilters.state = selectedState;
-                }
+            const trimmedPhrase = phraseBoost.trim();
+            const requestFilters: SearchFilters = {
+                jurisdictions: Array.from(jurisdictionCategories),
+                collections: Array.from(collectionsCopy),
+                dateRange: selectedDateRange,
+            };
+            if (trimmedPhrase) {
+                requestFilters.phraseBoost = trimmedPhrase;
+            }
+            if (selectedState !== "ALL") {
+                requestFilters.state = selectedState;
             }
 
-            const perSourceLimit = researchType === "legal" ? 25 : Math.max(5, effectiveMaxResults);
-            const response = await searchDirectory(effectiveQuery, searchMode, perSourceLimit, requestFilters);
+            const response = await searchDirectory(effectiveQuery, "all", Math.max(5, effectiveMaxResults), requestFilters);
             const aggregated = aggregateSearchResults(
                 effectiveQuery,
                 response,
@@ -1618,48 +1487,46 @@ export function LibSearchBar({
             setResults(aggregated);
             setLastQuery(effectiveQuery);
             let answerContext: AiSearchAnswerResultInput[] = [];
-            if (aiAssistEnabled) {
-                const eligibleAggregated = aggregated.filter((item) => item.external && isValidHttpUrl(item.href));
-                if (eligibleAggregated.length > 0) {
-                    answerContext = eligibleAggregated.slice(0, 8).map((item, index) => {
-                        const fallbackTitle = `Result ${index + 1}`;
-                        const rawTitle = normalizeTextValue(item.title, fallbackTitle);
-                        const rawSnippet = normalizeTextValue(item.snippet, "");
-                        const rawSource = normalizeTextValue(
-                            item.sourceLabel ?? item.resourceLabel ?? item.type,
-                            fallbackTitle
-                        );
-                        const rawDate = normalizeTextValue(item.date ?? item.year ?? null, "");
+            const eligibleAggregated = aggregated.filter((item) => item.external && isValidHttpUrl(item.href));
+            if (eligibleAggregated.length > 0) {
+                answerContext = eligibleAggregated.slice(0, 8).map((item, index) => {
+                    const fallbackTitle = `Result ${index + 1}`;
+                    const rawTitle = normalizeTextValue(item.title, fallbackTitle);
+                    const rawSnippet = normalizeTextValue(item.snippet, "");
+                    const rawSource = normalizeTextValue(
+                        item.sourceLabel ?? item.resourceLabel ?? item.type,
+                        fallbackTitle
+                    );
+                    const rawDate = normalizeTextValue(item.date ?? item.year ?? null, "");
+                    return {
+                        title: (rawTitle || fallbackTitle).slice(0, 400),
+                        snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
+                        url: item.href,
+                        source: rawSource ? rawSource.slice(0, 120) : null,
+                        date: rawDate ? rawDate.slice(0, 120) : null,
+                    };
+                });
+            } else if (assistWebResults && assistWebResults.length > 0) {
+                answerContext = assistWebResults
+                    .filter((source) => isValidHttpUrl(source.url))
+                    .slice(0, 6)
+                    .map((source, index) => {
+                        const fallbackTitle = `Web ${index + 1}`;
+                        const rawTitle = normalizeTextValue(source.title, fallbackTitle);
+                        const rawSnippet = normalizeTextValue(source.snippet ?? null, "");
+                        const rawSource = normalizeTextValue(source.source ?? null, fallbackTitle);
                         return {
                             title: (rawTitle || fallbackTitle).slice(0, 400),
                             snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
-                            url: item.href,
+                            url: source.url ?? null,
                             source: rawSource ? rawSource.slice(0, 120) : null,
-                            date: rawDate ? rawDate.slice(0, 120) : null,
+                            date: null,
                         };
                     });
-                } else if (assistWebResults && assistWebResults.length > 0) {
-                    answerContext = assistWebResults
-                        .filter((source) => isValidHttpUrl(source.url))
-                        .slice(0, 6)
-                        .map((source, index) => {
-                            const fallbackTitle = `Web ${index + 1}`;
-                            const rawTitle = normalizeTextValue(source.title, fallbackTitle);
-                            const rawSnippet = normalizeTextValue(source.snippet ?? null, "");
-                            const rawSource = normalizeTextValue(source.source ?? null, fallbackTitle);
-                            return {
-                                title: (rawTitle || fallbackTitle).slice(0, 400),
-                                snippet: rawSnippet ? rawSnippet.slice(0, 1600) : null,
-                                url: source.url ?? null,
-                                source: rawSource ? rawSource.slice(0, 120) : null,
-                                date: null,
-                            };
-                        });
-                }
             }
 
             let answerGenerated = false;
-            if (aiAssistEnabled && answerContext.length > 0) {
+            if (answerContext.length > 0) {
                 try {
                     const answer = await requestAiSearchAnswer(trimmed, researchType, answerContext);
                     setAiAssistAnswer(answer.answer);
@@ -1712,77 +1579,204 @@ export function LibSearchBar({
                                 ) : null}
                             </div>
                         ) : null}
-
-                        {resolvedResearchTypes.length > 1 ? (
-                            <RadioGroup
-                                value={researchType}
-                                onValueChange={handleResearchTypeChange}
-                                className="flex flex-col gap-2 md:flex-row"
-                                aria-label="Research type"
-                            >
-                                {resolvedResearchTypes.map((type) => {
-                                    const id = `research-type-${type}`;
-                                    return (
-                                        <div key={type} className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2">
-                                            <RadioGroupItem id={id} value={type} />
-                                            <Label htmlFor={id} className="text-sm text-slate-700">
-                                                {RESEARCH_TYPE_LABELS[type]}
-                                                {type === "ai" ? " (beta)" : ""}
-                                            </Label>
-                                        </div>
-                                    );
-                                })}
-                            </RadioGroup>
-                        ) : null}
                     </div>
                 ) : null}
 
-                <div className="rounded-lg border border-slate-200 bg-slate-50/70 px-4 py-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                        <Switch
-                            id="ai-assist-toggle"
-                            checked={aiAssistEnabled}
-                            onCheckedChange={(checked) => {
-                                const next = !!checked;
-                                setAiAssistEnabled(next);
-                                if (!next) {
-                                    setAiAssistSummary(null);
-                                    setAiAssistQuery(null);
-                                    setAiAssistSources(null);
-                                    setAiAssistAnswer(null);
-                                    setAiAssistCitations(null);
-                                }
-                            }}
-                        />
-                        <Label htmlFor="ai-assist-toggle" className="text-sm text-slate-700">
-                            Natural language AI assist
-                        </Label>
-                        <Badge variant="outline" className="text-[10px] uppercase text-emerald-700">
-                            Beta
-                        </Badge>
-                        <span className="text-xs text-slate-500">Use Groq to rewrite complex questions into precise queries.</span>
+                <div className="rounded-2xl border border-slate-900/10 bg-slate-900 p-6 text-slate-100 shadow-lg">
+                    <div className="flex items-start gap-4">
+                        <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/90 text-white shadow-md">
+                            <Sparkles className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1 space-y-4">
+                            <Textarea
+                                id="library-keywords"
+                                placeholder='Ask anything across cases, statutes, and knowledge—e.g. "How does Washington define duty of care for transitional housing programs?"'
+                                value={query}
+                                onChange={(event) => setQuery(event.target.value)}
+                                className="min-h-[96px] resize-none border-none bg-white/10 text-base text-white placeholder:text-slate-300 focus-visible:ring-2 focus-visible:ring-emerald-400"
+                            />
+                            <div className="flex flex-wrap items-center justify-between gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsAdvancedOpen((previous) => !previous)}
+                                    className="inline-flex items-center gap-2 text-xs font-medium text-emerald-100 transition hover:text-white"
+                                >
+                                    <ChevronDown
+                                        className={cn(
+                                            "h-4 w-4 transition-transform",
+                                            isAdvancedOpen ? "rotate-180" : "rotate-0"
+                                        )}
+                                    />
+                                    {isAdvancedOpen ? "Hide advanced filters" : "Advanced filters"}
+                                </button>
+                                <div className="flex items-center gap-3">
+                                    <span className="hidden text-[11px] uppercase tracking-wide text-emerald-200 sm:inline">
+                                        Press ⏎ to send
+                                    </span>
+                                    <Button
+                                        type="submit"
+                                        size="lg"
+                                        className="bg-emerald-500 text-white hover:bg-emerald-400"
+                                        disabled={isSearching}
+                                    >
+                                        {isSearching ? (
+                                            <>
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                Synthesizing
+                                            </>
+                                        ) : (
+                                            "Ask Life-AI"
+                                        )}
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {aiAssistEnabled && (aiAssistSummary || aiAssistAnswer) ? (
-                        <div className="mt-3 flex items-start gap-2 rounded-md border border-emerald-100 bg-emerald-50/90 px-3 py-2 text-sm text-emerald-900">
-                            <Sparkles className="mt-0.5 h-4 w-4" />
-                            <div className="space-y-2">
+                </div>
+
+                <Collapsible open={isAdvancedOpen} onOpenChange={setIsAdvancedOpen} className="w-full">
+                    <CollapsibleContent className="mt-4 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+                        <div className="grid gap-6 lg:grid-cols-3">
+                            <section className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">Federal courts</Label>
+                                    <JurisdictionMultiSelect
+                                        triggerLabel="Select federal courts"
+                                        options={FEDERAL_JURISDICTIONS}
+                                        selectedValues={selectedJurisdictions}
+                                        onToggle={toggleJurisdiction}
+                                        isSelected={isJurisdictionSelected}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">Administrative &amp; international</Label>
+                                    <JurisdictionMultiSelect
+                                        triggerLabel="Select agencies"
+                                        options={AGENCY_JURISDICTIONS}
+                                        selectedValues={selectedJurisdictions}
+                                        onToggle={toggleJurisdiction}
+                                        isSelected={isJurisdictionSelected}
+                                        emptyMessage="Select a scope to focus on agency materials."
+                                    />
+                                </div>
+                            </section>
+                            <section className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">Collections</Label>
+                                    <div className="grid gap-2">
+                                        {legalCollections.map((collection) => {
+                                            const inputId = `collection-${collection.value}`;
+                                            return (
+                                                <label
+                                                    key={collection.value}
+                                                    className="flex items-center gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
+                                                >
+                                                    <Checkbox
+                                                        id={inputId}
+                                                        checked={selectedCollections.has(collection.value)}
+                                                        onCheckedChange={(checked) => handleCollectionChange(collection.value, checked)}
+                                                    />
+                                                    <span>{collection.label}</span>
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">State focus</Label>
+                                    <Select value={selectedState} onValueChange={setSelectedState}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="All states" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="ALL">All states</SelectItem>
+                                            {STATE_OPTIONS.map((state) => (
+                                                <SelectItem key={state.code} value={state.code}>
+                                                    {state.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <div className="space-y-2">
+                                        <Label className="text-sm font-semibold text-slate-700">State courts</Label>
+                                        <JurisdictionMultiSelect
+                                            triggerLabel={
+                                                selectedState === "ALL"
+                                                    ? "Select state courts"
+                                                    : `${selectedStateLabel} courts`
+                                            }
+                                            options={
+                                                selectedState === "ALL"
+                                                    ? (STATE_COURT_OPTIONS.ALL ?? [])
+                                                    : (STATE_COURT_OPTIONS[selectedState] ?? [])
+                                            }
+                                            selectedValues={selectedJurisdictions}
+                                            onToggle={toggleJurisdiction}
+                                            isSelected={isJurisdictionSelected}
+                                            emptyMessage="Select a state to refine court targets."
+                                        />
+                                    </div>
+                                </div>
+                            </section>
+                            <section className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">Date range</Label>
+                                    <Select value={selectedDateRange} onValueChange={(value) => setSelectedDateRange(value as LegalFilters["dateRange"])}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Any time" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="any">Any time</SelectItem>
+                                            <SelectItem value="5y">Last 5 years</SelectItem>
+                                            <SelectItem value="2y">Last 2 years</SelectItem>
+                                            <SelectItem value="1y">Last 12 months</SelectItem>
+                                            <SelectItem value="90d">Last 90 days</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-sm font-semibold text-slate-700">Phrase boost</Label>
+                                    <Textarea
+                                        rows={4}
+                                        placeholder='Use a key phrase we should match, e.g. "foreseeable harm in transitional housing"'
+                                        value={phraseBoost}
+                                        onChange={(event) => setPhraseBoost(event.target.value)}
+                                    />
+                                </div>
+                            </section>
+                        </div>
+                    </CollapsibleContent>
+                </Collapsible>
+
+                {isSearching && !aiAssistAnswer && !aiAssistSummary ? (
+                    <div className="mt-4 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 shadow-sm">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>Generating a cross-source synthesis…</span>
+                    </div>
+                ) : null}
+
+                {(aiAssistAnswer || aiAssistSummary || (aiAssistSources && aiAssistSources.length > 0)) ? (
+                    <div className="mt-4 rounded-2xl border border-emerald-200 bg-white p-6 shadow-lg">
+                        <div className="flex items-start gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
+                                <Sparkles className="h-5 w-5" />
+                            </div>
+                            <div className="space-y-3 text-sm text-slate-700">
                                 {aiAssistAnswer ? (
                                     <div className="space-y-2">
-                                        <p className="font-semibold uppercase tracking-wide text-emerald-700">
-                                            AI research answer
-                                        </p>
-                                        <p>{aiAssistAnswer}</p>
+                                        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">AI synthesis</p>
+                                        <p className="whitespace-pre-wrap leading-relaxed">{aiAssistAnswer}</p>
                                         {aiAssistCitations ? (
-                                            <ul className="list-inside list-disc text-xs text-emerald-800">
+                                            <ul className="space-y-1 text-xs text-emerald-700">
                                                 {aiAssistCitations.map((citation) => (
                                                     <li key={`citation-${citation.ref}`}>
-                                                        [${citation.ref}] {citation.label}
+                                                        [{citation.ref}] {citation.label}
                                                         {citation.url ? (
                                                             <>
                                                                 {" "}
                                                                 <Link
                                                                     href={citation.url}
-                                                                    className="text-emerald-700 underline"
+                                                                    className="text-emerald-600 underline"
                                                                     target="_blank"
                                                                     rel="noreferrer"
                                                                 >
@@ -1796,16 +1790,16 @@ export function LibSearchBar({
                                         ) : null}
                                     </div>
                                 ) : null}
-                                {aiAssistSummary ? <p>{aiAssistSummary}</p> : null}
+                                {aiAssistSummary ? <p className="text-sm leading-relaxed text-slate-600">{aiAssistSummary}</p> : null}
                                 {aiAssistQuery ? (
-                                    <p className="text-xs text-emerald-800">
-                                        Query used: <span className="font-semibold">{aiAssistQuery}</span>
+                                    <p className="text-xs text-slate-500">
+                                        Refined query: <span className="font-medium text-slate-700">{aiAssistQuery}</span>
                                     </p>
                                 ) : null}
                                 {aiAssistSources && aiAssistSources.length > 0 ? (
-                                    <div className="rounded-md border border-emerald-200 bg-white/80 px-2 py-2 text-xs text-emerald-900">
-                                        <p className="font-semibold uppercase tracking-wide text-emerald-700">Live sources</p>
-                                        <ul className="mt-1 space-y-1">
+                                    <div className="rounded-xl border border-emerald-100 bg-emerald-50/80 p-3">
+                                        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Source highlights</p>
+                                        <ul className="mt-2 space-y-1 text-xs text-emerald-800">
                                             {aiAssistSources.map((source, index) => (
                                                 <li key={`${source.title}-${index}`}>
                                                     [{index + 1}] {source.title}
@@ -1814,7 +1808,7 @@ export function LibSearchBar({
                                                             {" "}
                                                             <Link
                                                                 href={source.url}
-                                                                className="text-emerald-700 underline"
+                                                                className="text-emerald-600 underline"
                                                                 target="_blank"
                                                                 rel="noreferrer"
                                                             >
@@ -1829,407 +1823,66 @@ export function LibSearchBar({
                                 ) : null}
                             </div>
                         </div>
-                    ) : null}
-                </div>
-
-                {researchType === "legal" ? (
-                    <Collapsible open={isAdvancedOpen} onOpenChange={setIsAdvancedOpen} className="space-y-4">
-                        <div className="flex flex-col gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 md:flex-row md:items-center md:justify-between">
-                            <div>
-                                <p className="text-sm font-semibold text-slate-800">Advanced search</p>
-                                <p className="text-xs text-slate-500">
-                                    Narrow by jurisdiction, collection, date range, and phrase boosts. Defaults target primary federal and state sources.
-                                </p>
-                            </div>
-                            <CollapsibleTrigger asChild>
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    size="sm"
-                                    className="mt-2 inline-flex items-center gap-2 transition md:mt-0 data-[state=open]:bg-slate-900 data-[state=open]:text-white"
-                                >
-                                    <span>{isAdvancedOpen ? "Hide filters" : "Show filters"}</span>
-                                    <ChevronDown className="h-4 w-4 transition-transform data-[state=open]:rotate-180" />
-                                </Button>
-                            </CollapsibleTrigger>
-                        </div>
-                        <CollapsibleContent className="rounded-lg border border-slate-200 bg-white p-4">
-                            <div className="grid gap-6 lg:grid-cols-3">
-                                <section className="space-y-4">
-                                    <div className="space-y-2">
-                                        <Label className="text-sm font-semibold text-slate-700">Federal courts</Label>
-                                        <JurisdictionMultiSelect
-                                            triggerLabel="Select federal courts"
-                                            options={FEDERAL_JURISDICTIONS}
-                                            selectedValues={selectedJurisdictions}
-                                            onToggle={toggleJurisdiction}
-                                            isSelected={isJurisdictionSelected}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label className="text-sm font-semibold text-slate-700">Administrative &amp; international</Label>
-                                        <JurisdictionMultiSelect
-                                            triggerLabel="Select tribunals"
-                                            options={AGENCY_JURISDICTIONS}
-                                            selectedValues={selectedJurisdictions}
-                                            onToggle={toggleJurisdiction}
-                                            isSelected={isJurisdictionSelected}
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                    <p className="text-sm font-semibold text-slate-700">Collections</p>
-                                        <div className="space-y-2">
-                                            {legalCollections.map((collection) => {
-                                                const inputId = `collection-${collection.value}`;
-                                                return (
-                                                    <div key={collection.value} className="flex items-center gap-2">
-                                                        <Checkbox
-                                                            id={inputId}
-                                                            checked={selectedCollections.has(collection.value)}
-                                                            onCheckedChange={(checked) => handleCollectionChange(collection.value, checked)}
-                                                        />
-                                                        <Label htmlFor={inputId} className="text-sm text-slate-700">
-                                                            {collection.label}
-                                                        </Label>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <section className="space-y-3">
-                                    <Label className="text-sm font-semibold text-slate-700">State focus</Label>
-                                    <Select value={selectedState} onValueChange={setSelectedState}>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select a state" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="ALL">All states</SelectItem>
-                                            {STATE_OPTIONS.map((state) => (
-                                                <SelectItem key={state.code} value={state.code}>
-                                                    {state.name}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <JurisdictionMultiSelect
-                                        triggerLabel={
-                                            selectedState === "ALL"
-                                                ? "State courts"
-                                                : `${selectedStateLabel} courts`
-                                        }
-                                        options={selectedState === "ALL" ? STATE_COURT_OPTIONS.ALL ?? [] : STATE_COURT_OPTIONS[selectedState] ?? []}
-                                        selectedValues={selectedJurisdictions}
-                                        onToggle={toggleJurisdiction}
-                                        isSelected={isJurisdictionSelected}
-                                        emptyMessage="Select a state to refine court targets."
-                                    />
-                                </section>
-
-                                <section className="space-y-3">
-                                    <Label className="text-sm font-semibold text-slate-700">Date range</Label>
-                                    <Select
-                                        value={selectedDateRange}
-                                        onValueChange={(value) => setSelectedDateRange(value as LegalFilters["dateRange"])}
-                                    >
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Any time" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="any">Any time</SelectItem>
-                                            <SelectItem value="5y">Last 5 years</SelectItem>
-                                            <SelectItem value="2y">Last 2 years</SelectItem>
-                                            <SelectItem value="1y">Last 12 months</SelectItem>
-                                            <SelectItem value="90d">Last 90 days</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <div className="space-y-2">
-                                        <Label className="text-sm font-semibold text-slate-700">Phrase boost</Label>
-                                        <p className="text-xs text-slate-500">
-                                            Highlight the core issue you&apos;re investigating. We&apos;ll use it to suggest stronger matches.
-                                        </p>
-                                        <Textarea
-                                            rows={5}
-                                            placeholder='e.g. "foreseeable harm in transitional housing"'
-                                            value={phraseBoost}
-                                            onChange={(event) => setPhraseBoost(event.target.value)}
-                                        />
-                                    </div>
-                                </section>
-                            </div>
-                        </CollapsibleContent>
-                    </Collapsible>
+                    </div>
                 ) : null}
 
-                <div className="space-y-3">
-                    <Label htmlFor="library-keywords" className="text-sm font-semibold text-slate-700">
-                        Keyword or citation
-                    </Label>
-                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
-                        <Input
-                            id="library-keywords"
-                            type="search"
-                            placeholder='e.g. duty of care "negligence" /s foreseeability'
-                            className="h-12 flex-1 text-base md:text-lg"
-                            value={query}
-                            onChange={(event) => setQuery(event.target.value)}
-                        />
-                        <Button type="submit" className="h-12 md:px-8" disabled={isSearching}>
-                            {isSearching
-                                ? "Searching..."
-                                : researchType === "legal"
-                                    ? "Search Library"
-                                    : researchType === "academic"
-                                        ? "Search Academic"
-                                        : "Run AI Research"}
-                        </Button>
-                    </div>
-                    <p className="text-xs text-slate-500">
-                        {researchType === "legal"
-                            ? "Use connectors like AND, OR, /s, and /p to shape precise legal searches."
-                            : researchType === "academic"
-                                ? "Combine keywords with filters to surface journals, books, and working papers."
-                                : "The assistant will unify legal, academic, and news sources for a single narrative output."}
-                    </p>
-                </div>
-
-
-                {researchType === "academic" && (
-                    <div className="grid gap-6 lg:grid-cols-3">
-                        <section className="space-y-3">
-                            <Label className="text-sm font-semibold text-slate-700">Discipline</Label>
-                            <Select defaultValue="law">
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select discipline" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {academicDisciplines.map((discipline) => (
-                                        <SelectItem key={discipline.value} value={discipline.value}>
-                                            {discipline.label}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </section>
-                        <section className="space-y-3">
-                            <Label className="text-sm font-semibold text-slate-700">Sources</Label>
-                            <div className="space-y-2">
-                                {academicSources.map((source) => {
-                                    const inputId = `academic-${source.value}`;
-                                    return (
-                                        <div key={source.value} className="flex items-center gap-2">
-                                            <Checkbox id={inputId} defaultChecked={source.defaultChecked} />
-                                            <Label htmlFor={inputId} className="text-sm text-slate-700">
-                                                {source.label}
-                                            </Label>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </section>
-                        <section className="space-y-3">
-                            <Label className="text-sm font-semibold text-slate-700">Notes</Label>
-                            <Textarea rows={5} placeholder="Capture focus questions, jurisdictions, or populations of interest" />
-                        </section>
-                    </div>
-                )}
-
-                {researchType === "ai" && (
-                    <div className="grid gap-6 lg:grid-cols-2">
-                        <section className="space-y-3">
-                            <Label className="text-sm font-semibold text-slate-700">AI scope</Label>
-                            <Select defaultValue="legal">
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select scope" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {aiScopes.map((scope) => (
-                                        <SelectItem key={scope.value} value={scope.value}>
-                                            {scope.label}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </section>
-                        <section className="space-y-3">
-                            <Label className="text-sm font-semibold text-slate-700">Output style</Label>
-                            <Select defaultValue="brief">
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select output style" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {aiOutputStyles.map((style) => (
-                                        <SelectItem key={style.value} value={style.value}>
-                                            {style.label}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                            <Textarea rows={5} placeholder="Add instructions or goals for the AI synopsis" />
-                        </section>
-                    </div>
-                )}
-
-                <section aria-live="polite" className="space-y-4">
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-slate-900">Search results</h3>
+                <section aria-live="polite" className="mt-6 space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h3 className="text-lg font-semibold text-slate-900">Top matches</h3>
                         {lastQuery ? (
                             <span className="text-xs text-slate-500">
-                                {researchType === "legal"
-                                    ? `Showing up to ${LEGAL_RESOURCE_PAGE_SIZE} results per resource for “${lastQuery}”`
-                                    : `Showing up to 10 matches for “${lastQuery}”`}
+                                Showing {results.length} blended results for “{lastQuery}”
                             </span>
                         ) : (
-                            <span className="text-xs text-slate-500">Enter a query to view matching resources</span>
+                            <span className="text-xs text-slate-500">Ask a question to surface sources instantly.</span>
                         )}
                     </div>
 
                     {error ? (
-                        <p className="rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
-                            {error}
-                        </p>
+                        <p className="rounded-2xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-700">{error}</p>
                     ) : null}
 
                     {results.length > 0 ? (
-                        researchType === "legal" ? (
-                            legalResourceBuckets.length > 0 ? (
-                                <Accordion type="multiple" className="space-y-3">
-                                    {legalResourceBuckets.map((bucket) => {
-                                        const currentPage = resourcePages[bucket.key] ?? 0;
-                                        const visibleCount = Math.min(
-                                            bucket.results.length,
-                                            (currentPage + 1) * LEGAL_RESOURCE_PAGE_SIZE
-                                        );
-                                        const visibleResults = bucket.results.slice(0, visibleCount);
-                                        const hasMore = visibleCount < bucket.results.length;
-                                        return (
-                                            <AccordionItem
-                                                key={bucket.key}
-                                                value={bucket.key}
-                                                className="overflow-hidden rounded-lg border border-slate-200 bg-white"
-                                            >
-                                                <AccordionTrigger className="px-4 py-3 text-base font-semibold text-slate-900">
-                                                    <div className="flex w-full items-center justify-between gap-4">
-                                                        <span>{bucket.label}</span>
-                                                        <span className="text-xs font-normal text-slate-500">
-                                                            {visibleCount} of {bucket.results.length}
-                                                        </span>
-                                                    </div>
-                                                </AccordionTrigger>
-                                                <AccordionContent className="space-y-3 px-4 pb-4">
-                                                    {visibleResults.map((result) => {
-                                                        const formattedDate = formatResultDate(result.date ?? null);
-                                                        const matchQuality = Math.round(result.score * 100);
-                                                        return (
-                                                            <div
-                                                                key={result.id}
-                                                                className="rounded-md border border-slate-200 bg-white p-4 shadow-sm"
-                                                            >
-                                                                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                                                                    <div className="space-y-2">
-                                                                        <div className="flex flex-wrap items-center gap-2">
-                                                                            <Badge variant="outline">
-                                                                                {result.sourceLabel ?? bucket.label}
-                                                                            </Badge>
-                                                                            <Badge variant="secondary">
-                                                                                {COLLECTION_LABELS[result.collection]}
-                                                                            </Badge>
-                                                                            <Badge variant="secondary">
-                                                                                {JURISDICTION_LABELS[result.jurisdiction]}
-                                                                            </Badge>
-                                                                            <Badge variant="outline">{matchQuality}% match</Badge>
-                                                                        </div>
-                                                                        <h5 className="text-base font-semibold text-slate-900">
-                                                                            {result.title}
-                                                                        </h5>
-                                                                        <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wide text-slate-500">
-                                                                            {formattedDate ? <span>{formattedDate}</span> : null}
-                                                                            {result.year && (!formattedDate || !formattedDate.includes(result.year)) ? (
-                                                                                <span>{result.year}</span>
-                                                                            ) : null}
-                                                                        </div>
-                                                                        {result.snippetHtml ? (
-                                                                            <p
-                                                                                className="text-sm leading-relaxed text-slate-600"
-                                                                                dangerouslySetInnerHTML={{ __html: result.snippetHtml }}
-                                                                            />
-                                                                        ) : (
-                                                                            <p className="text-sm leading-relaxed text-slate-600">{result.snippet}</p>
-                                                                        )}
-                                                                    </div>
-                                                                    <div className="flex flex-col items-end gap-2 text-xs text-slate-500">
-                                                                        {caseManagement && attachableClients.length ? (
-                                                                            <Button
-                                                                                type="button"
-                                                                                variant="outline"
-                                                                                size="sm"
-                                                                                className="w-full min-w-[140px] text-xs text-slate-700 sm:w-auto"
-                                                                                onClick={() => handleOpenAttachmentDialog(result)}
-                                                                            >
-                                                                                Attach to case
-                                                                            </Button>
-                                                                        ) : null}
-                                                                        <Link
-                                                                            href={result.href}
-                                                                            target={result.external ? "_blank" : undefined}
-                                                                            rel={result.external ? "noopener noreferrer" : undefined}
-                                                                            className="text-sm font-medium text-emerald-700 hover:text-emerald-900 hover:underline"
-                                                                        >
-                                                                            View document
-                                                                        </Link>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                    {hasMore ? (
-                                                        <div className="pt-2">
-                                                            <Button
-                                                                type="button"
-                                                                variant="ghost"
-                                                                size="sm"
-                                                                className="inline-flex items-center gap-2"
-                                                                onClick={() =>
-                                                                    handleNextPage(bucket.key, bucket.label, bucket.results.length)
-                                                                }
-                                                            >
-                                                                Next
-                                                                <ChevronRight className="h-4 w-4" />
-                                                            </Button>
-                                                        </div>
-                                                    ) : null}
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        );
-                                    })}
-                                </Accordion>
-                            ) : (
-                                <p className="rounded-md border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
-                                    No legal resources matched your filters. Try broadening the jurisdiction or collections.
-                                </p>
-                            )
-                        ) : (
-                            <div className="space-y-4">
-                                {results.map((result) => (
+                        <div className="space-y-4">
+                            {results.map((result) => {
+                                const formattedDate = formatResultDate(result.date ?? null);
+                                const matchQuality = Math.round(result.score * 100);
+                                return (
                                     <div
                                         key={result.id}
-                                        className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+                                        className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
                                     >
-                                        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                                            <div className="flex items-center gap-3">
-                                                <Badge variant="outline">{result.sourceLabel ?? result.type}</Badge>
-                                                <Badge variant="secondary">
-                                                    {Math.round(result.score * 100)}% match quality
-                                                </Badge>
+                                        <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+                                            <div className="space-y-2">
+                                                <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-tight text-slate-500">
+                                                    <Badge variant="outline">{result.sourceLabel ?? result.type}</Badge>
+                                                    <Badge variant="secondary">{COLLECTION_LABELS[result.collection]}</Badge>
+                                                    <Badge variant="secondary">{JURISDICTION_LABELS[result.jurisdiction]}</Badge>
+                                                    <Badge variant="outline">{matchQuality}% match</Badge>
+                                                </div>
+                                                <h4 className="text-base font-semibold text-slate-900">{result.title}</h4>
+                                                {result.snippetHtml ? (
+                                                    <div
+                                                        className="prose prose-sm max-w-none text-slate-600"
+                                                        dangerouslySetInnerHTML={{ __html: result.snippetHtml }}
+                                                    />
+                                                ) : (
+                                                    <p className="text-sm text-slate-600">{result.snippet}</p>
+                                                )}
+                                                <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wide text-slate-400">
+                                                    {formattedDate ? <span>{formattedDate}</span> : null}
+                                                    {result.year && (!formattedDate || !formattedDate.includes(result.year)) ? (
+                                                        <span>{result.year}</span>
+                                                    ) : null}
+                                                </div>
                                             </div>
-                                            <div className="flex flex-wrap items-center gap-2">
+                                            <div className="flex flex-col items-end gap-2 text-xs text-slate-500">
                                                 {caseManagement && attachableClients.length ? (
                                                     <Button
                                                         type="button"
                                                         variant="outline"
                                                         size="sm"
-                                                        className="text-xs text-slate-700"
+                                                        className="w-full min-w-[140px] text-xs text-slate-700 sm:w-auto"
                                                         onClick={() => handleOpenAttachmentDialog(result)}
                                                     >
                                                         Attach to case
@@ -2241,28 +1894,17 @@ export function LibSearchBar({
                                                     rel={result.external ? "noopener noreferrer" : undefined}
                                                     className="text-sm font-medium text-emerald-700 hover:text-emerald-900 hover:underline"
                                                 >
-                                                    Open {result.external ? "source" : "in Life-AI"}
+                                                    View document
                                                 </Link>
                                             </div>
                                         </div>
-                                        <div>
-                                            <h4 className="text-base font-semibold text-slate-900">{result.title}</h4>
-                                            {result.snippetHtml ? (
-                                                <p
-                                                    className="text-sm leading-relaxed text-slate-600"
-                                                    dangerouslySetInnerHTML={{ __html: result.snippetHtml }}
-                                                />
-                                            ) : (
-                                                <p className="text-sm text-slate-600">{result.snippet}</p>
-                                            )}
-                                        </div>
                                     </div>
-                                ))}
-                            </div>
-                        )
-                    ) : !error && lastQuery ? (
-                        <p className="rounded-md border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
-                            No matches yet—try a different keyword or broaden your filters.
+                                );
+                            })}
+                        </div>
+                    ) : lastQuery && !isSearching ? (
+                        <p className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
+                            No direct matches found. Try broadening your language or adjusting filters.
                         </p>
                     ) : null}
                 </section>

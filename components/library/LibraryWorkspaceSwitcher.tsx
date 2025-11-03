@@ -72,8 +72,6 @@ export function LibraryWorkspaceSwitcher() {
           <LibSearchBar
             heading="Academic Research"
             description="Blend natural language prompts with academic connectors. AI synthesis surfaces cross-source insights while we list the top five results across disciplines."
-            initialResearchType="ai"
-            enabledResearchTypes={["ai", "academic"]}
           />
         </section>
       )}

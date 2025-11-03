@@ -1534,7 +1534,7 @@ export function LibSearchBar({
             setAiAssistAnswer(null);
             setAiAssistCitations(null);
 
-            let effectiveQuery = trimmed;
+            let refinedQuery: string | null = null;
             let assistWebResults: AiSearchAssistWebResult[] | null = null;
             let summaryText: string | null = null;
             let sourcesList: AiSearchAssistWebResult[] | null = null;
@@ -1546,12 +1546,12 @@ export function LibSearchBar({
                 const assist = await requestAiSearchAssist(trimmed, researchType);
                 const rewritten = assist.searchQuery?.trim();
                 if (rewritten) {
-                    effectiveQuery = rewritten;
+                    refinedQuery = rewritten;
                 }
                 const summaryValue = assist.summary?.trim() || "AI assist refined your query for better matching.";
                 setAiAssistSummary(summaryValue);
                 summaryText = summaryValue;
-                setAiAssistQuery(effectiveQuery);
+                setAiAssistQuery(refinedQuery ?? trimmed);
                 const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
                 const seenUrls = new Set<string>();
                 const sanitizedWebResults: SanitizedWebResult[] = rawWebResults
@@ -1615,18 +1615,40 @@ export function LibSearchBar({
                 requestFilters.state = selectedState;
             }
 
-            const refinedQuery = effectiveQuery;
-            const response = await searchDirectory(effectiveQuery, "all", Math.max(5, effectiveMaxResults), requestFilters);
-            const aggregated = aggregateSearchResults(
-                effectiveQuery,
+            const primaryQuery = refinedQuery ?? trimmed;
+            let response = await searchDirectory(primaryQuery, "all", Math.max(5, effectiveMaxResults), requestFilters);
+            let aggregated = aggregateSearchResults(
+                primaryQuery,
                 response,
                 researchType,
                 legalFilters,
                 assistWebResults,
                 effectiveMaxResults
             );
+            let activeQueryForResults = primaryQuery;
+
+            if (aggregated.length === 0 && refinedQuery && refinedQuery !== trimmed) {
+                try {
+                    response = await searchDirectory(trimmed, "all", Math.max(5, effectiveMaxResults), requestFilters);
+                    const fallbackAggregated = aggregateSearchResults(
+                        trimmed,
+                        response,
+                        researchType,
+                        legalFilters,
+                        assistWebResults,
+                        effectiveMaxResults
+                    );
+                    if (fallbackAggregated.length > aggregated.length) {
+                        aggregated = fallbackAggregated;
+                        activeQueryForResults = trimmed;
+                    }
+                } catch (fallbackError) {
+                    console.error(fallbackError);
+                }
+            }
+
             setResults(aggregated);
-            setLastQuery(effectiveQuery);
+            setLastQuery(activeQueryForResults);
             let answerContext: AiSearchAnswerResultInput[] = [];
             const buildAnswerUrl = (item: AggregatedResult): string | null => {
                 const href = typeof item.href === "string" ? item.href : null;
@@ -1688,7 +1710,8 @@ export function LibSearchBar({
             let answerGenerated = false;
             if (answerContext.length > 0) {
                 try {
-                    const answer = await requestAiSearchAnswer(effectiveQuery, researchType, answerContext);
+                    const answerQuery = refinedQuery ?? activeQueryForResults;
+                    const answer = await requestAiSearchAnswer(answerQuery, researchType, answerContext);
                     answerText = answer.answer;
                     citationsList = answer.citations.length ? answer.citations : null;
                     setAiAssistAnswer(answerText);
@@ -1728,7 +1751,7 @@ export function LibSearchBar({
 
             searchLifecycle?.onSuccess?.({
                 originalQuery: trimmed,
-                effectiveQuery: refinedQuery,
+                effectiveQuery: activeQueryForResults,
                 results: aggregated,
                 aiAnswer: answerText,
                 aiSummary: summaryText,

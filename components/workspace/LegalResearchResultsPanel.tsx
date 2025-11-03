@@ -65,6 +65,19 @@ function ResultCard({ result }: { result: AggregatedResult }) {
     );
 }
 
+type NormalizedCitation = {
+    ref: string | number;
+    label: string;
+    url?: string | null;
+};
+
+type NormalizedHighlight = {
+    title: string;
+    url?: string | null;
+    snippet?: string | null;
+    source?: string | null;
+};
+
 function AiSynthesisBlock({
     answer,
     summary,
@@ -75,8 +88,8 @@ function AiSynthesisBlock({
     answer: string | null;
     summary: string | null;
     refinedQuery: string | null;
-    citations?: ReadonlyArray<{ ref: string; label: string; url?: string | null }> | null;
-    sources?: ReadonlyArray<{ title: string; url: string; snippet: string | null; source: string | null }> | null;
+    citations?: ReadonlyArray<NormalizedCitation> | null;
+    sources?: ReadonlyArray<NormalizedHighlight> | null;
 }) {
     const hasContent =
         Boolean(answer) ||
@@ -101,7 +114,7 @@ function AiSynthesisBlock({
                                 <ul className="space-y-1 text-xs text-emerald-700">
                                     {citations.map((citation) => (
                                         <li key={`citation-${citation.ref}`}>
-                                            [{citation.ref}] {citation.label}
+                                            [{String(citation.ref)}] {citation.label}
                                             {citation.url ? (
                                                 <Fragment>
                                                     {" "}
@@ -178,6 +191,23 @@ export function LegalResearchResultsPanel({ className }: LegalResearchResultsPan
         className,
     );
 
+    const normalizedCitations = Array.isArray(aiCitations)
+        ? aiCitations.map<NormalizedCitation>((citation) => ({
+              ref: citation.ref,
+              label: citation.label,
+              url: citation.url,
+          }))
+        : null;
+
+    const normalizedSources = Array.isArray(aiSources)
+        ? aiSources.map<NormalizedHighlight>((source) => ({
+              title: source.title,
+              url: source.url ?? null,
+              snippet: source.snippet ?? null,
+              source: source.source ?? null,
+          }))
+        : null;
+
     const activeQuery = effectiveQuery ?? originalQuery;
     const isLoading = status === "loading";
     const isError = status === "error";
@@ -233,8 +263,8 @@ export function LegalResearchResultsPanel({ className }: LegalResearchResultsPan
                         answer={aiAnswer}
                         summary={aiSummary}
                         refinedQuery={effectiveQuery}
-                        citations={aiCitations}
-                        sources={aiSources}
+                        citations={normalizedCitations}
+                        sources={normalizedSources}
                     />
                     {infoMessage ? (
                         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">

@@ -1091,6 +1091,10 @@ function aggregateSearchResults(
 
     let combinedResults = collectBuckets(bucketedResults);
 
+    if (combinedResults.length === 0 && fallbackBucketedResults.size > 0) {
+        combinedResults = collectBuckets(fallbackBucketedResults);
+    }
+
     const bucketKeys = combinedResults.length
         ? Array.from(new Set(combinedResults.map((entry) => entry.resourceKey ?? "misc")))
         : Array.from(fallbackBucketedResults.keys());

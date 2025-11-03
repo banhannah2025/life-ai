@@ -527,12 +527,7 @@ function aggregateSearchResults(
                   )
               )
             : [];
-    const minimumTokenMatches =
-        !isLegal || meaningfulTokens.length === 0
-            ? 0
-            : meaningfulTokens.length <= 2
-                ? meaningfulTokens.length
-                : Math.min(3, Math.max(1, Math.ceil(meaningfulTokens.length * 0.4)));
+    const minimumTokenMatches = 0;
 
     const shouldIncludeCollection = (collection: AggregatedResult["collection"]) => {
         if (!isLegal && !enforceCollections) {

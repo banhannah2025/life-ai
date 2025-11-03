@@ -46,7 +46,7 @@ import { STATE_NAME_TO_CODE, STATE_OPTIONS } from "@/lib/location/states";
 
 type ResearchType = "legal" | "academic" | "ai";
 
-type AggregatedResult = {
+export type AggregatedResult = {
     id: string;
     title: string;
     snippet: string;
@@ -80,6 +80,23 @@ type JurisdictionOption = {
     children?: JurisdictionOption[];
 };
 
+type LibSearchBarSearchLifecycle = {
+    onStart?: (query: string) => void;
+    onSuccess?: (payload: LibSearchSuccessPayload) => void;
+    onError?: (context: { query: string | null; error: string }) => void;
+};
+
+export type LibSearchSuccessPayload = {
+    originalQuery: string;
+    effectiveQuery: string;
+    results: AggregatedResult[];
+    aiAnswer: string | null;
+    aiSummary: string | null;
+    aiCitations: AiSearchAnswerCitation[] | null;
+    aiSources: AiSearchAssistWebResult[] | null;
+    infoMessage?: string | null;
+};
+
 type LibSearchBarProps = {
     heading?: string;
     description?: string;
@@ -88,6 +105,7 @@ type LibSearchBarProps = {
     enabledResearchTypes?: ResearchType[];
     maxResults?: number;
     variant?: "default" | "sidebar";
+    searchLifecycle?: LibSearchBarSearchLifecycle;
 };
 
 const DEFAULT_RESEARCH_TYPES: ResearchType[] = ["ai"];
@@ -219,7 +237,7 @@ const LEGAL_RESOURCE_PRIORITY: Record<string, number> = {
 };
 
 
-const COLLECTION_LABELS: Record<AggregatedResult["collection"], string> = {
+export const COLLECTION_LABELS: Record<AggregatedResult["collection"], string> = {
     "primary-law": "Primary Law",
     secondary: "Secondary Sources",
     litigation: "Litigation & Dockets",
@@ -227,7 +245,7 @@ const COLLECTION_LABELS: Record<AggregatedResult["collection"], string> = {
     internet: "Live Web",
 };
 
-const JURISDICTION_LABELS: Record<AggregatedResult["jurisdiction"], string> = {
+export const JURISDICTION_LABELS: Record<AggregatedResult["jurisdiction"], string> = {
     federal: "Federal",
     state: "State",
     agency: "Administrative",
@@ -307,7 +325,7 @@ function isWithinDateRange(dateString: string | null | undefined, range: LegalFi
     }
 }
 
-function formatResultDate(dateString: string | null | undefined): string | null {
+export function formatResultDate(dateString: string | null | undefined): string | null {
     if (!dateString) {
         return null;
     }
@@ -1141,6 +1159,7 @@ export function LibSearchBar({
     enabledResearchTypes,
     maxResults,
     variant = "default",
+    searchLifecycle,
 }: LibSearchBarProps = {}) {
     const resolvedResearchTypes = useMemo<ResearchType[]>(() => {
         const source = enabledResearchTypes ?? DEFAULT_RESEARCH_TYPES;
@@ -1421,12 +1440,15 @@ export function LibSearchBar({
         event.preventDefault();
         const trimmed = query.trim();
         if (!trimmed) {
-            setError("Enter a keyword, citation, or phrase to begin searching.");
+            const message = "Enter a keyword, citation, or phrase to begin searching.";
+            setError(message);
             setResults([]);
             setLastQuery(null);
+            searchLifecycle?.onError?.({ query: null, error: message });
             return;
         }
 
+        searchLifecycle?.onStart?.(trimmed);
         setIsSearching(true);
         setError(null);
         try {
@@ -1438,6 +1460,11 @@ export function LibSearchBar({
 
             let effectiveQuery = trimmed;
             let assistWebResults: AiSearchAssistWebResult[] | null = null;
+            let summaryText: string | null = null;
+            let sourcesList: AiSearchAssistWebResult[] | null = null;
+            let answerText: string | null = null;
+            let citationsList: AiSearchAnswerCitation[] | null = null;
+            let infoMessage: string | null = null;
 
             try {
                 const assist = await requestAiSearchAssist(trimmed, researchType);
@@ -1445,9 +1472,9 @@ export function LibSearchBar({
                 if (rewritten) {
                     effectiveQuery = rewritten;
                 }
-                setAiAssistSummary(
-                    assist.summary?.trim() || "AI assist refined your query for better matching.",
-                );
+                const summaryValue = assist.summary?.trim() || "AI assist refined your query for better matching.";
+                setAiAssistSummary(summaryValue);
+                summaryText = summaryValue;
                 setAiAssistQuery(effectiveQuery);
                 const rawWebResults = Array.isArray(assist.webResults) ? assist.webResults : [];
                 const seenUrls = new Set<string>();
@@ -1477,12 +1504,15 @@ export function LibSearchBar({
                     .filter((entry): entry is SanitizedWebResult => entry !== null);
                 assistWebResults = sanitizedWebResults.length ? sanitizedWebResults : null;
                 setAiAssistSources(assistWebResults);
+                sourcesList = assistWebResults;
             } catch (assistError) {
                 console.error(assistError);
                 toast.error(
                     assistError instanceof Error ? assistError.message : "AI assist unavailable. Using original query.",
                 );
                 setAiAssistSources(null);
+                summaryText = null;
+                sourcesList = null;
                 assistWebResults = null;
             }
 
@@ -1509,6 +1539,7 @@ export function LibSearchBar({
                 requestFilters.state = selectedState;
             }
 
+            const refinedQuery = effectiveQuery;
             const response = await searchDirectory(effectiveQuery, "all", Math.max(5, effectiveMaxResults), requestFilters);
             const aggregated = aggregateSearchResults(
                 effectiveQuery,
@@ -1563,8 +1594,10 @@ export function LibSearchBar({
             if (answerContext.length > 0) {
                 try {
                     const answer = await requestAiSearchAnswer(trimmed, researchType, answerContext);
-                    setAiAssistAnswer(answer.answer);
-                    setAiAssistCitations(answer.citations.length ? answer.citations : null);
+                    answerText = answer.answer;
+                    citationsList = answer.citations.length ? answer.citations : null;
+                    setAiAssistAnswer(answerText);
+                    setAiAssistCitations(citationsList);
                     answerGenerated = true;
                 } catch (answerError) {
                     console.error(answerError);
@@ -1573,26 +1606,48 @@ export function LibSearchBar({
                     );
                     setAiAssistAnswer(null);
                     setAiAssistCitations(null);
+                    answerText = null;
+                    citationsList = null;
                 }
             } else {
                 setAiAssistAnswer(null);
                 setAiAssistCitations(null);
+                answerText = null;
+                citationsList = null;
             }
 
             if (aggregated.length === 0) {
                 if (answerGenerated) {
-                    setError(
-                        "No direct database matches were found. Review the AI synthesis above and check connector credentials or filters."
-                    );
+                    const message =
+                        "No direct database matches were found. Review the AI synthesis above and check connector credentials or filters.";
+                    setError(message);
+                    infoMessage = message;
                 } else {
-                    setError("No matches found. Try refining your keywords or adjusting filters.");
+                    const message = "No matches found. Try refining your keywords or adjusting filters.";
+                    setError(message);
+                    infoMessage = message;
                 }
+            } else {
+                infoMessage = null;
             }
+
+            searchLifecycle?.onSuccess?.({
+                originalQuery: trimmed,
+                effectiveQuery: refinedQuery,
+                results: aggregated,
+                aiAnswer: answerText,
+                aiSummary: summaryText,
+                aiCitations: citationsList,
+                aiSources: sourcesList,
+                infoMessage,
+            });
         } catch (searchError) {
             console.error(searchError);
-            setError(searchError instanceof Error ? searchError.message : "Search failed. Please try again.");
+            const message = searchError instanceof Error ? searchError.message : "Search failed. Please try again.";
+            setError(message);
             setResults([]);
             setLastQuery(null);
+            searchLifecycle?.onError?.({ query: trimmed, error: message });
         } finally {
             setIsSearching(false);
         }

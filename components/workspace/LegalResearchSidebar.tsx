@@ -2,8 +2,11 @@
 
 import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
 import { LibSearchBar } from "@/components/ui/LibSearchBar";
+import { useLegalResearchResults } from "@/components/workspace/LegalResearchResultsContext";
 
 export function LegalResearchSidebar() {
+    const { beginSearch, completeSearch, failSearch } = useLegalResearchResults();
+
     return (
         <Sidebar
             side="right"
@@ -17,6 +20,11 @@ export function LegalResearchSidebar() {
                 <LibSearchBar
                     showHeader={false}
                     variant="sidebar"
+                    searchLifecycle={{
+                        onStart: beginSearch,
+                        onSuccess: completeSearch,
+                        onError: failSearch,
+                    }}
                 />
             </SidebarContent>
         </Sidebar>

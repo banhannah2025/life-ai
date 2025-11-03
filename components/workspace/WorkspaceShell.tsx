@@ -8,6 +8,7 @@ import { NavBar } from "@/components/global/NavBar";
 import { AppSidebar } from "@/components/ui/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { LegalResearchSidebar } from "@/components/workspace/LegalResearchSidebar";
+import { LegalResearchResultsProvider } from "@/components/workspace/LegalResearchResultsContext";
 
 const LEGAL_ROUTE_PREFIXES = [
   "/case-management",
@@ -34,13 +35,15 @@ export function WorkspaceShell({ children }: WorkspaceShellProps) {
   return (
     <SidebarProvider>
       <NavBar />
-      <div className="flex min-h-screen w-full bg-gray-100 pt-16">
-        <AppSidebar side="left" />
-        <SidebarInset className="w-full flex-1 bg-gray-50 px-4 py-8 sm:px-6 sm:py-10">
-          {children}
-        </SidebarInset>
-        {isLegalRoute ? <LegalResearchSidebar /> : null}
-      </div>
+      <LegalResearchResultsProvider>
+        <div className="flex min-h-screen w-full bg-gray-100 pt-16">
+          <AppSidebar side="left" />
+          <SidebarInset className="w-full flex-1 bg-gray-50 px-4 py-8 sm:px-6 sm:py-10">
+            {children}
+          </SidebarInset>
+          {isLegalRoute ? <LegalResearchSidebar /> : null}
+        </div>
+      </LegalResearchResultsProvider>
     </SidebarProvider>
   );
 }

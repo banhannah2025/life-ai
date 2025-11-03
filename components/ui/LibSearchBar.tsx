@@ -1114,8 +1114,6 @@ function aggregateSearchResults(
         deduped.push(entry);
     }
 
-}
-
     return deduped;
 }
 

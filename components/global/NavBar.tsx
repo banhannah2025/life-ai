@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import { FolderOpen, Plus } from "lucide-react";
 
 import { SidebarTrigger } from "../ui/sidebar";
 import { Button } from "../ui/button";
@@ -119,6 +120,20 @@ export function NavBar() {
                     {isMounted ? (
                         <>
                             <SignedIn>
+                                <div className="flex items-center gap-2">
+                                    <Button asChild variant="outline" size="sm" className="h-10 gap-2">
+                                        <Link href="/documents">
+                                            <FolderOpen className="h-4 w-4" />
+                                            Manage files
+                                        </Link>
+                                    </Button>
+                                    <Button asChild size="sm" className="h-10 gap-2">
+                                        <Link href="/documents?create=new">
+                                            <Plus className="h-4 w-4" />
+                                            Create doc
+                                        </Link>
+                                    </Button>
+                                </div>
                                 <UserButton
                                     appearance={{
                                         elements: {

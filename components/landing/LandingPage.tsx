@@ -23,13 +23,19 @@ export function LandingPage() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Button size="lg" asChild>
-                <Link href="/sign-up/free">
+                <Link href="/subscriptions">
                   Join free today
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="bg-transparent text-white hover:bg-white/10">
                 <Link href="/subscriptions">Explore plans</Link>
+              </Button>
+              <Button size="lg" variant="ghost" asChild className="text-slate-200 hover:bg-white/10">
+                <Link href="/sign-in">
+                  <LogIn className="h-4 w-4" />
+                  Sign in
+                </Link>
               </Button>
             </div>
             <div className="flex flex-wrap items-center gap-6 text-sm text-slate-300">

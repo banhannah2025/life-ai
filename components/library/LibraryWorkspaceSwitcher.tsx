@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { BookOpen, Gavel, type LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -33,13 +34,28 @@ export function LibraryWorkspaceSwitcher() {
   const { planId } = useUserPlan();
   const plan = useMemo(() => getPlan(planId), [planId]);
   const hasLegalAccess = plan.includesLegalResearch;
-  const [view, setView] = useState<WorkspaceView>(hasLegalAccess ? "library" : "academic");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialView = useMemo<WorkspaceView>(() => {
+    const fromParams = searchParams?.get("view");
+    if (fromParams === "academic" || fromParams === "library") {
+      return fromParams as WorkspaceView;
+    }
+    return hasLegalAccess ? "library" : "academic";
+  }, [searchParams, hasLegalAccess]);
+  const [view, setView] = useState<WorkspaceView>(initialView);
 
   useEffect(() => {
-    if (!hasLegalAccess && view === "library") {
-      setView("academic");
-    }
-  }, [hasLegalAccess, view]);
+    setView(initialView);
+  }, [initialView]);
+
+  const handleViewChange = (nextView: WorkspaceView) => {
+    setView(nextView);
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.set("view", nextView);
+    const query = params.toString();
+    router.replace(query ? `/library?${query}` : "/library", { scroll: false });
+  };
 
   const meta = VIEW_META[view];
 
@@ -58,13 +74,13 @@ export function LibraryWorkspaceSwitcher() {
                 icon={BookOpen}
                 label="Library browser"
                 active={view === "library"}
-                onClick={() => setView("library")}
+                onClick={() => handleViewChange("library")}
               />
               <ModeToggleButton
                 icon={Gavel}
                 label="Academic research"
                 active={view === "academic"}
-                onClick={() => setView("academic")}
+                onClick={() => handleViewChange("academic")}
               />
             </div>
           </div>

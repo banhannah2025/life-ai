@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
+import { Badge } from "./badge";
 import {
     Sidebar,
     SidebarContent,
@@ -40,6 +41,7 @@ import { getPlan } from "@/lib/subscription/plans";
 import { pathToId } from "@/lib/blob/utils";
 import { fetchRelationships } from "@/lib/social/client";
 import type { UserSummary } from "@/lib/social/types";
+import type { UserProfile } from "@/lib/profile/schema";
 
 type FileNode = {
     id: string;
@@ -465,6 +467,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const { isLoaded, isSignedIn, user } = useUser();
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [profileDetails, setProfileDetails] = useState<UserProfile | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
     const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
     const [isAvatarUploading, setIsAvatarUploading] = useState(false);
@@ -498,6 +501,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
         if (!isLoaded || !isSignedIn || !user?.id) {
             setAvatarUrl(null);
             setUserRole(null);
+            setProfileDetails(null);
             setPlanId("free");
             return;
         }
@@ -511,6 +515,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                 if (!ignore) {
                     setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
                     setUserRole(profile.role ?? null);
+                    setProfileDetails(profile);
                     setPlanId((profile.planId as SubscriptionPlanId) ?? "free");
                 }
             } catch (error) {
@@ -518,6 +523,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                 if (!ignore) {
                     setAvatarUrl(user.imageUrl || null);
                     setUserRole(null);
+                    setProfileDetails(null);
                     setPlanId("free");
                 }
             }
@@ -1211,12 +1217,12 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const normalizedPathname = pathname ?? "";
     const isCasesRoute = normalizedPathname.startsWith("/case-management") || normalizedPathname.startsWith("/cases");
     const isLegalAnalyticsRoute = normalizedPathname.startsWith("/legal-analytics");
-    const isLibraryRoute = normalizedPathname.startsWith("/library");
     const socialRoutePrefixes = ["/social", "/people", "/profile", "/message-center"];
     const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
-    const shouldShowFileAndDocumentSections = isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute;
+    const shouldShowFileAndDocumentSections = false;
     const shouldShowLegalAnalyticsButton = canAccessCaseManagement && (isCasesRoute || isLegalAnalyticsRoute);
-    const shouldShowSocialProfileSection = isSocialRoute;
+    const isFreePlan = planId === "free";
+    const shouldShowSocialProfileSection = isFreePlan || isSocialRoute;
     const shouldShowMessageCenterSection = isSocialRoute;
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;
     const contentWrapperDir = mirror ? "ltr" : undefined;
@@ -1259,31 +1265,79 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                         </Button>
                     ) : null}
                     {shouldShowSocialProfileSection ? (
-                        <div className="flex flex-col items-center gap-3">
-                            <div className="relative">
-                                <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-white/40">
-                                    {avatarUrl ? (
-                                        <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                        <section className="space-y-4 rounded-xl border border-slate-100 bg-white/80 p-4 text-center shadow-sm">
+                            <div className="flex flex-col items-center gap-3">
+                                <div className="relative">
+                                    <Avatar className="h-20 w-20 border-2 border-white/80 shadow-lg ring-4 ring-emerald-100">
+                                        {avatarUrl ? (
+                                            <AvatarImage src={avatarUrl} alt={user?.fullName ?? "Profile avatar"} />
+                                        ) : null}
+                                        <AvatarFallback className="text-sm font-semibold uppercase tracking-wide text-slate-700">
+                                            {profileDetails?.firstName?.[0] ?? "L"}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <input
+                                        ref={avatarInputRef}
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={handleAvatarChange}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => avatarInputRef.current?.click()}
+                                        disabled={!user || isAvatarUploading}
+                                        className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
+                                    >
+                                        {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+                                    </button>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-lg font-semibold text-slate-900">
+                                        {profileDetails?.firstName || profileDetails?.lastName
+                                            ? `${profileDetails?.firstName ?? ""} ${profileDetails?.lastName ?? ""}`.trim()
+                                            : user?.fullName ?? "Your profile"}
+                                    </p>
+                                    {profileDetails?.headline ? (
+                                        <p className="text-sm text-slate-500">{profileDetails.headline}</p>
                                     ) : null}
-                                    <AvatarFallback className="text-sm font-semibold uppercase tracking-wide">Life-AI</AvatarFallback>
-                                </Avatar>
-                                <input
-                                    ref={avatarInputRef}
-                                    type="file"
-                                    accept="image/*"
-                                    className="hidden"
-                                    onChange={handleAvatarChange}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => avatarInputRef.current?.click()}
-                                    disabled={!user || isAvatarUploading}
-                                    className="absolute -bottom-2 -right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white text-slate-700 shadow-md transition hover:bg-slate-100 disabled:opacity-60"
-                                >
-                                    {isAvatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-                                </button>
+                                </div>
                             </div>
-                        </div>
+                            <div className="grid gap-3 text-left text-sm text-slate-600">
+                                {profileDetails?.location ? (
+                                    <div className="rounded-lg bg-slate-50 p-3">
+                                        <p className="text-xs uppercase tracking-wide text-slate-400">Location</p>
+                                        <p className="font-medium text-slate-800">{profileDetails.location}</p>
+                                    </div>
+                                ) : null}
+                                {(profileDetails?.company || profileDetails?.role) ? (
+                                    <div className="rounded-lg bg-slate-50 p-3">
+                                        <p className="text-xs uppercase tracking-wide text-slate-400">Organization</p>
+                                        <p className="font-medium text-slate-800">
+                                            {[profileDetails?.role, profileDetails?.company].filter(Boolean).join(" @ ")}
+                                        </p>
+                                    </div>
+                                ) : null}
+                            </div>
+                            {profileDetails?.summary ? (
+                                <p className="rounded-lg bg-slate-50 p-3 text-left text-sm text-slate-600">
+                                    {profileDetails.summary.slice(0, 220)}
+                                    {profileDetails.summary.length > 220 ? "…" : ""}
+                                </p>
+                            ) : null}
+                            {profileDetails?.skills && profileDetails.skills.length ? (
+                                <div className="flex flex-wrap justify-center gap-2">
+                                    {profileDetails.skills.slice(0, 5).map((skill) => (
+                                        <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                                            {skill}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            ) : null}
+                            <Button asChild variant="outline" size="sm" className="w-full">
+                                <Link href="/profile">View profile</Link>
+                            </Button>
+                        </section>
                     ) : null}
                     {shouldShowMessageCenterSection ? (
                         <section className="space-y-3 rounded-xl border border-slate-100 bg-white/70 p-4 shadow-sm">

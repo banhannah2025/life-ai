@@ -13,19 +13,28 @@ import { isAdminEmail } from "@/lib/admin/config";
 import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
 import { hasCaseManagementAccess } from "@/lib/auth/roles";
+import { useUserPlan } from "@/hooks/use-user-plan";
 
-const baseNavLinks = [
+type NavLink = {
+    href: string;
+    label: string;
+    requiresPaid?: boolean;
+};
+
+const baseNavLinks: NavLink[] = [
     { href: "/", label: "Home" },
     { href: "/library", label: "Library" },
     { href: "/social", label: "Social" },
     { href: "/subscriptions", label: "Plans" },
-    { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice" },
+    { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice", requiresPaid: true },
 ];
 
 export function NavBar() {
     const [isMounted, setIsMounted] = useState(false);
     const { user } = useUser();
     const [userRole, setUserRole] = useState<string | null>(null);
+    const { planId } = useUserPlan();
+    const isFreePlan = planId === "free";
 
     useEffect(() => {
         let cancelled = false;
@@ -64,7 +73,9 @@ export function NavBar() {
     }, []);
 
     const links = useMemo(() => {
-        const items = [...baseNavLinks];
+        const items = baseNavLinks
+            .filter((link) => !(link.requiresPaid && isFreePlan))
+            .map(({ requiresPaid, ...rest }) => rest);
         const emails = user?.emailAddresses ?? [];
         const isAdminUser = emails.some((address) => isAdminEmail(address.emailAddress));
 
@@ -77,7 +88,7 @@ export function NavBar() {
         }
 
         return items;
-    }, [isMounted, user?.emailAddresses, userRole]);
+    }, [isMounted, user?.emailAddresses, userRole, isFreePlan]);
 
     return (
         <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -120,20 +131,22 @@ export function NavBar() {
                     {isMounted ? (
                         <>
                             <SignedIn>
-                                <div className="flex items-center gap-2">
-                                    <Button asChild variant="outline" size="sm" className="h-10 gap-2">
-                                        <Link href="/documents">
-                                            <FolderOpen className="h-4 w-4" />
-                                            Manage files
-                                        </Link>
-                                    </Button>
-                                    <Button asChild size="sm" className="h-10 gap-2">
-                                        <Link href="/case-management/document-drafting?intent=create">
-                                            <Plus className="h-4 w-4" />
-                                            Create doc
-                                        </Link>
-                                    </Button>
-                                </div>
+                                {!isFreePlan ? (
+                                    <div className="flex items-center gap-2">
+                                        <Button asChild variant="outline" size="sm" className="h-10 gap-2">
+                                            <Link href="/documents">
+                                                <FolderOpen className="h-4 w-4" />
+                                                Manage files
+                                            </Link>
+                                        </Button>
+                                        <Button asChild size="sm" className="h-10 gap-2">
+                                            <Link href="/case-management/document-drafting?intent=create">
+                                                <Plus className="h-4 w-4" />
+                                                Create doc
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                ) : null}
                                 <UserButton
                                     appearance={{
                                         elements: {

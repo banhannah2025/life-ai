@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 import { NavBar } from "@/components/global/NavBar";
 import { AppSidebar } from "@/components/ui/app-sidebar";
@@ -10,6 +11,8 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { LegalResearchSidebar } from "@/components/workspace/LegalResearchSidebar";
 import { LegalResearchResultsProvider, useLegalResearchResults } from "@/components/workspace/LegalResearchResultsContext";
 import { LegalResearchResultsPanel } from "@/components/workspace/LegalResearchResultsPanel";
+import { LandingPage } from "@/components/landing/LandingPage";
+import { Loader2 } from "lucide-react";
 
 const LEGAL_ROUTE_PREFIXES = [
   "/case-management",
@@ -24,6 +27,7 @@ type WorkspaceShellProps = {
 
 export function WorkspaceShell({ children }: WorkspaceShellProps) {
   const pathname = usePathname();
+  const { isLoaded, isSignedIn } = useUser();
 
   const isLegalRoute = useMemo(() => {
     if (!pathname) {
@@ -32,6 +36,21 @@ export function WorkspaceShell({ children }: WorkspaceShellProps) {
 
     return LEGAL_ROUTE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   }, [pathname]);
+
+  if (!isLoaded) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-300">
+        <div className="flex items-center gap-3 text-sm">
+          <Loader2 className="h-5 w-5 animate-spin text-emerald-300" />
+          <span>Loading workspace…</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isSignedIn) {
+    return <LandingPage />;
+  }
 
   return (
     <SidebarProvider>

@@ -123,21 +123,6 @@ const comingSoonOptions: Array<Omit<CreateOption, "accent"> & { accent: string; 
     },
 ];
 
-type ApiFileItem = {
-    type: "file" | "folder";
-    name: string;
-    pathname: string;
-    relativePath: string;
-    parentPath?: string;
-    url?: string;
-    downloadUrl?: string;
-    size?: number;
-    source?: string;
-    isDefault?: boolean;
-    docType?: string;
-    title?: string;
-};
-
 type CaseManagementNavItem = {
     href: string;
     label: string;

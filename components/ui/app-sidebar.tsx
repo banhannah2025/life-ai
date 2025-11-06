@@ -189,14 +189,6 @@ export const CASE_MANAGEMENT_NAV_ITEMS: CaseManagementNavItem[] = [
 
 const MULTIPART_THRESHOLD_BYTES = 32 * 1024 * 1024; // 32MB
 
-function sanitizeFileName(fileName: string) {
-    return fileName
-        .toLowerCase()
-        .replace(/[^a-z0-9._-]/gi, "-")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "");
-}
-
 type ApiFileItem = {
     type: "file" | "folder";
     name: string;

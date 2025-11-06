@@ -44,7 +44,8 @@ export default function AiInput() {
     {
       id: createId(),
       role: "assistant",
-      content: "Hi! I’m Life-AI Copilot. Ask me anything—from drafting letters to brainstorming facilitation plans.",
+      content:
+        "Hi! I’m Synthesis AI for Life-AI. Ask for research summaries, outreach drafts, facilitation plans—anything your community needs today.",
       createdAt: Date.now(),
     },
   ]);
@@ -129,7 +130,19 @@ export default function AiInput() {
       const payload = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        const errorMessage = typeof payload?.error === "string" ? payload.error : "Unable to contact Copilot.";
+        const detailMessage =
+          payload &&
+          typeof payload === "object" &&
+          "details" in payload &&
+          payload.details &&
+          typeof (payload.details as { message?: unknown })?.message === "string"
+            ? ((payload.details as { message: string }).message ?? null)
+            : null;
+        const errorMessage =
+          detailMessage ??
+          (payload && typeof payload === "object" && "error" in payload && typeof payload.error === "string"
+            ? payload.error
+            : "Unable to contact Synthesis AI.");
         setMessages((prev) =>
           prev.map((message) =>
             message.id === assistantPlaceholder.id

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 
 import { SidebarTrigger } from "../ui/sidebar";
 import { Button } from "../ui/button";
@@ -17,6 +17,7 @@ const baseNavLinks = [
     { href: "/", label: "Home" },
     { href: "/library", label: "Library" },
     { href: "/social", label: "Social" },
+    { href: "/subscriptions", label: "Plans" },
     { href: "/ougm-restorative-justice", label: "OUGM Restorative Justice" },
 ];
 
@@ -129,10 +130,10 @@ export function NavBar() {
                             <SignedOut>
                                 <div className="flex items-center gap-2">
                                     <Button asChild variant="outline" size="sm" className="h-10">
-                                        <SignInButton />
+                                        <Link href="/sign-in">Sign in</Link>
                                     </Button>
                                     <Button asChild size="sm" className="h-10">
-                                        <SignUpButton />
+                                        <Link href="/sign-up/free">Join free</Link>
                                     </Button>
                                 </div>
                             </SignedOut>

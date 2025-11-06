@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { assistantChatRequestSchema, sanitizeMessages, type AssistantWebResult } from "@/lib/ai/schemas";
 import { createGroqChatCompletion, DEFAULT_GROQ_MODEL, type GroqChatMessage } from "@/lib/ai/groq";
 import { searchDuckDuckGo } from "@/lib/websearch/duckduckgo";
+import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
 
 const SYSTEM_PROMPT = [
   "You are Life-AI Copilot, a multidisciplinary assistant for legal, community, and operational work.",
@@ -207,6 +208,19 @@ export async function POST(request: Request) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await enforceAiDailyLimit(userId, "chat");
+  } catch (error) {
+    if (error instanceof UsageLimitReachedError) {
+      return NextResponse.json(
+        { error: "Daily limit reached", details: { message: error.message } },
+        { status: 429 },
+      );
+    }
+    console.error("AI chat usage enforcement failed", error);
+    return NextResponse.json({ error: "Unable to verify usage quota. Please try again later." }, { status: 503 });
   }
 
   let json: unknown;

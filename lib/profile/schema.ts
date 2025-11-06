@@ -1,3 +1,5 @@
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
+
 export type UserProfile = {
   firstName: string;
   lastName: string;
@@ -9,6 +11,8 @@ export type UserProfile = {
   website?: string;
   skills?: string[];
   avatarUrl?: string;
+  planId?: SubscriptionPlanId;
+  planActivatedAt?: Date | null;
   updatedAt?: Date | null;
   searchKeywords?: string[];
 };
@@ -24,6 +28,8 @@ export const DEFAULT_USER_PROFILE: UserProfile = {
   website: "",
   skills: [],
   avatarUrl: "",
+  planId: "free",
+  planActivatedAt: null,
   updatedAt: null,
   searchKeywords: [],
 };

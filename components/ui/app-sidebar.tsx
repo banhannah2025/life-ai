@@ -30,11 +30,13 @@ import {
 } from "./sidebar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select";
 import { Textarea } from "./textarea";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
+import { TooltipProvider } from "./tooltip";
 import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
 import { hasCaseManagementAccess } from "@/lib/auth/roles";
 import { isAdminEmail } from "@/lib/admin/config";
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { getPlan } from "@/lib/subscription/plans";
 import { pathToId } from "@/lib/blob/utils";
 import { fetchRelationships } from "@/lib/social/client";
 import type { UserSummary } from "@/lib/social/types";
@@ -464,6 +466,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const { isLoaded, isSignedIn, user } = useUser();
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
+    const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
     const [isAvatarUploading, setIsAvatarUploading] = useState(false);
     const [fileNodes, setFileNodes] = useState<FileNode[]>([]);
     const [isFilesLoading, setIsFilesLoading] = useState(false);
@@ -495,6 +498,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
         if (!isLoaded || !isSignedIn || !user?.id) {
             setAvatarUrl(null);
             setUserRole(null);
+            setPlanId("free");
             return;
         }
 
@@ -507,12 +511,14 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                 if (!ignore) {
                     setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
                     setUserRole(profile.role ?? null);
+                    setPlanId((profile.planId as SubscriptionPlanId) ?? "free");
                 }
             } catch (error) {
                 console.error("Failed to load sidebar profile", error);
                 if (!ignore) {
                     setAvatarUrl(user.imageUrl || null);
                     setUserRole(null);
+                    setPlanId("free");
                 }
             }
         })();
@@ -592,9 +598,11 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
         };
     }, [isLoaded, isSignedIn, user?.id]);
 
+    const planMeta = useMemo(() => getPlan(planId), [planId]);
+
     const canAccessCaseManagement = useMemo(
-        () => isAdminUser || hasCaseManagementAccess(userRole),
-        [isAdminUser, userRole]
+        () => (isAdminUser || hasCaseManagementAccess(userRole)) && planMeta.includesLegalResearch,
+        [isAdminUser, userRole, planMeta.includesLegalResearch]
     );
 
     const greeting =
@@ -1204,7 +1212,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const isCasesRoute = normalizedPathname.startsWith("/case-management") || normalizedPathname.startsWith("/cases");
     const isLegalAnalyticsRoute = normalizedPathname.startsWith("/legal-analytics");
     const isLibraryRoute = normalizedPathname.startsWith("/library");
-    const isOugmRestorativeJusticeRoute = normalizedPathname.startsWith("/ougm-restorative-justice");
     const socialRoutePrefixes = ["/social", "/people", "/profile", "/message-center"];
     const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
     const shouldShowFileAndDocumentSections = isCasesRoute || isLegalAnalyticsRoute || isLibraryRoute;

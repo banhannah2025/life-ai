@@ -12,6 +12,8 @@ import { hasCaseManagementAccess, normalizeRole } from "@/lib/auth/roles";
 import { isAdminEmail } from "@/lib/admin/config";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { getPlan } from "@/lib/subscription/plans";
 
 type AccessState = "checking" | "allowed" | "denied";
 
@@ -24,6 +26,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
   const { isLoaded, isSignedIn, user } = useUser();
   const [status, setStatus] = useState<AccessState>("checking");
   const [roleLabel, setRoleLabel] = useState<string | null>(null);
+  const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
   const emailAddresses = useMemo(() => user?.emailAddresses ?? [], [user?.emailAddresses]);
 
   useEffect(() => {
@@ -47,12 +50,21 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
 
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
+        const resolvedPlanId = (profile.planId as SubscriptionPlanId) ?? "free";
         if (cancelled) {
           return;
         }
 
+        setPlanId(resolvedPlanId);
         const roleOrFallback = profile.role && profile.role.trim().length ? profile.role : adminByEmail ? "admin" : null;
         setRoleLabel(roleOrFallback);
+
+        const plan = getPlan(resolvedPlanId);
+
+        if (!plan.includesLegalResearch && !adminByEmail) {
+          setStatus("denied");
+          return;
+        }
 
         if (adminByEmail || hasCaseManagementAccess(profile.role)) {
           setStatus("allowed");
@@ -84,6 +96,20 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
     }
     return normalized.replace(/_/g, " ");
   }, [roleLabel]);
+  const planMeta = useMemo(() => getPlan(planId), [planId]);
+  const lacksLegalByPlan = !planMeta.includesLegalResearch;
+  const denialMessage = useMemo(() => {
+    if (!isSignedIn) {
+      return "Sign in with an authorized account to access case management tools.";
+    }
+    if (lacksLegalByPlan) {
+      return `The ${planMeta.name} plan focuses on community tools. Upgrade to unlock legal research and case management.`;
+    }
+    return (
+      featureDescription ??
+      "Only administrators, attorneys, and law-firm accounts can work with case management features."
+    );
+  }, [featureDescription, isSignedIn, lacksLegalByPlan, planMeta.name]);
 
   if (status === "checking") {
     return (
@@ -102,12 +128,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
             <Lock className="h-5 w-5" />
           </span>
           <CardTitle className="text-lg font-semibold text-slate-800">Case management is restricted</CardTitle>
-          <CardDescription className="text-sm text-slate-500">
-            {!isSignedIn
-              ? "Sign in with an authorized account to access case management tools."
-              : featureDescription ??
-                "Only administrators, attorneys, and law-firm accounts can work with case management features."}
-          </CardDescription>
+          <CardDescription className="text-sm text-slate-500">{denialMessage}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
           {roleDisplay ? (
@@ -115,13 +136,22 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
               Current role detected: <span className="font-semibold capitalize">{roleDisplay}</span>
             </p>
           ) : null}
-          <div className="space-y-2 text-slate-600">
-            <p>If you believe you should have access, you can:</p>
-            <ul className="list-disc space-y-1 pl-5 text-slate-500">
-              <li>Update your profile role so our system recognizes your responsibilities.</li>
-              <li>Contact an administrator to elevate your permissions.</li>
-            </ul>
-          </div>
+          {lacksLegalByPlan && isSignedIn ? (
+            <div className="space-y-3 text-slate-600">
+              <p>Your current plan: <span className="font-semibold">{planMeta.name}</span></p>
+              <p className="text-sm text-slate-500">
+                Upgrade to unlock legal research, drafting, and case management workspaces with unlimited Synthesis AI.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-2 text-slate-600">
+              <p>If you believe you should have access, you can:</p>
+              <ul className="list-disc space-y-1 pl-5 text-slate-500">
+                <li>Update your profile role so our system recognizes your responsibilities.</li>
+                <li>Contact an administrator to elevate your permissions.</li>
+              </ul>
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {!isSignedIn ? (
               <Button asChild>
@@ -129,12 +159,20 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
               </Button>
             ) : (
               <>
-                <Button asChild variant="outline">
-                  <Link href="/profile">Review profile</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/social">Message an admin</Link>
-                </Button>
+                {lacksLegalByPlan ? (
+                  <Button asChild>
+                    <Link href="/subscriptions">Explore subscriptions</Link>
+                  </Button>
+                ) : (
+                  <>
+                    <Button asChild variant="outline">
+                      <Link href="/profile">Review profile</Link>
+                    </Button>
+                    <Button asChild>
+                      <Link href="/social">Message an admin</Link>
+                    </Button>
+                  </>
+                )}
               </>
             )}
           </div>

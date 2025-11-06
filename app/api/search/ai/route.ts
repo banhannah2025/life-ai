@@ -4,6 +4,9 @@ import { z } from "zod";
 
 import { createGroqChatCompletion, type GroqModelId } from "@/lib/ai/groq";
 import { searchDuckDuckGo } from "@/lib/websearch/duckduckgo";
+import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
+import { getPlan } from "@/lib/subscription/plans";
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
 
 const requestSchema = z.object({
   query: z.string().min(1).max(2000),
@@ -56,6 +59,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  let planId: SubscriptionPlanId;
+  try {
+    const usage = await enforceAiDailyLimit(userId, "library-search");
+    planId = usage.planId;
+  } catch (error) {
+    if (error instanceof UsageLimitReachedError) {
+      return NextResponse.json({ error: "Daily limit reached", details: { message: error.message } }, { status: 429 });
+    }
+    console.error("AI library usage enforcement failed", error);
+    return NextResponse.json({ error: "Unable to verify usage quota. Please try again later." }, { status: 503 });
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();
@@ -70,6 +85,16 @@ export async function POST(request: Request) {
 
   const { query, researchType } = parsed.data;
   const model = MODEL_MAP[researchType] ?? MODEL_MAP.legal;
+  const plan = getPlan(planId);
+  if (researchType === "legal" && !plan.includesLegalResearch) {
+    return NextResponse.json(
+      {
+        error: "Legal research is unavailable on your current plan.",
+        details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+      },
+      { status: 403 },
+    );
+  }
 
   let webResults: Awaited<ReturnType<typeof searchDuckDuckGo>> = [];
   try {

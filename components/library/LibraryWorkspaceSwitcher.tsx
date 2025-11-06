@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BookOpen, Gavel, type LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { LibraryBrowser } from "@/components/library/LibraryBrowser";
 import { LibSearchBar } from "@/components/ui/LibSearchBar";
 import { cn } from "@/lib/utils";
+import { useUserPlan } from "@/hooks/use-user-plan";
+import { getPlan } from "@/lib/subscription/plans";
 
 type WorkspaceView = "library" | "academic";
 
@@ -28,7 +30,17 @@ const VIEW_META: Record<
 };
 
 export function LibraryWorkspaceSwitcher() {
-  const [view, setView] = useState<WorkspaceView>("library");
+  const { planId } = useUserPlan();
+  const plan = useMemo(() => getPlan(planId), [planId]);
+  const hasLegalAccess = plan.includesLegalResearch;
+  const [view, setView] = useState<WorkspaceView>(hasLegalAccess ? "library" : "academic");
+
+  useEffect(() => {
+    if (!hasLegalAccess && view === "library") {
+      setView("academic");
+    }
+  }, [hasLegalAccess, view]);
+
   const meta = VIEW_META[view];
 
   return (

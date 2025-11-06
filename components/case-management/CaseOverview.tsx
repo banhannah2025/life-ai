@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   CASE_MANAGEMENT_NAV_ITEMS,
 } from "@/components/ui/app-sidebar";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function CaseOverview() {
   return (

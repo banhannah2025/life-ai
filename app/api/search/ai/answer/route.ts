@@ -3,6 +3,9 @@ import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 
 import { createGroqChatCompletion } from "@/lib/ai/groq";
+import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
+import { getPlan } from "@/lib/subscription/plans";
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
 
 const requestSchema = z.object({
   query: z.string().min(1).max(2000),
@@ -45,6 +48,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  let planId: SubscriptionPlanId;
+  try {
+    const usage = await enforceAiDailyLimit(userId, "library-search");
+    planId = usage.planId;
+  } catch (error) {
+    if (error instanceof UsageLimitReachedError) {
+      return NextResponse.json({ error: "Daily limit reached", details: { message: error.message } }, { status: 429 });
+    }
+    console.error("AI search answer usage enforcement failed", error);
+    return NextResponse.json({ error: "Unable to verify usage quota. Please try again later." }, { status: 503 });
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();
@@ -57,7 +72,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request", details: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { query, results } = parsed.data;
+  const { query, results, researchType } = parsed.data;
+  const plan = getPlan(planId);
+  if (researchType === "legal" && !plan.includesLegalResearch) {
+    return NextResponse.json(
+      {
+        error: "Legal research is unavailable on your current plan.",
+        details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+      },
+      { status: 403 },
+    );
+  }
 
   const context = results
     .map((result, index) => {

@@ -123,9 +123,6 @@ const comingSoonOptions: Array<Omit<CreateOption, "accent"> & { accent: string; 
     },
 ];
 
-const MULTIPART_THRESHOLD_BYTES = 32 * 1024 * 1024; // 32MB
-
-
 type ApiFileItem = {
     type: "file" | "folder";
     name: string;

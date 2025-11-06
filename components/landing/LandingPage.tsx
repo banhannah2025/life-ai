@@ -1,10 +1,10 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Users, Sparkles } from "lucide-react";
+import { ArrowRight, ShieldCheck, Users, Sparkles, LogIn } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export function LandingPage() {
   return (
@@ -73,16 +73,59 @@ export function LandingPage() {
           </Card>
         </section>
 
-        <section className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur md:grid-cols-3">
-          {FEATURES.map(({ title, description, icon: Icon }) => (
-            <div key={title} className="space-y-3 rounded-2xl border border-white/10 bg-white/[0.06] p-6 shadow-sm">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-300/10 text-emerald-200">
-                <Icon className="h-6 w-6" />
+        <section className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+          <div className="space-y-4 text-center">
+            <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              Platform overview
+            </p>
+            <h2 className="text-3xl font-semibold text-white">Products that scale from community to case teams</h2>
+            <p className="mx-auto max-w-3xl text-sm text-slate-200 sm:text-base">
+              Life-AI bundles community collaboration, academic research, and enterprise-grade legal tooling into a unified workspace. Start with the Community plan and grow into advanced tiers as your needs evolve.
+            </p>
+            <Button variant="secondary" size="lg" asChild className="bg-white text-slate-900 hover:bg-white/90">
+              <Link href="/subscriptions">
+                View all plans
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {FEATURES.map(({ title, description, icon: Icon }) => (
+              <div key={title} className="space-y-3 rounded-2xl border border-white/10 bg-white/[0.06] p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-300/10 text-emerald-200">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">{title}</h3>
+                <p className="text-sm text-slate-200">{description}</p>
               </div>
-              <h3 className="text-lg font-semibold text-white">{title}</h3>
-              <p className="text-sm text-slate-200">{description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {PRODUCT_HIGHLIGHTS.map(({ title, description, value, audiences }) => (
+              <Card key={title} className="border-white/10 bg-white/[0.08] text-white shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl">{title}</CardTitle>
+                  <CardDescription className="text-slate-200">{description}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm text-slate-100">
+                  <p className="font-semibold text-emerald-200">{value}</p>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-slate-300">Ideal for</p>
+                    <ul className="mt-2 space-y-1">
+                      {audiences.map((audience) => (
+                        <li key={audience} className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden />
+                          {audience}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <section className="rounded-3xl border border-white/10 bg-gradient-to-r from-emerald-500/20 via-transparent to-sky-500/20 p-8 text-slate-100">
@@ -93,12 +136,20 @@ export function LandingPage() {
                 Upgrade to unlock legal research connectors, analytics dashboards, drafting workspaces, and case management automations.
               </p>
             </div>
-            <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-white/90">
-              <Link href="/subscriptions">
-                Compare tiers
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-white/90">
+                <Link href="/subscriptions">
+                  Compare tiers
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="bg-transparent text-white/80 hover:bg-white/10">
+                <Link href="/sign-in">
+                  <LogIn className="h-4 w-4" />
+                  Sign in to your workspace
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
@@ -116,6 +167,13 @@ type Feature = {
   icon: typeof Users;
 };
 
+type ProductHighlight = {
+  title: string;
+  description: string;
+  value: string;
+  audiences: string[];
+};
+
 const FEATURES: Feature[] = [
   {
     title: "Community-first profiles",
@@ -131,5 +189,26 @@ const FEATURES: Feature[] = [
     title: "Academic intelligence, curated",
     description: "Search across knowledge hubs and surface cross-disciplinary insights without digging through tabs.",
     icon: ShieldCheck,
+  },
+];
+
+const PRODUCT_HIGHLIGHTS: ProductHighlight[] = [
+  {
+    title: "Community & Social",
+    description: "Profiles, channels, and Synthesis AI co-writing help your team stay aligned and visible.",
+    value: "Included in Community plan",
+    audiences: ["Grassroots organizations", "Restorative justice leaders", "Community legal clinics"],
+  },
+  {
+    title: "Research & Intelligence",
+    description: "Academic connectors, blended search, and AI summaries deliver fast, citeable insights.",
+    value: "Unlock with Legal Team plan",
+    audiences: ["Legal researchers", "Policy analysts", "In-house innovation teams"],
+  },
+  {
+    title: "Casework & Drafting",
+    description: "Case management, drafting workspaces, document automation, and analytics dashboards.",
+    value: "Available on Legal Team & Enterprise plans",
+    audiences: ["Law firms & clinics", "Enterprise legal departments", "Justice system partners"],
   },
 ];

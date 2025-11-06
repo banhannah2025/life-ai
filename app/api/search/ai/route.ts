@@ -13,7 +13,7 @@ const requestSchema = z.object({
 const MODEL_MAP: Record<"legal" | "academic" | "ai", GroqModelId> = {
   legal: "llama-3.3-70b-versatile",
   academic: "openai/gpt-oss-20b",
-  ai: "llama-3.1-8b-instant",
+  ai: "openai/gpt-oss-120b",
 };
 
 const SYSTEM_PROMPT = [

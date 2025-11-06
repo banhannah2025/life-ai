@@ -39,6 +39,7 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
 import { fetchRelationships } from "@/lib/social/client";
 import { pathToId } from "@/lib/blob/utils";
+import { upload } from "@vercel/blob/client";
 import type { UserSummary } from "@/lib/social/types";
 import type { UserProfile } from "@/lib/profile/schema";
 type FileNode = {
@@ -171,6 +172,14 @@ export const CASE_MANAGEMENT_NAV_ITEMS: CaseManagementNavItem[] = [
 ];
 
 const MULTIPART_THRESHOLD_BYTES = 32 * 1024 * 1024; // 32MB
+ 
+function sanitizeFileName(fileName: string) {
+    return fileName
+        .toLowerCase()
+        .replace(/[^a-z0-9._-]/gi, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+}
 
 type ApiFileItem = {
     type: "file" | "folder";

@@ -128,7 +128,7 @@ export function NavBar() {
                                         </Link>
                                     </Button>
                                     <Button asChild size="sm" className="h-10 gap-2">
-                                        <Link href="/documents?create=new">
+                                        <Link href="/case-management/document-drafting?intent=create">
                                             <Plus className="h-4 w-4" />
                                             Create doc
                                         </Link>

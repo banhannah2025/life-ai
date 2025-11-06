@@ -18,7 +18,6 @@ import {
     TableCellsIcon,
 } from "@heroicons/react/24/outline";
 import { Briefcase, Camera, Clock, FileText, FolderPlus, Gavel, Lightbulb, Loader2, Minus, Pencil, Plus, Trash, Users } from "lucide-react";
-import { upload } from "@vercel/blob/client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
@@ -38,11 +37,9 @@ import { hasCaseManagementAccess } from "@/lib/auth/roles";
 import { isAdminEmail } from "@/lib/admin/config";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
-import { pathToId } from "@/lib/blob/utils";
 import { fetchRelationships } from "@/lib/social/client";
 import type { UserSummary } from "@/lib/social/types";
 import type { UserProfile } from "@/lib/profile/schema";
-
 type FileNode = {
     id: string;
     name: string;
@@ -125,6 +122,31 @@ const comingSoonOptions: Array<Omit<CreateOption, "accent"> & { accent: string; 
         badge: "Coming soon",
     },
 ];
+
+const MULTIPART_THRESHOLD_BYTES = 32 * 1024 * 1024; // 32MB
+
+function sanitizeFileName(fileName: string) {
+    return fileName
+        .toLowerCase()
+        .replace(/[^a-z0-9._-]/gi, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+}
+
+type ApiFileItem = {
+    type: "file" | "folder";
+    name: string;
+    pathname: string;
+    relativePath: string;
+    parentPath?: string;
+    url?: string;
+    downloadUrl?: string;
+    size?: number;
+    source?: string;
+    isDefault?: boolean;
+    docType?: string;
+    title?: string;
+};
 
 type CaseManagementNavItem = {
     href: string;
@@ -466,11 +488,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const [isFilesOpen, setIsFilesOpen] = useState(false);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const { isLoaded, isSignedIn, user } = useUser();
-    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-    const [profileDetails, setProfileDetails] = useState<UserProfile | null>(null);
-    const [userRole, setUserRole] = useState<string | null>(null);
-    const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
-    const [isAvatarUploading, setIsAvatarUploading] = useState(false);
     const [fileNodes, setFileNodes] = useState<FileNode[]>([]);
     const [isFilesLoading, setIsFilesLoading] = useState(false);
     const [filesError, setFilesError] = useState<string | null>(null);
@@ -478,9 +495,14 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const [defaultFolder, setDefaultFolder] = useState<{ relativePath: string; pathname: string } | null>(null);
     const [creatingDocId, setCreatingDocId] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const avatarInputRef = useRef<HTMLInputElement | null>(null);
     const [uploadingFile, setUploadingFile] = useState<string | null>(null);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [profileDetails, setProfileDetails] = useState<UserProfile | null>(null);
+    const [userRole, setUserRole] = useState<string | null>(null);
+    const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
+    const [isAvatarUploading, setIsAvatarUploading] = useState(false);
+    const avatarInputRef = useRef<HTMLInputElement | null>(null);
     const [connections, setConnections] = useState<UserSummary[]>([]);
     const [connectionsLoading, setConnectionsLoading] = useState(false);
     const [connectionsError, setConnectionsError] = useState<string | null>(null);

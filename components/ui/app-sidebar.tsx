@@ -38,6 +38,7 @@ import { isAdminEmail } from "@/lib/admin/config";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
 import { fetchRelationships } from "@/lib/social/client";
+import { pathToId } from "@/lib/blob/utils";
 import type { UserSummary } from "@/lib/social/types";
 import type { UserProfile } from "@/lib/profile/schema";
 type FileNode = {

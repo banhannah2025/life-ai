@@ -1,13 +1,12 @@
 import { auth } from "@clerk/nextjs/server";
 import { Check, Sparkles, Shield, Briefcase, Gem } from "lucide-react";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SUBSCRIPTION_PLANS, getPlan } from "@/lib/subscription/plans";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { resolveUserPlanId } from "@/lib/subscription/server";
 import { cn } from "@/lib/utils";
+import { PlanCta } from "@/components/subscriptions/PlanCta";
 
 type PlanIcon = typeof Sparkles;
 
@@ -22,6 +21,7 @@ export default async function SubscriptionsPage() {
   const { userId } = await auth();
   const activePlanId = userId ? await resolveUserPlanId(userId) : null;
   const activePlan = getPlan(activePlanId);
+  const plusPlanClerkId = process.env.NEXT_PUBLIC_CLERK_PLUS_PLAN_ID ?? null;
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@ export default async function SubscriptionsPage() {
                     </li>
                   ))}
                 </ul>
-                <PlanCta planId={planId} isActive={isActive} signedIn={!!userId} />
+                <PlanCta planId={planId} isActive={isActive} signedIn={!!userId} plusPlanClerkId={plusPlanClerkId} />
               </CardContent>
             </Card>
           );
@@ -105,44 +105,4 @@ function iconAccent(planId: SubscriptionPlanId) {
     default:
       return "bg-slate-100 text-slate-600";
   }
-}
-
-function PlanCta({ planId, isActive, signedIn }: { planId: SubscriptionPlanId; isActive: boolean; signedIn: boolean }) {
-  if (isActive && signedIn) {
-    return (
-      <Button variant="outline" disabled className="w-full">
-        Current plan
-      </Button>
-    );
-  }
-
-  if (planId === "free") {
-    return (
-      <Button asChild className="w-full">
-        <Link href="/sign-up/free">Get started</Link>
-      </Button>
-    );
-  }
-
-  if (planId === "plus") {
-    return (
-      <Button asChild className="w-full">
-        <Link href="/sign-up/free?plan=plus">Upgrade to Plus</Link>
-      </Button>
-    );
-  }
-
-  if (planId === "legal_team") {
-    return (
-      <Button asChild variant="secondary" className="w-full">
-        <Link href="/contact">Talk to sales</Link>
-      </Button>
-    );
-  }
-
-  return (
-    <Button asChild variant="outline" className="w-full">
-      <Link href="mailto:hello@life-ai.ccpros.org">Contact us</Link>
-    </Button>
-  );
 }

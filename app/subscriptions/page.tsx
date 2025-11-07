@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { Check, Sparkles, Shield, Briefcase } from "lucide-react";
+import { Check, Sparkles, Shield, Briefcase, Gem } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ type PlanIcon = typeof Sparkles;
 
 const PLAN_ICON_MAP: Record<SubscriptionPlanId, PlanIcon> = {
   free: Sparkles,
+  plus: Gem,
   legal_team: Briefcase,
   enterprise: Shield,
 };
@@ -40,7 +41,7 @@ export default async function SubscriptionsPage() {
         ) : null}
       </header>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {(Object.keys(SUBSCRIPTION_PLANS) as SubscriptionPlanId[]).map((planId) => {
           const plan = SUBSCRIPTION_PLANS[planId];
           const isActive = activePlanId === planId;
@@ -95,6 +96,8 @@ function iconAccent(planId: SubscriptionPlanId) {
   switch (planId) {
     case "free":
       return "bg-emerald-100 text-emerald-600";
+    case "plus":
+      return "bg-amber-100 text-amber-600";
     case "legal_team":
       return "bg-sky-100 text-sky-600";
     case "enterprise":
@@ -117,6 +120,14 @@ function PlanCta({ planId, isActive, signedIn }: { planId: SubscriptionPlanId; i
     return (
       <Button asChild className="w-full">
         <Link href="/sign-up/free">Get started</Link>
+      </Button>
+    );
+  }
+
+  if (planId === "plus") {
+    return (
+      <Button asChild className="w-full">
+        <Link href="/sign-up/free?plan=plus">Upgrade to Plus</Link>
       </Button>
     );
   }

@@ -2,22 +2,18 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 
-import { createGroqChatCompletion, type GroqModelId } from "@/lib/ai/groq";
-import { searchDuckDuckGo } from "@/lib/websearch/duckduckgo";
+import { createGroqChatCompletion, type GroqChatMessage } from "@/lib/ai/groq";
+import { createOpenAiChatCompletion } from "@/lib/ai/openai";
+import { runPlanAwareSearch } from "@/lib/websearch";
 import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
 import { getPlan } from "@/lib/subscription/plans";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { resolveResearchModel } from "@/lib/ai/model-routing";
 
 const requestSchema = z.object({
   query: z.string().min(1).max(2000),
   researchType: z.enum(["legal", "academic", "ai"]).default("legal"),
 });
-
-const MODEL_MAP: Record<"legal" | "academic" | "ai", GroqModelId> = {
-  legal: "llama-3.3-70b-versatile",
-  academic: "openai/gpt-oss-20b",
-  ai: "openai/gpt-oss-120b",
-};
 
 const SYSTEM_PROMPT = [
   "You are the senior legal research librarian for Life-AI.",
@@ -84,8 +80,8 @@ export async function POST(request: Request) {
   }
 
   const { query, researchType } = parsed.data;
-  const model = MODEL_MAP[researchType] ?? MODEL_MAP.legal;
   const plan = getPlan(planId);
+  const aiConfig = resolveResearchModel(plan, researchType);
   if (researchType === "legal" && !plan.includesLegalResearch) {
     return NextResponse.json(
       {
@@ -96,14 +92,14 @@ export async function POST(request: Request) {
     );
   }
 
-  let webResults: Awaited<ReturnType<typeof searchDuckDuckGo>> = [];
+  let webResults: Awaited<ReturnType<typeof runPlanAwareSearch>> = [];
   try {
-    webResults = await searchDuckDuckGo(query, 5);
+    webResults = await runPlanAwareSearch(plan, query, 5);
   } catch (error) {
     console.error("AI search assist web search failed", error);
   }
 
-  const searchSummary = webResults.length
+  const searchSummary: GroqChatMessage[] = webResults.length
     ? [
         {
           role: "system" as const,
@@ -128,22 +124,31 @@ export async function POST(request: Request) {
     : [];
 
   try {
-    const completion = await createGroqChatCompletion({
-      model,
-      temperature: 0.2,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...searchSummary,
-        {
-          role: "user",
-          content: [
-            `Research type: ${researchType}`,
-            "Respond only with JSON.",
-            `User query: """${query}"""`,
-          ].join("\n"),
-        },
-      ],
-    });
+    const chatMessages: GroqChatMessage[] = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...searchSummary,
+      {
+        role: "user",
+        content: [
+          `Research type: ${researchType}`,
+          "Respond only with JSON.",
+          `User query: """${query}"""`,
+        ].join("\n"),
+      },
+    ];
+
+    const completionResponse =
+      aiConfig.provider === "openai"
+        ? await createOpenAiChatCompletion({
+            model: aiConfig.model,
+            temperature: 0.2,
+            messages: chatMessages,
+          })
+        : await createGroqChatCompletion({
+            model: aiConfig.model,
+            temperature: 0.2,
+            messages: chatMessages,
+          });
 
     let parsedContent: {
       searchQuery?: string;
@@ -152,7 +157,7 @@ export async function POST(request: Request) {
       jurisdictions?: string[];
     };
     try {
-      parsedContent = JSON.parse(completion.content.trim());
+      parsedContent = JSON.parse(completionResponse.content.trim());
     } catch {
       throw new Error("Assistant returned non-JSON content.");
     }

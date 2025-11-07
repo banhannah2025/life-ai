@@ -1,4 +1,4 @@
-import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import type { SubscriptionPlanId, UserBillingProfile } from "@/lib/subscription/types";
 
 export type UserProfile = {
   firstName: string;
@@ -15,6 +15,7 @@ export type UserProfile = {
   planActivatedAt?: Date | null;
   updatedAt?: Date | null;
   searchKeywords?: string[];
+  billing?: UserBillingProfile | null;
 };
 
 export const DEFAULT_USER_PROFILE: UserProfile = {
@@ -32,4 +33,5 @@ export const DEFAULT_USER_PROFILE: UserProfile = {
   planActivatedAt: null,
   updatedAt: null,
   searchKeywords: [],
+  billing: null,
 };

@@ -1,4 +1,4 @@
-const CASE_MANAGEMENT_ROLES = new Set(["admin", "attorney", "law_firm"]);
+const CASE_MANAGEMENT_ROLES = new Set(["admin", "attorney", "law_firm", "pro_se"]);
 
 export function normalizeRole(role: string | null | undefined): string | null {
   if (!role) {

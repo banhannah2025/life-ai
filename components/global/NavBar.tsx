@@ -14,6 +14,7 @@ import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
 import { hasCaseManagementAccess } from "@/lib/auth/roles";
 import { useUserPlan } from "@/hooks/use-user-plan";
+import { getPlan } from "@/lib/subscription/plans";
 
 type NavLink = {
     href: string;
@@ -34,7 +35,10 @@ export function NavBar() {
     const { user } = useUser();
     const [userRole, setUserRole] = useState<string | null>(null);
     const { planId } = useUserPlan();
+    const planMeta = useMemo(() => getPlan(planId), [planId]);
     const isFreePlan = planId === "free";
+    const canManageFiles = planMeta.allowsFileManagement;
+    const canCreateDocuments = planMeta.allowsDocumentWorkspace;
 
     useEffect(() => {
         let cancelled = false;
@@ -75,7 +79,10 @@ export function NavBar() {
     const links = useMemo(() => {
         const items = baseNavLinks
             .filter((link) => !(link.requiresPaid && isFreePlan))
-            .map(({ requiresPaid, ...rest }) => rest);
+            .map((link) => ({
+                href: link.href,
+                label: link.label,
+            }));
         const emails = user?.emailAddresses ?? [];
         const isAdminUser = emails.some((address) => isAdminEmail(address.emailAddress));
 
@@ -131,20 +138,24 @@ export function NavBar() {
                     {isMounted ? (
                         <>
                             <SignedIn>
-                                {!isFreePlan ? (
+                                {canManageFiles || canCreateDocuments ? (
                                     <div className="flex items-center gap-2">
-                                        <Button asChild variant="outline" size="sm" className="h-10 gap-2">
-                                            <Link href="/documents">
-                                                <FolderOpen className="h-4 w-4" />
-                                                Manage files
-                                            </Link>
-                                        </Button>
-                                        <Button asChild size="sm" className="h-10 gap-2">
-                                            <Link href="/case-management/document-drafting?intent=create">
-                                                <Plus className="h-4 w-4" />
-                                                Create doc
-                                            </Link>
-                                        </Button>
+                                        {canManageFiles ? (
+                                            <Button asChild variant="outline" size="sm" className="h-10 gap-2">
+                                                <Link href="/documents">
+                                                    <FolderOpen className="h-4 w-4" />
+                                                    Manage files
+                                                </Link>
+                                            </Button>
+                                        ) : null}
+                                        {canCreateDocuments ? (
+                                            <Button asChild size="sm" className="h-10 gap-2">
+                                                <Link href="/case-management/document-drafting?intent=create">
+                                                    <Plus className="h-4 w-4" />
+                                                    Create doc
+                                                </Link>
+                                            </Button>
+                                        ) : null}
                                     </div>
                                 ) : null}
                                 <UserButton

@@ -5,6 +5,7 @@ import { list } from "@vercel/blob";
 import { getAdminFirestore } from "@/lib/firebase/admin";
 import { ensureDefaultFolder } from "@/lib/blob/ensure-default-folder";
 import { DEFAULT_FOLDER_LABEL } from "@/lib/blob/utils";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 function computeParentPath(path: string, isFolder: boolean) {
   const normalized = isFolder ? path.replace(/\/+$/, "") : path;
@@ -23,6 +24,18 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsFileManagement) {
+      return NextResponse.json(
+        {
+          error: "File management is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const prefix = `uploads/${userId}/`;
     const token = process.env.BLOB_READ_WRITE_TOKEN;
     const defaultFolder = await ensureDefaultFolder(userId);

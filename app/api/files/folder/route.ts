@@ -11,6 +11,7 @@ import {
   sanitizePathSegment,
 } from "@/lib/blob/utils";
 import { ensureDefaultFolder } from "@/lib/blob/ensure-default-folder";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 function getPrefix(userId: string) {
   return ensureTrailingSlash(`uploads/${userId}`);
@@ -30,6 +31,18 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsFileManagement) {
+      return NextResponse.json(
+        {
+          error: "Folder management is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     await ensureDefaultFolder(userId);
     const body = await request.json();
     const nameInput = typeof body?.name === "string" ? body.name : "";
@@ -81,6 +94,18 @@ export async function PATCH(request: NextRequest) {
   }
 
   try {
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsFileManagement) {
+      return NextResponse.json(
+        {
+          error: "Folder management is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const defaultFolder = await ensureDefaultFolder(userId);
     const body = await request.json();
     const pathname = typeof body?.pathname === "string" ? body.pathname : "";
@@ -214,6 +239,18 @@ export async function DELETE(request: NextRequest) {
   }
 
   try {
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsFileManagement) {
+      return NextResponse.json(
+        {
+          error: "Folder management is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const defaultFolder = await ensureDefaultFolder(userId);
     const body = (await request.json().catch(() => null)) as { pathname?: string } | null;
     const pathnameInput = typeof body?.pathname === "string" ? body.pathname : "";

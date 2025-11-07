@@ -7,6 +7,7 @@ import { Timestamp } from "firebase-admin/firestore";
 import { getAdminFirestore } from "@/lib/firebase/admin";
 import { pathToId } from "@/lib/blob/utils";
 import { ensureDefaultFolder } from "@/lib/blob/ensure-default-folder";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 const MAX_UPLOAD_SIZE_BYTES = 5 * 1024 * 1024 * 1024; // 5GB
 const ALLOWED_CONTENT_TYPES = [
@@ -63,6 +64,18 @@ export async function POST(request: NextRequest) {
 
   try {
     if (userId) {
+      const { plan } = await loadUserPlan(userId);
+
+      if (!plan.allowsFileManagement) {
+        return NextResponse.json(
+          {
+            error: "File uploads are unavailable on your current plan.",
+            details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+          },
+          { status: 403 }
+        );
+      }
+
       await ensureDefaultFolder(userId);
     }
     const response = await handleUpload({

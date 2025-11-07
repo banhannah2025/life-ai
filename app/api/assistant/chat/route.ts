@@ -2,9 +2,13 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
 import { assistantChatRequestSchema, sanitizeMessages, type AssistantWebResult } from "@/lib/ai/schemas";
-import { createGroqChatCompletion, DEFAULT_GROQ_MODEL, type GroqChatMessage } from "@/lib/ai/groq";
-import { searchDuckDuckGo } from "@/lib/websearch/duckduckgo";
+import { createGroqChatCompletion, type GroqChatMessage } from "@/lib/ai/groq";
+import { createOpenAiChatCompletion } from "@/lib/ai/openai";
+import { runPlanAwareSearch } from "@/lib/websearch";
 import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
+import { getPlan } from "@/lib/subscription/plans";
+import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { resolveChatModel } from "@/lib/ai/model-routing";
 
 const SYSTEM_PROMPT = [
   "You are Life-AI Copilot, a multidisciplinary assistant for legal, community, and operational work.",
@@ -210,8 +214,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  let planId: SubscriptionPlanId;
   try {
-    await enforceAiDailyLimit(userId, "chat");
+    const usage = await enforceAiDailyLimit(userId, "chat");
+    planId = usage.planId;
   } catch (error) {
     if (error instanceof UsageLimitReachedError) {
       return NextResponse.json(
@@ -236,13 +242,14 @@ export async function POST(request: Request) {
   }
 
   const body: ParsedBody = parsed.data;
+  const plan = getPlan(planId);
   const sanitizedMessages = sanitizeMessages(body.messages);
   const lastUserMessage = [...sanitizedMessages].reverse().find((message) => message.role === "user");
 
   let webResults: AssistantWebResult[] = body.webResults ?? [];
   if ((body.useWebSearch ?? true) && webResults.length === 0 && lastUserMessage) {
     try {
-      webResults = await searchDuckDuckGo(lastUserMessage.content, 5);
+      webResults = await runPlanAwareSearch(plan, lastUserMessage.content, 5);
     } catch (error) {
       console.error("Live web search failed", error);
     }
@@ -292,17 +299,26 @@ export async function POST(request: Request) {
     ...searchSummary,
   ];
 
+  const aiConfig = resolveChatModel(plan, body.model);
+
   try {
-    const completion = await createGroqChatCompletion({
-      model: body.model ?? DEFAULT_GROQ_MODEL,
-      messages: conversation,
-      temperature: 0.3,
-    });
+    const completion =
+      aiConfig.provider === "openai"
+        ? await createOpenAiChatCompletion({
+            model: aiConfig.model,
+            messages: conversation,
+            temperature: 0.3,
+          })
+        : await createGroqChatCompletion({
+            model: aiConfig.model,
+            messages: conversation,
+            temperature: 0.3,
+          });
 
     return NextResponse.json({
       content: completion.content,
       webResults,
-      model: body.model ?? DEFAULT_GROQ_MODEL,
+      model: aiConfig.model,
     });
   } catch (error) {
     console.error("Assistant chat error", error);

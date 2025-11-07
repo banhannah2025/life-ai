@@ -5,6 +5,7 @@ import { Timestamp } from "firebase-admin/firestore";
 
 import { getDocumentForUser } from "@/lib/blob/documents";
 import { getAdminFirestore } from "@/lib/firebase/admin";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 async function fetchDocumentContent(url: string) {
   const response = await fetch(url);
@@ -26,6 +27,18 @@ export async function GET(
 
   try {
     const { id } = await params;
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsDocumentWorkspace) {
+      return NextResponse.json(
+        {
+          error: "Document access is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const document = await getDocumentForUser(userId, id);
 
     if (!document) {
@@ -57,6 +70,18 @@ export async function PUT(
 
   try {
     const { id } = await params;
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsDocumentWorkspace) {
+      return NextResponse.json(
+        {
+          error: "Document editing is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const document = await getDocumentForUser(userId, id);
 
     if (!document) {

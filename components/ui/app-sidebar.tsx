@@ -615,7 +615,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
             ? `Hello ${user.firstName}`
             : "Hello Guest";
 
-    const canManageFiles = isLoaded && isSignedIn && !!user?.id;
+    const canManageFiles = isLoaded && isSignedIn && !!user?.id && planMeta.allowsFileManagement;
     const canSendMessages = canManageFiles;
 
     const resetFileInput = useCallback(() => {

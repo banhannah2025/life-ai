@@ -3,9 +3,11 @@ import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 
 import { createGroqChatCompletion } from "@/lib/ai/groq";
+import { createOpenAiChatCompletion } from "@/lib/ai/openai";
 import { enforceAiDailyLimit, UsageLimitReachedError } from "@/lib/subscription/usage-limit";
 import { getPlan } from "@/lib/subscription/plans";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { resolveResearchModel } from "@/lib/ai/model-routing";
 
 const requestSchema = z.object({
   query: z.string().min(1).max(2000),
@@ -74,6 +76,7 @@ export async function POST(request: Request) {
 
   const { query, results, researchType } = parsed.data;
   const plan = getPlan(planId);
+  const aiConfig = resolveResearchModel(plan, researchType);
   if (researchType === "legal" && !plan.includesLegalResearch) {
     return NextResponse.json(
       {
@@ -104,22 +107,40 @@ export async function POST(request: Request) {
     .join("\n");
 
   try {
-    const completion = await createGroqChatCompletion({
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.3,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        {
-          role: "user",
-          content: [
-            `User query: """${query}"""`,
-            "Numbered research results:",
-            context,
-            "Respond only with the JSON structure specified in the instructions.",
-          ].join("\n\n"),
-        },
-      ],
-    });
+    const completion =
+      aiConfig.provider === "openai"
+        ? await createOpenAiChatCompletion({
+            model: aiConfig.model,
+            temperature: 0.3,
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              {
+                role: "user",
+                content: [
+                  `User query: """${query}"""`,
+                  "Numbered research results:",
+                  context,
+                  "Respond only with the JSON structure specified in the instructions.",
+                ].join("\n\n"),
+              },
+            ],
+          })
+        : await createGroqChatCompletion({
+            model: aiConfig.model,
+            temperature: 0.3,
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              {
+                role: "user",
+                content: [
+                  `User query: """${query}"""`,
+                  "Numbered research results:",
+                  context,
+                  "Respond only with the JSON structure specified in the instructions.",
+                ].join("\n\n"),
+              },
+            ],
+          });
 
     let parsedContent: { answer?: string; citations?: Array<{ ref?: unknown; label?: unknown; url?: unknown }> };
     try {

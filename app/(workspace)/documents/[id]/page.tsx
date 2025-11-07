@@ -8,6 +8,8 @@ import { FormEditor, type FormDocumentData } from "@/components/documents/FormEd
 import { SheetEditor, type SheetData } from "@/components/documents/SheetEditor";
 import { SlideEditor, type SlideDeck } from "@/components/documents/SlideEditor";
 import { getDocumentForUser } from "@/lib/blob/documents";
+import { FeatureLockedNotice } from "@/components/subscriptions/FeatureLockedNotice";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 export const dynamic = "force-dynamic";
 
@@ -48,6 +50,18 @@ export default async function DocumentPage({ params }: { params: Promise<Documen
       redirectToSignIn({ returnBackUrl: redirectTarget });
     }
     redirect(`/sign-in?redirect_url=${encodeURIComponent(redirectTarget)}`);
+  }
+
+  const { plan } = await loadUserPlan(userId);
+
+  if (!plan.allowsDocumentWorkspace) {
+    return (
+      <FeatureLockedNotice
+        feature="Document workspace"
+        planName={plan.name}
+        description="Document creation and editing are reserved for Legal Team and Enterprise members."
+      />
+    );
   }
 
   let document = await getDocumentForUser(userId, id);

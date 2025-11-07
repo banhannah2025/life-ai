@@ -11,6 +11,7 @@ import {
   pathToId,
   sanitizePathSegment,
 } from "@/lib/blob/utils";
+import { loadUserPlan } from "@/lib/subscription/plan-access";
 
 const DOCUMENT_TEMPLATES: Record<
   string,
@@ -96,6 +97,18 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const { plan } = await loadUserPlan(userId);
+
+    if (!plan.allowsDocumentWorkspace) {
+      return NextResponse.json(
+        {
+          error: "Document creation is unavailable on your current plan.",
+          details: { plan: plan.name, upgradeUrl: "/subscriptions" },
+        },
+        { status: 403 }
+      );
+    }
+
     const body = (await request.json().catch(() => null)) as CreateDocumentPayload | null;
 
     if (!body?.type) {

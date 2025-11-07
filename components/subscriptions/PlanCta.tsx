@@ -12,9 +12,10 @@ type PlanCtaProps = {
   isActive: boolean;
   signedIn: boolean;
   plusPlanClerkId?: string | null;
+  scrollTargetId?: string;
 };
 
-export function PlanCta({ planId, isActive, signedIn, plusPlanClerkId }: PlanCtaProps) {
+export function PlanCta({ planId, isActive, signedIn, plusPlanClerkId, scrollTargetId = "billing-portal" }: PlanCtaProps) {
   if (isActive && signedIn) {
     return (
       <Button variant="outline" disabled className="w-full">
@@ -32,27 +33,36 @@ export function PlanCta({ planId, isActive, signedIn, plusPlanClerkId }: PlanCta
   }
 
   if (planId === "plus") {
-    if (!plusPlanClerkId) {
+    if (plusPlanClerkId) {
       return (
-        <Button variant="outline" className="w-full" asChild>
-          <Link href="/contact">Contact support to upgrade</Link>
-        </Button>
+        <>
+          <SignedIn>
+            <CheckoutButton planId={plusPlanClerkId} planPeriod="month" newSubscriptionRedirectUrl="/subscriptions?status=success">
+              <Button className="w-full">Upgrade to Plus</Button>
+            </CheckoutButton>
+          </SignedIn>
+          <SignedOut>
+            <Button asChild className="w-full">
+              <Link href="/sign-in?redirect_url=/subscriptions">Sign in to upgrade</Link>
+            </Button>
+          </SignedOut>
+        </>
       );
     }
 
+    const handleScroll = () => {
+      const target = document.getElementById(scrollTargetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.location.hash = `#${scrollTargetId}`;
+      }
+    };
+
     return (
-      <>
-        <SignedIn>
-          <CheckoutButton planId={plusPlanClerkId} planPeriod="month" newSubscriptionRedirectUrl="/subscriptions">
-            <Button className="w-full">Upgrade to Plus</Button>
-          </CheckoutButton>
-        </SignedIn>
-        <SignedOut>
-          <Button asChild className="w-full">
-            <Link href="/sign-in?redirect_url=/subscriptions">Sign in to upgrade</Link>
-          </Button>
-        </SignedOut>
-      </>
+      <Button type="button" className="w-full" onClick={handleScroll}>
+        Explore Plus billing options
+      </Button>
     );
   }
 

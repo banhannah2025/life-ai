@@ -7,6 +7,7 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { resolveUserPlanId } from "@/lib/subscription/server";
 import { cn } from "@/lib/utils";
 import { PlanCta } from "@/components/subscriptions/PlanCta";
+import { BillingPortalSection } from "@/components/subscriptions/BillingPortalSection";
 
 type PlanIcon = typeof Sparkles;
 
@@ -82,12 +83,19 @@ export default async function SubscriptionsPage() {
                     </li>
                   ))}
                 </ul>
-                <PlanCta planId={planId} isActive={isActive} signedIn={!!userId} plusPlanClerkId={plusPlanClerkId} />
+                <PlanCta
+                  planId={planId}
+                  isActive={isActive}
+                  signedIn={!!userId}
+                  plusPlanClerkId={plusPlanClerkId}
+                  scrollTargetId="billing-portal"
+                />
               </CardContent>
             </Card>
           );
         })}
       </div>
+      <BillingPortalSection />
     </div>
   );
 }

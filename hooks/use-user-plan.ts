@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
+import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
 
 type UseUserPlanResult = {
   planId: SubscriptionPlanId;
@@ -40,7 +41,7 @@ export function useUserPlan(): UseUserPlanResult {
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
         if (!cancelled) {
-          setPlanId((profile.planId as SubscriptionPlanId) ?? DEFAULT_PLAN);
+          setPlanId(inferProfilePlanId(profile));
           setLoading(false);
         }
       } catch (error) {

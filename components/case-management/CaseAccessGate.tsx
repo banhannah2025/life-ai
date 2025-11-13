@@ -14,6 +14,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
+import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
 
 type AccessState = "checking" | "allowed" | "denied";
 
@@ -50,7 +51,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
 
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
-        const resolvedPlanId = (profile.planId as SubscriptionPlanId) ?? "free";
+        const resolvedPlanId = inferProfilePlanId(profile);
         if (cancelled) {
           return;
         }
@@ -61,12 +62,22 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
 
         const plan = getPlan(resolvedPlanId);
 
-        if (!plan.includesLegalResearch && !adminByEmail) {
+        if (plan.includesCaseManagement) {
+          setStatus("allowed");
+          return;
+        }
+
+        if (adminByEmail) {
+          setStatus("allowed");
+          return;
+        }
+
+        if (!plan.includesLegalResearch) {
           setStatus("denied");
           return;
         }
 
-        if (adminByEmail || hasCaseManagementAccess(profile.role)) {
+        if (hasCaseManagementAccess(profile.role)) {
           setStatus("allowed");
         } else {
           setStatus("denied");
@@ -97,19 +108,19 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
     return normalized.replace(/_/g, " ");
   }, [roleLabel]);
   const planMeta = useMemo(() => getPlan(planId), [planId]);
-  const lacksLegalByPlan = !planMeta.includesLegalResearch;
+  const lacksCaseManagementByPlan = !planMeta.includesCaseManagement;
   const denialMessage = useMemo(() => {
     if (!isSignedIn) {
       return "Sign in with an authorized account to access case management tools.";
     }
-    if (lacksLegalByPlan) {
+    if (lacksCaseManagementByPlan) {
       return `The ${planMeta.name} plan focuses on community tools. Upgrade to unlock legal research and case management.`;
     }
     return (
       featureDescription ??
       "Only administrators, attorneys, and law-firm accounts can work with case management features."
     );
-  }, [featureDescription, isSignedIn, lacksLegalByPlan, planMeta.name]);
+  }, [featureDescription, isSignedIn, lacksCaseManagementByPlan, planMeta.name]);
 
   if (status === "checking") {
     return (
@@ -136,7 +147,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
               Current role detected: <span className="font-semibold capitalize">{roleDisplay}</span>
             </p>
           ) : null}
-          {lacksLegalByPlan && isSignedIn ? (
+          {lacksCaseManagementByPlan && isSignedIn ? (
             <div className="space-y-3 text-slate-600">
               <p>Your current plan: <span className="font-semibold">{planMeta.name}</span></p>
               <p className="text-sm text-slate-500">
@@ -159,7 +170,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
               </Button>
             ) : (
               <>
-                {lacksLegalByPlan ? (
+                {lacksCaseManagementByPlan ? (
                   <Button asChild>
                     <Link href="/subscriptions">Explore subscriptions</Link>
                   </Button>

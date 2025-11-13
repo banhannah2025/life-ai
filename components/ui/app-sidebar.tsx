@@ -42,6 +42,7 @@ import { pathToId } from "@/lib/blob/utils";
 import { upload } from "@vercel/blob/client";
 import type { UserSummary } from "@/lib/social/types";
 import type { UserProfile } from "@/lib/profile/schema";
+import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
 type FileNode = {
     id: string;
     name: string;
@@ -515,7 +516,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                     setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
                     setUserRole(profile.role ?? null);
                     setProfileDetails(profile);
-                    setPlanId((profile.planId as SubscriptionPlanId) ?? "free");
+                    setPlanId(inferProfilePlanId(profile));
                 }
             } catch (error) {
                 console.error("Failed to load sidebar profile", error);
@@ -605,10 +606,15 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
 
     const planMeta = useMemo(() => getPlan(planId), [planId]);
 
-    const canAccessCaseManagement = useMemo(
-        () => (isAdminUser || hasCaseManagementAccess(userRole)) && planMeta.includesLegalResearch,
-        [isAdminUser, userRole, planMeta.includesLegalResearch]
-    );
+    const canAccessCaseManagement = useMemo(() => {
+        if (planMeta.includesCaseManagement) {
+            return true;
+        }
+        if (!planMeta.includesLegalResearch) {
+            return isAdminUser;
+        }
+        return isAdminUser || hasCaseManagementAccess(userRole);
+    }, [isAdminUser, userRole, planMeta.includesCaseManagement, planMeta.includesLegalResearch]);
 
     const greeting =
         hasHydrated && isLoaded && isSignedIn && user?.firstName

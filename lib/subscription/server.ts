@@ -8,6 +8,7 @@ import { getAdminFirestore } from "@/lib/firebase/admin";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
+import { mapClerkPlanToSubscription } from "@/lib/subscription/clerk";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
@@ -15,6 +16,9 @@ const USAGE_COLLECTION = "subscription_usage";
 type ProfileDoc = {
   planId?: SubscriptionPlanId | null;
   planActivatedAt?: { toDate?: () => Date } | Date | null;
+  billing?: {
+    providerPlanId?: string | null;
+  } | null;
 };
 
 type UsageCounters = Partial<Record<string, number>> & {
@@ -46,11 +50,19 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   }
 
   const planId = typeof data.planId === "string" ? (data.planId as SubscriptionPlanId) : null;
-  if (!planId) {
-    await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
-    return DEFAULT_SUBSCRIPTION_PLAN_ID;
+  if (planId) {
+    return planId;
   }
-  return planId;
+
+  const providerPlanId = typeof data.billing?.providerPlanId === "string" ? data.billing.providerPlanId : null;
+  const mappedBillingPlan = providerPlanId ? mapClerkPlanToSubscription(providerPlanId) : null;
+  if (mappedBillingPlan) {
+    await persistUserPlan(userId, mappedBillingPlan);
+    return mappedBillingPlan;
+  }
+
+  await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
+  return DEFAULT_SUBSCRIPTION_PLAN_ID;
 }
 
 export async function persistUserPlan(userId: string, planId: SubscriptionPlanId) {

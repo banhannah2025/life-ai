@@ -1,6 +1,8 @@
 import type { SubscriptionPlanId, SubscriptionBillingStatus } from "@/lib/subscription/types";
 
-const CLERK_PLUS_PLAN_ID = process.env.CLERK_PLUS_PLAN_ID ?? "plus-monthly";
+const CLERK_PLUS_PLAN_ID =
+  // Keep server + client plan IDs in sync so webhook mapping always works.
+  process.env.CLERK_PLUS_PLAN_ID ?? process.env.NEXT_PUBLIC_CLERK_PLUS_PLAN_ID ?? "plus-monthly";
 
 const CLERK_PLAN_TO_SUBSCRIPTION: Record<string, SubscriptionPlanId> = {};
 if (CLERK_PLUS_PLAN_ID) {

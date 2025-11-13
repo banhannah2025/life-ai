@@ -45,7 +45,7 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
 
   const planId = data?.planId;
-  if (planId) {
+  if (planId && planId !== DEFAULT_SUBSCRIPTION_PLAN_ID) {
     return planId;
   }
 

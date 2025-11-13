@@ -9,6 +9,7 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
 import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
+import { resolvePlanFromClerkSubscriptions } from "@/lib/subscription/clerk";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
@@ -68,6 +69,12 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   if (mappedBillingPlan) {
     await persistUserPlan(userId, mappedBillingPlan);
     return mappedBillingPlan;
+  }
+
+  const clerkPlanId = await resolvePlanFromClerkSubscriptions(userId);
+  if (clerkPlanId) {
+    await persistUserPlan(userId, clerkPlanId);
+    return clerkPlanId;
   }
 
   await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);

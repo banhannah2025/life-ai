@@ -4,7 +4,12 @@ import { FieldValue } from "firebase-admin/firestore";
 
 import { createUserDoc } from "@/lib/firestore";
 import { getAdminFirestore } from "@/lib/firebase/admin";
-import { mapClerkPlanToSubscription, isClerkSubscriptionActive, normalizeClerkStatus } from "@/lib/subscription/clerk";
+import {
+  mapClerkPlanToSubscription,
+  isClerkSubscriptionActive,
+  normalizeClerkStatus,
+  normalizeClerkAmount,
+} from "@/lib/subscription/clerk";
 import { persistUserPlan } from "@/lib/subscription/server";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
@@ -147,17 +152,4 @@ export async function POST(req: NextRequest) {
     console.error("Webhook error:", err);
     return NextResponse.json({ error: "Invalid webhook" }, { status: 400 });
   }
-}
-
-function normalizeClerkAmount(amount: unknown): number | null {
-  if (typeof amount !== "number" || Number.isNaN(amount)) {
-    return null;
-  }
-  if (amount <= 0) {
-    return null;
-  }
-  if (amount < 100 && Number.isInteger(amount)) {
-    return amount * 100;
-  }
-  return Math.round(amount);
 }

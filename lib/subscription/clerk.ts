@@ -1,4 +1,5 @@
 import type { SubscriptionPlanId, SubscriptionBillingStatus } from "@/lib/subscription/types";
+import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
 
 const PLUS_PLAN_IDS = collectPlanIds(
   process.env.CLERK_PLUS_PLAN_IDS,
@@ -59,6 +60,88 @@ export function isClerkSubscriptionActive(status: string | null | undefined): bo
 export const CLERK_BILLING_PLAN_IDS = {
   plus: PRIMARY_PLUS_PLAN_ID,
 } as const;
+
+const DEFAULT_CLERK_API_BASE_URL = "https://api.clerk.com";
+const CLERK_API_BASE_URL = (process.env.CLERK_API_URL ?? DEFAULT_CLERK_API_BASE_URL).replace(/\/+$/, "");
+
+type ClerkApiSubscription = {
+  id?: string | null;
+  status?: string | null;
+  plan?: { id?: string | null } | null;
+  price?: { amount?: number | null; currency?: string | null } | null;
+};
+
+export async function resolvePlanFromClerkSubscriptions(userId: string): Promise<SubscriptionPlanId | null> {
+  const secretKey = process.env.CLERK_SECRET_KEY;
+  if (!secretKey || !userId) {
+    return null;
+  }
+
+  try {
+    const url = `${CLERK_API_BASE_URL}/v1/users/${userId}/subscriptions`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${secretKey}`,
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      console.warn("Failed to fetch Clerk subscriptions", { status: response.status, statusText: response.statusText });
+      return null;
+    }
+
+    const payload = await response.json().catch(() => null);
+    const subscriptions: ClerkApiSubscription[] = parseClerkSubscriptionPayload(payload);
+    if (!subscriptions.length) {
+      return null;
+    }
+
+    const activeSubscription = subscriptions.find((subscription) => isClerkSubscriptionActive(subscription.status));
+    if (!activeSubscription) {
+      return null;
+    }
+
+    const mapped = mapClerkPlanToSubscription(activeSubscription.plan?.id ?? null);
+    if (mapped) {
+      return mapped;
+    }
+
+    return resolvePlanFromBillingDetails({
+      providerPlanId: activeSubscription.plan?.id ?? null,
+      priceCents: normalizeClerkAmount(activeSubscription.price?.amount),
+      currency: typeof activeSubscription.price?.currency === "string" ? activeSubscription.price?.currency : "USD",
+    });
+  } catch (error) {
+    console.error("Unable to resolve plan from Clerk subscriptions", error);
+    return null;
+  }
+}
+
+function parseClerkSubscriptionPayload(payload: unknown): ClerkApiSubscription[] {
+  if (Array.isArray(payload)) {
+    return payload as ClerkApiSubscription[];
+  }
+  if (payload && typeof payload === "object" && Array.isArray((payload as { data?: unknown }).data)) {
+    return ((payload as { data?: ClerkApiSubscription[] }).data ?? []).filter(Boolean);
+  }
+  return [];
+}
+
+export function normalizeClerkAmount(amount: unknown): number | null {
+  if (typeof amount !== "number" || Number.isNaN(amount)) {
+    return null;
+  }
+  if (amount <= 0) {
+    return null;
+  }
+  if (amount < 100 && Number.isInteger(amount)) {
+    return amount * 100;
+  }
+  return Math.round(amount);
+}
 
 function collectPlanIds(...values: Array<string | undefined>): string[] {
   const entries = values

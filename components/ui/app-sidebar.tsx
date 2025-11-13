@@ -1269,6 +1269,36 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                             <Link href="/legal-analytics">Legal analytics</Link>
                         </Button>
                     ) : null}
+                    {canAccessCaseManagement ? (
+                        <section className="space-y-3 rounded-xl border border-slate-100 bg-white/85 p-4 shadow-sm">
+                            <header className="flex items-center justify-between text-sm font-semibold text-slate-800">
+                                <h4>Case management</h4>
+                                <Badge variant="outline" className="text-[11px] uppercase tracking-wide text-emerald-600">
+                                    {planMeta.name} plan
+                                </Badge>
+                            </header>
+                            <div className="space-y-2">
+                                {CASE_MANAGEMENT_NAV_ITEMS.map(({ href, label, description, icon: Icon }) => (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        className="flex items-start gap-3 rounded-lg border border-slate-100 bg-white/90 p-3 text-left text-sm shadow-sm transition hover:border-slate-200 hover:bg-white"
+                                    >
+                                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                                            <Icon className="h-4 w-4" />
+                                        </span>
+                                        <span className="space-y-0.5">
+                                            <span className="block font-semibold text-slate-800">{label}</span>
+                                            <span className="block text-xs text-slate-500">{description}</span>
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                            <Button asChild className="w-full">
+                                <Link href="/case-management">Open case workspace</Link>
+                            </Button>
+                        </section>
+                    ) : null}
                     {shouldShowSocialProfileSection ? (
                         <section className="space-y-4 rounded-xl border border-slate-100 bg-white/80 p-4 text-center shadow-sm">
                             <div className="flex flex-col items-center gap-3">

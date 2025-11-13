@@ -7,6 +7,7 @@ import { getAdminFirestore } from "@/lib/firebase/admin";
 import { mapClerkPlanToSubscription, isClerkSubscriptionActive, normalizeClerkStatus } from "@/lib/subscription/clerk";
 import { persistUserPlan } from "@/lib/subscription/server";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
+import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
 
 type ClerkUserCreatedData = {
   id: string;
@@ -73,6 +74,15 @@ async function handleSubscriptionEvent(data: ClerkSubscriptionData) {
   let targetPlanId: SubscriptionPlanId | null = null;
   if (mappedPlanId) {
     targetPlanId = isActive ? mappedPlanId : "free";
+  } else if (isActive) {
+    const inferredPlan = resolvePlanFromBillingDetails({
+      providerPlanId: data.plan?.id ?? null,
+      priceCents: normalizeClerkAmount(data.price?.amount),
+      currency: typeof data.price?.currency === "string" ? data.price.currency : "USD",
+    });
+    if (inferredPlan) {
+      targetPlanId = inferredPlan;
+    }
   }
 
   if (targetPlanId) {
@@ -82,7 +92,7 @@ async function handleSubscriptionEvent(data: ClerkSubscriptionData) {
   const firestore = getAdminFirestore();
   const renewsAt = parseDate(data.next_billing_at ?? data.billing_cycle_anchor);
   const cancelAt = parseDate(data.cancel_at);
-  const priceCents = typeof data.price?.amount === "number" ? data.price.amount : null;
+  const priceCents = normalizeClerkAmount(data.price?.amount);
   const currency = typeof data.price?.currency === "string" ? data.price.currency : "USD";
 
   await firestore
@@ -137,4 +147,17 @@ export async function POST(req: NextRequest) {
     console.error("Webhook error:", err);
     return NextResponse.json({ error: "Invalid webhook" }, { status: 400 });
   }
+}
+
+function normalizeClerkAmount(amount: unknown): number | null {
+  if (typeof amount !== "number" || Number.isNaN(amount)) {
+    return null;
+  }
+  if (amount <= 0) {
+    return null;
+  }
+  if (amount < 100 && Number.isInteger(amount)) {
+    return amount * 100;
+  }
+  return Math.round(amount);
 }

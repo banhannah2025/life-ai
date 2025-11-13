@@ -8,7 +8,7 @@ import { getAdminFirestore } from "@/lib/firebase/admin";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
-import { mapClerkPlanToSubscription } from "@/lib/subscription/clerk";
+import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
@@ -18,6 +18,8 @@ type ProfileDoc = {
   planActivatedAt?: { toDate?: () => Date } | Date | null;
   billing?: {
     providerPlanId?: string | null;
+    priceCents?: number | null;
+    currency?: string | null;
   } | null;
 };
 
@@ -54,8 +56,7 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     return planId;
   }
 
-  const providerPlanId = typeof data.billing?.providerPlanId === "string" ? data.billing.providerPlanId : null;
-  const mappedBillingPlan = providerPlanId ? mapClerkPlanToSubscription(providerPlanId) : null;
+  const mappedBillingPlan = resolvePlanFromBillingDetails(data.billing ?? null);
   if (mappedBillingPlan) {
     await persistUserPlan(userId, mappedBillingPlan);
     return mappedBillingPlan;

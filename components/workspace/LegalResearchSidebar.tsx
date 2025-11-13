@@ -24,6 +24,8 @@ export function LegalResearchSidebar() {
   const communityResearchTypes: ResearchMode[] = ["academic", "ai"];
   const enabledResearchTypes: ResearchMode[] | undefined = hasLegalAccess ? undefined : communityResearchTypes;
   const initialResearchType: ResearchMode | undefined = hasLegalAccess ? undefined : "academic";
+  const planBadge = loading ? "Checking plan" : `${planMeta.name} plan`;
+  const planBadgeSuffix = hasLegalAccess ? "Full legal research access" : "Ten Synthesis AI requests per day";
 
   return (
     <Sidebar
@@ -36,11 +38,9 @@ export function LegalResearchSidebar() {
           <span>{heading}</span>
         </div>
         <p className="text-xs text-white/80">{description}</p>
-        {!hasLegalAccess ? (
-          <p className="text-[11px] uppercase tracking-wide text-emerald-200">
-            Community plan · Ten Synthesis AI requests per day
-          </p>
-        ) : null}
+        <p className="text-[11px] uppercase tracking-wide text-emerald-200">
+          {planBadge} · {planBadgeSuffix}
+        </p>
       </SidebarHeader>
       <SidebarContent className="overflow-y-auto px-4 py-4 sm:px-6 sm:py-6">
         <LibSearchBar

@@ -35,14 +35,13 @@ import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
 import { hasCaseManagementAccess } from "@/lib/auth/roles";
 import { isAdminEmail } from "@/lib/admin/config";
-import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
 import { fetchRelationships } from "@/lib/social/client";
 import { pathToId } from "@/lib/blob/utils";
 import { upload } from "@vercel/blob/client";
 import type { UserSummary } from "@/lib/social/types";
 import type { UserProfile } from "@/lib/profile/schema";
-import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
+import { useUserPlan } from "@/hooks/use-user-plan";
 type FileNode = {
     id: string;
     name: string;
@@ -478,7 +477,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [profileDetails, setProfileDetails] = useState<UserProfile | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
-    const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
     const [isAvatarUploading, setIsAvatarUploading] = useState(false);
     const avatarInputRef = useRef<HTMLInputElement | null>(null);
     const [connections, setConnections] = useState<UserSummary[]>([]);
@@ -489,6 +487,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const [isSendingMessage, setIsSendingMessage] = useState(false);
     const emailAddresses = user?.emailAddresses ?? [];
     const isAdminUser = emailAddresses.some((address) => isAdminEmail(address.emailAddress));
+    const { planId, loading: planLoading } = useUserPlan();
 
     const handleToggle = (path: string) => {
         setExpandedNodes((prev) => ({
@@ -502,7 +501,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
             setAvatarUrl(null);
             setUserRole(null);
             setProfileDetails(null);
-            setPlanId("free");
             return;
         }
 
@@ -516,7 +514,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                     setAvatarUrl(profile.avatarUrl || user.imageUrl || null);
                     setUserRole(profile.role ?? null);
                     setProfileDetails(profile);
-                    setPlanId(inferProfilePlanId(profile));
                 }
             } catch (error) {
                 console.error("Failed to load sidebar profile", error);
@@ -524,7 +521,6 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
                     setAvatarUrl(user.imageUrl || null);
                     setUserRole(null);
                     setProfileDetails(null);
-                    setPlanId("free");
                 }
             }
         })();
@@ -607,6 +603,9 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const planMeta = useMemo(() => getPlan(planId), [planId]);
 
     const canAccessCaseManagement = useMemo(() => {
+        if (planLoading) {
+            return false;
+        }
         if (planMeta.includesCaseManagement) {
             return true;
         }
@@ -614,7 +613,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
             return isAdminUser;
         }
         return isAdminUser || hasCaseManagementAccess(userRole);
-    }, [isAdminUser, userRole, planMeta.includesCaseManagement, planMeta.includesLegalResearch]);
+    }, [isAdminUser, userRole, planLoading, planMeta.includesCaseManagement, planMeta.includesLegalResearch]);
 
     const greeting =
         hasHydrated && isLoaded && isSignedIn && user?.firstName
@@ -1226,7 +1225,7 @@ export function AppSidebar({ side = "left", mirror = false, hideContent = false 
     const isSocialRoute = socialRoutePrefixes.some((prefix) => normalizedPathname.startsWith(prefix));
     const shouldShowFileAndDocumentSections = false;
     const shouldShowLegalAnalyticsButton = canAccessCaseManagement && (isCasesRoute || isLegalAnalyticsRoute);
-    const isFreePlan = planId === "free";
+    const isFreePlan = !planLoading && planId === "free";
     const shouldShowSocialProfileSection = isFreePlan || isSocialRoute;
     const shouldShowMessageCenterSection = isSocialRoute;
     const canSubmitMessage = selectedRecipientId !== "" && messageBody.trim().length > 0;

@@ -12,9 +12,8 @@ import { hasCaseManagementAccess, normalizeRole } from "@/lib/auth/roles";
 import { isAdminEmail } from "@/lib/admin/config";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { getPlan } from "@/lib/subscription/plans";
-import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
+import { useUserPlan } from "@/hooks/use-user-plan";
 
 type AccessState = "checking" | "allowed" | "denied";
 
@@ -27,14 +26,14 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
   const { isLoaded, isSignedIn, user } = useUser();
   const [status, setStatus] = useState<AccessState>("checking");
   const [roleLabel, setRoleLabel] = useState<string | null>(null);
-  const [planId, setPlanId] = useState<SubscriptionPlanId>("free");
+  const { planId, loading: planLoading } = useUserPlan();
   const emailAddresses = useMemo(() => user?.emailAddresses ?? [], [user?.emailAddresses]);
 
   useEffect(() => {
     let cancelled = false;
 
     async function verifyAccess() {
-      if (!isLoaded) {
+      if (!isLoaded || planLoading) {
         return;
       }
 
@@ -51,16 +50,14 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
 
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
-        const resolvedPlanId = inferProfilePlanId(profile);
         if (cancelled) {
           return;
         }
 
-        setPlanId(resolvedPlanId);
         const roleOrFallback = profile.role && profile.role.trim().length ? profile.role : adminByEmail ? "admin" : null;
         setRoleLabel(roleOrFallback);
 
-        const plan = getPlan(resolvedPlanId);
+        const plan = getPlan(planId);
 
         if (plan.includesCaseManagement) {
           setStatus("allowed");
@@ -95,7 +92,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
     return () => {
       cancelled = true;
     };
-  }, [isLoaded, isSignedIn, user?.id, emailAddresses]);
+  }, [isLoaded, isSignedIn, user?.id, emailAddresses, planId, planLoading]);
 
   const roleDisplay = useMemo(() => {
     if (!roleLabel) {
@@ -122,7 +119,7 @@ export function CaseAccessGate({ children, featureDescription }: CaseAccessGateP
     );
   }, [featureDescription, isSignedIn, lacksCaseManagementByPlan, planMeta.name]);
 
-  if (status === "checking") {
+  if (status === "checking" || planLoading) {
     return (
       <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3 text-sm text-slate-600">
         <Loader2 className="h-5 w-5 animate-spin text-slate-400" />

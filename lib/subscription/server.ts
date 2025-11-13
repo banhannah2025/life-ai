@@ -42,39 +42,34 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   }
 
   const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();
-  if (!snapshot.exists) {
-    await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
-    return DEFAULT_SUBSCRIPTION_PLAN_ID;
-  }
-  const data = snapshot.data() as ProfileDoc | undefined;
-  if (!data) {
-    await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
-    return DEFAULT_SUBSCRIPTION_PLAN_ID;
-  }
+  const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
 
-  const planId = typeof data.planId === "string" ? (data.planId as SubscriptionPlanId) : null;
+  const planId = data?.planId;
   if (planId) {
     return planId;
   }
 
-  const mappedBillingPlan = resolvePlanFromBillingDetails(
-    data.billing
-      ? {
-          providerPlanId: data.billing.providerPlanId ?? null,
-          priceCents: typeof data.billing.priceCents === "number" ? data.billing.priceCents : null,
-          currency: typeof data.billing.currency === "string" && data.billing.currency ? data.billing.currency : "USD",
-        }
-      : null,
-  );
-  if (mappedBillingPlan) {
-    await persistUserPlan(userId, mappedBillingPlan);
-    return mappedBillingPlan;
+  if (data?.billing) {
+    const mappedBillingPlan = resolvePlanFromBillingDetails({
+      providerPlanId: data.billing.providerPlanId ?? null,
+      priceCents: typeof data.billing.priceCents === "number" ? data.billing.priceCents : null,
+      currency: typeof data.billing.currency === "string" && data.billing.currency ? data.billing.currency : "USD",
+    });
+    if (mappedBillingPlan) {
+      await persistUserPlan(userId, mappedBillingPlan);
+      return mappedBillingPlan;
+    }
   }
 
   const clerkPlanId = await resolvePlanFromClerkSubscriptions(userId);
   if (clerkPlanId) {
     await persistUserPlan(userId, clerkPlanId);
     return clerkPlanId;
+  }
+
+  if (!snapshot.exists || !data) {
+    await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
+    return DEFAULT_SUBSCRIPTION_PLAN_ID;
   }
 
   await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);

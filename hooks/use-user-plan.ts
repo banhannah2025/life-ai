@@ -20,6 +20,7 @@ export function useUserPlan(): UseUserPlanResult {
   const { isLoaded, isSignedIn, user } = useUser();
   const [planId, setPlanId] = useState<SubscriptionPlanId>(DEFAULT_PLAN);
   const [loading, setLoading] = useState(true);
+  const metadataPlanId = (user?.publicMetadata?.planId as SubscriptionPlanId | undefined) ?? null;
 
   useEffect(() => {
     let cancelled = false;
@@ -35,6 +36,15 @@ export function useUserPlan(): UseUserPlanResult {
           setLoading(false);
         }
         return;
+      }
+
+      if (!cancelled && !metadataPlanId) {
+        setLoading(true);
+      }
+
+      if (metadataPlanId && !cancelled) {
+        setPlanId(metadataPlanId);
+        setLoading(false);
       }
 
       try {
@@ -83,7 +93,7 @@ export function useUserPlan(): UseUserPlanResult {
     return () => {
       cancelled = true;
     };
-  }, [isLoaded, isSignedIn, user?.id]);
+  }, [isLoaded, isSignedIn, user?.id, metadataPlanId]);
 
   return { planId, loading, isSignedIn: Boolean(isSignedIn) };
 }

@@ -10,6 +10,8 @@ import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
 import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
 import { resolvePlanFromClerkSubscriptions } from "@/lib/subscription/clerk";
+import { clerkClient } from "@clerk/nextjs/server";
+import { getPlan } from "@/lib/subscription/plans";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
@@ -36,6 +38,21 @@ type UsageDoc = {
   counters: Record<string, number>;
   updatedAt: Date | { toDate: () => Date };
 };
+
+async function syncClerkPlanMetadata(userId: string, planId: SubscriptionPlanId) {
+  try {
+    const client = await clerkClient();
+    const plan = getPlan(planId);
+    await client.users.updateUser(userId, {
+      publicMetadata: {
+        planId: plan.id,
+        planName: plan.name,
+      },
+    });
+  } catch (error) {
+    console.error("Failed to sync Clerk plan metadata", error);
+  }
+}
 
 export async function resolveUserPlanId(userId: string): Promise<SubscriptionPlanId> {
   if (!userId) {
@@ -94,6 +111,8 @@ export async function persistUserPlan(userId: string, planId: SubscriptionPlanId
       },
       { merge: true },
     );
+
+  void syncClerkPlanMetadata(userId, planId);
 }
 
 export async function readUsageSnapshot(userId: string): Promise<UsageDoc | null> {

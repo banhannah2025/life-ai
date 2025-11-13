@@ -38,6 +38,31 @@ export function useUserPlan(): UseUserPlanResult {
       }
 
       try {
+        const response = await fetch("/api/subscription/plan", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load plan, status ${response.status}`);
+        }
+
+        const payload = (await response.json().catch(() => null)) as { planId?: unknown } | null;
+        const resolvedPlanId = (payload?.planId as SubscriptionPlanId | undefined) ?? DEFAULT_PLAN;
+
+        if (!cancelled) {
+          setPlanId(resolvedPlanId);
+          setLoading(false);
+        }
+        return;
+      } catch (error) {
+        console.warn("Subscription plan API lookup failed, falling back to profile", error);
+      }
+
+      try {
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
         if (!cancelled) {
@@ -45,7 +70,7 @@ export function useUserPlan(): UseUserPlanResult {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Failed to load user plan", error);
+        console.error("Failed to load user plan via profile fallback", error);
         if (!cancelled) {
           setPlanId(DEFAULT_PLAN);
           setLoading(false);

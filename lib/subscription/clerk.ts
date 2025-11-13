@@ -21,6 +21,15 @@ for (const id of PLUS_PLAN_IDS) {
 const ACTIVE_STATUSES = new Set(["active", "trialing"]);
 const CANCELLED_STATUSES = new Set(["canceled", "unpaid", "past_due", "incomplete", "incomplete_expired", "paused"]);
 
+const CLERK_PLAN_CACHE_TTL_MS = 60 * 1000;
+const clerkPlanCache = new Map<
+  string,
+  {
+    planId: SubscriptionPlanId | null;
+    expiresAt: number;
+  }
+>();
+
 export function mapClerkPlanToSubscription(planId: string | null | undefined): SubscriptionPlanId | null {
   if (!planId) {
     return null;
@@ -77,6 +86,12 @@ export async function resolvePlanFromClerkSubscriptions(userId: string): Promise
     return null;
   }
 
+  const cached = clerkPlanCache.get(userId);
+  const now = Date.now();
+  if (cached && cached.expiresAt > now) {
+    return cached.planId;
+  }
+
   try {
     const url = `${CLERK_API_BASE_URL}/v1/users/${userId}/subscriptions`;
     const response = await fetch(url, {
@@ -96,26 +111,32 @@ export async function resolvePlanFromClerkSubscriptions(userId: string): Promise
     const payload = await response.json().catch(() => null);
     const subscriptions: ClerkApiSubscription[] = parseClerkSubscriptionPayload(payload);
     if (!subscriptions.length) {
+      clerkPlanCache.set(userId, { planId: null, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
       return null;
     }
 
     const activeSubscription = subscriptions.find((subscription) => isClerkSubscriptionActive(subscription.status));
     if (!activeSubscription) {
+      clerkPlanCache.set(userId, { planId: null, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
       return null;
     }
 
     const mapped = mapClerkPlanToSubscription(activeSubscription.plan?.id ?? null);
     if (mapped) {
+      clerkPlanCache.set(userId, { planId: mapped, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
       return mapped;
     }
 
-    return resolvePlanFromBillingDetails({
+    const inferred = resolvePlanFromBillingDetails({
       providerPlanId: activeSubscription.plan?.id ?? null,
       priceCents: normalizeClerkAmount(activeSubscription.price?.amount),
       currency: typeof activeSubscription.price?.currency === "string" ? activeSubscription.price?.currency : "USD",
     });
+    clerkPlanCache.set(userId, { planId: inferred, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
+    return inferred;
   } catch (error) {
     console.error("Unable to resolve plan from Clerk subscriptions", error);
+    clerkPlanCache.set(userId, { planId: null, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
     return null;
   }
 }

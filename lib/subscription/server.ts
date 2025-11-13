@@ -17,6 +17,7 @@ const USAGE_COLLECTION = "subscription_usage";
 type ProfileDoc = {
   planId?: SubscriptionPlanId | null;
   planActivatedAt?: { toDate?: () => Date } | Date | null;
+  planLastSyncedAt?: { toDate?: () => Date } | Date | null;
   billing?: {
     providerPlanId?: string | null;
     priceCents?: number | null;
@@ -44,7 +45,7 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();
   const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
 
-  const planId = data?.planId;
+  const planId = data?.planId ?? null;
   if (planId && planId !== DEFAULT_SUBSCRIPTION_PLAN_ID) {
     return planId;
   }
@@ -67,9 +68,8 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     return clerkPlanId;
   }
 
-  if (!snapshot.exists || !data) {
-    await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
-    return DEFAULT_SUBSCRIPTION_PLAN_ID;
+  if (planId) {
+    return planId;
   }
 
   await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
@@ -81,13 +81,16 @@ export async function persistUserPlan(userId: string, planId: SubscriptionPlanId
     throw new Error("Cannot persist plan without user id.");
   }
 
+  const timestamp = FieldValue.serverTimestamp();
+
   await getAdminFirestore()
     .collection(PROFILE_COLLECTION)
     .doc(userId)
     .set(
       {
         planId,
-        planActivatedAt: FieldValue.serverTimestamp(),
+        planActivatedAt: timestamp,
+        planLastSyncedAt: timestamp,
       },
       { merge: true },
     );

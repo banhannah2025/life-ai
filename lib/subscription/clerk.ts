@@ -71,7 +71,26 @@ export const CLERK_BILLING_PLAN_IDS = {
 } as const;
 
 const DEFAULT_CLERK_API_BASE_URL = "https://api.clerk.com";
-const CLERK_API_BASE_URL = (process.env.CLERK_API_URL ?? DEFAULT_CLERK_API_BASE_URL).replace(/\/+$/, "");
+const DEFAULT_CLERK_TEST_API_BASE_URL = "https://api.clerk.dev";
+
+function resolveClerkApiBaseUrl() {
+  const configured = process.env.CLERK_API_URL;
+  if (configured) {
+    return configured.replace(/\/+$/, "");
+  }
+
+  const secretKey = process.env.CLERK_SECRET_KEY ?? "";
+  if (secretKey.startsWith("sk_live") || secretKey.startsWith("sk_prod")) {
+    return DEFAULT_CLERK_API_BASE_URL;
+  }
+  if (secretKey.startsWith("sk_test") || secretKey.startsWith("test_")) {
+    return DEFAULT_CLERK_TEST_API_BASE_URL;
+  }
+  // Default to production host if we can't infer environment.
+  return DEFAULT_CLERK_API_BASE_URL;
+}
+
+const CLERK_API_BASE_URL = resolveClerkApiBaseUrl();
 
 type ClerkApiSubscription = {
   id?: string | null;

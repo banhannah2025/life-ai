@@ -42,6 +42,12 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     return DEFAULT_SUBSCRIPTION_PLAN_ID;
   }
 
+  const clerkPlanId = await resolvePlanFromClerkSubscriptions(userId);
+  if (clerkPlanId) {
+    await persistUserPlan(userId, clerkPlanId);
+    return clerkPlanId;
+  }
+
   const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();
   const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
 
@@ -60,12 +66,6 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
       await persistUserPlan(userId, mappedBillingPlan);
       return mappedBillingPlan;
     }
-  }
-
-  const clerkPlanId = await resolvePlanFromClerkSubscriptions(userId);
-  if (clerkPlanId) {
-    await persistUserPlan(userId, clerkPlanId);
-    return clerkPlanId;
   }
 
   if (planId) {

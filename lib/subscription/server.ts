@@ -56,7 +56,15 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     return planId;
   }
 
-  const mappedBillingPlan = resolvePlanFromBillingDetails(data.billing ?? null);
+  const mappedBillingPlan = resolvePlanFromBillingDetails(
+    data.billing
+      ? {
+          providerPlanId: data.billing.providerPlanId ?? null,
+          priceCents: typeof data.billing.priceCents === "number" ? data.billing.priceCents : null,
+          currency: typeof data.billing.currency === "string" && data.billing.currency ? data.billing.currency : "USD",
+        }
+      : null,
+  );
   if (mappedBillingPlan) {
     await persistUserPlan(userId, mappedBillingPlan);
     return mappedBillingPlan;

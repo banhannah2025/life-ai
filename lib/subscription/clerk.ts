@@ -151,8 +151,14 @@ export async function resolvePlanFromClerkSubscriptions(userId: string): Promise
       priceCents: normalizeClerkAmount(activeSubscription.price?.amount),
       currency: typeof activeSubscription.price?.currency === "string" ? activeSubscription.price?.currency : "USD",
     });
-    clerkPlanCache.set(userId, { planId: inferred, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
-    return inferred;
+    if (inferred) {
+      clerkPlanCache.set(userId, { planId: inferred, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
+      return inferred;
+    }
+
+    // Default to plus for any active paid subscription we can't map explicitly.
+    clerkPlanCache.set(userId, { planId: "plus", expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
+    return "plus";
   } catch (error) {
     console.error("Unable to resolve plan from Clerk subscriptions", error);
     clerkPlanCache.set(userId, { planId: null, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });

@@ -41,9 +41,8 @@ type UsageDoc = {
 
 async function syncClerkPlanMetadata(userId: string, planId: SubscriptionPlanId) {
   try {
-    const client = await clerkClient();
     const plan = getPlan(planId);
-    await client.users.updateUser(userId, {
+    await clerkClient.users.updateUser(userId, {
       publicMetadata: {
         planId: plan.id,
         planName: plan.name,

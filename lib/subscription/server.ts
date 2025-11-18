@@ -9,12 +9,14 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
 import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
-import { resolvePlanFromClerkSubscriptions } from "@/lib/subscription/clerk";
+import { resolvePlanFromClerkSubscriptions, mapClerkPlanToSubscription } from "@/lib/subscription/clerk";
 import { clerkClient } from "@clerk/nextjs/server";
 import { getPlan } from "@/lib/subscription/plans";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
+
+const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus", "legal_team", "enterprise"]);
 
 type ProfileDoc = {
   planId?: SubscriptionPlanId | null;
@@ -54,6 +56,35 @@ async function syncClerkPlanMetadata(userId: string, planId: SubscriptionPlanId)
   }
 }
 
+async function resolvePlanFromClerkMetadata(userId: string): Promise<SubscriptionPlanId | null> {
+  try {
+    const client = await clerkClient();
+    const user = await client.users.getUser(userId);
+    const rawPlanId =
+      (user.publicMetadata?.planId as string | null | undefined) ??
+      (user.publicMetadata?.plan_id as string | null | undefined) ??
+      null;
+
+    if (typeof rawPlanId !== "string") {
+      return null;
+    }
+
+    const normalized = rawPlanId.trim().toLowerCase();
+    if (!normalized) {
+      return null;
+    }
+
+    if (VALID_PLAN_IDS.has(normalized as SubscriptionPlanId)) {
+      return normalized as SubscriptionPlanId;
+    }
+
+    return mapClerkPlanToSubscription(rawPlanId) ?? mapClerkPlanToSubscription(normalized);
+  } catch (error) {
+    console.warn("Failed to resolve plan from Clerk metadata", error);
+    return null;
+  }
+}
+
 export async function resolveUserPlanId(userId: string): Promise<SubscriptionPlanId> {
   if (!userId) {
     return DEFAULT_SUBSCRIPTION_PLAN_ID;
@@ -63,6 +94,12 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
   if (clerkPlanId) {
     await persistUserPlan(userId, clerkPlanId);
     return clerkPlanId;
+  }
+
+  const metadataPlanId = await resolvePlanFromClerkMetadata(userId);
+  if (metadataPlanId) {
+    await persistUserPlan(userId, metadataPlanId);
+    return metadataPlanId;
   }
 
   const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();

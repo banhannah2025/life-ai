@@ -99,6 +99,47 @@ type ClerkApiSubscription = {
   price?: { amount?: number | null; currency?: string | null } | null;
 };
 
+async function fetchClerkSubscriptions(userId: string, secretKey: string): Promise<ClerkApiSubscription[]> {
+  const endpoints = [
+    `${CLERK_API_BASE_URL}/v1/billing/subscriptions?user_id=${encodeURIComponent(userId)}`,
+    `${CLERK_API_BASE_URL}/v1/users/${userId}/subscriptions`,
+  ];
+
+  for (const url of endpoints) {
+    const subscriptions = await fetchSubscriptionsFromUrl(url, secretKey);
+    if (subscriptions) {
+      return subscriptions;
+    }
+  }
+
+  return [];
+}
+
+async function fetchSubscriptionsFromUrl(url: string, secretKey: string): Promise<ClerkApiSubscription[] | null> {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${secretKey}`,
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    console.warn("Failed to fetch Clerk subscriptions", {
+      url,
+      status: response.status,
+      statusText: response.statusText,
+    });
+    return null;
+  }
+
+  const payload = await response.json().catch(() => null);
+  const subscriptions: ClerkApiSubscription[] = parseClerkSubscriptionPayload(payload);
+
+  return subscriptions.length ? subscriptions : null;
+}
+
 export async function resolvePlanFromClerkSubscriptions(userId: string): Promise<SubscriptionPlanId | null> {
   const secretKey = process.env.CLERK_SECRET_KEY;
   if (!secretKey || !userId) {
@@ -112,23 +153,7 @@ export async function resolvePlanFromClerkSubscriptions(userId: string): Promise
   }
 
   try {
-    const url = `${CLERK_API_BASE_URL}/v1/users/${userId}/subscriptions`;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${secretKey}`,
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      console.warn("Failed to fetch Clerk subscriptions", { status: response.status, statusText: response.statusText });
-      return null;
-    }
-
-    const payload = await response.json().catch(() => null);
-    const subscriptions: ClerkApiSubscription[] = parseClerkSubscriptionPayload(payload);
+    const subscriptions = await fetchClerkSubscriptions(userId, secretKey);
     if (!subscriptions.length) {
       clerkPlanCache.set(userId, { planId: null, expiresAt: now + CLERK_PLAN_CACHE_TTL_MS });
       return null;

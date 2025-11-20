@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
-import { resolveUserPlanIdWithSessionHint, extractPlanIdFromMetadata } from "@/lib/subscription/server";
+import { resolveUserPlanIdWithSessionHint } from "@/lib/subscription/server";
+import { extractPlanIdFromMetadata } from "@/lib/subscription/plan-metadata";
 
 export async function GET() {
   const { userId, sessionClaims } = await auth();

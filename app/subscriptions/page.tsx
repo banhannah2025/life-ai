@@ -4,7 +4,7 @@ import { Check, Sparkles, Shield, Briefcase, Gem } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SUBSCRIPTION_PLANS, getPlan } from "@/lib/subscription/plans";
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
-import { resolveUserPlanIdWithSessionHint } from "@/lib/subscription/server";
+import { resolveUserPlanIdWithSessionHint, extractPlanIdFromMetadata } from "@/lib/subscription/server";
 import { cn } from "@/lib/utils";
 import { PlanCta } from "@/components/subscriptions/PlanCta";
 import { BillingPortalSection } from "@/components/subscriptions/BillingPortalSection";
@@ -20,10 +20,7 @@ const PLAN_ICON_MAP: Record<SubscriptionPlanId, PlanIcon> = {
 
 export default async function SubscriptionsPage() {
   const { userId, sessionClaims } = await auth();
-  const sessionPlanId =
-    (sessionClaims?.publicMetadata?.planId as string | null | undefined) ??
-    (sessionClaims?.publicMetadata?.plan_id as string | null | undefined) ??
-    null;
+  const sessionPlanId = extractPlanIdFromMetadata(sessionClaims?.publicMetadata);
   const activePlanId = userId ? await resolveUserPlanIdWithSessionHint(userId, sessionPlanId) : null;
   const activePlan = getPlan(activePlanId);
   const plusPlanClerkId = process.env.NEXT_PUBLIC_CLERK_PLUS_PLAN_ID ?? null;

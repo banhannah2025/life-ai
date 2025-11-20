@@ -61,7 +61,7 @@ async function resolvePlanFromClerkMetadata(userId: string): Promise<Subscriptio
   try {
     const client = await clerkClient();
     const user = await client.users.getUser(userId);
-    const rawPlanId = extractPlanFromMetadata(user.publicMetadata);
+    const rawPlanId = extractPlanIdFromMetadata(user.publicMetadata);
     return normalizePlanId(rawPlanId);
   } catch (error) {
     console.warn("Failed to resolve plan from Clerk metadata", error);
@@ -131,15 +131,16 @@ export async function resolveUserPlanIdWithSessionHint(
   return resolveUserPlanId(userId);
 }
 
-function extractPlanFromMetadata(metadata: Record<string, unknown> | null | undefined): string | null {
+export function extractPlanIdFromMetadata(metadata: unknown): string | null {
   if (!metadata || typeof metadata !== "object") {
     return null;
   }
 
+  const record = metadata as Record<string, unknown>;
   const candidate =
-    (metadata.planId as string | null | undefined) ??
-    (metadata.plan_id as string | null | undefined) ??
-    (metadata.plan as string | null | undefined) ??
+    (record.planId as string | null | undefined) ??
+    (record.plan_id as string | null | undefined) ??
+    (record.plan as string | null | undefined) ??
     null;
 
   return typeof candidate === "string" && candidate.trim() ? candidate : null;

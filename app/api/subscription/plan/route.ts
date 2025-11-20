@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
-import { resolveUserPlanIdWithSessionHint } from "@/lib/subscription/server";
+import { resolveUserPlanIdWithSessionHint, extractPlanIdFromMetadata } from "@/lib/subscription/server";
 
 export async function GET() {
   const { userId, sessionClaims } = await auth();
@@ -11,10 +11,7 @@ export async function GET() {
   }
 
   try {
-    const sessionPlanId =
-      (sessionClaims?.publicMetadata?.planId as string | null | undefined) ??
-      (sessionClaims?.publicMetadata?.plan_id as string | null | undefined) ??
-      null;
+    const sessionPlanId = extractPlanIdFromMetadata(sessionClaims?.publicMetadata);
     const planId = await resolveUserPlanIdWithSessionHint(userId, sessionPlanId);
     return NextResponse.json({ planId });
   } catch (error) {

@@ -17,6 +17,7 @@ const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
 
 const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus", "legal_team", "enterprise"]);
+const VALID_PLAN_ID_LIST: SubscriptionPlanId[] = ["free", "plus", "legal_team", "enterprise"];
 
 type ProfileDoc = {
   planId?: SubscriptionPlanId | null;
@@ -60,25 +61,8 @@ async function resolvePlanFromClerkMetadata(userId: string): Promise<Subscriptio
   try {
     const client = await clerkClient();
     const user = await client.users.getUser(userId);
-    const rawPlanId =
-      (user.publicMetadata?.planId as string | null | undefined) ??
-      (user.publicMetadata?.plan_id as string | null | undefined) ??
-      null;
-
-    if (typeof rawPlanId !== "string") {
-      return null;
-    }
-
-    const normalized = rawPlanId.trim().toLowerCase();
-    if (!normalized) {
-      return null;
-    }
-
-    if (VALID_PLAN_IDS.has(normalized as SubscriptionPlanId)) {
-      return normalized as SubscriptionPlanId;
-    }
-
-    return mapClerkPlanToSubscription(rawPlanId) ?? mapClerkPlanToSubscription(normalized);
+    const rawPlanId = extractPlanFromMetadata(user.publicMetadata);
+    return normalizePlanId(rawPlanId);
   } catch (error) {
     console.warn("Failed to resolve plan from Clerk metadata", error);
     return null;
@@ -128,6 +112,59 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
 
   await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);
   return DEFAULT_SUBSCRIPTION_PLAN_ID;
+}
+
+export async function resolveUserPlanIdWithSessionHint(
+  userId: string | null | undefined,
+  planHint: string | null | undefined,
+): Promise<SubscriptionPlanId> {
+  if (!userId) {
+    return DEFAULT_SUBSCRIPTION_PLAN_ID;
+  }
+
+  const normalizedHint = normalizePlanId(planHint);
+  if (normalizedHint) {
+    await persistUserPlan(userId, normalizedHint);
+    return normalizedHint;
+  }
+
+  return resolveUserPlanId(userId);
+}
+
+function extractPlanFromMetadata(metadata: Record<string, unknown> | null | undefined): string | null {
+  if (!metadata || typeof metadata !== "object") {
+    return null;
+  }
+
+  const candidate =
+    (metadata.planId as string | null | undefined) ??
+    (metadata.plan_id as string | null | undefined) ??
+    (metadata.plan as string | null | undefined) ??
+    null;
+
+  return typeof candidate === "string" && candidate.trim() ? candidate : null;
+}
+
+function normalizePlanId(planId: string | null | undefined): SubscriptionPlanId | null {
+  if (!planId) {
+    return null;
+  }
+
+  const normalized = planId.trim().toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+
+  if (VALID_PLAN_IDS.has(normalized as SubscriptionPlanId)) {
+    return normalized as SubscriptionPlanId;
+  }
+
+  const mapped = mapClerkPlanToSubscription(planId) ?? mapClerkPlanToSubscription(normalized);
+  if (mapped && VALID_PLAN_ID_LIST.includes(mapped)) {
+    return mapped;
+  }
+
+  return null;
 }
 
 export async function persistUserPlan(userId: string, planId: SubscriptionPlanId) {

@@ -1,17 +1,21 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 
-import { resolveUserPlanId } from "@/lib/subscription/server";
+import { resolveUserPlanIdWithSessionHint } from "@/lib/subscription/server";
 
 export async function GET() {
-  const { userId } = await auth();
+  const { userId, sessionClaims } = await auth();
 
   if (!userId) {
     return NextResponse.json({ planId: "free" }, { status: 200 });
   }
 
   try {
-    const planId = await resolveUserPlanId(userId);
+    const sessionPlanId =
+      (sessionClaims?.publicMetadata?.planId as string | null | undefined) ??
+      (sessionClaims?.publicMetadata?.plan_id as string | null | undefined) ??
+      null;
+    const planId = await resolveUserPlanIdWithSessionHint(userId, sessionPlanId);
     return NextResponse.json({ planId });
   } catch (error) {
     console.error("Failed to resolve user plan", error);

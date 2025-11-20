@@ -9,10 +9,10 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { DEFAULT_SUBSCRIPTION_PLAN_ID } from "@/lib/subscription/types";
 import { UsageLimitReachedError } from "@/lib/subscription/errors";
 import { resolvePlanFromBillingDetails } from "@/lib/subscription/profile-plan";
-import { resolvePlanFromClerkSubscriptions } from "@/lib/subscription/clerk";
 import { clerkClient } from "@clerk/nextjs/server";
 import { getPlan } from "@/lib/subscription/plans";
 import { extractPlanIdFromMetadata, normalizePlanId } from "@/lib/subscription/plan-metadata";
+import { isAdminEmail } from "@/lib/admin/config";
 
 const PROFILE_COLLECTION = "profiles";
 const USAGE_COLLECTION = "subscription_usage";
@@ -59,6 +59,11 @@ async function resolvePlanFromClerkMetadata(userId: string): Promise<Subscriptio
   try {
     const client = await clerkClient();
     const user = await client.users.getUser(userId);
+    const emails = user.emailAddresses ?? [];
+    const isAdminUser = emails.some((address) => isAdminEmail(address.emailAddress));
+    if (isAdminUser) {
+      return "plus";
+    }
     const rawPlanId = extractPlanIdFromMetadata(user.publicMetadata);
     return normalizePlanId(rawPlanId);
   } catch (error) {
@@ -72,24 +77,20 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     return DEFAULT_SUBSCRIPTION_PLAN_ID;
   }
 
-  const clerkPlanId = await resolvePlanFromClerkSubscriptions(userId);
-  if (clerkPlanId) {
-    await persistUserPlan(userId, clerkPlanId);
-    return clerkPlanId;
-  }
+  const metadataPlanPromise = resolvePlanFromClerkMetadata(userId);
+  const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();
+  const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
 
-  const metadataPlanId = await resolvePlanFromClerkMetadata(userId);
-  if (metadataPlanId) {
+  const storedPlanId = data?.planId ?? null;
+  const metadataPlanId = await metadataPlanPromise;
+
+  if (metadataPlanId && metadataPlanId !== storedPlanId) {
     await persistUserPlan(userId, metadataPlanId);
     return metadataPlanId;
   }
 
-  const snapshot = await getAdminFirestore().collection(PROFILE_COLLECTION).doc(userId).get();
-  const data = snapshot.exists ? ((snapshot.data() as ProfileDoc) ?? null) : null;
-
-  const planId = data?.planId ?? null;
-  if (planId && planId !== DEFAULT_SUBSCRIPTION_PLAN_ID) {
-    return planId;
+  if (storedPlanId && storedPlanId !== DEFAULT_SUBSCRIPTION_PLAN_ID) {
+    return storedPlanId;
   }
 
   if (data?.billing) {
@@ -104,8 +105,8 @@ export async function resolveUserPlanId(userId: string): Promise<SubscriptionPla
     }
   }
 
-  if (planId) {
-    return planId;
+  if (storedPlanId) {
+    return storedPlanId;
   }
 
   await persistUserPlan(userId, DEFAULT_SUBSCRIPTION_PLAN_ID);

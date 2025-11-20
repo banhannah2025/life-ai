@@ -86,7 +86,7 @@ export function LandingPage() {
             </p>
             <h2 className="text-3xl font-semibold text-white">Products that scale from community to case teams</h2>
             <p className="mx-auto max-w-3xl text-sm text-slate-200 sm:text-base">
-              Life-AI bundles community collaboration, academic research, and enterprise-grade legal tooling into a unified workspace. Start with the Community plan and grow into advanced tiers as your needs evolve.
+              Life-AI bundles community collaboration, academic research, and court-ready tooling into a unified workspace. Start with the Community plan and upgrade to Plus when you need full legal workflows.
             </p>
             <Button variant="secondary" size="lg" asChild className="bg-white text-slate-900 hover:bg-white/90">
               <Link href="/subscriptions">

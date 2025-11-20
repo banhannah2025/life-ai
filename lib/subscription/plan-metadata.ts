@@ -1,8 +1,6 @@
 import type { SubscriptionPlanId } from "@/lib/subscription/types";
-import { mapClerkPlanToSubscription } from "@/lib/subscription/clerk";
 
-const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus", "legal_team", "enterprise"]);
-const VALID_PLAN_ID_LIST: SubscriptionPlanId[] = ["free", "plus", "legal_team", "enterprise"];
+const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus"]);
 
 export function extractPlanIdFromMetadata(metadata: unknown): string | null {
   if (!metadata || typeof metadata !== "object") {
@@ -33,10 +31,11 @@ export function normalizePlanId(planId: string | null | undefined): Subscription
     return normalized as SubscriptionPlanId;
   }
 
-  const mapped = mapClerkPlanToSubscription(planId) ?? mapClerkPlanToSubscription(normalized);
-  if (mapped && VALID_PLAN_ID_LIST.includes(mapped)) {
-    return mapped;
+  if (normalized.includes("plus")) {
+    return "plus";
   }
-
+  if (normalized.includes("community") || normalized.includes("free")) {
+    return "free";
+  }
   return null;
 }

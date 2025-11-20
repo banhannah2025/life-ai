@@ -7,6 +7,8 @@ import type { SubscriptionPlanId } from "@/lib/subscription/types";
 import { ensureFirebaseSignedIn } from "@/lib/firebase/client-auth";
 import { getUserProfile } from "@/lib/firebase/profile";
 import { inferProfilePlanId } from "@/lib/subscription/profile-plan";
+import { extractPlanIdFromMetadata, normalizePlanId } from "@/lib/subscription/plan-metadata";
+import { isAdminEmail } from "@/lib/admin/config";
 
 type UseUserPlanResult = {
   planId: SubscriptionPlanId;
@@ -20,7 +22,9 @@ export function useUserPlan(): UseUserPlanResult {
   const { isLoaded, isSignedIn, user } = useUser();
   const [planId, setPlanId] = useState<SubscriptionPlanId>(DEFAULT_PLAN);
   const [loading, setLoading] = useState(true);
-  const metadataPlanId = (user?.publicMetadata?.planId as SubscriptionPlanId | undefined) ?? null;
+  const isAdminUser = (user?.emailAddresses ?? []).some((address) => isAdminEmail(address.emailAddress));
+  const adminPlanId = isAdminUser ? "plus" : null;
+  const metadataPlanId = normalizePlanId(extractPlanIdFromMetadata(user?.publicMetadata)) ?? adminPlanId;
 
   useEffect(() => {
     let cancelled = false;
@@ -32,7 +36,7 @@ export function useUserPlan(): UseUserPlanResult {
 
       if (!isSignedIn || !user?.id) {
         if (!cancelled) {
-          setPlanId(DEFAULT_PLAN);
+          setPlanId(adminPlanId ?? DEFAULT_PLAN);
           setLoading(false);
         }
         return;
@@ -63,8 +67,9 @@ export function useUserPlan(): UseUserPlanResult {
         const payload = (await response.json().catch(() => null)) as { planId?: unknown } | null;
         const resolvedPlanId = (payload?.planId as SubscriptionPlanId | undefined) ?? DEFAULT_PLAN;
 
+        const nextPlanId = adminPlanId ?? resolvedPlanId;
         if (!cancelled) {
-          setPlanId(resolvedPlanId);
+          setPlanId(nextPlanId);
           setLoading(false);
         }
         return;
@@ -75,14 +80,16 @@ export function useUserPlan(): UseUserPlanResult {
       try {
         await ensureFirebaseSignedIn();
         const profile = await getUserProfile(user.id);
+        const inferred = inferProfilePlanId(profile);
+        const nextPlanId = adminPlanId ?? inferred;
         if (!cancelled) {
-          setPlanId(inferProfilePlanId(profile));
+          setPlanId(nextPlanId);
           setLoading(false);
         }
       } catch (error) {
         console.error("Failed to load user plan via profile fallback", error);
         if (!cancelled) {
-          setPlanId(DEFAULT_PLAN);
+          setPlanId(adminPlanId ?? DEFAULT_PLAN);
           setLoading(false);
         }
       }

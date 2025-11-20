@@ -55,6 +55,7 @@ function normalizeBilling(billing: unknown): UserBillingProfile | null {
     provider,
     subscriptionId: typeof candidate.subscriptionId === "string" ? candidate.subscriptionId : null,
     providerPlanId: typeof candidate.providerPlanId === "string" ? candidate.providerPlanId : null,
+    customerId: typeof candidate.customerId === "string" ? candidate.customerId : null,
     status: typeof candidate.status === "string" ? candidate.status : "unknown",
     priceCents: typeof candidate.priceCents === "number" ? candidate.priceCents : null,
     currency: typeof candidate.currency === "string" ? candidate.currency : "USD",

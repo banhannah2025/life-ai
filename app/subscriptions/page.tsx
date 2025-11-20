@@ -1,5 +1,5 @@
-import { auth } from "@clerk/nextjs/server";
-import { Check, Sparkles, Shield, Briefcase, Gem } from "lucide-react";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { Check, Sparkles, Gem } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SUBSCRIPTION_PLANS, getPlan } from "@/lib/subscription/plans";
@@ -15,16 +15,15 @@ type PlanIcon = typeof Sparkles;
 const PLAN_ICON_MAP: Record<SubscriptionPlanId, PlanIcon> = {
   free: Sparkles,
   plus: Gem,
-  legal_team: Briefcase,
-  enterprise: Shield,
 };
 
 export default async function SubscriptionsPage() {
   const { userId, sessionClaims } = await auth();
-  const sessionPlanId = extractPlanIdFromMetadata(sessionClaims?.publicMetadata);
-  const activePlanId = userId ? await resolveUserPlanIdWithSessionHint(userId, sessionPlanId) : null;
+  const user = userId ? await currentUser() : null;
+  const metadataPlanHint =
+    extractPlanIdFromMetadata(user?.publicMetadata) ?? extractPlanIdFromMetadata(sessionClaims?.publicMetadata);
+  const activePlanId = userId ? await resolveUserPlanIdWithSessionHint(userId, metadataPlanHint) : null;
   const activePlan = getPlan(activePlanId);
-  const plusPlanClerkId = process.env.NEXT_PUBLIC_CLERK_PLUS_PLAN_ID ?? null;
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
@@ -85,13 +84,7 @@ export default async function SubscriptionsPage() {
                     </li>
                   ))}
                 </ul>
-                <PlanCta
-                  planId={planId}
-                  isActive={isActive}
-                  signedIn={!!userId}
-                  plusPlanClerkId={plusPlanClerkId}
-                  scrollTargetId="billing-portal"
-                />
+                <PlanCta planId={planId} isActive={isActive} signedIn={!!userId} scrollTargetId="billing-portal" />
               </CardContent>
             </Card>
           );
@@ -108,10 +101,6 @@ function iconAccent(planId: SubscriptionPlanId) {
       return "bg-emerald-100 text-emerald-600";
     case "plus":
       return "bg-amber-100 text-amber-600";
-    case "legal_team":
-      return "bg-sky-100 text-sky-600";
-    case "enterprise":
-      return "bg-slate-200 text-slate-700";
     default:
       return "bg-slate-100 text-slate-600";
   }

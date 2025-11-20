@@ -2,7 +2,7 @@ import type { UserProfile } from "@/lib/profile/schema";
 import type { SubscriptionPlanId, UserBillingProfile } from "@/lib/subscription/types";
 import { SUBSCRIPTION_PLANS } from "@/lib/subscription/plans";
 
-const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus", "legal_team", "enterprise"]);
+const VALID_PLAN_IDS = new Set<SubscriptionPlanId>(["free", "plus"]);
 
 const plusPlanCandidates = buildCandidateSet(
   process.env.CLERK_PLUS_PLAN_IDS,

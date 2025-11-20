@@ -1,6 +1,6 @@
 import type { GroqChatMessage } from "@/lib/ai/groq";
 
-export type OpenAiModelId = "gpt-5";
+export type OpenAiModelId = "gpt-4o-mini";
 
 export type OpenAiChatCompletionRequest = {
   model: OpenAiModelId;
@@ -36,7 +36,7 @@ export class OpenAiRequestError extends Error {
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 
 export function isOpenAiModelId(value: string | null | undefined): value is OpenAiModelId {
-  return value === "gpt-5";
+  return value === "gpt-4o-mini";
 }
 
 export async function createOpenAiChatCompletion({
